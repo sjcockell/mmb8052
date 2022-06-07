@@ -1,0 +1,416 @@
+%%
+% Copyright (c) 2017 - 2021, Pascal Wagler;
+% Copyright (c) 2014 - 2021, John MacFarlane
+%
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+%
+% - Redistributions of source code must retain the above copyright
+% notice, this list of conditions and the following disclaimer.
+%
+% - Redistributions in binary form must reproduce the above copyright
+% notice, this list of conditions and the following disclaimer in the
+% documentation and/or other materials provided with the distribution.
+%
+% - Neither the name of John MacFarlane nor the names of other
+% contributors may be used to endorse or promote products derived
+% from this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+%%
+
+%%
+% This is the Eisvogel pandoc LaTeX template.
+%
+% For usage information and examples visit the official GitHub page:
+% https://github.com/Wandmalfarbe/pandoc-latex-template
+%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names,table}{xcolor}
+%
+\documentclass[
+  english,
+  paper=a4,
+  ,captions=tableheading
+]{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\definecolor{default-linkcolor}{HTML}{5f9baf}
+\definecolor{default-filecolor}{HTML}{A50000}
+\definecolor{default-citecolor}{HTML}{4077C0}
+\definecolor{default-urlcolor}{HTML}{5f9baf}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={MMB8052 - Practical 1},
+  pdfauthor={Simon J Cockell},
+  pdflang={en},
+  pdfsubject={Bioinformatics Practical},
+  pdfkeywords={Bioinformatics, Linux},
+  hidelinks,
+  breaklinks=true,
+  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering,]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+% Workaround/bugfix from jannick0.
+% See https://github.com/jgm/pandoc/issues/4302#issuecomment-360669013)
+% or https://github.com/Wandmalfarbe/pandoc-latex-template/issues/2
+%
+% Redefine the verbatim environment 'Highlighting' to break long lines (with
+% the help of fvextra). Redefinition is necessary because it is unlikely that
+% pandoc includes fvextra in the default template.
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=\small,commandchars=\\\{\}}
+
+% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
+\usepackage{footnotebackref}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage[main=english]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{MMB8052 - Practical 1}
+\author{Simon J Cockell}
+\date{2022-06-01}
+
+
+
+%%
+%% added
+%%
+
+
+%
+% for the background color of the title page
+%
+\usepackage{pagecolor}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+
+%
+% break urls
+%
+\PassOptionsToPackage{hyphens}{url}
+
+%
+% When using babel or polyglossia with biblatex, loading csquotes is recommended
+% to ensure that quoted texts are typeset according to the rules of your main language.
+%
+\usepackage{csquotes}
+
+%
+% captions
+%
+\definecolor{caption-color}{HTML}{777777}
+\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\setcapindent{0em}
+
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+%
+% Source Sans Pro as the de­fault font fam­ily
+% Source Code Pro for monospace text
+%
+% 'default' option sets the default
+% font family to Source Sans Pro, not \sfdefault.
+%
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  \else % if not pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+
+  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
+  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
+  % fix is still unreleased.
+  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
+  \ifxetex
+    \makeatletter
+    \defaultfontfeatures[\ttfamily]
+      { Numbers   = \sourcecodepro@figurestyle,
+        Scale     = \SourceCodePro@scale,
+        Extension = .otf }
+    \setmonofont
+      [ UprightFont    = *-\sourcecodepro@regstyle,
+        ItalicFont     = *-\sourcecodepro@regstyle It,
+        BoldFont       = *-\sourcecodepro@boldstyle,
+        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+      {SourceCodePro}
+    \makeatother
+  \fi
+  \fi
+
+%
+% heading color
+%
+\definecolor{heading-color}{RGB}{40,40,40}
+\addtokomafont{section}{\color{heading-color}}
+% When using the classes report, scrreprt, book,
+% scrbook or memoir, uncomment the following line.
+%\addtokomafont{chapter}{\color{heading-color}}
+
+%
+% variables for title, author and date
+%
+\usepackage{titling}
+\title{MMB8052 - Practical 1}
+\author{Simon J Cockell}
+\date{2022-06-01}
+
+%
+% tables
+%
+
+%
+% remove paragraph indention
+%
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+%
+%
+% Listings
+%
+%
+
+
+%
+% header and footer
+%
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+
+\newpairofpagestyles{eisvogel-header-footer}{
+  \clearpairofpagestyles
+  \ihead*{MMB8052 - Practical 1}
+  \chead*{}
+  \ohead*{2022-06-01}
+  \ifoot*{Autumn Term 2022}
+  \cfoot*{}
+  \ofoot*{\thepage}
+  \addtokomafont{pageheadfoot}{\upshape}
+}
+\pagestyle{eisvogel-header-footer}
+
+
+
+%%
+%% end added
+%%
+
+\begin{document}
+
+%%
+%% begin titlepage
+%%
+\begin{titlepage}
+\newgeometry{top=2cm, right=4cm, bottom=3cm, left=4cm}
+\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{media/background.pdf}};
+\newcommand{\colorRule}[3][black]{\textcolor[HTML]{#1}{\rule{#2}{#3}}}
+\begin{flushleft}
+\noindent
+\\[-1em]
+\color[HTML]{218ed0}
+\makebox[0pt][l]{\colorRule[218ed0]{1.3\textwidth}{4pt}}
+\par
+\noindent
+
+% The titlepage with a background image has other text spacing and text size
+{
+  \setstretch{2}
+  \vfill
+  \vskip -8em
+  \noindent {\huge \textbf{\textsf{MMB8052 - Practical 1}}}
+    \vskip 2em
+  \noindent {\Large \textsf{Simon J Cockell} \vskip 0.6em \textsf{2022-06-01}}
+  \vfill
+}
+
+
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+\pagenumbering{arabic} 
+
+%%
+%% end titlepage
+%%
+
+
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+}
+\hypertarget{heading-1}{%
+\section{Heading 1}\label{heading-1}}
+
+\hypertarget{heading-2}{%
+\subsection{Heading 2}\label{heading-2}}
+
+Paragraph, with \textbf{bold} and \emph{italics}. Code block rendered
+below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{read_tsv}\NormalTok{(}\StringTok{'file'}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(dat, }\KeywordTok{aes}\NormalTok{(x, y) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{col))}
+\end{Highlighting}
+\end{Shaded}
+
+Another paragraph. Remember, single line breaks don't produce carriage
+returns. A test for a footnote\footnote{This is a footnote\ldots{}}
+
+\hypertarget{heading-3}{%
+\subsubsection{Heading 3}\label{heading-3}}
+
+Paragraph in a new section. Includes a link:
+\href{https://sjcockell.me}{rursus}. Need to make these more obvious in
+the template.
+
+A numbered list:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Item the first
+\item
+  Item the second
+\item
+  Iten the third
+\end{enumerate}
+
+Similarly a bullet list:
+
+\begin{itemize}
+\tightlist
+\item
+  one
+\item
+  two
+\item
+  three
+\end{itemize}
+
+Math mode. Bit of raw latex. Might not be all that useful.
+
+\begin{equation}\label{eq:neighbor-propability}
+    p_{ij}(t) = \frac{\ell_j(t) - \ell_i(t)}{\sum_{k \in N_i(t)}^{} \ell_k(t) - \ell_i(t)}
+\end{equation}
+
+Now a blockquote. Quite nicely styled:
+
+\begin{quote}
+Block quote until paragraph end. Can feature stuff like inline maths
+\(\pi r^2\) and links.
+\end{quote}
+
+\end{document}
