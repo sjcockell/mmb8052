@@ -7,5 +7,6 @@ pandoc ${PRACTICAL}/${PRACTICAL}.md \
 	--from markdown \
 	--template eisvogel \
 	--highlight-style tango \
+	--pdf-engine=xelatex \
 	--variable date=${DATE} \
 	--variable footer-left="Autumn Term 2022"
