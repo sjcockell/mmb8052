@@ -36,12 +36,12 @@ $ pwd
 /home/student
 $ ls -l -h ~
 ```
-If you see this character: &#21AA; in one of these listings, it means that the command should be entered on one line (the line has been broken in the listing for presentation reasons only).
+If you see this character: \hookrightarrow in one of these listings, it means that the command should be entered on one line (the line has been broken in the listing for presentation reasons only). The `$` sign is used to represent the beginning of each command, but _**should not be typed**_.
 
 Exercises, which will direct you to accomplish some computational task, will be presented like this:
 
 +:-----------------------------------------------------------------+:--------------------------------------------------------------------------------------------------------+
-| Estimated time: 2 mins                                           | **Exercise X**                                                                                          |
+| Estimated time: 0 mins                                           | **Exercise X**                                                                                          |
 |                                                                  |                                                                                                         |
 | &nbsp;                                                           | The instructions to follow will be in this block of text.                                               |
 |                                                                  |                                                                                                         |
@@ -65,7 +65,7 @@ A kernel is the computer program at the heart of an operating system (OS), and i
 
 ## Unix
 
-The Unix operating system is ancient, in computing terms. It was conceived and implemented in 1969 at AT&T's Bell Labs. It is modular by design, with a number of robust tools each designed to perform a limited, well-defined function. A program, known as the Unix "Shell" provides a text-based interface to these tools, and allows the user to combine them in order to perform complex workflows. Thanks to its efficient and robust nature, this computing paradigm persists today in the modern, Unix-like operating systems, Linux and MacOS.
+The Unix operating system is ancient, in computing terms. It was conceived and implemented in 1969 at AT&T's Bell Labs. It is modular by design, with a number of robust tools each designed to perform a limited, well-defined function. A program, known as the Unix _shell_ provides a text-based interface to these tools, and allows the user to combine them in order to perform complex workflows. Thanks to its efficient and robust nature, this computing paradigm persists today in the modern, Unix-like operating systems, Linux and MacOS.
 
 &nbsp;
 
@@ -129,6 +129,8 @@ ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudap
 |                                                                  | - Enter your password when prompted.                                                                    |
 +------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
 
+### Running Commands
+
 Once you have logged in, you should see what's known as a "command prompt" - it is here that you can type commands to be interpreted by the active Unix shell (on our VMs, the default shell is bash). You should see something like this in your terminal:
 
 ```
@@ -149,7 +151,11 @@ Last login: Fri Feb 11 11:47:23 2022 from 128.240.225.23
 student@ML-RefVm-558285:~$
 ```
 
-The `$` symbol is the prompt, and will be used throughout these practicals to indicate the beginning of a bash command (you shouldn't type the `$`).
+The bulk of this is information about the state and health of the system, produced by the OS on login. The final line contains 3 key elements:
+
+1. `student@ML-RefVm-558285` is your username (`student`) at the name of the computer (`ML-RefVm-558285`)
+1. `~` denotes your _current working directory_ - more on this below - this tilde character is a widely used shorthand for the _home_ directory.
+1. The `$` symbol is the prompt, and will be used throughout these practicals to indicate the beginning of a bash command (you shouldn't type the `$`).
 
 +:-----------------------------------------------------------------+:--------------------------------------------------------------------------------------------------------+
 | Estimated time: 2 mins                                           | **Exercise 2**                                                                                          |
@@ -166,6 +172,75 @@ The `$` symbol is the prompt, and will be used throughout these practicals to in
 |                                                                  | - Can you work out what the `ls` and `touch` commands are doing?                                        |
 +------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
 
-We'll see what these commands (and many others) are for later on in the practical. For now, we have another important feature of Linux to introduce.
+The commands you can issue at this prompt are many and varied, but all share a common anatomy. This anatomy is illustrated in figure 1. They begin with the name of the executable command, then are followed by options (or flags), then finally come the arguments (or parameters). Options and arguments change the behaviour of the command in certain prescribed ways.
 
-# The Linux Filesystem
+![the common anatomy of a Linux command](media/anatomy.png)
+
+The whitespace in the command can be just as important as the rest of the text - it is itself interpreted by the shell in specific ways, and the presence (or absence) of a space at a particular place in the command can completely change how it is interpreted. It's also worth mentioning at this point that bash is **case sensitive**.
+
+We'll look in more detail at what the commands in exercise 2 (and many others) are for later on in the practical. For now, we have another important feature of Linux to introduce.
+
+# The Linux File System
+
+Modern operating systems appeal to a broad user base by layering abstractions on top of hidden complexity. The graphical interface to the file system ("Explorer" in Windows and "Finder" in MacOS) is one such abstraction. By making it convenient to search and browse for files, and providing easy access to commonly-used areas of the file system (Documents, Downloads etc) the user doesn't need to put much thought in to where files are actually stored.
+
+Command line Linux does not offer these abstractions. Consequently, the onus is on the user to understand the topology of the file system, since otherwise things can get in a real mess - particularly because tracking down files if you don't know where they have gone can be difficult.
+
+## File System Layout
+
+For convenience, the Linux file system is usually thought of as having a tree-like structure (or a _hierarchy_). Everything in this hierarchy is a file, although some have special properties - for example a _directory_ is a file which acts as a container for other files (some of which may themselves be directories). This tree has a _root_ - indicated by a forward slash (`/`). This is a directory which contains all of the other directories and files in the file system.
+
+A _path_ describes a file system location as a string of characters, with each path component separated by a delimiting character. In Linux, the delimiting character is the forward slash (`/`). In the example in figure 2, the highlighted path is `/home/user1/Project1/results/mapping.bam`. This path uniquely identifies the location of the `mapping.bam` file in the file system. We can have other files named `mapping.bam`, but they will have their own path.
+
+![Figure 2: A typical Linux file system hierarchy](media/filesystem.png)
+
+# Navigating the file system
+
+When you log in to a Linux system (as in exercise 1, above), your shell places you in a particular directory, from which the commands you issue will be run. By default this location is your individual _home_ directory - `/home/username` (where `username` is replaced by your username on the system you're using). Knowing this location (also known as your _current working directory_) is important because the commands you issue will run relative to this location. To explain further, consider the following:
+
+```bash
+# list the contents of the current working directory
+$ ls
+# list the contents of your home directory
+$ ls /home/username
+```
+
+At login, these two commands are effectively equivalent, as your current working directory _is_ your home directory. As soon as you change your current working directory, which you can do by using the command `cd`, the results of these two commands will diverge.
+
+On the VM you are using, your current working directory is shown before the prompt (when you login you will see a tilde (`~`) before the `$` - this is a shorthand for home). If you want to find it explicitly, the command `pwd` prints your current working directory.
+
++:-----------------------------------------------------------------+:--------------------------------------------------------------------------------------------------------+
+| Estimated time: 5 mins                                           | **Exercise 3**                                                                                          |
+|                                                                  |                                                                                                         |
+| &nbsp;                                                           | Run the commands listed below:                                                                          |
+|                                                                  |                                                                                                         |
+| ![](media/programming.png "Exercise Icon"){#id .class width=150} | ```bash                                                                                                 |
+|                                                                  | $ pwd                                                                                                   |
+|                                                                  | $ cd ..                                                                                                 |
+|                                                                  | $ pwd                                                                                                   |
+|                                                                  | $ cd /                                                                                                  |
+|                                                                  | $ pwd                                                                                                   |
+|                                                                  | $ ls                                                                                                    |
+|                                                                  | $ cd                                                                                                    |
+|                                                                  | $ pwd                                                                                                   |
+|                                                                  | ```                                                                                                     |
+|                                                                  | Some things to consider:                                                                                |
+|                                                                  |                                                                                                         |
+|                                                                  | - Does the output of `pwd` match the text in front of the prompt?                                       |
+|                                                                  | - Can you work out what `cd ..` does?                                                                   |
+|                                                                  | - How does the output of `ls` compare to the directories shown in figure 1?                             |
+|                                                                  | - What does the third `cd` command do?                                                                  |
++------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
+
+----------------------------------------------------------------------------------------
+Command      Summary                  Behaviour with no arguments
+------------ ------------------------ --------------------------------------------------
+`ls`         List directory contents  List the contents of the current working directory  
+
+`cd`         Change working directory Change to the home directory
+
+`pwd`        Print working directory  No common arguments
+----------------------------------------------------------------------------------------
+Table 1: Commands for navigating the Linux file system
+
+## File manipulation
