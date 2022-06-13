@@ -194,7 +194,7 @@ A _path_ describes a file system location as a string of characters, with each p
 
 ![Figure 2: A typical Linux file system hierarchy](media/filesystem.png)
 
-# Navigating the file system
+## Navigating the file system
 
 When you log in to a Linux system (as in exercise 1, above), your shell places you in a particular directory, from which the commands you issue will be run. By default this location is your individual _home_ directory - `/home/username` (where `username` is replaced by your username on the system you're using). Knowing this location (also known as your _current working directory_) is important because the commands you issue will run relative to this location. To explain further, consider the following:
 
@@ -242,5 +242,23 @@ Command      Summary                  Behaviour with no arguments
 `pwd`        Print working directory  No common arguments
 ----------------------------------------------------------------------------------------
 Table 1: Commands for navigating the Linux file system
+
+## Absolute and relative paths
+
+File system locations in Linux can be described in two ways:
+
+1. As a full path all the way to the root of the file system - this is known as an **absolute file path**
+2. In relation to the current working directory - this is known as a **relative file path**
+
+Absolute (or fully qualified) file paths always begin with a `/` forward slash. Relative file paths do not.
+
+Consider the file hierarchy shown in figure 2 again. For `user1` at login (so therefore with `/home/user1` as the current working directory), the following are true:
+
+- The _relative_ path to the highlighted `mapping.bam` file is `Project1/results/mapping.bam`. Note the lack of a forward slash at the beginning of the path.
+- The _absolute_ path to this file is `/home/user1/Project1/results/mapping.bam`. This time there is a forward slash at the beginning - showing that the path takes us back to the root.
+- The absolute path of the `ls` executable is `/bin/ls`. Try typing this fully qualified path at the command line.
+- The relative path to this file is more complicated, since we need to navigate "up" the tree before going back down: `../../bin/ls`. The double dot notation means to look in the parent directory, so `../..` is the parent of the parent (in this case, the root directory - the parent directory of `/home/user1` is `/home`, and the parent of `/home` is `/`).
+
+Absolute file paths are always unambiguous addresses of a single file on the file system. Absolute file paths have some inherent ambiguity, as the file they point to can differ depending on your current working directory. For example, `mapping.bam` may be a common output of running a command, so therefore you may have a `mapping.bam` file in lots of different projects, where the distinguishing feature is not the name of the file, but the name of a parent directory that defines that project. Running a command which points to `results/mapping.bam` will have a different effect depending on whether you run it from `~/Project1` or `~/Project2`.
 
 ## File manipulation
