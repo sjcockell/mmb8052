@@ -228,20 +228,10 @@ On the VM you are using, your current working directory is shown before the prom
 |                                                                  |                                                                                                         |
 |                                                                  | - Does the output of `pwd` match the text in front of the prompt?                                       |
 |                                                                  | - Can you work out what `cd ..` does?                                                                   |
-|                                                                  | - How does the output of `ls` compare to the directories shown in figure 1?                             |
+|                                                                  | - How does the output of `ls` compare to the directories shown in figure 2?                             |
 |                                                                  | - What does the third `cd` command do?                                                                  |
 +------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
 
-----------------------------------------------------------------------------------------
-Command      Summary                  Behaviour with no arguments
------------- ------------------------ --------------------------------------------------
-`ls`         List directory contents  List the contents of the current working directory  
-
-`cd`         Change working directory Change to the home directory
-
-`pwd`        Print working directory  No common arguments
-----------------------------------------------------------------------------------------
-Table 1: Commands for navigating the Linux file system
 
 ## Absolute and relative paths
 
@@ -259,6 +249,144 @@ Consider the file hierarchy shown in figure 2 again. For `user1` at login (so th
 - The absolute path of the `ls` executable is `/bin/ls`. Try typing this fully qualified path at the command line.
 - The relative path to this file is more complicated, since we need to navigate "up" the tree before going back down: `../../bin/ls`. The double dot notation means to look in the parent directory, so `../..` is the parent of the parent (in this case, the root directory - the parent directory of `/home/user1` is `/home`, and the parent of `/home` is `/`).
 
-Absolute file paths are always unambiguous addresses of a single file on the file system. Absolute file paths have some inherent ambiguity, as the file they point to can differ depending on your current working directory. For example, `mapping.bam` may be a common output of running a command, so therefore you may have a `mapping.bam` file in lots of different projects, where the distinguishing feature is not the name of the file, but the name of a parent directory that defines that project. Running a command which points to `results/mapping.bam` will have a different effect depending on whether you run it from `~/Project1` or `~/Project2`.
+Absolute file paths are always unambiguous addresses of a single file on the file system. Relative file paths have some inherent ambiguity, as the file they point to can differ depending on your current working directory. For example, `mapping.bam` may be a common output of running a command, so therefore you may have a `mapping.bam` file in lots of different projects, where the distinguishing feature is not the name of the file, but the name of a parent directory that defines that project. Running a command which points to `results/mapping.bam` (a relative path) will have a different effect depending on whether you run it from `~/Project1` or `~/Project2`.
+
+----------------------------------------------------------------------------------------
+Command      Summary                  Behaviour with no arguments
+------------ ------------------------ --------------------------------------------------
+`ls`         List directory contents  List the contents of the current working directory  
+
+`cd`         Change working directory Change to the home directory
+
+`pwd`        Print working directory  No common arguments
+----------------------------------------------------------------------------------------
+Table 1: Commands for navigating the Linux file system.
 
 ## File manipulation
+
+Now we understand something of the layout of the file system, and how to navigate it we can begin to learn how to manipulate files. For this we will introduce 6 new commands:
+
+- `echo` - "repeats" what follows the command in the terminal.
+- `nano` - a simple command-line text editor.
+- `cp` - copies a file.
+- `mv` - moves a file.
+- `mkdir` - makes (mk) a new directory (dir).
+- `rm` - removes a file.
+
+Before we start to look at these commands, we have to learn something about output streams and redirection.
+
+### Output Streams
+
+Many command line programs produce output in the terminal. We've already seen a couple of examples of this - `ls` prints its list of files in the terminal, for instance. There are actually two streams of output which a program can use to produce this effect - these are known as `STDOUT` (standard output) and `STDERR` (standard error). Conventionally, `STDOUT` is used for the results of the program, and `STDERR` is reserved for error messages.
+
+We can take advantage of a feature of bash known as _output redirection_ to manipulate the destination of this output - making it possible to store it in a file instead of printing it to the screen. It is even possible to use the output of one command as the _input_ for a subsequent command.
+
+Useful redirection commands:
+
+```bash
+# redirect the output of **command** to **file** - if file already exists, it will be over-written.
+$ command > file
+# append the output of **command** to **file** - if file already exists, the output will be added to the end.
+$ command >> file
+# the input of **command** will be read from **file**
+$ command < file
+# the output of **command1** will be used as the input for **command2**
+$ command1 | command2
+```
+
+All of the redirection commands above work with `STDOUT`. `STDERR` will still end up being printed in the terminal. It is also possible to redirect `STDERR`, though not necessary for anything we're attempting to accomplish on this course.
+
+We can make use of output redirection to create a file, since the `>` and `>>` operators will create a file if it does not already exist.
+
++:-----------------------------------------------------------------+:--------------------------------------------------------------------------------------------------------+
+| Estimated time: 5 - 10 mins                                      | **Exercise 4**                                                                                          |
+|                                                                  |                                                                                                         |
+| &nbsp;                                                           | Run the commands listed below:                                                                          |
+|                                                                  |                                                                                                         |
+| ![](media/programming.png "Exercise Icon"){#id .class width=150} | ```bash                                                                                                 |
+|                                                                  | $ echo "Hello, World"                                                                                   |
+|                                                                  | $ echo "Hello, World" > ~/myfile.txt                                                                    |
+|                                                                  | $ ls ~                                                                                                  |
+|                                                                  | $ nano ~/myfile.txt                                                                                     |
+|                                                                  | ```                                                                                                     |
+|                                                                  |                                                                                                         |
+|                                                                  | Take some time to investigate how `nano` works - there are some instructions on screen when it opens.   |
+|                                                                  | Can you figure out how to change the file contents, how to save, and how to exit?                       |
+|                                                                  |                                                                                                         |
+|                                                                  | Some other things to consider:                                                                          |
+|                                                                  |                                                                                                         |
+|                                                                  | - What does the `echo` command do?                                                                      |
+|                                                                  | - How does the addition of `> ~/myfile.txt` change the behaviour of the `echo` command?                 |
+|                                                                  | - Is `~/myfile.txt` a relative or absolute path?                                                        |
+|                                                                  | - What does `^` mean in the on-screen help for nano?                                                    |
+|                                                                  | - Can you figure out how to use `echo` and `>>` to add extra content to the file?                       |
++------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
+
+### Copying and Moving files
+
+`cp` and `mv` are the Unix commands for copying and moving files, respectively. In both cases they take two compulsory arguments - (1) the name of the file to act on, and (2) the destination location that you want it to end up. As the names suggest, after using `cp` you will have 2 copies of the file (the original and a copy at the destination), after using `mv` you will still only have one copy (the one at the destination location - the original will be removed). The destination file location can be in the same directory as the original file, but must have a different name, or it could be in a different directory - in this case the filename can remain the same.
+
+```bash
+$ ls
+emptyfile myfile.txt
+# copy myfile.txt (.bak is a Unix convention for a backup copy)
+$ cp myfile.txt myfile.bak
+$ ls
+emptyfile myfile.bak  myfile.txt
+# rename the new file
+$ mv myfile.bak mf.b
+$ ls
+emptyfile mf.b  myfile.txt
+```
+
+### Working with Directories
+
+Directories are directly analogous to _folders_ in Windows and MacOS. As described previously, they are special files which are capable of containing other files (and indeed other directories). Sensible and well-planned use of directories can impose a logical organisational structure on your filesystem. The command for creating new directories is `mkdir` (for **m**a**k**e **dir**ectory) - like many other tools we've looked at so far, the simplest mode of operation for `mkdir` is to provide it with a single argument - the name of the directory you want to create.
+
+```bash
+# make a new directory called **mydir** in the current working directory
+$ mkdir mydir
+$ ls
+emptyfile   mydir/  mf.b   myfile.txt
+```
+**Note**: The syntax highlighting I use here cannot replicate the colours you will see in your terminal (where directories will be coloured in blue). I've addressed this by listing directories with a trailing slash. You can replicate this by adding the -p option to `ls` - the exact results seen in the block above can be obtained with: `ls --color=never -p`
+
+Other commands already introduced work with directories too - `mv` will move a directory (and its contents) just like any other file. It is possible to copy whole directories with `cp` as well, although you do have to add the `-r` option for this to work correctly:
+
+```bash
+# move file in to new directory
+$ mv mf.b mydir
+# move the directory and its contents
+$ mv mydir mynewdir
+$ ls
+emptyfile myfile.txt  mynewdir/
+$ ls mynewdir
+mf.b
+# copy the directory and its contents
+$ cp -r mynewdir mycpdir
+$ ls
+emptyfile mycpdir/  myfile.txt  mynewdir/
+$ ls mycpdir
+mf.b
+```
+
+### Deleting Files
+
+All the commands we've looked at so far create files (and directories), however, sometimes it is necessary to delete things too. The command for removing files is `rm` amd again, the simplest way of using it is with a single argument - the file to be deleted.
+
+Unlike the operating systems you may be used to, there is no request for confirmation when you issue the `rm` command - the file will be immediately removed from the file system (it also doesn't go into any sort of recoverable "Trash" folder). For this reason, `rm` should be treated with caution - especially when used with the `-r` option (which like `cp` is used to "recursively" act on all the files in a directory, including the directory itself). If you do want to be prompted for confirmation before deleting a file, you can add the `-i` option to your `rm` command.
+
+```bash
+# remove a file
+$ rm emptyfile
+# remove a directory (and contents)
+$ rm -r mycpdir
+$ ls
+myfile.txt  mynewdir/
+# remove a file and prompt for confirmation
+$ rm -i myfile.txt
+rm: remove regular file 'myfile.txt'? n
+$ ls
+$ ls
+myfile.txt  mynewdir/
+```
