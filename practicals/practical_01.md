@@ -422,9 +422,19 @@ This command will display the `man` page for the `ls` command. Linux manual page
 ----------------|-----------------------------
 NAME            | Name of the command    
 SYNOPSIS        | General usage parameters of the command
-DESCRIPTION     | Describes what the command does
-OPTIONS         | Describes all of the arguments or options of the command
+DESCRIPTION     | Describes what the command does, and lists all of the options of the command
 SEE ALSO        | Lists other commands that are directly related to the command in the man page or closely resemble its functionality
-BUGS            | Explains any known issues or bugs that exist with the command or its output
+REPORTING BUGS  | Explains how/where to report bugs with the tools
 EXAMPLES        | Common usage examples that give the reader an idea of how the command can be used
-AUTHORS         | The author of the man page/command
+AUTHOR          | The author(s) of the man page/command
+
+Table 2: The common sections of a `man` page. Other sections may be present, but these are not well standardized across `man` pages.
+
+The SYNOPSIS, in particular, is useful for giving the general form of the command including any required arguments. The SYNOPSIS has its own standard format, for example let's look at the SYNOPSIS for `ls`:
+
+```
+SYNOPSIS
+       ls [OPTION]... [FILE]...
+```
+
+Anything in square brackets (`[]`) is _optional_ and the `...` means it is possible to provide one or more of that thing (so `ls` can be given multiple options, and multiple file paths).
