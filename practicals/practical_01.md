@@ -437,4 +437,54 @@ SYNOPSIS
        ls [OPTION]... [FILE]...
 ```
 
-Anything in square brackets (`[]`) is _optional_ and the `...` means it is possible to provide one or more of that thing (so `ls` can be given multiple options, and multiple file paths).
+Anything in square brackets (`[]`) is _optional_ and the `...` means it is possible to provide one or more of that thing (so `ls` can be given multiple options, and multiple file paths). The full list of available options, and their functionality is given in the `DESCRIPTION`.
+
+
+### Exercise 1.6 {: .exercise}
+
+Estimated time: 5 - 10 mins
+
+Read the `man` page for the command `cat`. Use the page to figure out the following:
+
+ - What does the command `cat` do?
+ - Can you work out how to get `cat` to print the file `myfile.txt` with and without line numbers?
+ - What do you think the command listed in `SEE ALSO` does?
+
+# Downloading Data at the Command Line
+
+`wget` (web get) is described as a "non-interactive network downloader" and is a command-line utility which will download the content at a given URL to your Linux file system. This makes `wget` a very useful command for downloading software and data to your command-line driven machine. It is particularly powerful in combination with particular kinds of _web service_.
+
+## RESTful API
+
+An API is an **A**pplication **P**rogramming **I**nterface, and provides a way for computer programs to communicate with one another.
+
+REST stands for **Re**presentational **S**tate **T**ransfer, which is a set of guidelines for developing web services in a particular style. REST is popular due to its relative simplicity.
+
+A RESTful API is a web API which provides stable addresses for resources on the web. These endpoints can be used to provide access to these resources, and to allow interaction with them. Many popular biological databases provide a RESTful API for working with their data.
+
+## UniProt API
+
+The [Universal Protein Resource](https://uniprot.org) (UniProt) is a comprehensive resource for protein sequence and annotation data. The database is a collaboration between the European Bioinformatics Institute, the Swiss Institute of Bioinformatics and the Protein Information Resource. The UniProt Knowledgebase contains high-quality, annotated protein sequence records in two sections, UniProtKB/Swiss-Prot, a manually annotated, non-redundant database; and UniProtKB/TrEMBL, a larger, computationally annotated database. UniProt provides programmatic access to the database via a RESTful API.
+
+Every protein in the UniProt database has a unique _accession_ which identifies the entry. These accessions provide stable API endpoints for each protein in the UniProt database. For example, the [human PAX6 protein](https://www.uniprot.org/uniprotkb/P26367/entry) has the accession P26367, for this protein:
+
+ - The plain text database entry: <https://rest.uniprot.org/uniprotkb/P26367.txt>
+ - The protein sequence (FASTA format): <https://rest.uniprot.org/uniprotkb/P26367.fasta>
+ - Sequence features (GFF format): <https://rest.uniprot.org/uniprotkb/P26367.gff>
+
+The UniProt API allows us to construct these endpoints for any protein in the database, by replacing _P26367_ in the addresses above with the accession for our protein of interest.
+
+### Exercise 1.7 {: .exercise}
+
+Estimated time: 5 - 10 mins
+
+The human Retinoblastoma protein (RB1) has the accession **P06400**, use `wget` to download the plain text database entry for this protein.
+
+You can view the file you've downloaded using the _pager_ program `less` (open the file using `less filename`, then use the space bar to page through the file. Press 'Q' to quit).
+
+Use the entry you've downloaded to answer the following questions:
+
+ - How many amino acids are in the RB1 protein sequence?
+ - List 3 proteins that RB1 interacts with.
+ - What are the last (C-terminal) 10 amino acids of the primary sequence?
+ - Can you find the publication and PDB ID associated with an X-Ray crystallography structure of the protein which has a resolution of 2.3 Angstroms?
