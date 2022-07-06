@@ -478,7 +478,7 @@ The UniProt API allows us to construct these endpoints for any protein in the da
 
 Estimated time: 5 - 10 mins
 
-The human Retinoblastoma protein (RB1) has the accession **P06400**, use `wget` to download the plain text database entry for this protein.
+The human Retinoblastoma protein (RB1)has the accession **P06400**, use `wget` to download the plain text database entry for this protein.
 
 You can view the file you've downloaded using the _pager_ program `less` (open the file using `less filename`, then use the space bar to page through the file. Press 'Q' to quit).
 
@@ -488,3 +488,42 @@ Use the entry you've downloaded to answer the following questions:
  - List 3 proteins that RB1 interacts with.
  - What are the last (C-terminal) 10 amino acids of the primary sequence?
  - Can you find the publication and PDB ID associated with an X-Ray crystallography structure of the protein which has a resolution of 2.3 Angstroms?
+
+**HINT** - with a file open in `less`, you can use forward slash (`/`) followed by a search term to find specific text in the file (try `/pdb`, for example). You can read more about this functionality in the `man` page for `less`.
+
+## Searching UniProt with the API
+
+The UniProt API, as well as giving straight-forward access to individual proteins, as explored above, also allows more complicated interactions with the UniProt database. The `stream` API endpoint allows the user to conduct programmatic searches of the database according to the parameters provided. For example, the following address:
+
+<https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&format=fasta>
+
+Will return all of the sequences of UniProtKB/Swiss-Prot entries (`reviewed:true`) for human (`organism_id:9606`) proteins, formatted according to the FASTA specification (`format=fasta`).
+
+It is possible to construct these queries using the 'Advanced Search' on the UniProt website.
+
+Using `wget` with this address will download the full set of 20,386 manually curated human proteins:
+
+```bash
+$ wget -O human.fa 'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&format=fasta'
+```
+
+The address has to be enclosed in quotes, as it contains characters with special meaning in `bash`, which would alter the behaviour of the command otherwise. Additionally, this address does not end in a neat file name like the simple API requests in the previous section, so we tell `wget` the name of the output file using the `-O` option - in this case, our results will be stored in a file called `human.fa` in the current working directory.
+
+### Exercise 1.8 {: .exercise}
+
+Estimated time: 5 - 10 mins
+
+Using the UniProt `stream` API, as described above, download the sequences of proteins which match the following criteria:
+
+ - protein_name contains 'Interferon'
+ - organism_id = 9606 (human)
+ - reviewed = true
+
+<iframe src="https://newcastle.h5p.com/content/1291455584613022437/embed" aria-label="CMB2000 L15 Quick Quiz" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+
+
+# Summary
+
+In this first practical we have encountered the Linux command line for the first time and introduced commands for navigating the filesystem, creating and editing files and directories and for downloading data from the web. Due to the maturity of these tools, and the consistent way in which they are developed, the fundamentals we have learned here should allow us to pick up and use virtually any command line tool. This is particularly true if these tools have a `man` page or a well-written help file.
+
+In future practicals, we will investigate more of these tools, and different ways of using them.
