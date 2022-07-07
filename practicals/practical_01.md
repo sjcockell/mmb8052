@@ -1,3 +1,5 @@
+# MMB8052 Practical 01 - Introduction to the Linux Command Line
+
 # Introduction to the Module
 
 ## Module Organisation
@@ -407,6 +409,20 @@ Quick quiz:
 - What happens if you run command 4 without this option?
 - What is the effect of the final command on `~/level1/level2`?
 
+### Viewing files
+
+Linux offers several commands for viewing the contents of a text file on the screen.
+
+You've already met `cat` - this command will print the contents of a file to `STDOUT`. If the file is long, the text will scroll up the screen until the end of the file is reached.
+
+The `less` command lets you view text one page (or screen) at a time. The space bar moves forward one page, pressing "B" moves back one page and pressing "Q" quits.
+
+`head` will show you the first lines of a text file and `tail` will show you the last lines. Both show 10 lines by default, but this can be changes with the `-n` option.
+
+Note that running `head`, `tail` or `cat` without specifying a filename will cause the command prompt to "hang" (become unresponsive to input). Pressing Ctrl+C will cancel the command by sending a _kill_ signal to your terminal.
+
+Pressing Ctrl+C will abort most processes in Linux on the command line.
+
 # Getting Help
 
 You will have realised by now that the catalogue of Unix commands is very large, and each individual command comes with an array of options and arguments to modify the default behaviour. This means that, especially for the beginner, command line computing can quickly become overwhelming. Fortunately, it is not necessary (nor is it possible) to remember all of the commands and their available options. Linux has an extensive built-in help system to assist you with navigating this bewildering complexity, `man` (short for Manual).
@@ -449,6 +465,9 @@ Read the `man` page for the command `cat`. Use the page to figure out the follow
  - What does the command `cat` do?
  - Can you work out how to get `cat` to print the file `myfile.txt` with and without line numbers?
  - What do you think the command listed in `SEE ALSO` does?
+
+**NOTE** - `man` pages open in the system "pager" program, which on most modern Linux systems is `less`. This means that to close an open `man` page, you will need to press "Q".
+
 
 # Downloading Data at the Command Line
 
@@ -519,8 +538,7 @@ Using the UniProt `stream` API, as described above, download the sequences of pr
  - organism_id = 9606 (human)
  - reviewed = true
 
-<iframe src="https://newcastle.h5p.com/content/1291455584613022437/embed" aria-label="CMB2000 L15 Quick Quiz" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
-
+We will look at some tools which will allow us to examine these results more carefully in the next practical.
 
 # Summary
 
