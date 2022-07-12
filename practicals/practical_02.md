@@ -10,6 +10,43 @@ Linux tools for processing text have been around for the best part of 50 years, 
 
 # Tools for Text
 
+## Formats
+
+### FASTA
+
+The FASTA file format is a 40-year old standard for representing either nucleotide or amino acid sequences. The first line of a FASTA entry begins with the greater-than symbol (`>`), and is referred to as the description line. It should contain a unique identifier for the sequence. The lines following the description line contain the sequence data, which can be spread across multiple lines and are expected to be represented in the standard IUPAC single-letter codes. A single file can contain many sequence entries, each beginning with its own description line.
+
+```
+>sequence_1
+CGATAGCAGATGCGATGGATAGAGATTAGATAGAGGCTCGCGCTGACGCCGCTCGATCGGCTGAGCTACGCTCGAGATCG
+CGATGCGCTATCGCGCTAGCTCG
+>sequence_2
+ATGAGCTGAGCGTAGTCGCGCATCAGCAGACTACAGCAGCAGACTCAGAACAGCAGCAGCAGCAGCACTACGCAGACTAC
+GCATACGCAGACTACGCAGACGACTCAGCAGACGACTACGA
+```
+
+### FASTQ
+
+The FASTQ format was developed by the Wellcome Trust Sanger Institute to store nucleotide sequence data along with associated quality scores, which provide information about the confidence of sequencing accuracy. FASTQ has become the _de facto_ standard for storing the output of high-throughput sequencing instruments. An entry in a FASTQ file consists of 4 lines:
+
+ 1. Begins with an `@` character, and is followed by a sequence identifier (like the FASTA description line)
+ 1. The sequence data (A/C/G/T/N)
+ 1. Delimits the sequence data and the quality data - in modern files usually contains only a `+` character
+ 1. The quality data for the bases in line 2 - must contain the same number of characters as line 2
+
+The quality scores are encoded as an ASCII value - that is a single character that can be translated into an integer numerical value, generally in the range 0 - 41. This quality score, or Phred score is related to the probability of the corresponding base call being an error (the higher the Phred score, the lower this probability).
+
+```
+
+
+```
+
+### SAM
+
+### GFF/GTF
+
+### VCF
+
 ## wc
 
 The `wc` command (word count) is a utility that given a file will list the number of lines, words and bytes in that file. The `-l` option restricts the output to just the number of lines in the file -this is particularly useful for file in which every line is a separate record, such as the case with tabular data.
@@ -44,13 +81,15 @@ This command will return all of the lines which contain a `>` character. You cou
 $ grep '>' human.fa | wc -l
 ```
 
+This command makes use of the "pipe" character (`|`) we first encountered in practical 1 to use the output from `grep` as the input for `wc`.
+
 Some useful options for `grep` include:
 
-`-c` to count the number of lines containing the search phrase
-`-i` to make the search case-insensitive
-`-o` to select only matching strings (rather than the whole line)
-`-w` to select only lines containing matches that form whole words
-`-v` to select non-matching lines
-`--color` to highlight matches in the selected line (on by default in most Linux distributions)
+ - `-c` to count the number of lines containing the search phrase (this would give the same result as the piped command, above)
+ - `-i` to make the search case-insensitive
+ - `-o` to select only matching strings (rather than the whole line)
+ - `-w` to select only lines containing matches that form whole words
+ - `-v` to select non-matching lines
+ - `--color` to highlight matches in the selected line (on by default in most Linux distributions)
 
-Remember that `man grep` will give a full list of the available options and their descriptions. 
+Remember that `man grep` will give a full list of the available options and their descriptions.
