@@ -183,3 +183,19 @@ Some useful options for `grep` include:
  - `--color` to highlight matches in the selected line (on by default in most Linux distributions)
 
 Remember that `man grep` will give a full list of the available options and their descriptions.
+
+You can also use the special characters `^` and `$` to match phrases at the start and end of a line, for example:
+
+```bash
+$ grep '^>' human.fa
+```
+
+Will ensure that you only match `>` characters found at the _beginning_ of a line (this character is a _qualifier_ for the search phrase - it is not included as part of the phrase to be matched).
+
+### Exercise 2.2 {: .exercise}
+
+Estimated time: 3-4 min
+
+ - If you don't still have it saved from practical 1, use `wget` to download the Retinoblastoma UniProt entry (https://rest.uniprot.org/uniprotkb/P06400.txt)
+ - The lines of a UniProt file begin with 2 characters which denote the _type_ of line (documented in the user manual: https://web.expasy.org/docs/userman.html). Use `grep`, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the `RX` lines)
+ - Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (`|`) here)
