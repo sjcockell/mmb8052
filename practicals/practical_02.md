@@ -153,19 +153,19 @@ Use `wc` to find the number of words, lines and bytes in the file of protein seq
 
 Searching for specific text in large files can be a laborious process - `grep` is a useful and efficient utility which simplifies this task. `grep phrase file` is a command which will search for lines which contain `phrase` in a text file called `file`.
 
-If your search phrase contains special characters which are usually interpreted by the bash shell (e.g. `>`, `<`, `|` or `*`), then it is necessary to enclose the phrase in single quotes - `grep 'phrase' file` - to prevent bash from interpreting these characters. For example, you would count the number of sequence entries in a FASTA file by counting the lines which contain the `>` character (which is used to start sequence header lines according to the FASTA specification). Since `>` is interpreted by bash as the redirection of `STDOUT`, the following command would actually overwrite the _input_ file, by redirecting the (non-existant) output of the `grep` command into the file:
+If our search phrase contains special characters which are usually interpreted by the bash shell (e.g. `>`, `<`, `|` or `*`), then it is necessary to enclose the phrase in single quotes - `grep 'phrase' file` - to prevent bash from interpreting these characters. For example, we would count the number of sequence entries in a FASTA file by counting the lines which contain the `>` character (which is used to start sequence header lines according to the FASTA specification). Since `>` is interpreted by bash as the redirection of `STDOUT`, the following command would actually overwrite the _input_ file, by redirecting the (non-existant) output of the `grep` command into the file:
 
 ```bash
 $ grep > human.fa
 ```
 
-To prevent this, you should ensure the search phrase is enclosed in single quotes:
+To prevent this, we should ensure the search phrase is enclosed in single quotes:
 
 ```bash
 $ grep '>' human.fa
 ```
 
-This command will return all of the lines which contain a `>` character. You could then, for example, use `wc` to count them:
+This command will return all of the lines which contain a `>` character. We could then, for example, use `wc` to count them:
 
 ```bash
 $ grep '>' human.fa | wc -l
@@ -184,18 +184,136 @@ Some useful options for `grep` include:
 
 Remember that `man grep` will give a full list of the available options and their descriptions.
 
-You can also use the special characters `^` and `$` to match phrases at the start and end of a line, for example:
+We can also use the special characters `^` and `$` to match phrases at the start and end of a line, for example:
 
 ```bash
 $ grep '^>' human.fa
 ```
 
-Will ensure that you only match `>` characters found at the _beginning_ of a line (this character is a _qualifier_ for the search phrase - it is not included as part of the phrase to be matched).
+Will ensure that we only match `>` characters found at the _beginning_ of a line (this character is a _qualifier_ for the search phrase - it is not included as part of the phrase to be matched).
 
 ### Exercise 2.2 {: .exercise}
 
 Estimated time: 3-4 min
 
- - If you don't still have it saved from practical 1, use `wget` to download the Retinoblastoma UniProt entry (https://rest.uniprot.org/uniprotkb/P06400.txt)
- - The lines of a UniProt file begin with 2 characters which denote the _type_ of line (documented in the user manual: https://web.expasy.org/docs/userman.html). Use `grep`, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the `RX` lines)
- - Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (`|`) here)
+- If you don't still have it saved from practical 1, use `wget` to download the Retinoblastoma UniProt entry (<https://rest.uniprot.org/uniprotkb/P06400.txt>)
+- The lines of a UniProt file begin with 2 characters which denote the _type_ of line (documented in the user manual: <https://web.expasy.org/docs/userman.html>). Use `grep`, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the `RX` lines)
+- Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (`|`) here)
+
+Consider the following:
+
+- Does your first search find anything other than publication identifier lines?
+    - How could you make the search more specific to prevent this, if it is a problem?
+- How many publications with a DOI are associated with the Rb protein?
+- How about those with a PubMed ID?
+
+## Regular Expressions
+
+Searching for exact text matches is rather limited in scope - the true power of tools like `grep` becomes apparent when we can define search _patterns_ which can match variable text results. Regular expressions allow us to define these types of pattern.
+
+`grep` actually provides the user with a number of ways of defining search patterns, the most powerful of these are Perl regular expressions (Perl is a programming language which is extremely good at text processing). These regular expressions can be "switched on" in `grep` by using the `-P` option.
+
+A Perl regular expression is defined as a string of characters where each entity is either a regular character, which takes its literal meaning, or a _metacharacter_, which has a special meaning. Some metacharacter examples:
+
+ - `.` - match _any_ character
+ - `\w` - match any "word" character (alphanumerics and underscores)
+ - `\s` - match any "whitespace" character
+ - `\d` - match digit character (i.e. the numbers 0-9)
+ - `\D` - match non-digit character (i.e. anything _other than_ the numbers 0-9)
+ - `\t` - match the tab character
+ - `\n` - match the newline character (i.e. what proceeds this character must be at the end of the line)
+ - `*` - match the preceding character (or metacharacter) zero or more times
+ - `+` - match the preceding character (or metacharacter) one or more times
+ - `{n}` - match the preceeding character (or metacharacter) exactly `n` times (where `n` is replaced by a positive whole number)
+ - `{n,}` - match the preceeding character at least `n` times
+ - `{m,n}` - match the preceeding character (or metacharacter) between `m` and `n` times (inclusive)
+
+If we want to match the actual characters (`.`, `+`, `*` etc) rather than imply their programmatic meaning as metacharacters, we will need to "escape" the character with a backslash (`\`). So if our pattern contains `+`, we need to express this so: `\+`.
+
+By way of example, we will search the UniProt entry of another protein (ATM, Q13315) for the Ensembl Gene ID of the protein's parent gene. Human Ensembl Gene IDs start with ENSG, so we can use that to make a regular search of the UniProt entry:
+
+```bash
+$ wget 'https://rest.uniprot.org/uniprotkb/Q13315.txt'
+$ grep 'ENSG' Q13315.txt
+DR   Ensembl; ENST00000278616.9; ENSP00000278616.4; ENSG00000149311.20.
+DR   Ensembl; ENST00000452508.6; ENSP00000388058.2; ENSG00000149311.20.
+DR   Ensembl; ENST00000675843.1; ENSP00000501606.1; ENSG00000149311.20.
+DR   HPA; ENSG00000149311; Low tissue specificity.
+DR   OpenTargets; ENSG00000149311; -.
+DR   VEuPathDB; HostDB:ENSG00000149311; -.
+DR   GeneTree; ENSGT00670000098061; -.
+DR   Bgee; ENSG00000149311; Expressed in corpus callosum and 239 other tissues.
+     RFLCKAVENY INCLLSGEEH DMWVFRLCSL WLENSGVSEV NGMMKRDGMK IPTYKFLPLM
+```
+
+This search retrieves the expected database reference (DR) lines for Ensembl (among a few others), but also returns a line of the protein sequence, which contains the amino acid sequence Glu-Asn-Ser-Gly (ENSG). In this simple example we could figure out the "right" result from this simple list, but in a more complicated example, this may not be the case. To narrow down the results of our search to those line which contain genuine Ensembl Gene IDs, we will define a pattern which generally describes these identifiers. Human Ensembl Gene IDs all start with ENSG, which is then followed by 11 numbers, so a regular expression which will match _any_ human Ensembl Gene ID is: `'ENSG\d{11}'` - that is the exact letters `ENSG` followed by a sequence of exactly 11 digits (`\d`):
+
+```bash
+$ grep -P 'ENSG\d{11}' Q13315.txt
+DR   Ensembl; ENST00000278616.9; ENSP00000278616.4; ENSG00000149311.20.
+DR   Ensembl; ENST00000452508.6; ENSP00000388058.2; ENSG00000149311.20.
+DR   Ensembl; ENST00000675843.1; ENSP00000501606.1; ENSG00000149311.20.
+DR   HPA; ENSG00000149311; Low tissue specificity.
+DR   OpenTargets; ENSG00000149311; -.
+DR   VEuPathDB; HostDB:ENSG00000149311; -.
+DR   Bgee; ENSG00000149311; Expressed in corpus callosum and 239 other tissues.
+```
+
+This more refined search removes the line of protein sequence information from the results, as well as the GeneTree database reference (which uses an identifier which looks a bit like the Ensembl Gene ID, but doesn't match it perfectly).
+
+Now, if we want _just_ the identifier, without any extraneous text, we can use the `grep` option `-o` which makes `grep` return only the text that matches the pattern:
+
+```bash
+$ grep -P -o 'ENSG\d{11}' Q13315.txt
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+```
+
+The result here repeats the Ensembl Gene ID several times, because it is found on several lines. If we just want to get it once, we can pipe these results into the `sort` command, which has an option (`-u`) to give only the unique entries in a list (the tool `uniq` does something similar, but requires the input to be sorted anyway, so we may as well just use a single tool):
+
+```bash
+$ grep -Po 'ENSG\d{11}' Q13315.txt | sort -u
+ENSG00000149311
+```
+
+### Exercise 2.3 {: .exercise}
+
+Estimated time: 10 min
+
+ - Repeat the above procedure to retrieve the Ensembl Gene ID for the Rb protein
+ - Can you modify this procedure to retrieve the PubMed IDs associated with the RX lines we retrieved in exercise 2.2?
+ - (More difficult) How about the DOIs? What are the common features of DOIs which can be used to build a regular expression?
+
+## Other Text Processing Tools
+
+As we've seen, much can be accomplished with `grep`, and the ability to not only search text but to effectively edit it and remove only the required sections make it a powerful tool, but Linux provides us with a well stocked armoury of such tools, allowing us to do so much more. We don't have space or scope to cover everything here, but included below are some selected highlights.
+
+### sort
+
+The `sort` command takes a file and sorts its lines according to some natural order. By default this ordering is alphanumeric - it is possible to change this using options. With delimited text (e.g. tab- or comma-separated values) it is possible to choose the _field_ you which to sort on (i.e. which column of the table). The field separator is defined using the `-t` option, and the column number to sort on is defined with the `-k` option.
+
+### uniq
+
+The `uniq` command prints a file with repeated lines omitted. As mentioned above, in order for `uniq` to find repeated lines, the file must be sorted such that these lines are next to one another. The `-d` option will print _only_ the repeated lines (i.e. the duplicates), and the `-n` option will include a count for each line (i.e. how many times it was found in the file).
+
+### cut
+
+`cut` is used to select sections from each line of a file. This selection can be specified in terms of bytes, characters or fields, where fields can be thought of as the columns of a table. This makes `cut` particularly useful for selecting columns from a table.
+
+The `-f` option is used to select particular fields (a comma-separated list can be used to retrieve multiple columns). By default, `cut` will expect fields to be separated by the tab character. This can be changed using the `-d` option (for delimiter).
+
+### Exercise 2.4 {: .exercise}
+
+Estimated time: 10 min
+
+- Download the example data table: <>
+- `sort` the file by the corrected p-value (the column name is `adj.P.Val`), and redirect the output to a file
+    - Are the results as you would expect?
+    - Where do the column headings end up?
+    - Can you figure out how to `sort` the column more correctly (read the `man` page - look for the "general numeric sort", which deals with scientific notation)
+- Use a combination of `tail`, `sort`, `cut` and `head` to remove the column headers, find and return the names of the 10 genes with the largest positive log fold-change (`logFC`)
