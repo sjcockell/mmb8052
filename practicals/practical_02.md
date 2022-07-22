@@ -311,9 +311,112 @@ The `-f` option is used to select particular fields (a comma-separated list can 
 
 Estimated time: 10 min
 
-- Download the example data table: <>
+- Download the example data table: <https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt>
 - `sort` the file by the corrected p-value (the column name is `adj.P.Val`), and redirect the output to a file
     - Are the results as you would expect?
     - Where do the column headings end up?
     - Can you figure out how to `sort` the column more correctly (read the `man` page - look for the "general numeric sort", which deals with scientific notation)
 - Use a combination of `tail`, `sort`, `cut` and `head` to remove the column headers, find and return the names of the 10 genes with the largest positive log fold-change (`logFC`)
+
+# Scripting
+
+In addition to interpreting commands directly at the command line, `bash` can also be used to execute a list of commands saved in a text file known as a _script_. A shell script is a file containing a list of commands which are executed one at a time, and is conventionally given the file extension `.sh`.
+
+Scripting is useful for a number of reasons. For example it allows us to record and reuse our process because the commands we use are stored in a file. Furthermore, by introducing programming concepts such as variables, conditionals and iteration, we can automate our process, making us more efficient with our computational work.
+
+We will use the `nano` text editor we first encountered in Practical 1 to make and edit our shell scripts.  
+
+## Scripting Concepts
+
+### Variables
+
+A _variable_ is essentially a label referencing a location in memory holding an item of data. Once _declared_, variables can be used in operations, or passed to commands. The use of variables greatly increases the utility of scripts, and will often make them more readable and easier to edit.
+
+We can create a variable in our script (or even at the command line) by giving it a name and assigning a value to it with the `=` operator:
+
+```bash
+MYVAR="Hello, world!"
+```
+
+The name of this variable is `MYVAR` and we have given it the value `"Hello, world!"`. It is important to note here that `bash` is quite picky about the formatting of this assignment - there can't be any spaces around the `=` (or `bash` will think you're trying to execute a command called `MYVAR`). Note that we've given our variable an ALL CAPS name - this isn't strictly necessary, but is the convention. One further point to make is that our variable name cannot contain characters other than alphanumerics and the underscore (`_`), or begin with a number. So `MYVAR`, `MY_VAR` and `MYVAR2` are all allowed variable names, but `MY VAR`, `MY-VAR` and `2MYVAR` are not.
+
+Once we have created a variable, we can use it in subsequent lines of our script by referring to it. We do this with the `${}` operator:
+
+```bash
+echo ${MYVAR}
+```
+
+The curly braces here (`{}`) are not _absolutely_ required, but can save introducing unexpected bugs in more complicated scripts. If we created a script with these two lines and ran it, we would see our script print "Hello, world!" to `STDOUT`.
+
+### Exercise 2.5 {: .exercise}
+
+Estimated time: 3 min
+
+- Create the 2 line script described above using `nano`. Save it as `my_first_script.sh`.
+- Run the script as follows:
+
+```bash
+$ bash my_first_script.sh
+```
+
+- Do you get the expected output, as described above?
+- If not, can you fix your script?
+
+### Environment
+
+`bash` has a number of variables preset by default, this set of variables collectively is known as our _environment_. Some examples of standard `bash` environment variables are given in the table below.
+
+| Environment Variable | Description |
+|----------------------|-------------|
+| HOME                 | Set to your home directory (~) at login |
+| SHELL                | Set to the path of your currently active shell |
+| USER                 | Set to your Linux user name |
+| PWD                  | Changes dynamically to be your present working directory |
+
+To find the current value of any of these variables, you can use `echo` in the same way we did above, for example:
+
+```bash
+$ echo ${SHELL}
+/bin/bash
+```
+
+When we create a new variable, either at the command line or in our script, that variable enters this environment. In a script, the variable only lasts as long as the script is running, and then it gets "forgotten" by `bash` (this is known as the variable's _scope_). A variable created at the command line lasts until we exit our current command line session. While a variable is in your environment, there is no limit to the number of times you can reference it. It is also possible to change the value of an existing variable (note: be careful with variable _reuse_).
+
+### Special Variables
+
+In a running script, we have access to dynamic run-time variables. These variables allow us to pass information into our script, for example consider the following script:
+
+```bash
+MY_FIRST_ARG=${1}
+MY_SECOND_ARG=${2}
+echo "The values you provided at the command line were ${MY_FIRST_ARG} and ${MY_SECOND_ARG}."
+```
+This script can be run as follows:
+
+```bash
+$ bash my_second_script.sh hello world
+The values you provided at the command line were hello and world.
+
+The two variables referenced in the first two lines are special variables which store the command line arguments passed to the script. You can pass as many arguments as you like, but you'd have to write the code to handle them correctly. The `${#}` variable tells us how many arguments there are, and `${@}` provides a list of all of them.
+
+Incorporating arguments into scripts can allow more general purpose scripts to be created, which can do the same job in many different ways in response to changing arguments. For example, we can create a script to download any UniProt entry:
+
+```bash
+UNIPROT=$1
+echo "Downloading UniProt entry: ${UNIPROT}"
+wget https://rest.uniprot.org/uniprotkb/${UNIPROT}.txt
+echo "Done downloading"
+```
+
+You can then invoke this script with:
+
+```bash
+$ bash my_third_script.sh P06400
+Downloading UniProt entry: P06400
+[...]
+Done downloading
+```
+
+### Exercise 2.6 {: .exercise}
+
+### The FOR Loop

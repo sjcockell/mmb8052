@@ -6,7 +6,7 @@
             <meta name="robots" content="noindex">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="author" content="Simon J Cockell" />
-            <meta name="date" content="2022-07-20" />
+            <meta name="date" content="2022-07-22" />
         
 
         <title>MMB8052 - Practical 2 | </title>
@@ -373,13 +373,13 @@ ctg123 . exon            7000  9000  .  +  .  ID=exon00005;Parent=mrna0001
 <p>Use <code>wc</code> to find the number of words, lines and bytes in the file of protein sequences you downloaded in Exercise 1.8.</p>
 </section></section><section class="section2"><h2>grep</h2>
 <p>Searching for specific text in large files can be a laborious process - <code>grep</code> is a useful and efficient utility which simplifies this task. <code>grep phrase file</code> is a command which will search for lines which contain <code>phrase</code> in a text file called <code>file</code>.</p>
-<p>If your search phrase contains special characters which are usually interpreted by the bash shell (e.g. <code>&gt;</code>, <code>&lt;</code>, <code>|</code> or <code>*</code>), then it is necessary to enclose the phrase in single quotes - <code>grep 'phrase' file</code> - to prevent bash from interpreting these characters. For example, you would count the number of sequence entries in a FASTA file by counting the lines which contain the <code>&gt;</code> character (which is used to start sequence header lines according to the FASTA specification). Since <code>&gt;</code> is interpreted by bash as the redirection of <code>STDOUT</code>, the following command would actually overwrite the <em>input</em> file, by redirecting the (non-existant) output of the <code>grep</code> command into the file:</p>
+<p>If our search phrase contains special characters which are usually interpreted by the bash shell (e.g. <code>&gt;</code>, <code>&lt;</code>, <code>|</code> or <code>*</code>), then it is necessary to enclose the phrase in single quotes - <code>grep 'phrase' file</code> - to prevent bash from interpreting these characters. For example, we would count the number of sequence entries in a FASTA file by counting the lines which contain the <code>&gt;</code> character (which is used to start sequence header lines according to the FASTA specification). Since <code>&gt;</code> is interpreted by bash as the redirection of <code>STDOUT</code>, the following command would actually overwrite the <em>input</em> file, by redirecting the (non-existant) output of the <code>grep</code> command into the file:</p>
 <div class="highlight"><pre><span></span><code>$ grep &gt; human.fa
 </code></pre></div>
-<p>To prevent this, you should ensure the search phrase is enclosed in single quotes:</p>
+<p>To prevent this, we should ensure the search phrase is enclosed in single quotes:</p>
 <div class="highlight"><pre><span></span><code>$ grep <span class="s1">'&gt;'</span> human.fa
 </code></pre></div>
-<p>This command will return all of the lines which contain a <code>&gt;</code> character. You could then, for example, use <code>wc</code> to count them:</p>
+<p>This command will return all of the lines which contain a <code>&gt;</code> character. We could then, for example, use <code>wc</code> to count them:</p>
 <div class="highlight"><pre><span></span><code>$ grep <span class="s1">'&gt;'</span> human.fa <span class="p">|</span> wc -l
 </code></pre></div>
 <p>This command makes use of the "pipe" character (<code>|</code>) we first encountered in practical 1 to use the output from <code>grep</code> as the input for <code>wc</code>.</p>
@@ -393,21 +393,23 @@ ctg123 . exon            7000  9000  .  +  .  ID=exon00005;Parent=mrna0001
 <li><code>--color</code> to highlight matches in the selected line (on by default in most Linux distributions)</li>
 </ul>
 <p>Remember that <code>man grep</code> will give a full list of the available options and their descriptions.</p>
-<p>You can also use the special characters <code>^</code> and <code>$</code> to match phrases at the start and end of a line, for example:</p>
+<p>We can also use the special characters <code>^</code> and <code>$</code> to match phrases at the start and end of a line, for example:</p>
 <div class="highlight"><pre><span></span><code>$ grep <span class="s1">'^&gt;'</span> human.fa
 </code></pre></div>
-<p>Will ensure that you only match <code>&gt;</code> characters found at the <em>beginning</em> of a line (this character is a <em>qualifier</em> for the search phrase - it is not included as part of the phrase to be matched).</p>
+<p>Will ensure that we only match <code>&gt;</code> characters found at the <em>beginning</em> of a line (this character is a <em>qualifier</em> for the search phrase - it is not included as part of the phrase to be matched).</p>
 <section class="exercise section3"><h3>Exercise 2.2</h3>
 <p>Estimated time: 3-4 min</p>
 <ul>
-<li>If you don't still have it saved from practical 1, use <code>wget</code> to download the Retinoblastoma UniProt entry (https://rest.uniprot.org/uniprotkb/P06400.txt)</li>
-<li>The lines of a UniProt file begin with 2 characters which denote the <em>type</em> of line (documented in the user manual: https://web.expasy.org/docs/userman.html). Use <code>grep</code>, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the <code>RX</code> lines)</li>
+<li>If you don't still have it saved from practical 1, use <code>wget</code> to download the Retinoblastoma UniProt entry (<a href="https://rest.uniprot.org/uniprotkb/P06400.txt">https://rest.uniprot.org/uniprotkb/P06400.txt</a>)</li>
+<li>The lines of a UniProt file begin with 2 characters which denote the <em>type</em> of line (documented in the user manual: <a href="https://web.expasy.org/docs/userman.html">https://web.expasy.org/docs/userman.html</a>). Use <code>grep</code>, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the <code>RX</code> lines)</li>
 <li>Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (<code>|</code>) here)</li>
 </ul>
 <p>Consider the following:</p>
 <ul>
-<li>Does your first search find anything other than publication identifier lines?</li>
+<li>Does your first search find anything other than publication identifier lines?<ul>
 <li>How could you make the search more specific to prevent this, if it is a problem?</li>
+</ul>
+</li>
 <li>How many publications with a DOI are associated with the Rb protein?</li>
 <li>How about those with a PubMed ID?</li>
 </ul>
@@ -429,6 +431,7 @@ ctg123 . exon            7000  9000  .  +  .  ID=exon00005;Parent=mrna0001
 <li><code>{n,}</code> - match the preceeding character at least <code>n</code> times</li>
 <li><code>{m,n}</code> - match the preceeding character (or metacharacter) between <code>m</code> and <code>n</code> times (inclusive)</li>
 </ul>
+<p>If we want to match the actual characters (<code>.</code>, <code>+</code>, <code>*</code> etc) rather than imply their programmatic meaning as metacharacters, we will need to "escape" the character with a backslash (<code>\</code>). So if our pattern contains <code>+</code>, we need to express this so: <code>\+</code>.</p>
 <p>By way of example, we will search the UniProt entry of another protein (ATM, Q13315) for the Ensembl Gene ID of the protein's parent gene. Human Ensembl Gene IDs start with ENSG, so we can use that to make a regular search of the UniProt entry:</p>
 <div class="highlight"><pre><span></span><code>$ wget <span class="s1">'https://rest.uniprot.org/uniprotkb/Q13315.txt'</span>
 $ grep <span class="s1">'ENSG'</span> Q13315.txt
@@ -442,7 +445,148 @@ DR   GeneTree<span class="p">;</span> ENSGT00670000098061<span class="p">;</span
 DR   Bgee<span class="p">;</span> ENSG00000149311<span class="p">;</span> Expressed <span class="k">in</span> corpus callosum and <span class="m">239</span> other tissues.
      RFLCKAVENY INCLLSGEEH DMWVFRLCSL WLENSGVSEV NGMMKRDGMK IPTYKFLPLM
 </code></pre></div>
-</section></section>
+<p>This search retrieves the expected database reference (DR) lines for Ensembl (among a few others), but also returns a line of the protein sequence, which contains the amino acid sequence Glu-Asn-Ser-Gly (ENSG). In this simple example we could figure out the "right" result from this simple list, but in a more complicated example, this may not be the case. To narrow down the results of our search to those line which contain genuine Ensembl Gene IDs, we will define a pattern which generally describes these identifiers. Human Ensembl Gene IDs all start with ENSG, which is then followed by 11 numbers, so a regular expression which will match <em>any</em> human Ensembl Gene ID is: <code>'ENSG\d{11}'</code> - that is the exact letters <code>ENSG</code> followed by a sequence of exactly 11 digits (<code>\d</code>):</p>
+<div class="highlight"><pre><span></span><code>$ grep -P <span class="s1">'ENSG\d{11}'</span> Q13315.txt
+DR   Ensembl<span class="p">;</span> ENST00000278616.9<span class="p">;</span> ENSP00000278616.4<span class="p">;</span> ENSG00000149311.20.
+DR   Ensembl<span class="p">;</span> ENST00000452508.6<span class="p">;</span> ENSP00000388058.2<span class="p">;</span> ENSG00000149311.20.
+DR   Ensembl<span class="p">;</span> ENST00000675843.1<span class="p">;</span> ENSP00000501606.1<span class="p">;</span> ENSG00000149311.20.
+DR   HPA<span class="p">;</span> ENSG00000149311<span class="p">;</span> Low tissue specificity.
+DR   OpenTargets<span class="p">;</span> ENSG00000149311<span class="p">;</span> -.
+DR   VEuPathDB<span class="p">;</span> HostDB:ENSG00000149311<span class="p">;</span> -.
+DR   Bgee<span class="p">;</span> ENSG00000149311<span class="p">;</span> Expressed <span class="k">in</span> corpus callosum and <span class="m">239</span> other tissues.
+</code></pre></div>
+<p>This more refined search removes the line of protein sequence information from the results, as well as the GeneTree database reference (which uses an identifier which looks a bit like the Ensembl Gene ID, but doesn't match it perfectly).</p>
+<p>Now, if we want <em>just</em> the identifier, without any extraneous text, we can use the <code>grep</code> option <code>-o</code> which makes <code>grep</code> return only the text that matches the pattern:</p>
+<div class="highlight"><pre><span></span><code>$ grep -P -o <span class="s1">'ENSG\d{11}'</span> Q13315.txt
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+</code></pre></div>
+<p>The result here repeats the Ensembl Gene ID several times, because it is found on several lines. If we just want to get it once, we can pipe these results into the <code>sort</code> command, which has an option (<code>-u</code>) to give only the unique entries in a list (the tool <code>uniq</code> does something similar, but requires the input to be sorted anyway, so we may as well just use a single tool):</p>
+<div class="highlight"><pre><span></span><code>$ grep -Po <span class="s1">'ENSG\d{11}'</span> Q13315.txt <span class="p">|</span> sort -u
+ENSG00000149311
+</code></pre></div>
+<section class="exercise section3"><h3>Exercise 2.3</h3>
+<p>Estimated time: 10 min</p>
+<ul>
+<li>Repeat the above procedure to retrieve the Ensembl Gene ID for the Rb protein</li>
+<li>Can you modify this procedure to retrieve the PubMed IDs associated with the RX lines we retrieved in exercise 2.2?</li>
+<li>(More difficult) How about the DOIs? What are the common features of DOIs which can be used to build a regular expression?</li>
+</ul>
+</section></section><section class="section2"><h2>Other Text Processing Tools</h2>
+<p>As we've seen, much can be accomplished with <code>grep</code>, and the ability to not only search text but to effectively edit it and remove only the required sections make it a powerful tool, but Linux provides us with a well stocked armoury of such tools, allowing us to do so much more. We don't have space or scope to cover everything here, but included below are some selected highlights.</p>
+<section class="section3"><h3>sort</h3>
+<p>The <code>sort</code> command takes a file and sorts its lines according to some natural order. By default this ordering is alphanumeric - it is possible to change this using options. With delimited text (e.g. tab- or comma-separated values) it is possible to choose the <em>field</em> you which to sort on (i.e. which column of the table). The field separator is defined using the <code>-t</code> option, and the column number to sort on is defined with the <code>-k</code> option.</p>
+</section><section class="section3"><h3>uniq</h3>
+<p>The <code>uniq</code> command prints a file with repeated lines omitted. As mentioned above, in order for <code>uniq</code> to find repeated lines, the file must be sorted such that these lines are next to one another. The <code>-d</code> option will print <em>only</em> the repeated lines (i.e. the duplicates), and the <code>-n</code> option will include a count for each line (i.e. how many times it was found in the file).</p>
+</section><section class="section3"><h3>cut</h3>
+<p><code>cut</code> is used to select sections from each line of a file. This selection can be specified in terms of bytes, characters or fields, where fields can be thought of as the columns of a table. This makes <code>cut</code> particularly useful for selecting columns from a table.</p>
+<p>The <code>-f</code> option is used to select particular fields (a comma-separated list can be used to retrieve multiple columns). By default, <code>cut</code> will expect fields to be separated by the tab character. This can be changed using the <code>-d</code> option (for delimiter).</p>
+</section><section class="exercise section3"><h3>Exercise 2.4</h3>
+<p>Estimated time: 10 min</p>
+<ul>
+<li>Download the example data table: <a href="https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt">https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt</a></li>
+<li><code>sort</code> the file by the corrected p-value (the column name is <code>adj.P.Val</code>), and redirect the output to a file<ul>
+<li>Are the results as you would expect?</li>
+<li>Where do the column headings end up?</li>
+<li>Can you figure out how to <code>sort</code> the column more correctly (read the <code>man</code> page - look for the "general numeric sort", which deals with scientific notation)</li>
+</ul>
+</li>
+<li>Use a combination of <code>tail</code>, <code>sort</code>, <code>cut</code> and <code>head</code> to remove the column headers, find and return the names of the 10 genes with the largest positive log fold-change (<code>logFC</code>)</li>
+</ul>
+</section></section></section><section class="section1"><h1>Scripting</h1>
+<p>In addition to interpreting commands directly at the command line, <code>bash</code> can also be used to execute a list of commands saved in a text file known as a <em>script</em>. A shell script is a file containing a list of commands which are executed one at a time, and is conventionally given the file extension <code>.sh</code>.</p>
+<p>Scripting is useful for a number of reasons. For example it allows us to record and reuse our process because the commands we use are stored in a file. Furthermore, by introducing programming concepts such as variables, conditionals and iteration, we can automate our process, making us more efficient with our computational work.</p>
+<p>We will use the <code>nano</code> text editor we first encountered in Practical 1 to make and edit our shell scripts.  </p>
+<section class="section2"><h2>Scripting Concepts</h2>
+<section class="section3"><h3>Variables</h3>
+<p>A <em>variable</em> is essentially a label referencing a location in memory holding an item of data. Once <em>declared</em>, variables can be used in operations, or passed to commands. The use of variables greatly increases the utility of scripts, and will often make them more readable and easier to edit.</p>
+<p>We can create a variable in our script (or even at the command line) by giving it a name and assigning a value to it with the <code>=</code> operator:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">MYVAR</span><span class="o">=</span><span class="s2">"Hello, world!"</span>
+</code></pre></div>
+<p>The name of this variable is <code>MYVAR</code> and we have given it the value <code>"Hello, world!"</code>. It is important to note here that <code>bash</code> is quite picky about the formatting of this assignment - there can't be any spaces around the <code>=</code> (or <code>bash</code> will think you're trying to execute a command called <code>MYVAR</code>). Note that we've given our variable an ALL CAPS name - this isn't strictly necessary, but is the convention. One further point to make is that our variable name cannot contain characters other than alphanumerics and the underscore (<code>_</code>), or begin with a number. So <code>MYVAR</code>, <code>MY_VAR</code> and <code>MYVAR2</code> are all allowed variable names, but <code>MY VAR</code>, <code>MY-VAR</code> and <code>2MYVAR</code> are not.</p>
+<p>Once we have created a variable, we can use it in subsequent lines of our script by referring to it. We do this with the <code>${}</code> operator:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="si">${</span><span class="nv">MYVAR</span><span class="si">}</span>
+</code></pre></div>
+<p>The curly braces here (<code>{}</code>) are not <em>absolutely</em> required, but can save introducing unexpected bugs in more complicated scripts. If we created a script with these two lines and ran it, we would see our script print "Hello, world!" to <code>STDOUT</code>.</p>
+</section><section class="exercise section3"><h3>Exercise 2.5</h3>
+<p>Estimated time: 3 min</p>
+<ul>
+<li>Create the 2 line script described above using <code>nano</code>. Save it as <code>my_first_script.sh</code>.</li>
+<li>Run the script as follows:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ bash my_first_script.sh
+</code></pre></div>
+<ul>
+<li>Do you get the expected output, as described above?</li>
+<li>If not, can you fix your script?</li>
+</ul>
+</section><section class="section3"><h3>Environment</h3>
+<p><code>bash</code> has a number of variables preset by default, this set of variables collectively is known as our <em>environment</em>. Some examples of standard <code>bash</code> environment variables are given in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Environment Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOME</td>
+<td>Set to your home directory (~) at login</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>Set to the path of your currently active shell</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>Set to your Linux user name</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>Changes dynamically to be your present working directory</td>
+</tr>
+</tbody>
+</table>
+<p>To find the current value of any of these variables, you can use <code>echo</code> in the same way we did above, for example:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">SHELL</span><span class="si">}</span>
+/bin/bash
+</code></pre></div>
+<p>When we create a new variable, either at the command line or in our script, that variable enters this environment. In a script, the variable only lasts as long as the script is running, and then it gets "forgotten" by <code>bash</code> (this is known as the variable's <em>scope</em>). A variable created at the command line lasts until we exit our current command line session. While a variable is in your environment, there is no limit to the number of times you can reference it. It is also possible to change the value of an existing variable (note: be careful with variable <em>reuse</em>).</p>
+</section><section class="section3"><h3>Special Variables</h3>
+<p>In a running script, we have access to dynamic run-time variables. These variables allow us to pass information into our script, for example consider the following script:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nv">MY_FIRST_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span>
+<span class="nv">MY_SECOND_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">"The values you provided at the command line were </span><span class="si">${</span><span class="nv">MY_FIRST_ARG</span><span class="si">}</span><span class="s2"> and </span><span class="si">${</span><span class="nv">MY_SECOND_ARG</span><span class="si">}</span><span class="s2">."</span>
+</code></pre></div>
+This script can be run as follows:</p>
+<div class="highlight"><pre><span></span><code>$ bash my_second_script.sh hello world
+The values you provided at the <span class="nb">command</span> line were hello and world.
+
+The two variables referenced <span class="k">in</span> the first two lines are special variables which store the <span class="nb">command</span> line arguments passed to the script. You can pass as many arguments as you like, but you<span class="err">'</span>d have to write the code to handle them correctly. The <span class="sb">`</span><span class="si">${#}</span><span class="sb">`</span> variable tells us how many arguments there are, and <span class="sb">`</span><span class="si">${</span><span class="p">@</span><span class="si">}</span><span class="sb">`</span> provides a list of all of them.
+
+Incorporating arguments into scripts can allow more general purpose scripts to be created, which can <span class="k">do</span> the same job <span class="k">in</span> many different ways <span class="k">in</span> response to changing arguments. For example, we can create a script to download any UniProt entry:
+
+<span class="sb">```</span>bash
+<span class="nv">UNIPROT</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nb">echo</span> <span class="s2">"Downloading UniProt entry: </span><span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span><span class="s2">"</span>
+wget https://rest.uniprot.org/uniprotkb/<span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span>.txt
+<span class="nb">echo</span> <span class="s2">"Done downloading"</span>
+</code></pre></div>
+<p>You can then invoke this script with:</p>
+<div class="highlight"><pre><span></span><code>$ bash my_third_script.sh P06400
+Downloading UniProt entry: P06400
+<span class="o">[</span>...<span class="o">]</span>
+Done downloading
+</code></pre></div>
+</section><section class="exercise section3"><h3>Exercise 2.6</h3>
+</section><section class="section3"><h3>The FOR Loop</h3>
+</section></section></section>
             </div>
         </div>
     </div>
@@ -462,7 +606,7 @@ DR   Bgee<span class="p">;</span> ENSG00000149311<span class="p">;</span> Expres
 			</ul>
 		</div>
 		<p>Generated using <a target="_blank" href="https://github.com/chirun-ncl/chirun">Chirun</a>, written by the E-Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
-		<p>This page last generated: 2022-07-20</p>
+		<p>This page last generated: 2022-07-22</p>
 	</div>
 </footer>
 		
