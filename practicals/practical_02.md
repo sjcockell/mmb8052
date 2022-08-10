@@ -224,9 +224,9 @@ A Perl regular expression is defined as a string of characters where each entity
  - `\n` - match the newline character (i.e. what proceeds this character must be at the end of the line)
  - `*` - match the preceding character (or metacharacter) zero or more times
  - `+` - match the preceding character (or metacharacter) one or more times
- - `{n}` - match the preceeding character (or metacharacter) exactly `n` times (where `n` is replaced by a positive whole number)
- - `{n,}` - match the preceeding character at least `n` times
- - `{m,n}` - match the preceeding character (or metacharacter) between `m` and `n` times (inclusive)
+ - `{n}` - match the preceding character (or metacharacter) exactly `n` times (where `n` is replaced by a positive whole number)
+ - `{n,}` - match the preceding character at least `n` times
+ - `{m,n}` - match the preceding character (or metacharacter) between `m` and `n` times (inclusive)
 
 If we want to match the actual characters (`.`, `+`, `*` etc) rather than imply their programmatic meaning as metacharacters, we will need to "escape" the character with a backslash (`\`). So if our pattern contains `+`, we need to express this so: `\+`.
 
@@ -391,11 +391,13 @@ MY_FIRST_ARG=${1}
 MY_SECOND_ARG=${2}
 echo "The values you provided at the command line were ${MY_FIRST_ARG} and ${MY_SECOND_ARG}."
 ```
+
 This script can be run as follows:
 
 ```bash
 $ bash my_second_script.sh hello world
 The values you provided at the command line were hello and world.
+```
 
 The two variables referenced in the first two lines are special variables which store the command line arguments passed to the script. You can pass as many arguments as you like, but you'd have to write the code to handle them correctly. The `${#}` variable tells us how many arguments there are, and `${@}` provides a list of all of them.
 
@@ -420,3 +422,114 @@ Done downloading
 ### Exercise 2.6 {: .exercise}
 
 ### The FOR Loop
+
+The ability to _iterate_, or to perform a set of instructions repeatedly, is a key feature of programming languages. In `bash` we have the `for` flow control statement which enables iteration over a list of input variables. The list of commands to be executed at each iteration is enclosed between the keywords `do` and `done`. For example, a given set of UniProt entries could be downloaded with the following code:
+
+```bash
+for ACC in P34122 P19198 Q55618 P18778 Q9ZBZ1
+do
+  wget https://rest.uniprot.org/uniprotkb/${ACC}.txt
+done
+```
+
+Here, the loop variable `ACC` is first assigned the value `P34122` and the code inside the `for` loop (between `do` and `done`) is executed - in this case our script simply runs `wget` with this `${ACC}` variable in the appropriate place in the UniProt URL. After this first iteration, the loop repeats but the `ACC` loop variable now takes the second value in the list (`P19198`). This process then repeats until the last item in the list of inputs is reached.
+
+Once the `for` loop runs out of inputs (i.e. every entry in the list has been processed), the loop is terminated, and our script can move on to any lines after the `done`.
+
+### Exercise 2.7 {: .exercise}
+
+# Software Installation
+
+So far the software we've used in Linux comes pre-installed with the system. Most Linux distributions will come with these utilities, and we can accomplish a number of complicated tasks with them, as we have already seen. It is often the case, however, that this pre-installed software is not sufficient for the task in hand. Fortunately there are a number of ways to install command-line software in Linux. We will be looking at a modern, cross-platform way of doing this in the next practical, but for today we will use the Ubuntu package manager, `apt`.
+
+## APT
+
+APT stands for Advanced Package Tool, and the `apt` command-line tool is a utility for installing, updating, removing and otherwise managing software installation on an Ubuntu system - functioning like a command-line "App Store" (although everything is free!).
+
+## sudo
+
+Installing software so that it can function correctly usually requires system-level changes. Therefore administrator privileges (the ability to modify any file on the file system) are required for `apt` to work properly. It is generally insecure to operate any computer as an admin user "full time", and Linux is no exception. This is why when you try to install software on Windows or MacOS you will be prompted for a password, even if you are logged in to an admin account. At the command line the `sudo` utility offers temporary admin uplift to the command that comes after it. The command to refresh our currently installed package list is `apt update` - this command does not work without admin privileges:
+
+```bash
+$ apt update
+Reading package lists... Done
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Unable to lock directory /var/lib/apt/lists/
+W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
+W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
+```
+
+Notice the multiple 'permission denied' errors. Repeat using `sudo` this time, to provide the admin uplift. You will be prompted for your system password:
+
+```bash
+$ sudo apt update
+[sudo] password for student:
+Hit:1 http://gb.archive.ubuntu.com/ubuntu focal InRelease
+[...]
+Reading package lists... Done
+```
+
+Similarly, we can upgrade all the installed packages which require it. If you do this quickly enough after the command above, you will not need to enter your password again (by default you will not be prompted again until after 5 minutes of `sudo` inactivity).
+
+```bash
+$ sudo apt upgrade
+```
+
+## Bioinformatics Software and APT
+
+There are some popular bioinformatics software tools which are available to install via APT - if you want to know whether a tool can be installed via this route, you can try `apt search`:
+
+```bash
+$ apt search blast
+[...]
+ncbi-blast+/focal 2.9.0-2 amd64
+  next generation suite of BLAST sequence search tools
+[...]
+```
+
+The above command returns lots of results, but among them is a command-line implementation of NCBI's BLAST+ package. The actual name of the package should be highlighted in the results (in green). We can install this package using `apt install` (this requires `sudo`):
+
+```bash
+$ sudo apt install ncbi-blast+
+[...]
+Do you want to continue? [Y/n]
+```
+
+APT will summarise the changes required to install the requested software (packages often have _dependencies_ - other software or libraries they require to work properly - this is one reason why a package manager is so important, as this dependency resolution is automatically handled), and ask for confirmation that you wish to continue. Just hitting [ENTER] here is sufficient (the uppercase "Y" means that's the default option).
+
+Once this installation is complete, we will have installed the BLAST suite of tools for command-line use:
+
+```bash
+# print out some help information for BLASTP
+$ blastp -h
+```
+
+We will make use of BLAST in a future practical.
+
+# Putting it all together
+
+For the final exercise in this practical, we will make use of the tools we've introduced above to download a set of sequences from UniProt and use some software we will install to build a multiple sequence alignment from the downloaded data. Although this sounds daunting at first, we can work through the process step-by-step.
+
+### Exercise 2.8 {: .exercise}
+
+Estimated time: 15-20 mins
+
+ - Write a short script with a FOR loop (as [above](#the-for-loop)) to download this set of protein sequences from UniProt:
+
+P33568 D3ZS28 O55081 Q08999 P28749 P06400 Q64700 Q64701 P13405 Q24472 Q90600 G5EDT1
+
+**Note**: download the `.fasta` sequence, not the `.txt` database entry. If you managed to modify the script in exercise 2.7 to take command line arguments, then it should be simple to modify this to download the correct data.
+
+ - Concatenate all of these sequence files together into a single multi-fasta file using `cat`:
+
+```bash
+$ cat *.fasta > all_seq.fasta
+```
+
+**Note**: This command will only work correctly if the FASTA files requested in the first step are the only `.fasta` files in your current working directory (otherwise sequences you don't want to include in your alignment will be incorporated in this file).
+
+ - Now install the multiple sequence alignment program called `muscle` - you can use `apt` for this.
+ - Read the `muscle` help file (`muscle --help`), and see if you can figure out how to get it to align the sequences in `all_seq.fasta` by following the "Basic usage".
+ - Use `less` to look at the difference between the input and the output.
+
+# Summary
