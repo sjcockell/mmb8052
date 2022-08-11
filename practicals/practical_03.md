@@ -46,7 +46,17 @@ Estimated time: 2 mins
 
  - Work out a single command which uses brace expansion to create the project directory structure for Assessment 1, bear in mind the following factors:
 
- 1. Directory and file names should not contain spaces (it is good practise to replaces spaces with underscores - `_`)
+ 1. Directory and file names should not contain spaces (it is good practice to replaces spaces with underscores - `_`)
  1. Your project directory should contain the sub-directories described above
  1. Your project directory should be a direct sub-directory of your home directory
  1. `mkdir` has an option which allows it to create nested directories in a single command - use `man mkdir` to figure out what this option is
+
+# Documentation
+
+Organising your files well is just one part of effective management of your computational research. Our bioinformatics projects also require good _documentation_. Much like a well-kept lab notebook, the major beneficiary of a well-documented project is future you. Poor documentation can lead to irreproducibility and be a source of potential error.
+
+Lots of complexity can hide in bioinformatics work - large numbers of similar files, vast numbers of program parameters, rapidly changing software and other factors besides. Our best defense against this complexity causing us problems down the line is to keep good documentation - what software version did we use? Paired with which parameters? Why did we make this decision?
+
+The most basic level of documentation is the so-called README file. Every project should contain a README in its base directory, which records a standard set of information (or _metadata_) about the experiments carried out in that project.
+
+## The README file
