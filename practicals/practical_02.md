@@ -514,7 +514,7 @@ For the final exercise in this practical, we will make use of the tools we've in
 
 Estimated time: 15-20 mins
 
- - Write a short script with a FOR loop (as [above](#the-for-loop)) to download this set of protein sequences from UniProt:
+ - Write a short script with a FOR loop (as [above](#the-for-loop)) to download this set of 12 protein sequences from UniProt:
 
 P33568 D3ZS28 O55081 Q08999 P28749 P06400 Q64700 Q64701 P13405 Q24472 Q90600 G5EDT1
 
@@ -533,3 +533,7 @@ $ cat *.fasta > all_seq.fasta
  - Use `less` to look at the difference between the input and the output.
 
 # Summary
+
+This practical has introduced some advanced concepts which are useful when working at the Linux command line. The ability to write scripts, in particular, allows us to record our practice and therefore to reproduce it (and allow others to). We've also seen how to install software on our Linux system - providing new tools to experiment with, including some bioinformatics software. The final exercise here combined a lot of the lessons we've learned so far to achieve something quite complicated - this is a realistic 'bioinformatics' task.
+
+Next week we will look at organising our work, and computational tools for managing projects and software. 

@@ -20,16 +20,16 @@ Each project should be organised into its own directory, under which should be a
  1. `results/` - for storing the output of computational experiments
  1. `scripts/` - for storing the process which takes (1) as input and produces (2) as output.
 
-Additional directories which can be added include things like `extdata/` for storing data external to the project, but required for data processing (such as reference genome file, for example) and `software/` for saving versions of external software used during the project (though this is often now replaced with a config file for a package management system like [Conda](https://docs.conda.io/en/latest/)).
+Additional directories which can be added include things like `extdata/` for storing data external to the project, but required for data processing (such as a reference genome file, for example) and `software/` for saving versions of external software used during the project (though this is often now replaced with a config file for a package management system like [Conda](https://docs.conda.io/en/latest/)).
 
 ## Shell Expansion
 
-The `bash` shell you are using at the command line provides you with a number of tricks you can exploit to improve the efficiency of your work. Some of these which you may have already encountered include **tab-completion** (the pressing of the _tab_ key - usually above Caps Lock - leads to `bash` "guessing" the command you want to type), and the **command history** (press the _up_ arrow to cycle back through your recent commands, press Ctrl+R to search your previous commands). Another such trick is shell expansion.
+The `bash` shell you are using at the command line provides you with a number of tricks you can exploit to improve the efficiency of your work. Some of these which you may have already encountered include **tab-completion** (the pressing of the _tab_ key - usually above Caps Lock - leads to `bash` "guessing" the command or file path you want to type), and the **command history** (press the _up_ arrow to cycle back through your recent commands, press Ctrl+R to search your previous commands). Another such trick is shell expansion.
 
 The simplest example of shell expansion is the tilde (`~`) shortcut for your home directory. When you type this character at the command prompt, `bash` expands it to the full path to your home directory. Another commonly seen example of shell expansion are wildcards, where (for example) the asterisk (`*`) is expanded to all matching files:
 
 ```bash
-list all files in the home directory which end ".txt"
+# list all files in the home directory which end ".txt"
 $ ls ~/*.txt
 ```
 
@@ -55,8 +55,19 @@ Estimated time: 2 mins
 
 Organising your files well is just one part of effective management of your computational research. Our bioinformatics projects also require good _documentation_. Much like a well-kept lab notebook, the major beneficiary of a well-documented project is future you. Poor documentation can lead to irreproducibility and be a source of potential error.
 
-Lots of complexity can hide in bioinformatics work - large numbers of similar files, vast numbers of program parameters, rapidly changing software and other factors besides. Our best defense against this complexity causing us problems down the line is to keep good documentation - what software version did we use? Paired with which parameters? Why did we make this decision?
-
-The most basic level of documentation is the so-called README file. Every project should contain a README in its base directory, which records a standard set of information (or _metadata_) about the experiments carried out in that project.
+Lots of complexity can hide in bioinformatics work - large numbers of similar files, vast numbers of program parameters, rapidly changing software and other factors besides. Our best defence against this complexity causing us problems down the line is to keep good documentation - what software version did we use? Paired with which parameters? Why did we make this decision?
 
 ## The README file
+
+The most basic level of documentation is the so-called README file. Every project should contain a README in its base directory, which records a standard set of information (or _metadata_) about the experiments carried out in that project. This file is not intended as a complete record of our process (this is what the lab book is for - and even if all your experiments are _dry_, you should still keep a lab book).
+
+| README Section | Description |
+|----------------|-------------|
+| Author         | Basic information about you and the project (affiliation, date etc). Useful for if the project is redistributed, and a good habit to get into. |
+| Process        | Which scripts to run, and in which order. An outline of what each script does, and what it requires to run. |
+| Data           | What's the source of the data? When did you download it? Where is it backed-up? What database version does it come from? |
+| Software       | What software is required for the project? Which versions did you use? |
+
+## Markdown
+
+Markdown is a simple to write _markup language_ which is easy to convert into different document formats (particularly, but not exclusively, HTML).
