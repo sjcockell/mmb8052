@@ -72,7 +72,7 @@ The most basic level of documentation is the so-called README file. Every projec
 
 Markdown is a simple to write _markup language_ which is easy to convert into different document formats (particularly, but not exclusively, HTML). Since Markdown is a plain text format, it is easy to author using a command line text editor such as `nano` (which we have met in earlier practicals). There are a number of simple guides to the basic syntax of Markdown, [this is a representative example](https://www.markdownguide.org/basic-syntax/).
 
-The simplicity of Markdown makes it an excellent choice for documentation. By way of example, all of the practical guides you have been following during this course have been authored in Markdown and then converted in to the webpages you find embedded in Canvas. The raw Markdown for _this_ document can be found here: <https://raw.githubusercontent.com/sjcockell/mmb8852/main/practicals/practical_03.md>.
+The simplicity of Markdown makes it an excellent choice for documentation. By way of example, all of the practical guides you have been following during this course have been authored in Markdown and then converted into the webpages you find embedded in Canvas. The raw Markdown for _this_ document can be found here: <https://raw.githubusercontent.com/sjcockell/mmb8852/main/practicals/practical_03.md>.
 
 ### Exercise 3.2 {: .exercise}
 
@@ -129,13 +129,21 @@ In order to be able to use Conda, you will have to log out of your Linux machine
 
 ### Exercise 3.3 {: .exercise}
 
-Estimated time: 5 minutes
+Estimated time: 10 minutes
 
 - Install Conda as per the above instructions.
 
 ## Channels
 
+A channel is a location where Conda packages are stored and made available for installation. Discovering reliable channels can be a challenge, so we will stick to three publicly available, widely used channels: bioconda, conda-forge and defaults.
 
+Different channels can have the same package, so Conda must handle these channel collisions - it does this by maintaining a list of channel _priorities_. We will set Conda up to always use the three above channels (defaults is used by, well, _default_), and to always use them in the same order, to avoid any conflicts:
+
+```bash
+$ conda config --prepend channels conda-forge
+$ conda config --prepend channels bioconda
+$ conda config --set channel_priority strict
+```
 
 ## Environments
 
@@ -145,3 +153,38 @@ A Conda environment is essentially a directory which contains a specific collect
 - By maintaining a list of the software in an environment, we can reinstall that environment using Conda on any computer, thus enabling process reproducibility.
 
 It is good practise to set up and maintain a separate Conda environment for each project you work on, and to ensure you use Conda to manage all of the software in that project. It is then possible to create and maintain a _requirements_ file within that project, which can be used to re-install the environment if necessary.
+
+### Exercise 3.4 {: .exercise}
+
+Estimated time: 10 minutes
+
+We're going to create an environment for the first module assessment, which will contain the software we need to complete the assessment, follow these steps:
+
+- Add the conda-forge and bioconda channels to your Conda config by following the steps in the _Channels_ section, above
+- Create a new, empty Conda environment called "assessment1":
+
+```bash
+$ conda create --name assessment1
+```
+
+- Activate your new environment:
+
+```bash
+$ conda activate assessment1
+```
+
+- Install the required software:
+
+```bash
+$ conda install blast emboss muscle
+```
+
+Finally, save the list of installed software so that we can reinstall the environment later if required:
+
+```bash
+$ conda list -e > requirements.txt
+```
+
+Move this file (`requirements.txt`) into the base directory of the project directories you created in Exercise 3.1.
+
+# Version Control
