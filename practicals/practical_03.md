@@ -173,6 +173,7 @@ $ conda create --name assessment1
 $ conda activate assessment1
 ```
 
+
 - Install the required software:
 
 ```bash
@@ -188,3 +189,15 @@ $ conda list -e > requirements.txt
 Move this file (`requirements.txt`) into the base directory of the project directories you created in Exercise 3.1.
 
 # Version Control
+
+Version control is the practice of tracking and managing changes to a set of files over time. It is most commonly used for keeping track of changes made to software code, but can be used for any set of files in which changes can easily be enumerated. Good version control, like the practices of documentation and software management detailed above, is essential in enabling reproducible computational research. Furthermore, good version control is helpful in maintaining a working backup of our important files.
+
+## Git
+
+[Git](https://git-scm.com/) is one of many _version control systems_ (VCS) - software which enables version control. There are many other VCS available, such as [Mercurial](https://www.mercurial-scm.org/) and [Subversion](https://subversion.apache.org/), but Git is the most widely used. Git is a _distributed_ VCS, which means it does not require a centralised server to store a master code _repository_ (a feature of older VCS like Subversion).
+
+Version control, and Git, can get very complicated. We are going to introduce the basics of a very linear version management process to try and avoid getting lost in the weeds, but do be aware that we are only scratching the surface.
+
+### Init
+
+ 
