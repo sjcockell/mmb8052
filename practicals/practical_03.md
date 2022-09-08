@@ -127,6 +127,8 @@ The `conda` installer will prompt you for some information. Firstly accept the l
 
 In order to be able to use Conda, you will have to log out of your Linux machine and log back in again. You will know it has worked because `(base)` will appear at the beginning of your command prompt - this is the name of your current environment.
 
+The `conda` program is actually a single interface to a number of programs, each of which is accessed by providing a _verb_ as the first argument to `conda`. Examples of these verbs include `conda config`, `conda search` and `conda install`.
+
 ### Exercise 3.3 {: .exercise}
 
 Estimated time: 10 minutes
@@ -198,6 +200,120 @@ Version control is the practice of tracking and managing changes to a set of fil
 
 Version control, and Git, can get very complicated. We are going to introduce the basics of a very linear version management process to try and avoid getting lost in the weeds, but do be aware that we are only scratching the surface.
 
+Like `conda`, `git` functions via the provision of _verbs_ which inform the program of the action to take. We are going to look at a few of these verbs to get an idea of how `git` works.
+
+### Config
+
+The function of most of the basic verbs can be guessed from their name - `config` controls the configuration of Git. There are many config options that can be set, but most important is the `user.email`, which identifies you as the owner of your repositories. To set up this identification:
+
+```bash
+$ git config --global user.name "Donald Duck"
+$ git config --global user.email "donald@disney.com"
+```
+
 ### Init
 
- 
+The `git init` command creates a new Git repository. It can be used to convert an existing set of files into a Git repository, or to initialize a new, empty repository. Most other `git` commands do not work without an initialized repository.
+
+```bash
+# Turn the current directory into a Git repo
+$ git init
+# Create a new named repository
+$ git init directory_name
+Initialized empty Git repository in /home/student/directory_name/.git/
+```
+
+### Add
+
+The above `init` command creates a new Git repository, but we have to tell Git explicitly which files to track. The `add` verb is used to "stage" files for version control. By default `add` works recursively, so `git add .` will add all of the files and directories in the current working directory.
+
+```bash
+$ cd directory_name
+$ touch README
+$ git add .
+```
+
+### Commit
+
+This is the command which stores a "version" of our project - a Git `commit` is a labelled snapshot of a directory at a particular point in time. We can rollback to these snapshots in the future, should we need to.
+
+```bash
+$ git commit -m "My first commit"
+[master (root-commit) 7f9046a] My first commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README
+```
+
+The `-m` option for `commit` allows you to provide a message along with your snapshot. This message is mandatory (if you don't provide one in the command, you'll be made to write one before the commit is completed), and it can be useful to make them informative (so you have some idea of the content of the commit in future). A good commit message is <50 characters.
+
+The `-a` option for `commit` will `add` everything in the repo which is currently unstaged, so the addition of `-a` to your commit will let you skip the `add` step in most cases.
+
+```bash
+$ echo "# Document Title" > README
+$ git commit -a -m "Edited README"
+[master 9968c0c] Edited README
+ 1 file changed, 1 insertion(+)
+```
+
+### Reset
+
+There wouldn't be much "control" in the concept of version control if we couldn't rollback changes we've made to a previous version - `reset` is the Git command which allows this. For example, if we make an accidental destructive change to our code, which subsequently gets committed:
+
+```bash
+$ cat README
+\# Document Title
+$ echo "A destructive change" > README
+$ git commit -a -m "Oops"
+[master 23caffb] Oops
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+This code overwrites the content of the README file (we only used one `>`, instead of two). We've committed the change, but we can rollback to a version before we made this change. First of all, we have to find an identifier for the version:
+
+```bash
+$ git log
+commit 23caffb449f1bdb64f8e7c9045a0337ea27ce842 (HEAD -> master)
+Author: Donald Duck <donald@disney.com>
+Date:   Thu Sep 8 12:49:38 2022 +0100
+
+    Oops
+
+commit 9968c0ca517f2ddcf9c18e5216edea8784101b28
+Author: Donald Duck <donald@disney.com>
+Date:   Thu Sep 8 12:37:05 2022 +0100
+
+    Edited README
+
+commit 7f9046a171e76d08b7c54e72d25ce44a109d131b
+Author: Donald Duck <donald@disney.com>
+Date:   Thu Sep 8 12:33:55 2022 +0100
+
+    My first commit
+```
+
+The `log` verb shows you the history of your repository, in reverse chronological order. The identifier for each commit is the long string which comes after `commit`, so the identifier of our first commit here is `7f9046a171e76d08b7c54e72d25ce44a109d131b`. For the purposes of `reset`, the first 7 characters of this strong is sufficient as an identifier: `7f9046a`. In order to step back one commit in time, we want to tell `reset` to go back to the second commit, in this case identied by `9968c0c`:
+
+```bash
+$ cat README
+A destructive change
+$ git reset --hard 9968c0c
+HEAD is now at 9968c0c Edited README
+$ cat README
+\# Document Title
+```
+
+If we re-run `git log` we will also find the 3rd commit has disappeared from the history of the repository.
+
+### Exercise 3.5 {: .exercise}
+
+Estimated time: 15 minutes
+
+- Use the Git commands above to turn the Assessment 1 directories you created in earlier exercises into a Git repository
+- Make sure you add the files and directories that you've already made
+- Commit your files so far, with a meaningful commit message
+
+## Github
+
+So far, all of our operations with Git have been with a local repository. Git also allows us to work with _remote repositories_ which enables useful features like offsite backup and collaboration.
+
+Github is a service, owned by Microsoft, which we can use as a centralised server for a remote Git repository.
