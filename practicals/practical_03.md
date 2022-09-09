@@ -309,11 +309,11 @@ If we re-run `git log` we will also find the 3rd commit has disappeared from the
 Estimated time: 15 minutes
 
 - Use the Git commands above to turn the Assessment 1 directories you created in earlier exercises into a Git repository
-- Make sure you add the files and directories that you've already made
+- Make sure you `add` the files and directories that you've already made
 - Commit your files so far, with a meaningful commit message
 
 ## Github
 
 So far, all of our operations with Git have been with a local repository. Git also allows us to work with _remote repositories_ which enables useful features like offsite backup and collaboration.
 
-Github is a service, owned by Microsoft, which we can use as a centralised server for a remote Git repository.
+[Github](https://github.com/) is a service, owned by Microsoft, which we can use as a centralised server for a remote Git repository. 
