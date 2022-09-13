@@ -248,4 +248,4 @@ Estimated time: 5 minutes
 Read the help for the following functions:
 
 - What do they do?
-- What is the result when applied to endpwodfvnwpivn
+- What is the result when applied to
