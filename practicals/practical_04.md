@@ -145,7 +145,7 @@ Truth tables can be used to show how these operators combine boolean values.
 
 #### OR operator
 
-| A | B | A | B |
+| A | B | A \| B |
 |---|---|-------|
 | FALSE | FALSE | FALSE |
 | TRUE | FALSE | TRUE |
@@ -196,7 +196,7 @@ The behaviour of this function can be further modified by providing additional o
 [1] 1
 ```
 
-R functions have documentation (like `man` pages in Linux). The way to access the help for a function is to precede the function name with `?`. So to view the help page for `log()`, type `?log` in the console.
+R functions have documentation (like `man` pages in Linux). The way to access the help for a function is to precede the function name with `?`. So to view the help page for `log()`, type `?log` in the console. This help page describes the purpose of the function, and all of the arguments which it understands.
 
 ## Vectors
 
@@ -238,14 +238,207 @@ We can also create numeric vectors using the `seq()` function, or the colon (`:`
 [1] 1 2 3 4 5 6
 ```
 
-The kind of operations we looked at with single values above can also be applied to vectors.
+The kind of operations we looked at with single values above can also be applied to vectors. For example, mathematical operators will act on corresponding elements of equal length vectors:
 
+```r
+> x = c(2, 4, 6, 8, 10)
+> y = c(1, 3, 5, 7, 9)
+> x + y
+[1]  3  7 11 15 19
+> x * y
+[1]  2 12 30 56 90
+```
+
+Where vectors are unequal lengths, the shorter vector will be _recycled_ until it matches the length of the longer vector:
+
+```r
+> x = c(2, 4, 6, 8, 10, 12)
+> y = c(10, 100)
+> x * y
+[1]   20  400   60  800  100 1200
+```
+
+In this example, the recycling of `y` makes it `c(10, 100, 10, 100, 10, 100)`.
+
+Relational operators used with vectors will give back a boolean vector of the same length as the input, with a result for each element of the input vector:
+
+```r
+> x = 1:10
+> x >= 5
+[1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+```
+
+### Filtering vectors
+
+It is often the case that we want to filter a vector and keep only elements which match certain criteria. This can be done using square brackets `[]` - this is an example of an _extract_ operator. You can get more information by typing `?'['` in the console. Extraction works with numerical indices, names or boolean vectors.
+
+#### Index filtering
+
+```r
+> gene_id <- c("ENSG00000030110", "ENSG00000166394", "ENSG00000109738", "ENSG00000153208")
+> gene_id[2]
+[1] "ENSG00000166394"
+> gene_id[c(1,3)]
+[1] "ENSG00000030110" "ENSG00000109738"
+```
+
+#### Name Filtering
+
+It is possible to add _names_ to a vector, to give each element a character-based reference, as well as a numeric one. These names can then be used to select specific elements.
+
+```r
+> names(gene_id) = c("BAK1", "CYB5R2", "GLRB", "MERTK")
+> gene_id["CYB5R2"]
+           CYB5R2
+"ENSG00000166394"
+> gene_id[c("MERTK", "CYB5R2")]
+            MERTK            CYB5R2
+"ENSG00000153208" "ENSG00000166394"
+```
+
+#### Boolean Filtering
+
+Probably most usefully, we can extract elements using a vector of logicals. R will give you back only the elements corresponding to `TRUE` in the boolean vector. We can combine this method with the relational operators from before, to give us a powerful system for filtering (even very large) datasets.
+
+```r
+> bools = c(TRUE, FALSE, TRUE, FALSE)
+> gene_id[bools]
+             BAK1              GLRB
+"ENSG00000030110" "ENSG00000109738"
+> gene_id == "ENSG00000109738"
+ BAK1 CYB5R2   GLRB  MERTK
+FALSE  FALSE   TRUE  FALSE
+> gene_id[gene_id == "ENSG00000109738"]
+> x = 1:10
+> x[x>=5]
+[1]  5  6  7  8  9 10
+```
 
 ### Exercise 4.4 {: .exercise}
 
-Estimated time: 5 minutes
+Estimated time: 10 minutes
 
-Read the help for the following functions:
+R contains lots of functions for mathematical operations. Read the help for the following functions:
+
+- `mean`
+- `sd`
+- `range`
+- `summary`
 
 - What do they do?
-- What is the result when applied to
+- Make a vector of a thousand random values from a normal distribution: `x = rnorm(1000)`
+- What are the results of the above functions when applied to these values?
+    - Are these results what you'd expect, given the function of `rnorm`?
+    - Compare results with your neighbours.
+- Filter `x`, keeping only observations greater than 1.
+    - How many are you left with? (HINT: `length()`)
+    - How does this compare with your neighbours?
+- Finally, produce a visual summary of your random data by running `hist(x)`.
+
+## Two-dimensional Data
+
+### Matrix
+
+A matrix is a vector with two additional attributes - the number of rows (`nrow`) and the number of columns (`ncol`) which define the shape of a two-dimensional data structure. You can create a matrix using the `matrix()` function. Note that matrices are constructed in column-major order (i.e. the values in the vector used to construct the matrix fill it up column by column); you can request row-major ordering by setting the `byrow` argument of the matrix function to `TRUE`.
+
+Like a vector, all of the elements in a matrix have to be of the same type, and on creation will be caste to the highest type included.
+
+```r
+> matrix(1:12, nrow=4, ncol=3)
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12
+> matrix(1:12, nrow=4, ncol=3, byrow=TRUE)
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]    7    8    9
+[4,]   10   11   12
+```
+
+We can extract from matrices using square brackets as with vectors, but since a matrix is a 2-dimensional structure, we supply two values separated by a comma `[ , ]`. The first value (on the left of the comma) extracts rows of the matrix, and the second value (on the right of the comma) extracts columns of the matrix (so the format is `[rows, columns]`).
+
+```r
+> my_matrix = matrix(1:12, nrow=4, ncol=3)
+> my_matrix[3:4, 1:2]
+     [,1] [,2]
+[1,]    3    7
+[2,]    4    8
+```
+
+### Exercise 4.5 {: .exercise}
+
+Estimated time: 5 minutes
+
+Work out what the following functions do to the matrix `my_matrix` (as per the code above).
+
+- `t()`
+- `dim()`
+- `as.vector()`
+
+
+### Data Frame
+
+A data frame has a 2-dimensional rows-and-columns structure like a matrix. However, unlike a matrix each column can be of a different data type (for example some columns might contain numbers and other columns might contain character strings). This makes data frames particularly useful for storing tabular data in which the rows correspond to cases and columns correspond to variables. Data frames are the fundamental data structure used by R’s statistical modelling software.
+
+The `data.frame()` function creates a data frame from a set of vectors:
+
+```r
+> df = data.frame(gene_id = c("ENSG00000030110", "ENSG00000166394", "ENSG00000109738", "ENSG00000153208"),
+                gene_symbol = c("BAK1", "CYB5R2", "GLRB", "MERTK"),
+                logFC = c(0.28, -1.36, -0.89, 0.77),
+                pVal = c(0.73, 0.004, 0.08, 0.02))
+> df
+          gene_id gene_symbol logFC  pVal
+1 ENSG00000030110        BAK1  0.28 0.730
+2 ENSG00000166394      CYB5R2 -1.36 0.004
+3 ENSG00000109738        GLRB -0.89 0.080
+4 ENSG00000153208       MERTK  0.77 0.020
+```
+
+We can access the columns of a data frame as vectors using the special `$` operator:
+
+```r
+> df$gene_symbol
+[1] "BAK1"   "CYB5R2" "GLRB"   "MERTK"
+> df$pVal
+[1] 0.730 0.004 0.080 0.020
+```
+
+We can also add new information into a data frame using this notation:
+
+```r
+> df$new_column = c("up", "down", "down", "up")
+> df
+          gene_id gene_symbol logFC  pVal new_column
+1 ENSG00000030110        BAK1  0.28 0.730         up
+2 ENSG00000166394      CYB5R2 -1.36 0.004       down
+3 ENSG00000109738        GLRB -0.89 0.080       down
+4 ENSG00000153208       MERTK  0.77 0.020         up
+```
+
+Filtering of a data frame works in the same way as a matrix, using `[rows, columns]`.
+
+```r
+> df[2, 2]
+[1] "CYB5R2"
+> df[df$gene_symbol == "BAK1",]
+          gene_id gene_symbol logFC pVal
+1 ENSG00000030110        BAK1  0.28 0.73
+```
+
+In this last example, the expression `df$gene_symbol == "BAK1"` which is inside the square brackets, tests the `gene_symbol` column as though it were a vector, and returns a logical vector with a result for each element (so will return `c(TRUE, FALSE, FALSE, FALSE)`). This vector has the same number of elements as the data frame has rows, so will return only the rows of the data frame which meet the condition.
+
+### Exercise 4.6 {: .exercise}
+
+Estimated time: 5 minutes
+
+Using the above information, can you filter the data frame for rows which are "significant" (according to the p-values recorded)?
+
+Can you work out how to add this information in to the data frame without filtering it?
+
+# Summary
+
+This practical has introduced the basics of the R programming language. We've seen the types of data we can use in R, and how to manipulate that data using elemental operators and base functions. Practical 5 will be an introduction to some more advanced R programming, with a particular focus on the visualisation of data. 
