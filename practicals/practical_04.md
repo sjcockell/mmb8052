@@ -1,4 +1,4 @@
-# MMB8052 Practical 02 - Introduction to R Programming
+# MMB8052 Practical 04 - Introduction to R Programming
 
 # Introduction
 
@@ -441,4 +441,4 @@ Can you work out how to add this information in to the data frame without filter
 
 # Summary
 
-This practical has introduced the basics of the R programming language. We've seen the types of data we can use in R, and how to manipulate that data using elemental operators and base functions. Practical 5 will be an introduction to some more advanced R programming, with a particular focus on the visualisation of data. 
+This practical has introduced the basics of the R programming language. We've seen the types of data we can use in R, and how to manipulate that data using elemental operators and base functions. Practical 5 will be an introduction to some more advanced R programming, with a particular focus on the visualisation of data.
