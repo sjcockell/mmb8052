@@ -1,5 +1,5 @@
-# MMB8852
-Documentation for MMB8852 - Bioinformatics for Biomedical Scientists
+# MMB8052
+Documentation for MMB8052 - Bioinformatics for Biomedical Scientists
 
 ## Author
 
