@@ -29,6 +29,18 @@ Error in rowSds(x) : could not find function "rowSds"
 
 In this code block, we first make a matrix of some normally distributed data. Although we've installed the `matrixStats` package in the first line, the function `rowSds`, which calculates the row-wise standard deviations, is not available to us until we _attach_ it to our R session, which we accomplish with the `library()` function. After this line, we can use `rowSds()` to calculate the standard deviation of the rows of our matrix.
 
+### Exercise 5.1  {: .exercise}
+
+Estimated time: 5 minutes
+
+- Install the `matrixStats` package, as above.
+- Browse the package documentation - `help(package="matrixStats")`.
+- Test out some of the functions on a matrix of random data, like the one created above.
+
+Specifically, can you find out the difference between the base function `rowSums()` and the `matrixStats` function `rowSums2()`?
+
+Mathematically, what's the difference between `rowSds()`, `rowVars()` and `rowMads()`?
+
 # Tidyverse
 
 The [_Tidyverse_](https://www.tidyverse.org/) is set of packages available through CRAN. It describes itself as “an opinionated collection of R packages designed for data science”. Components of the Tidyverse provide convenient methods for reading, writing, visualising and organising data. The core Tidyverse consists of eight packages: `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, `forcats` and `dplyr`. These packages can be installed via a conventient _metapackage_ called `tidyverse`:
