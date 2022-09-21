@@ -152,7 +152,7 @@ $ ls
 ```
 
 - What do you see after each command?
-- Can you work out what the `ls` and `touch` commands are doing?                                        |
+- Can you work out what the `ls` and `touch` commands are doing?
 
 
 ### Command Anatomy
@@ -338,7 +338,7 @@ Directories are directly analogous to _folders_ in Windows and MacOS. As describ
 # make a new directory called **mydir** in the current working directory
 $ mkdir mydir
 $ ls
-emptyfile   mydir/  mf.b   myfile.txt
+emptyfile  mf.b  mydir/  myfile.txt
 ```
 **Note**
 
@@ -365,7 +365,7 @@ mf.b
 
 ### Deleting Files
 
-All the commands we've looked at so far create files (and directories), however, sometimes it is necessary to delete things too. The command for removing files is `rm` amd again, the simplest way of using it is with a single argument - the file to be deleted.
+All the commands we've looked at so far create files (and directories), however, sometimes it is necessary to delete things too. The command for removing files is `rm` and again, the simplest way of using it is with a single argument - the file to be deleted.
 
 Unlike the operating systems you may be used to, there is no request for confirmation when you issue the `rm` command - the file will be immediately removed from the file system (it also doesn't go into any sort of recoverable "Trash" folder). For this reason, `rm` should be treated with caution - especially when used with the `-r` option (which like `cp` is used to "recursively" act on all the files in a directory, including the directory itself). If you do want to be prompted for confirmation before deleting a file, you can add the `-i` option to your `rm` command.
 
@@ -417,7 +417,7 @@ You've already met `cat` - this command will print the contents of a file to `ST
 
 The `less` command lets you view text one page (or screen) at a time. The space bar moves forward one page, pressing "B" moves back one page and pressing "Q" quits.
 
-`head` will show you the first lines of a text file and `tail` will show you the last lines. Both show 10 lines by default, but this can be changes with the `-n` option.
+`head` will show you the first lines of a text file and `tail` will show you the last lines. Both show 10 lines by default, but this can be changed with the `-n` option.
 
 Note that running `head`, `tail` or `cat` without specifying a filename will cause the command prompt to "hang" (become unresponsive to input). Pressing Ctrl+C will cancel the command by sending a _kill_ signal to your terminal.
 
@@ -497,7 +497,7 @@ The UniProt API allows us to construct these endpoints for any protein in the da
 
 Estimated time: 5 - 10 mins
 
-The human Retinoblastoma protein (RB1)has the accession **P06400**, use `wget` to download the plain text database entry for this protein.
+The human Retinoblastoma protein (RB1) has the accession **P06400**, use `wget` to download the plain text database entry for this protein.
 
 You can view the file you've downloaded using the _pager_ program `less` (open the file using `less filename`, then use the space bar to page through the file. Press 'Q' to quit).
 
