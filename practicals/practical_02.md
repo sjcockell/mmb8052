@@ -311,7 +311,7 @@ The `-f` option is used to select particular fields (a comma-separated list can 
 
 Estimated time: 10 min
 
-- Download the example data table: <https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt>
+- Download the example data table: <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt>
 - `sort` the file by the corrected p-value (the column name is `adj.P.Val`), and redirect the output to a file
     - Are the results as you would expect?
     - Where do the column headings end up?
@@ -421,6 +421,18 @@ Done downloading
 
 ### Exercise 2.6 {: .exercise}
 
+Estimated time: 10 minutes
+
+- Make the script above that takes a UniProt accession as an argument
+- Modify it so you can also configure what type of data to download (e.g. `txt`, `fasta` or `gff`)
+- Test that your script works as expected
+
+Consider the following:
+
+- What happens if you run the script without supplying arguments?
+- How might you improve this behaviour?
+-
+
 ### The FOR Loop
 
 The ability to _iterate_, or to perform a set of instructions repeatedly, is a key feature of programming languages. In `bash` we have the `for` flow control statement which enables iteration over a list of input variables. The list of commands to be executed at each iteration is enclosed between the keywords `do` and `done`. For example, a given set of UniProt entries could be downloaded with the following code:
@@ -437,6 +449,18 @@ Here, the loop variable `ACC` is first assigned the value `P34122` and the code 
 Once the `for` loop runs out of inputs (i.e. every entry in the list has been processed), the loop is terminated, and our script can move on to any lines after the `done`.
 
 ### Exercise 2.7 {: .exercise}
+
+Estimated time: 10 minutes
+
+- Modify your script from exercise 2.6 to include a FOR loop so it can download multiple entries passed as arguments
+- Can you still include an argument for the type of data to download?
+- Test your script still works (use the list of UniProt entries above)
+
+**HINT** - part 2 above is tricky, but possible. Investigate the functioning of the `shift` command in a script, here: <https://www.computerhope.com/unix/bash/shift.htm>.  
+
+- Can you think of any further improvements you'd like to make to this script?
+- Do you think it would also be possible to write a script to make using the UniProt search API (see practical 1) simpler?
+
 
 # Software Installation
 
@@ -536,4 +560,4 @@ $ cat *.fasta > all_seq.fasta
 
 This practical has introduced some advanced concepts which are useful when working at the Linux command line. The ability to write scripts, in particular, allows us to record our practice and therefore to reproduce it (and allow others to). We've also seen how to install software on our Linux system - providing new tools to experiment with, including some bioinformatics software. The final exercise here combined a lot of the lessons we've learned so far to achieve something quite complicated - this is a realistic 'bioinformatics' task.
 
-Next week we will look at organising our work, and computational tools for managing projects and software. 
+Next week we will look at organising our work, and computational tools for managing projects and software.
