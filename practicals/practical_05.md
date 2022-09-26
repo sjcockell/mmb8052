@@ -109,7 +109,7 @@ The same data, encoded in long format:
 
 The advantage of having the data arranged in this way is that we can trivially add extra information to each observation and maintain the same format. For example, if samples 1-3 were "wild-type" and samples 4-6 were "mutant" we could add an additional _genotype_ column to the long data to store this information. In the case of wide data, you would typically have to create a second data frame which contained this information about the columns (and likewise for the rows).
 
-It is possible to turn a wide matrix into a long data frame using the `tidyr` package, which contains a function called `pivot_longer()`. Note that for this to work properly, the rownames of our matrix must be a column in their own right, meaning that the conversion becomes a bit of a shuffle.
+It is possible to turn a wide matrix into a long data frame using the `tidyr` package, which contains a function called `pivot_longer()` (as well as `pivot_wider()` for the reverse operation). Note that for this to work properly, the rownames of our matrix must be a column in their own right, meaning that the conversion becomes a bit of a shuffle.
 
 ```r
 > library(tidyverse)
@@ -132,6 +132,89 @@ Another thing to note here: the output of `pivot_longer()` is a `tibble`. This i
 
 ## readr
 
+The `readr` package provides functions for turning flat text files into tibbles. `read_csv()` is for comma separated value files, `read_tsv()` is for tab-delimited files and the generic `read_delim()` allows you to define any delimiter. These types of delimited files are commonplace in bioinformatics.
+
+As well as reading files on our hard-drive, we can also point the `readr` functions at a file in a network location, allowing us to read data directly from the web into R.
+
+For example, we can load the file we used in practical 2 to demonstrate `sort` at the command line:
+
+```r
+> de_data = read_tsv("https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt")
+```
+
+It is also worth noting the `readxl` package, which is a subsidiary Tidyverse package that makes it straightforward to get data out of Excel and into R.
+
+### Exercise 5.2  {: .exercise}
+
+Estimated time: 8 minutes
+
+- Use `readr` to load the tab-separated value file found at <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example_data.tsv>
+- Take a look at the data you've loaded (**HINT** - the RStudio built-in `View()` function is good for this)
+- Use `pivot_longer()` to make a _long_ version of the data
+- Turn it into a matrix, preserving the `gene_id` column as `rownames`
+
+Consider these questions:
+
+- Is it best to overwrite the variable containing the data every time, or make copies? (i.e. `data = mutate(data)` vs `data2 = mutate(data1)`)
+- How easy is it to _undo_ `pivot_longer()`?
+
 ## dplyr
+
+As mentioned above, a certain amount of data wrangling is to be expected with any type of realistic data analysis - not all data tends to be formatted cleanly or exactly as we expect or need it. The `dplyr` package is designed to make this kind of data manipulation tasks easier.
+
+### Examples
+
+Using `filter` to extract specific rows:
+
+```r
+> filter(de_data, adj.P.Val < 0.05)
+# same result:
+de_data[de_data$adj.P.Val < 0.05,]
+```
+
+As seen in the last practical, filtering data according to some property of the data itself can be an extremely useful operation. The base R syntax for this can be clunky and become hard to read, `dplyr`'s `filter()` function is often a cleaner way of achieving the same result.
+
+Using `select` to extract a set of columns:
+
+```r
+> select(de_data, geneSymbol, logFC, adj.P.Val)
+```
+
+This function will return a tibble with just the columns named in the arguments.
+
+You should be aware that many packages contain functions with the same name. For example, there are functions called `select()` in several other R packages. If you have loaded libraries containing functions with matching names, the function in the last package loaded will be used (functions with the same name in packages loaded earlier are _masked_). To specify a function from a particular package, use the package name followed by the double colon operator `::` and the function name. For example, to specify the `select` function from the `dplyr` package in the last example:
+
+```r
+> dplyr::select(de_data, geneSymbol, logFC, adj.P.Val)
+```
+
+`select()` allows you to exclude columns as well:
+
+```r
+> select(de_data, -geneName)
+```
+
+In addition to this, `select()` has helper functions for conveniently selecting groups of columns:
+
+```r
+> select(de_data, starts_with("gene"))
+> select(de_data, ends_with("e"))
+> select(de_data, contains("Val"))
+```
+
+Using `arrange` to re-order rows based on the values in columns:
+
+```r
+```
+
+By default the rows are re-ordered in ascending order, the `desc()` function lets us reverse this:
+
+```r
+```
+
+Using `mutate` to define new columns that are functions of existing columns:
+
+```r
+```
 
 ## ggplot2

@@ -22,7 +22,7 @@ RStudio splits the application window into up to 4 panes, by default these panes
 
 If you want to work on your own computer, you will need to install R and RStudio:
 
-- Download & install the correct version of R (<https://www.stats.bris.ac.uk/R/) for your operating system
+- Download & install the correct version of R (<https://www.stats.bris.ac.uk/R/>) for your operating system
 - Download & install the correct version of RStudio (<https://www.rstudio.com/products/rstudio/download/#download>) for your operating system
 
 ### Exercise 4.1 {: .exercise}
