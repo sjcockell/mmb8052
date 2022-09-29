@@ -376,3 +376,85 @@ Recreate the plot above, and add the following elements:
 - Vertical lines denoting a fold-change cutoff of 2x (remember to convert to log-space)
 - Alter the point colour to give 3 categories - passed p-value and fold-change thresholds, passed only p-value threshold, failed both thresholds
 - Experiment with colours and linetypes to try to improve the look of the plot
+
+| ![Figure 10: ggplot2 example 10](media/ggplot10.png) |
+|:--:|
+| <b>Figure 10: One possible example "Volcano Plot"</b>|
+
+### Further Examples
+
+In the examples above we've really only explored a single geometry (`geom_point()`), but there are many others available within `ggplot2`. In the examples below, we'll be using the data loaded in Exercise 5.2 (in the long format) and testing some other geometries.
+
+**NOTE** - factors are data structures in R which allows us to store _categorical variables_. The elements in a factor belong to a pre-defined, finite set of values called _levels_. Factors are used to define categories for statistical model fitting, and `ggplot2` uses them to ensure that items are displayed correctly in the desired order. Here, we'll use a factor to group the "samples" present in our example data.
+
+```r
+# Firsly, a reminder of the data from exercise 5.2
+> wide_example = read_tsv("https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example_data.tsv")
+> long_example = pivot_longer("wide_example", 2:13)
+# Now add a factor column, ordering the samples in a particular way:
+> long_example = mutate(long_example,
+         sample=factor(name, levels=c(paste0('sample_', 3:10), 'sample_1', 'sample_2', 'sample_11', 'sample_12')))
+# Make a boxplot
+> ggplot(long_example, aes(x=sample, y=value)) +
+         geom_boxplot()
+```
+
+| ![Figure 11: ggplot2 example 11](media/ggplot11.png) |
+|:--:|
+| <b>Figure 11: Boxplot example</b>|
+
+As we can see in figure 11, the boxplot geometry shows us the distribution of the data in each of the categories given on the X-axis. These categories are in the order we defined when we created the `factor` column in `long_example` (samples 3-10, followed by samples 1, 2, 11 and 12).
+
+We can add extra layers to the plot in the same way as before - let's start with some points:
+
+```r
+> ggplot(long_example, aes(x=sample, y=value)) +
+         geom_boxplot() +
+         geom_point()
+```
+
+| ![Figure 12: ggplot2 example 12](media/ggplot12.png) |
+|:--:|
+| <b>Figure 12: Boxplot with points overlaid</b>|
+
+The layers are brawn on to the plot in the order specified, one over the other. If you added them in the opposite order (`geom_point() + geom_boxplot()`), the boxplot would be drawn on top of the points, obscuring them.
+
+We might want to colour these points by the gene they represent:
+
+```r
+> ggplot(long_example, aes(x=sample, y=value)) +
+         geom_boxplot() +
+         geom_point(aes(colour=gene_id))
+```
+
+| ![Figure 13: ggplot2 example 13](media/ggplot13.png) |
+|:--:|
+| <b>Figure 13: Boxplot with coloured points overlaid</b>|
+
+Even with so few genes, it can be difficult to track the expression across all the samples. We can add lines to help with this:
+
+```r
+> ggplot(long_example, aes(x=sample, y=value)) +
+         geom_boxplot() +
+         geom_point(aes(colour=gene_id)) +
+         geom_line()
+```
+
+| ![Figure 14: ggplot2 example 14](media/ggplot14.png) |
+|:--:|
+| <b>Figure 14: Boxplot with points and lines overlaid</b>|
+
+It seems that didn't work as intended. This is because of an aesthetic known as `group` - by default, variables are grouped according to the X-axis, so the line geometry is joining together the observations within a sample. To get it to join between samples instead, we need to change the `group`:
+
+```r
+> ggplot(long_example, aes(x=sample, y=value)) +
+         geom_boxplot() +
+         geom_point(aes(colour=gene_id)) +
+         geom_line(aes(group=gene_id))
+```
+
+| ![Figure 15: ggplot2 example 15](media/ggplot15.png) |
+|:--:|
+| <b>Figure 15: Boxplot with points and grouped lines overlaid</b>|
+
+That works, but it's not very pretty. If you have time, can you improve the look of this plot?
