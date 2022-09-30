@@ -142,6 +142,8 @@ For example, we can load the file we used in practical 2 to demonstrate `sort` a
 > de_data = read_tsv("https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt")
 ```
 
+Note that `readr` makes the assumption that the first line of the file being read contains column headers. If this is not the case for the data being read, then we would have to define these column headers with the `col_names` argument, which takes a vector of column names.
+
 It is also worth noting the `readxl` package, which is a subsidiary Tidyverse package that makes it straightforward to get data out of Excel and into R.
 
 ### Exercise 5.2  {: .exercise}
@@ -162,7 +164,7 @@ Consider these questions:
 
 As mentioned above, a certain amount of data wrangling is to be expected with any type of realistic data analysis - not all data tends to be formatted cleanly or exactly as we expect or need it. The `dplyr` package is designed to make this kind of data manipulation tasks easier.
 
-One of the key features of `dplyr` is that we can refer to column names as variables in our function calls. This can make `dplyr` code easier to write, and to read, than the standard base alternatives.
+One of the key features of `dplyr` is that we can refer to column names as variables in our function calls (we will see this with `ggplot2` later as well). This can make `dplyr` code easier to write, and to read, than the standard base alternatives.
 
 ### Examples
 
@@ -182,7 +184,7 @@ Using `select` to extract a set of columns:
 > select(de_data, geneSymbol, logFC, adj.P.Val)
 ```
 
-This function will return a tibble with just the columns named in the arguments.
+This function will return a tibble with just the columns named in the arguments, in the order named in the arguments.
 
 You should be aware that many packages contain functions with the same name. For example, there are functions called `select()` in several other R packages. If you have loaded libraries containing functions with matching names, the function in the last package loaded will be used (functions with the same name in packages loaded earlier are _masked_). To specify a function from a particular package, use the package name followed by the double colon operator `::` and the function name. For example, to specify the `select` function from the `dplyr` package in the last example:
 
@@ -457,4 +459,20 @@ It seems that didn't work as intended. This is because of an aesthetic known as 
 |:--:|
 | <b>Figure 15: Boxplot with points and grouped lines overlaid</b>|
 
-That works, but it's not very pretty. If you have time, can you improve the look of this plot?
+You can find information on other geometries by searching R help: `??geom_`
+
+### Exercise 5.5  {: .exercise}
+
+Estimated time: 10 minutes
+
+Add the following to the plot above:
+
+- Colour the lines by gene (as the points)
+- Fade the lines into the background by lowering the `alpha`
+- How does `geom_violin()` compare to `geom_boxplot()`?
+
+Can you work out how to reduce the width of the boxes on the boxplot? Can you colour them by sample, and is this useful?
+
+Can you plot this data in a gene-centric manner, rather than this sample-centric view?
+
+## Heatmaps
