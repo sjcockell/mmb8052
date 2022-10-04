@@ -196,7 +196,7 @@ Version control is the practice of tracking and managing changes to a set of fil
 
 ## Git
 
-[Git](https://git-scm.com/) is one of many _version control systems_ (VCS) - software which enables version control. There are many other VCS available, such as [Mercurial](https://www.mercurial-scm.org/) and [Subversion](https://subversion.apache.org/), but Git is the most widely used. Git is a _distributed_ VCS, which means it does not require a centralised server to store a master code _repository_ (a feature of older VCS like Subversion).
+[Git](https://git-scm.com/) is one of many _version control systems_ (VCS) - software which enables version control. There are many other VCS available, such as [Mercurial](https://www.mercurial-scm.org/) and [Subversion](https://subversion.apache.org/), but Git is probably the most widely used. Git is a _distributed_ VCS, which means it does not require a centralised server to store a master code _repository_ (a feature of older VCS like Subversion).
 
 Version control, and Git, can get very complicated. We are going to introduce the basics of a very linear version management process to try and avoid getting lost in the weeds, but do be aware that we are only scratching the surface.
 
@@ -291,7 +291,7 @@ Date:   Thu Sep 8 12:33:55 2022 +0100
     My first commit
 ```
 
-The `log` verb shows you the history of your repository, in reverse chronological order. The identifier for each commit is the long string which comes after `commit`, so the identifier of our first commit here is `7f9046a171e76d08b7c54e72d25ce44a109d131b`. For the purposes of `reset`, the first 7 characters of this strong is sufficient as an identifier: `7f9046a`. In order to step back one commit in time, we want to tell `reset` to go back to the second commit, in this case identied by `9968c0c`:
+The `log` verb shows you the history of your repository, in reverse chronological order. The identifier for each commit is the long string which comes after `commit`, so the identifier of our first commit here is `7f9046a171e76d08b7c54e72d25ce44a109d131b`. For the purposes of `reset`, the first 7 characters of this strong is sufficient as an identifier: `7f9046a`. In order to step back one commit in time, we want to tell `reset` to go back to the second commit, in this case identified by `9968c0c`:
 
 ```bash
 $ cat README
@@ -299,7 +299,7 @@ A destructive change
 $ git reset --hard 9968c0c
 HEAD is now at 9968c0c Edited README
 $ cat README
-\# Document Title
+# Document Title
 ```
 
 If we re-run `git log` we will also find the 3rd commit has disappeared from the history of the repository.
@@ -316,4 +316,14 @@ Estimated time: 15 minutes
 
 So far, all of our operations with Git have been with a local repository. Git also allows us to work with _remote repositories_ which enables useful features like offsite backup and collaboration.
 
-[Github](https://github.com/) is a service, owned by Microsoft, which we can use as a centralised server for a remote Git repository. 
+[Github](https://github.com/) is a service, owned by Microsoft, which we can use as a centralised server for a remote Git repository. It is commonly used by software developers to host open source projects, including significant projects such as the [Linux kernel](https://github.com/torvalds/linux), [Python](https://github.com/python/cpython) and [Conda](https://github.com/conda/conda).
+
+Github operates a _freemium_ service - it is possible to sign up for an account for free and work extensively with Github - including being able to create an unlimited number of public and private repositories. Newcastle University has an Enterprise account with Github, which allows users at the University to benefit from a range of additional features. In order to join the University Github _organisation_ you must first have a personal account.
+
+### Exercise 3.6 {: .exercise}
+
+Estimated time: 5 minutes
+
+- Go to <https://github.com> and make an account
+
+### Uploading a repository to Github

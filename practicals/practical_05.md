@@ -392,7 +392,7 @@ In the examples above we've really only explored a single geometry (`geom_point(
 ```r
 # Firsly, a reminder of the data from exercise 5.2
 > wide_example = read_tsv("https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example_data.tsv")
-> long_example = pivot_longer("wide_example", 2:13)
+> long_example = pivot_longer(wide_example, 2:13)
 # Now add a factor column, ordering the samples in a particular way:
 > long_example = mutate(long_example,
          sample=factor(name, levels=c(paste0('sample_', 3:10), 'sample_1', 'sample_2', 'sample_11', 'sample_12')))
@@ -476,3 +476,69 @@ Can you work out how to reduce the width of the boxes on the boxplot? Can you co
 Can you plot this data in a gene-centric manner, rather than this sample-centric view?
 
 ## Heatmaps
+
+A heatmap is a 2D coloured display of a matrix of data. The colour of each cell of the plot directly corresponds to the numerical value found in that element of the data matrix. More sophisticated heatmaps add extra features such as clustering, to group together similar rows and columns.
+
+A basic heatmap, with no clustering, can be produced in `ggplot2` using `geom_tile()`. For example, in the case of the gene expression data being explored in figures 11-15:
+
+```r
+> ggplot(long_example, aes(x=sample, y=gene_id)) +
+        geom_tile(aes(fill=value))
+```
+
+| ![Figure 16: Heatmap Example 1](media/heatmap1.png) |
+|:--:|
+| <b>Figure 16: Heatmap made using `geom_tile()`</b>|
+
+A more complicated heatmap of this data requires that we format the data as a "wide" matrix - an additional package (`pheatmap`) can be used to provide us with a nice set of defaults:
+
+```r
+# use just the numerical data from the "wide" dataset
+> wide_matrix = as.matrix(select(wide_example, 2:13))
+# re-label the rows with the gene ids
+> rownames(wide_matrix) = pull(wide_example, 1)
+> install.packages("pheatmap")
+> library(pheatmap)
+> pheatmap(wide_matrix)
+```
+
+| ![Figure 17: Heatmap Example 2](media/heatmap2.png) |
+|:--:|
+| <b>Figure 17: Heatmap made using `pheatmap`</b>|
+
+By default, this function uses hierarchical clustering (in R, `hclust()`) calculated from the Euclidian distance (`dist()`) between the rows and columns of data. This brings samples and genes which are statistically similar to one another close together in the plot, and implies a tree-like structure between the rows and columns, which is visualised as a dendrogram on the left (for the genes) and at the top (for the samples) of the plot.
+
+We can calculate this clustering using the functions mentioned above, if we wish:
+
+```r
+> gene_dist = dist(wide_matrix, method="euclidian")
+> gene_clust = hclust(gene_dist, method="complete")
+> plot(gene_clust)
+```
+
+| ![Figure 18: Clustering Example 1](media/cluster1.png) |
+|:--:|
+| <b>Figure 18: Gene-based hierarchical
+ clustering</b>|
+
+The `dist()` function calculates the Euclidaian distance between the _rows_ of the input matrix, therefore to calculate the distance between the samples, we have to transpose the `wide_matrix`:
+
+```r
+> t_matrix = t(wide_matrix)
+> sample_dist = dist(t_matrix, method="euclidian")
+> sample_clust = hclust(sample_dist, method="complete")
+> plot(sample_clust)
+```
+
+| ![Figure 19: Clustering Example 2](media/cluster2.png) |
+|:--:|
+| <b>Figure 19: Sample-based hierarchical clustering</b>|
+
+
+There's no exercise here, but if you have time at the end of the practical, produce the examples above, and see if you can work out how to change the colour scheme for the heatmaps.
+
+# Summary
+
+This practical has covered a lot of ground, with a particular focus on the Tidyverse, and on `ggplot2` and visualising data in particular. We've looked at what consititutes a "tidy" dataset, and how we can use the grammar of graphics to produce intuitive visualisations of these types of data.
+
+This was the last of our "introductory" practicals, and we have now covered all of the fundamental techniques we will need in our case studies, which make up the remaining practicals in the module. Remember in future weeks that you have the documentation of the first 5 practicals to fall back on if you want to refresh your memory of a particular skill.
