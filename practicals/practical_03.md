@@ -1,4 +1,4 @@
-# MMB8052 Practical 03 - Project Management and Version Control
+fiddley# MMB8052 Practical 03 - Project Management and Version Control
 
 # Introduction
 
@@ -325,5 +325,54 @@ Github operates a _freemium_ service - it is possible to sign up for an account 
 Estimated time: 5 minutes
 
 - Go to <https://github.com> and make an account
+- You should have received an email invitation to the newcastleuniversity-snbss organisation - follow the instructions to join the organsiation
 
 ### Uploading a repository to Github
+
+Turning a local repository into one hosted on Github can be quite fiddley, because a number of factors have to be accounted for in the correct way for it to work. The general procedure goes as follows:
+
+1. Make a new repository on Github - click the "+" in the top right of the page, then "New repository" from the resulting dropdown.
+1. Fill in the form that appears:
+    - Click on the 'Single Sign on' link if it is there to enable the creation of a private repository within the newcastleuniveristy-snbss organisation
+    - Choose "newcastleuniversity-sbnss" as the "Owner", and name your repository `username_assessment1` where `username` = your University login
+    - Make the repository Private
+    - Don't add a README, .gitignore or a license at this stage
+    | ![Figure 1: Create Repository](media/github1.png) |
+    |:--:|
+    | <b>Figure 1: Create Repository Form</b>|
+1. Click "Create repository"
+1. Now we've created an empty repository, to populate it with a pre-existing local repository, follow the instructions on the screen that appears next:
+    | ![Figure 2: Populate Repository](media/github2.png) |
+    |:--:|
+    | <b>Figure 2: Populate Repository Instructions</b>|
+1. Make sure "SSH" is selected at the top of the page
+1. Follow the "push an existing repository" instructions
+    - In the root directory of the local repo, run the `git remote add` line from the instructions you have (which will have the correct address for your personal repo)
+    - Run `git branch -M main` to rename the current branch to "main"
+    - Run `git push -u origin main` to send your currently committed repository to Github
+1. The push step won't work until we sort out how to authenticate with Github from the command line. We do this by _public key authentication_, take the following steps:
+    - Create a new public/private key pair on the VM: `ssh-keygen -t ed25519 -C "email@example.com"` - be sure to change the email address so it matches the address you used to register on Github
+    - When creating the key, write it to the default location, and leave the passphrase blank
+    - Copy the public key to your clipboard (`cat ~/.ssh/id_ed25519.pub`, then copy the output)
+    - Add a new SSH key in your Github account (follow the instructions here: <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account>)
+    - Use single sign on to _authenticate_ your key (the instructions for this step are here: <https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on>)
+1. Now retry the push step from step 6 (`git push -u origin main`)
+
+If we now visit our Github repository in a web browser, we can see the contents of our _local_ repository have been added to this _remote_ version. To keep the remote repository up-to-date, we have to ensure we `git push` after every `git commit`.
+
+### Exercise 3.7 {: .exercise}
+
+Estimated time: 5 minutes
+
+- Push the repository you made in exercise 3.5 to a Github repository, as per the instructions above.
+- Make a change to the contents of your repository (edit the README file, or add a new file somewhere for example)
+- `commit` the change locally, and `push` it to Github
+- Check your repository on Github to ensure your local change has been mirrored remotely
+
+**HINT** - After the first time you `push` to a remote repository, `git` will assume that every subsequent `push` is to the same remote location as last time, so `git push -u origin main` can be replaced with the simpler `git push`.
+
+# Summary
+
+This practical may seem a little out of place, with respect to the practical skills being demonstrated in the other sessions, but the tools and techniques shown here are valuable professional skills which are extremely valuable when it comes to managing your computational research. Many bioinformatics projects manage their code using Git and Github, and being able to understand and work with these systems is often vital to working with such systems.
+
+In a research environment, you are expected to document your experiments and your progress - keeping a good quality lab notebook is a valuable skill. The same is true, though often under-appreciated, for computational research. Being organised, and documenting your work effectively will be beneficial in many ways.
