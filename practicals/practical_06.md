@@ -42,10 +42,40 @@ This algorithmic approach has to be combined with a robust scoring system. In th
 
 Nucleic acid alignments are normally scored by a simple system where a match carries a positive score and a mismatch carries a negative score. Gaps then usually incur a large penalty to open, but then a smaller penalty to extend, so that a small number of larger gaps is favoured.
 
-Amino acid alignment scoring is more complicated, and usually involves a _substitution matrix_, which encodes different mismatch penalties for different substitutions. This recognises the fact that some amino acid mutations are more likely to occur (due to the nature of the genetic code), and some have a more deleterious effect on protein function than others.
+Amino acid alignment scoring is more complicated, and usually involves a _substitution matrix_, which encodes different mismatch penalties for different substitutions. This recognises the fact that some amino acid mutations are more likely to occur (due to the nature of the genetic code), and some have a more deleterious effect on protein function than others. Common substitution matrices are based on empirical observation of amino acid changes in closely related biological sequences. For example the popular BLOSUM matrices are generated based on ungapped alignments from the [BLOCKS database](https://academic.oup.com/nar/article/24/1/197/2359962).
+
+### Exercise 6.1 {: .exercise}
+
+Estimated time: 10 minutes
+
+- Download the FASTA sequence for the following UniProt entries: P69905, P01942
+- Using Conda, install the software package `emboss`
+- Read the help information for the Emboss tool `needle`
+- Use `needle` to globally align the two sequences you've downloaded
+
+Consider the following:
+
+- Can you find out more about Emboss and the tools it contains?
+- What does the default output of `needle` look like? 
+- What's the identity and similarity of the two sequences you downloaded?
 
 ### Smith-Waterman Local Alignment  
 
 The Smith-Waterman algorithm was published in 1981 and is an adaptation of Needleman-Wunsch which allows for truncation of alignments to produce high quality _local_ alignments.
+
+### Exercise 6.2 {: .exercise}
+
+Estimated time: 10 minutes
+
+- Download the FASTA sequence for the following UniProt entries: P69905, P01942
+- Using Conda, install the software package `emboss`
+- Read the help information for the Emboss tool `needle`
+- Use `needle` to globally align the two sequences you've downloaded
+
+Consider the following:
+
+- Can you find out more about Emboss and the tools it contains?
+- What does the default output of `needle` look like? 
+- What's the identity and similarity of the two sequences you downloaded?
 
 ## Multiple Sequence Alignment
