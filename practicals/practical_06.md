@@ -44,6 +44,10 @@ Nucleic acid alignments are normally scored by a simple system where a match car
 
 Amino acid alignment scoring is more complicated, and usually involves a _substitution matrix_, which encodes different mismatch penalties for different substitutions. This recognises the fact that some amino acid mutations are more likely to occur (due to the nature of the genetic code), and some have a more deleterious effect on protein function than others. Common substitution matrices are based on empirical observation of amino acid changes in closely related biological sequences. For example the popular BLOSUM matrices are generated based on ungapped alignments from the [BLOCKS database](https://academic.oup.com/nar/article/24/1/197/2359962).
 
+| ![Figure 2: BLOSUM62 Substitution Matrix](media/align2.png) |
+|:--:|
+| <b>Figure 2: The BLOSUM62 Substitution Matrix</b>|
+
 ### Exercise 6.1 {: .exercise}
 
 Estimated time: 10 minutes
@@ -53,6 +57,10 @@ Estimated time: 10 minutes
 - Read the help information for the Emboss tool `needle`
 - Use `needle` to globally align the two sequences you've downloaded
 
+```bash
+$ needle -asequence P69905.fasta -bsequence P01942.fasta -gapopen 10.0 -gapextend 0.5 -outfile exercise6_1.needle
+```
+
 Consider the following:
 
 - Can you find out more about Emboss and the tools it contains?
@@ -61,21 +69,53 @@ Consider the following:
 
 ### Smith-Waterman Local Alignment  
 
-The Smith-Waterman algorithm was published in 1981 and is an adaptation of Needleman-Wunsch which allows for truncation of alignments to produce high quality _local_ alignments.
+The Smith-Waterman algorithm was published in 1981 and is an adaptation of Needleman-Wunsch which allows for truncation of alignments to produce high quality _local_ alignments. Since there's no requirement to align the full length of protein sequences, highly conserved _regions_ of otherwise divergent proteins can be optimally aligned. This feature is also useful when aligning a fragment against a much larger whole, for example in the case of aligning some sequencing data to a reference genome (more on this in a later practical). 
+
+Local alignments, although not necessarily the Smith-Waterman algorithm are also used in database searching methods, due to the need to identify partial matches of the query sequence, as well as full-length matches. 
 
 ### Exercise 6.2 {: .exercise}
 
 Estimated time: 10 minutes
 
-- Download the FASTA sequence for the following UniProt entries: P69905, P01942
-- Using Conda, install the software package `emboss`
-- Read the help information for the Emboss tool `needle`
-- Use `needle` to globally align the two sequences you've downloaded
+- Read the help information for the Emboss tool `water`
+- Use `water` to locally align the two sequences from exercise 6.1
+- Download the FASTA sequence for the following UniProt entries: A0A024R379 and A0A087X1Q5
+- Align these two sequences with both `needle` and `water`
 
 Consider the following:
 
-- Can you find out more about Emboss and the tools it contains?
-- What does the default output of `needle` look like? 
-- What's the identity and similarity of the two sequences you downloaded?
+- Compare the local alignment of P69905 & P01942 to the global alignment
+- How does the `water` output compare to that of `needle`?
+- Make the same comparison for the second pair of sequences
+
+This second pair of sequences share a common _protein domain_ (the [SH2 domain](https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/)), but otherwise have little in common. In an ideal world, the local alignment would retrieve just this highly similar portion of about 110 amino acids, but in practise, the scoring system means a longer match gives a higher score.
 
 ## Multiple Sequence Alignment
+
+If we want to explore the evolutionary relationships between more than two sequences, we need different methods to those outlined above, which do not naturally extend to align a greater number of inputs. Computational multiple sequence alignment strategies began to be explored in the late 1980s and many methods have been published since then. Multiple sequence alignment is a multi-dimensional problem, which unlike pairwise alignment does not have an optimal solution (or at least not one which is computationally tractable). Most methods therefore use heuristic methods to take shortcuts on the route to an acceptable solution (a heuristic is an approach to problem solving that does not guaratee an optimal result, but is nevertheless sufficient for reaching an adequate approximation).
+
+There are a number of different approaches taken to constructing multiple sequence alignments, though in practise the actual algorithmic approach matters less than the perceived accuracy of the output (and other metrics such as computational efficiency). Below is a brief summary of the major modern methods.
+
+### Muscle
+
+Iterative alignment
+
+### Clustal Omega
+
+Guide tree + profile HMM
+
+### T-Coffee
+
+Progressive alignment
+
+P76082, P94549, Q52995, P9WNN8, P9wNN9, P64017, O07137, P9WNP1, Q50130, P64019, P9WNN4, P9WNN5, P24162, G4V4T7, P53526, P9WNN7, P9WNN6, Q7U004, Q7TXE1, P9WNN3, A1KN36, P9WNN2, A5U753, A0QJH8, Q73VC7
+
+# Searching Databases Using Sequence Alignment
+
+## BLAST
+
+## HMMER
+
+# Uses of Multiple Sequence Alignments
+
+## Jalview
