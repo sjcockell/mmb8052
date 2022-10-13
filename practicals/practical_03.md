@@ -111,11 +111,11 @@ Conda is installed via a downloadable `bash` script. It is important to download
 
 ```bash
 # Download the installer
-$ wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-x86_64.sh
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 # Check it is what it says it is
-$ sha256sum Miniconda3-py38_4.12.0-Linux-x86_64.sh
+$ sha256sum Miniconda3-latest-Linux-x86_64.sh
 # Output should read:
-3190da6626f86eee8abf1b2fd7a5af492994eb2667357ee4243975cdbb175d7a  Miniconda3-py38_4.12.0-Linux-x86_64.sh
+78f39f9bae971ec1ae7969f0516017f2413f17796670f7040725dd83fcff5689  Miniconda3-latest-Linux-x86_64.sh
 # Run the installer
 # if the above "hash" does not match exactly
 # DO NOT take this next step
@@ -178,7 +178,7 @@ $ conda activate assessment1
 - Install the required software:
 
 ```bash
-$ conda install muscle
+$ conda install muscle emboss
 ```
 
 Finally, save the list of installed software so that we can reinstall the environment later if required:
@@ -307,7 +307,7 @@ If we re-run `git log` we will also find the 3rd commit has disappeared from the
 
 Estimated time: 15 minutes
 
-- Use the Git commands above to turn the Assessment 1 directories you created in earlier exercises into a Git repository
+- Use the `git init` as above to turn the Assessment 1 directories you created in earlier exercises into a Git repository
 - Make sure you `add` the files and directories that you've already made
 - Commit your files so far, with a meaningful commit message
 
@@ -336,32 +336,34 @@ Turning a local repository into one hosted on Github can be quite fiddley, becau
     - Choose "newcastleuniversity-sbnss" as the "Owner", and name your repository `username_assessment1` where `username` = your University login
     - Make the repository Private
     - Don't add a README, .gitignore or a license at this stage
+  
     | ![Figure 1: Create Repository](media/github1.png) |
     |:--:|
     | <b>Figure 1: Create Repository Form</b>|
-1. Click "Create repository"
-1. Now we've created an empty repository, to populate it with a pre-existing local repository, follow the instructions on the screen that appears next:
+
+2. Click "Create repository"
+3. Now we've created an empty repository, to populate it with a pre-existing local repository, follow the instructions on the screen that appears next:
     | ![Figure 2: Populate Repository](media/github2.png) |
     |:--:|
     | <b>Figure 2: Populate Repository Instructions</b>|
-1. Make sure "SSH" is selected at the top of the page
-1. Follow the "push an existing repository" instructions
+4. Make sure "SSH" is selected at the top of the page
+5. Follow the "push an existing repository" instructions
     - In the root directory of the local repo, run the `git remote add` line from the instructions you have (which will have the correct address for your personal repo)
     - Run `git branch -M main` to rename the current branch to "main"
     - Run `git push -u origin main` to send your currently committed repository to Github
-1. The push step won't work until we sort out how to authenticate with Github from the command line. We do this by _public key authentication_, take the following steps:
+6. The push step won't work until we sort out how to authenticate with Github from the command line. We do this by _public key authentication_, take the following steps:
     - Create a new public/private key pair on the VM: `ssh-keygen -t ed25519 -C "email@example.com"` - be sure to change the email address so it matches the address you used to register on Github
     - When creating the key, write it to the default location, and leave the passphrase blank
     - Copy the public key to your clipboard (`cat ~/.ssh/id_ed25519.pub`, then copy the output)
     - Add a new SSH key in your Github account (follow the instructions here: <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account>)
     - Use single sign on to _authenticate_ your key (the instructions for this step are here: <https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on>)
-1. Now retry the push step from step 6 (`git push -u origin main`)
+7. Now retry the push step from step 6 (`git push -u origin main`)
 
 If we now visit our Github repository in a web browser, we can see the contents of our _local_ repository have been added to this _remote_ version. To keep the remote repository up-to-date, we have to ensure we `git push` after every `git commit`.
 
 ### Exercise 3.7 {: .exercise}
 
-Estimated time: 5 minutes
+Estimated time: 10 minutes
 
 - Push the repository you made in exercise 3.5 to a Github repository, as per the instructions above.
 - Make a change to the contents of your repository (edit the README file, or add a new file somewhere for example)
