@@ -1,4 +1,4 @@
-fiddley# MMB8052 Practical 03 - Project Management and Version Control
+# MMB8052 Practical 03 - Project Management and Version Control
 
 # Introduction
 
@@ -46,10 +46,10 @@ Estimated time: 2 mins
 
  - Work out a single command which uses brace expansion to create the project directory structure for Assessment 1, bear in mind the following factors:
 
- 1. Directory and file names should not contain spaces (it is good practice to replaces spaces with underscores - `_`)
- 1. Your project directory should contain the sub-directories described above
+ 1. Directory and file names should not contain spaces (it is good practice to replace spaces with underscores - `_`)
+ 1. Your project directory should contain the sub-directories described above (`data/`, `results/` and `scripts/`)
  1. Your project directory should be a direct sub-directory of your home directory
- 1. `mkdir` has an option which allows it to create nested directories in a single command - use `man mkdir` to figure out what this option is
+ 1. `mkdir` has an option which allows it to create nested directories in a single command - we encountered this option int practical 1, use `man mkdir` if you need a refresher
 
 # Documentation
 
@@ -175,11 +175,10 @@ $ conda create --name assessment1
 $ conda activate assessment1
 ```
 
-
 - Install the required software:
 
 ```bash
-$ conda install blast emboss muscle
+$ conda install muscle
 ```
 
 Finally, save the list of installed software so that we can reinstall the environment later if required:
