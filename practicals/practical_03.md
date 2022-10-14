@@ -46,10 +46,10 @@ Estimated time: 2 mins
 
  - Work out a single command which uses brace expansion to create the project directory structure for Assessment 1, bear in mind the following factors:
 
- 1. Directory and file names should not contain spaces (it is good practice to replace spaces with underscores - `_`)
- 1. Your project directory should contain the sub-directories described above (`data/`, `results/` and `scripts/`)
- 1. Your project directory should be a direct sub-directory of your home directory
- 1. `mkdir` has an option which allows it to create nested directories in a single command - we encountered this option int practical 1, use `man mkdir` if you need a refresher
+1. Directory and file names should not contain spaces (it is good practice to replace spaces with underscores - `_`)
+2. Your project directory should contain the sub-directories described above (`data/`, `results/` and `scripts/`)
+3. Your project directory should be a direct sub-directory of your home directory
+4. `mkdir` has an option which allows it to create nested directories in a single command - we encountered this option in practical 1, use `man mkdir` if you need a refresher
 
 # Documentation
 
