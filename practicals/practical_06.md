@@ -100,7 +100,7 @@ As genome sequencing has become widespread the size of biological databases like
 
 BLAST, or **B**asic **L**ocal **A**lignment **S**earch **T**ool is a local alignment algorithm that uses _heuristics_ to speed up the alignment procedure, meaning it can be used to efficiently search large databases for sequence matches. BLAST was first released in 1990, and the National Center for Biotechnology Information (NCBI) BLAST web server has been in operation since the NCBI launched their web site, in 1994 and the service still handles thousands of requests every day. The [BLAST paper](https://www.sciencedirect.com/science/article/pii/S0022283605803602?via%3Dihub), by Altschul _et al._ was the most cited paper of the 1990s.
 
-Although the NCBI web server is capable of meeting most users requirements for BLAST searches, there are still good reasons why being able to run searches on our own hardware can be useful. The lack of competition with other users from around the world can make things more efficient, we might want to use a bespoke database which would be hard or impossible to use on the web server version and configuring the search and the output to exactly meet our requirements is easier to do "offline". 
+Although the NCBI web server is capable of meeting most users requirements for BLAST searches, there are still good reasons why being able to run searches on our own hardware can be useful. The lack of competition with other users from around the world can make things more efficient, we might want to use a bespoke database which would be hard or impossible to use on the web server version and configuring the search and the output to exactly meet our requirements is easier to do "offline". It is also possible to programmatically run huge numbers of BLAST searches locally which would be impossible to submit via a web interface.  
 
 ### Exercise 6.3 {: .exercise}
 
@@ -113,9 +113,34 @@ $ wget -O human.fa 'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:tru
 $ makeblastdb -in human.fa -input_type fasta -dbtype prot -title hsapiens -parse_seqids -taxid 9606 -out hsapiens
 ```
 
-- Look at the help information for the `blastp` executable, and work out how to search the database you've created with the A0A024R379 sequence you downloaded in exercise 6.2
+- Look at the help information for the `blastp` executable, and work out how to search the database you've created with the A0A024R379 sequence you downloaded in exercise 6.2 
+- Use the table output format to make the results a bit easier to digest (`-outfmt 6`)
+- How many hits do you get in the database, using the default thresholds?
+
+### BLAST E-Value
+
+The Expect value, or E-Value, is the primary means for filtering results from BLAST. It attempts to describe how many matches could be expected in a random database the same size as the subject database, that are at least as good as the reported match (based on the Bit Score). 
+
+The E-Value is often treated like a P-Value (i.e. thresholded at 0.05), but it is slightly different, in that it can take values greater than 1, and the cutoff applied to the E-Value should vary depending on the use-case. For example, hits with short query sequences will very often have E-Values >> 1, but can still be informative. 
+
 
 ## HMMER
+
+The approach of BLAST is based on using a single query sequence to find database hits. When searching for more distant matches especially, the information contained in a single sequence can be inadequate. The approach of HMMER therefore is to use a mathematical model (a Hidden Markov Model) built from an alignment of multiple sequences, which imparts more information than one sequence can contain. Using an HMM to search a sequence database can give more results than a simple BLAST, and can be better for detecting remote similarity to the input sequence of interest. 
+
+Although the standard approach of HMMER starts with an alignment, from which an HMM is built, it is possible to begin with a single query sequence. A naive model is then built based on a substitution matrix which infers additional information on top of the input sequence. This model is then used to search the sequence database. 
+
+It is also possible to use HMMER iteratively - the first search returns a set of proteins which are used to build an HMM for a second search, the results from which are used to improve the model, and so on. Both of these modes are enabled by the `hmmer` package which can be installed with `conda`
+
+```bash
+$ conda install hmmer
+# search a (FASTA) database with a single query:
+$ phmmer --tblout hmmer.out A0A024R379.fasta human.fa
+# perform an iterative search (max of 5 iterations by default)
+$ jackhmmer --tblout jackhmmer.out A0A024R379.fasta human.fa
+```
+
+The A0A024R379 protein contains an [SH2 domain](https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/) (a protein domain involved in binding to phosphorylated tyrosine residues on other proteins). The literature suggests that there are 111 human proteins which contain an SH2 domain (<https://doi.org/10.1126/scisignal.2002105>). Although none of the search strategies above identify exactly 111 hits, they all identify a reasonable subset - especially considering only about 100 amino acids of the total query sequence length of 535 amino acids is contained in the SH2 domain. 
 
 # Multiple Sequence Alignment
 
