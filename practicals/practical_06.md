@@ -126,7 +126,7 @@ The E-Value is often treated like a P-Value (i.e. thresholded at 0.05), but it i
 
 ## HMMER
 
-The approach of BLAST is based on using a single query sequence to find database hits. When searching for more distant matches especially, the information contained in a single sequence can be inadequate. The approach of HMMER therefore is to use a mathematical model (a Hidden Markov Model) built from an alignment of multiple sequences, which imparts more information than one sequence can contain. Using an HMM to search a sequence database can give more results than a simple BLAST, and can be better for detecting remote similarity to the input sequence of interest. 
+The approach of BLAST is based on using a single query sequence to find database hits. When searching for more distant matches especially, the information contained in a single sequence can be inadequate. The approach of HMMER therefore is to use a mathematical model (a Hidden Markov Model, or HMM) built from an alignment of multiple sequences, which imparts more information than one sequence can contain. Using an HMM to search a sequence database can give more results than a simple BLAST, and can be better for detecting remote similarity to the input sequence of interest. 
 
 Although the standard approach of HMMER starts with an alignment, from which an HMM is built, it is possible to begin with a single query sequence. A naive model is then built based on a substitution matrix which infers additional information on top of the input sequence. This model is then used to search the sequence database. 
 
@@ -148,22 +148,75 @@ If we want to explore the evolutionary relationships between more than two seque
 
 There are a number of different approaches taken to constructing multiple sequence alignments, though in practise the actual algorithmic approach matters less than the perceived accuracy of the output (and other metrics such as computational efficiency). Below is a brief summary of the major modern methods.
 
+### T-Coffee
+
+[T-Coffee](https://tcoffee.org/Projects/tcoffee/index.html) is a modern *progressive* alignment based method. A progressive alignment strategy builds a sequence alignment by adding sequences to an initial pairwise alignment, which is made with the closest two sequences. A progressive alignment process begins with the construction of a _guide tree_ - which models the relationships between the sequences to be aligned. The alignment is then constructed on the basis of the branching of this tree, with the closest two sequences aligned first, then the next closest aligned to that alignment and so on. 
+
+Progressive alignment methods are effcient, and can produce large alignments quickly, but they are generally not very accurate when all of the sequences to be aligned are distantly related. The principal problem with progressive alignment is that errors  made at any stage in growing the MSA are then propagated through to the final result. 
+
+T-Coffee attempts to overcome this limitation by using local alignments (made with LALIGN) to more accurately construct and weight the guide tree.
+
 ### Muscle
 
-Iterative alignment
+[Muscle](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-113) (multiple sequence alignment by log-expectation) is an *iterative* alignment method. Iterative multiple sequence alignment is a similar strategy to progressive alignment, with the key difference that initially aligned sequences can be repeatedly realigned (and so refined) as the alignment is built.
+
+As well as refining the alignment at every iteration, muscle also updates the distance scores between sequences using information from the alignment in order to improve accuracy. 
 
 ### Clustal Omega
 
-Guide tree + profile HMM
+The Clustal family of MSA tools has been around since the 1980s, and they have historically been progressive alignment methods (including the widely used Clustal W and Clustal X packages). However the newest version, [Clustal Omega](https://www.embopress.org/doi/full/10.1038/msb.2011.75) was released in 2011 and instead uses a seeded guide tree and profile HMM for producing potentially very large multiple alignments (10s of 1000s of sequences).
 
-### T-Coffee
+### Exercise 6.4 {: .exercise}
 
-Progressive alignment
+Estimated time: 15 minutes
 
-P76082, P94549, Q52995, P9WNN8, P9wNN9, P64017, O07137, P9WNP1, Q50130, P64019, P9WNN4, P9WNN5, P24162, G4V4T7, P53526, P9WNN7, P9WNN6, Q7U004, Q7TXE1, P9WNN3, A1KN36, P9WNN2, A5U753, A0QJH8, Q73VC7
+- Download the following list of protein sequences from UniProt:
+  
+```
+P76082 P94549 Q52995 P9WNN8 P9wNN9 P64017 O07137 P9WNP1 Q50130 P64019 P9WNN4 P9WNN5 P24162 G4V4T7 P53526 P9WNN7 P9WNN6 Q7U004 Q7TXE1 P9WNN3 A1KN36 P9WNN2 A5U753 A0QJH8 Q73VC7
+```
 
-New Conda env, install muscle, t-coffee and clustalo
+- Create a new `conda` environment (e.g. `conda create -n msa_env`)
+- Activate your new environment, and install `muscle`, `t-coffee` and `clustalo`
+- Use each of these tools to make a multiple sequence alignment from the sequences you downloaded in the first step
+
+Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. Download files from your VM using Powershell:
+
+```
+$ sftp -P [port] student@[your.vm.address]
+```
+
+(Where `[port]` and `[your.vm.address]` are the same as the arguments you use to connect via SSH)
+
+This command creates an `sftp` connection to your VM - similar to an SSH connection, but allowing two-way communication. Files can be downloaded from your VM to your computer using the `get` command:
+
+```
+$ get practical_06/muscle.fa
+```
+
+- Download the 3 alignments you made above
 
 # Uses of Multiple Sequence Alignments
 
+Multiple sequence alignments are primarily used for exploring the evolutionary relationships between sequences. A high quality alignment can be used to calculate a robust phylogenetic tree, showing the lineage of the sequences which have been aligned. Multiple alignments of specified, highly conserved targets (usually the nucleotide sequence of specific housekeeping genes) can be used to estimate the relationships between bacterial species, in a process known as [multi-locus sequence typing](https://www.pnas.org/doi/10.1073/pnas.95.6.3140) (MLST).
+
+Alignments of concatenated pairs of proteins which interact can be used to estimate the [co-evolution](https://academic.oup.com/bioinformatics/article/20/10/1565/237258) of these proteins via an approach called *statistical coupling analysis* - the theory being that amino acids involved in a physical interaction are constrained in their evolution, and that a change in one member of an interacting pair requires a compatible change in the other partner. 
+
+Protein multiple sequence alignments using proteins of known structure are an important input to lots of methods for predicting new 3D structures. Such approaches include [AlphaFold](https://www.nature.com/articles/s41586-021-03819-2) - the algorithm which won the recent [CASP14](https://predictioncenter.org/casp14/) protein structure prediction challenge (by quite some distance), and has since been used to predict a [tertiary structure for every protein in UniProt](https://alphafold.ebi.ac.uk/). 
+
+Important functional residues will be preserved across even distantly-related proteins that share the same function. These residues can be found in a high-quality multiple sequence alignment and a program which enables the viewing of MSAs can help with the finding of such amino acids.
+
 ## Jalview
+
+One such alignment viewer is Jalview - developed by the [Barton Group](https://www.compbio.dundee.ac.uk/) at Dundee University, Jalview has been around for a number of years and has been steadily developed into a robust and versatile tool for working with multiple sequence alignments. 
+
+### Exercise 6.5 {: .exercise}
+
+Estimated time: 15 minutes
+
+
+# Summary
+
+This practical has been the first of our more applied examples of the tools you learnt how to use in the early practicals. The uses for sequence alignment are many and varied throughout bioinformatics, and we have just scratched the surface of what is possible here. Despite algorithms dating back to the late 1970s, much about sequence alignment strategies is still very relevant to modern biomedical science and there are many recent applications which absolutely depend on robust sequence alignment techniques.
+
+In the next practical, we will take a look at one of these approaches - the high-throughput sequencing of genomic DNA, particularly from humans. 
