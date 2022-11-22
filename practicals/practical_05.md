@@ -234,8 +234,9 @@ Estimated time: 8 minutes
 
 HINT - the `logFC` column contains base 2 logarithms - the linear scale ratios can be found by calculating the _antilog_ of this value.
 
-$$ y = log_2 (x) $$
-$$ x = 2^{y} $$
+$$ y = log_2 (x)
+\newline
+x = 2^{y} $$
 
 - Take a look at the relationship between the log fold changes and the ratios you've just calculated. Why do you think we typically express fold changes in logarithmic space?
 
@@ -336,7 +337,7 @@ As we've already seen, it's possible to use _aesthetics_ to map a data variable 
 |:--:|
 | <b>Figure 7: Changing the style of _all_ the points</b>|
 
-**NOTE** - R has 6 linetypes, and [657 named colours](https://derekogle.com/NCGraphing/img/colorbynames.png). You can get a list of the colour names by running `color()`.
+**NOTE** - R has 6 linetypes, and [657 named colours](https://derekogle.com/NCGraphing/img/colorbynames.png). You can get a list of the colour names by running `colors()`.
 
 By default, `ggplot2` chooses a colour palette for us - the colours used are defined so that they are optimslly far apart on the colour wheel, and so easy to tell apart. It is possible, though, to define our own colour scheme:
 

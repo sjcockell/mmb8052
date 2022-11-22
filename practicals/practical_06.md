@@ -214,6 +214,22 @@ One such alignment viewer is Jalview - developed by the [Barton Group](https://w
 
 Estimated time: 15 minutes
 
+Jalview is not installed on the cluster PCs, but since it doesn't require admin rights, we can install it:
+
+- Download Jalview from <https://jalview.org/download> (click on the green 'Download' button in the middle of the screen)
+- Run the installer and follow the instructions
+- Once Jalview is installed, load your sequence alignments from exercise 6.4 and explore them, and the features of Jalview
+
+In particular, consider the following:
+
+- All the sequences you have aligned are annotated with the same Enzyme Commission identifier ([4.2.1.17](https://www.brenda-enzymes.org/enzyme.php?ecno=4.2.1.17) - enoyl-CoA hydratase) - this means they _should_ all have the same biochemical function. To exhibit this function, these enzymes require 2 of 3 key residues to be negatively charged - these residues are at position 109, 129 and 137 in P76082 (see figure 3 below). How many of the sequences in your alignment(s) have 2 negatively charged amino acids (D or E) at the appropriate positions? 
+
+| ![Figure 3: P76082 sequence](media/P76082.png) |
+|:--:|
+| <b>Figure 3: P76082 sequence, with functional region highlighted in yellow. Key residues highlighted in red - 2 of 3 must be negatively charged (D or E) for protein to be function as a hydratase</b>|
+
+- Does this result vary depending on the software that produced the alignment?
+
 
 # Summary
 

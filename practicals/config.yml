@@ -2,7 +2,7 @@ author: 'Simon J Cockell'
 structure:
   - type: standalone
     topbar: True
-    source: practical_02.md
-    title: 'MMB8052 - Practical 2'
+    source: practical_06.md
+    title: 'MMB8052 - Practical 6'
     outfile: index.html
 build_pdf: true
