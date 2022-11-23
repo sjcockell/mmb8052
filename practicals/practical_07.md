@@ -19,3 +19,190 @@ Later methods based on the BWT added extra steps after finding seed alignments u
 | ![Figure 1: Burrows-Wheeler Transform](media/bwt.png) |
 |:--:|
 | <b>Figure 1: Burrows-Wheeler Transform</b>|
+
+Using the index shown in figure 1, we can find candidate matches for a "read" sequence by suffix matching and then walking left through the read sequence. 
+
+1. First, look for occurances of the penultimate base in the read sequence. 
+2. Find instances of this base which are succeeded by the final base in the sequence. 
+     * We can do this by looking at the first character in the rows of the index where the penultimate base is the final character. 
+     * Since this column is in strictly alphabetical order, it is a simple matter of counting the numbers of different bases to figure this out.  
+3. This will identify a range of starting positions - the next step is to find occurances of the base to the left of the penultimate base with a starting position of n-1 (where n = starting position of penultimate base).
+4. Continue to walk left to refine the match.
+
+Alignment strategies will ordinarily define a 'seed length', which is the number of bases from the read to use in this walking left procedure (to use the full length of the read would be inefficient - and would not allow for any gaps or mismatches).
+
+For a read with the sequence ATC we would first look at where the Ts are in our BWT index (positions 4 & 5). Both of these Ts have a C following them (there is 1 $, 2 As and 2 Cs in the sequence, so the 4th and 5th row both start with C). Walking to the left, we are looking for A with a succeeding T - there is only one of these. There are 2 As in the sequence, but the first (position 1), comes at the end of the original sequence - so does not have a T after it. The _starting position_ of this match is 5 - so we have a single match to the sequence ATC, which starts at the 6th base of our "chromosome".
+
+The key to BWT-based alignment strategies is that the _genome_ is transformed (a one-time procedure), but the reads can be used without applying any transformation. This means we can store the transformed genome and use it many times, offsetting the effort required to prepare our data for alignment. 
+
+A Burrows-Wheeler transformed genome also occupies approximately the same amount of disk (and consequently memory) as the genome itself.
+
+### Exercise 7.1  {: .exercise}
+
+Estimated time: 10 minutes
+
+* Set `conda` channel priorities to "flexible":
+    * `conda config --set channel_priority flexible`
+* Make a new `conda` env for the practical
+    * `conda create -n practial07`
+    * `conda activate practical07`
+* Install `samtools`, `bcftools` and `bwa` using `conda`
+    * `conda install samtools bcftools bwa`
+* Download and extract the data for the practical:
+    * <https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chr20.fa.gz>
+    * <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/practical_07.zip>
+    * Decompress the chromosome 20 sequence with `gunzip`
+    * Extract the `practical_07.zip` archive with `unzip`
+* Use `bwa` to index the "genome":
+    * Get help information for `bwa` by running the command with no arguments
+    * You can also view the `man` page online here: <https://bio-bwa.sourceforge.net/bwa.shtml> (`conda` doesn't integrate with `man` very well)
+
+BWA reads a FASTA sequence and transforms it with the BWT to produce a genome index. The indexing process will take a minute or two - once it has finished, have a look at what files have been produced.
+
+* How many new files were produced by `bwa`?
+* How big are they, compared to the input FASTA sequence? (HINT: adding the `-l` and `-h` options for `ls` will show you the sizes of your files in KB, MB or GB)
+
+# BWA
+
+BWA, or Burrows-Wheeler Aligner, is software designed by [Heng Li](https://en.wikipedia.org/wiki/Heng_Li) for aligning short high-throughput sequencing reads to a large reference genome, such as the human genome. It is testament to the quality of BWA that it has been around since 2009 (and in it's current form - BWA-MEM - since 2013) and it remains the [recommended algorithm](https://gatk.broadinstitute.org/hc/en-us/articles/360035535912-Data-pre-processing-for-variant-discovery) for DNA alignments when you want to identify polymorphisms in exome or genome sequencing data.
+
+As described above, BWA requires an indexed genome (which we produced in exercise 7.1), it then offers 3 algorithms for actual sequence alignment - backtrack, sw and mem. Backtrack is effectively the "walking left" strategy outlined above, which prohibits the addition of gaps in the resulting alignment and is only recommended for short (< 70bp) reads. The sw algorithm uses a full Smith-Waterman implementation to generate optimal local alignments from seed alignments, which is accurate and flexible but can be slow. Finally, the mem algorithm was designed specifically for aligning longer reads (as Illumina sequencing in particular evolved, reads of 150bp or longer became the norm) and uses a mixture of different approaches to ensure efficiency and accuracy of alignments. 
+
+There are a number of other aligners which are also capable of aligning Illumina-style sequencing reads with varying degrees of success (depending on the metric used to assess them), including (a non-exhastive list): [Bowtie 2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml), [Isaac](https://academic.oup.com/bioinformatics/article/29/16/2041/199472), [MAQ](https://maq.sourceforge.net/), [Novoalign](http://www.novocraft.com/products/novoalign/) and [HISAT2](http://daehwankimlab.github.io/hisat2/). Some of these tools, particularly Bowtie and HISAT, are still actively developed.
+
+
+### Exercise 7.2  {: .exercise}
+
+Estimated time: 15 minutes
+
+In exercise 7.1 we made the reference index, now we are going to use it to generate the actual alignments of reads to genome using `bwa mem`. 
+
+The general format of the alignment command is:
+
+```bash
+$ bwa mem ref_prefix read1.fastq.gz read2.fastq.gz > aln.sam
+```
+
+Where `ref_prefix` is the name you gave to your index in exercise 7.1 (by default this is the name of the reference FASTA file), `read{n}.fastq.gz` are the names of the sequence file or files to align to this reference (the example given is a paired-end experiment with two files) and `aln.sam` is the output alignment, in the Sequence Align/Map format (which was described in practical 02).
+
+The data you downloaded in exercise 7.1 consists of three paired-end samples which consitute a family _trio_. Trios are often used in genetic research when looking for the determinants of disease. By comparing the genomic sequence of an affected individual (the _proband_) to their unaffected parents. This analysis can be used to identify _accumulative_ variants in the proband which contribute to disease - these could be recessive variants which both parents carry, or more complicated compound hetrozygous mutations. It is also possible to use this analysis to look for new, or _de novo_ mutations which have arisen in the proband and are carried by neither parent. 
+
+* Use `bwa mem` to align the reads from the 3 samples to the reference index you built in exercise 7.1
+
+Consider the following:
+
+* Look at the information printed to STDERR as `bwa` runs - what does this tell you about each of the three samples, in terms of read numbers, insert size and mapping rate?
+* Have a look at the resulting SAM files - where in the "genome" are the reads aligning?
+* Can you find any unaligned reads in the output?
+
+# SAMtools
+
+SAMtools is the Swiss Army knife of alignment manipulation. It provides a huge toolkit of functionality to do almost anything useful with a SAM/BAM file. Like a number of previous tools we've used (including `bwa`), `samtools` uses a system of _verbs_ for determining which tool to use.
+
+```bash
+$ samtools --help
+```
+
+This command lists all of the available samtools verbs. To get help on any particular function, run that function with no options:
+
+```bash
+$ samtools sort
+Usage: samtools sort [options...] [in.bam]
+Options:
+  -l INT     Set compression level, from 0 (uncompressed) to 9 (best)
+  -u         Output uncompressed data (equivalent to -l 0)
+  -m INT     Set maximum memory per thread; suffix K/M/G recognized [768M]
+  -M         Use minimiser for clustering unaligned/unplaced reads
+  -K INT     Kmer size to use for minimiser [20]
+  -n         Sort by read name (not compatible with samtools index command)
+  -t TAG     Sort by value of TAG. Uses position as secondary index (or read name if -n is set)
+  -o FILE    Write final output to FILE rather than standard output
+  -T PREFIX  Write temporary files to PREFIX.nnnn.bam
+      --no-PG
+               Do not add a PG line
+      --template-coordinate
+               Sort by template-coordinate
+      --input-fmt-option OPT[=VAL]
+               Specify a single input file format option in the form
+               of OPTION or OPTION=VALUE
+  -O, --output-fmt FORMAT[,OPT[=VAL]]...
+               Specify output format (SAM, BAM, CRAM)
+      --output-fmt-option OPT[=VAL]
+               Specify a single output file format option in the form
+               of OPTION or OPTION=VALUE
+      --reference FILE
+               Reference sequence FASTA FILE [null]
+  -@, --threads INT
+               Number of additional threads to use [0]
+      --write-index
+               Automatically index the output files [off]
+      --verbosity INT
+               Set level of verbosity
+```
+
+SAMtools is also designed to make use of output streams and redirection, meaning successive commands can be chained together using pipes (`|`). We will be using SAMtools here to convert our SAM files to the compressed, binary BAM format, and to sort the reads in genomic coordinate order - the two tools for achieving this are `samtools view` and `samtools sort`.
+
+```bash
+$ samtools view -b son.sam | samtools sort - > son.bam
+```
+
+The first command reads the SAM file produced by `bwa`, and sends it to STDOUT in compressed BAM format. The second command reads this BAM file and sorts the reads in coordinate order - `samtools sort` itself produces a BAM file to STDOUT, so we redirect this output to a file. The `-` in the `samtools sort` command is a placeholder which tells the command _where_ to use the STDOUT that's been redirected (i.e. it is explicitly telling `bash` that the positional input file should be replaced with STDIN).
+
+Since `bwa` itself produces its SAM alignment as STDOUT, we could add this to our pipeline if we wanted:
+
+```bash
+$ bwa mem chr20.fa son_R1.fastq.gz son_R2.fastq.gz | samtools view -b - | samtools sort - > son.bam
+```
+
+This produces a sorted, compressed alignment in a single command - very useful if you have large numbers of reads and writing intermediate data to disk would be wasteful.
+
+### Exercise 7.3  {: .exercise}
+
+Estimated time: 15 minutes
+
+* Produce sorted, compressed `bam` files for each of the alignments you produced in exercise 7.2, according to the procedure detailed above
+* Index these alignments with `samtools index`
+* Using `sftp`, transfer your alignments and the `.bai` indexes to your local computer (see practical 6 for `sftp` instructions)
+
+What does the `-b` option in the `samtools view` call do?
+
+Have a look at the size of the BAM file, compared with the SAM file. Also note that you can still print the alignment to STDOUT using `samtools view file.bam` (which behaves like `cat` for BAM files).
+
+# Integrated Genomics Viewer
+
+There are a number of tools which we can use to visualise genomic alignments, but the [Integrated Genomics Viewer](https://software.broadinstitute.org/software/igv/) (IGV) has a number of features which makes it a powerful tool for this purpose. 
+
+IGV is relatively easy-to-use, and has display features which means we can visualise the genetic variants in our alignment files. We can also load our three samples alongside each other, which enables the easy comparison between samples. 
+
+chr20:10,166,948-10,170,577
+
+# Variant Calling
+
+IGV helps us to visually identify regions of interest in our samples, but in a whole exome or whole genome experiment, this sort of visual inspection does not scale. Instead we need a statistical approach to robustly identify sites of interesting variation in sets of samples. 
+
+Since we are working here with a very small dataset, the most robust methods for variant calling will not work, since they rely on having at least exome-scale data to train their sophisticated models. For an idea of the computational procedures required for this kind of robust variant calling, take a look at the "Best Practise" guidelines produced by the development team behind the [Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) (GATK), here: <https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels->.
+
+In particular, we are going to skip a number of pre-processing steps designed to reduce noise in the resulting call-set. In a real experiment, with a more realistic volume of data, we would absolutely follow the recommendations described above. 
+
+To allow us to produce some sort of callset from our minimal example, we are going to use the simpler models provided by BCFtools - a toolkit produced by the same group as SAMtools.
+
+
+```bash
+bwa mem ref father_R1.fastq.gz father_R2.fastq.gz > father.sam
+samtools view -b father.sam > father.bam
+samtools sort father.bam > father.s.bam
+
+
+bcftools mpileup -f chr20.fa son.s.bam mother.s.bam father.s.bam | bcftools call -mv -Ob -o calls.bcf
+
+#exclude any with a 'missing' genotype, and all indels
+bcftools view -Ob -g ^miss -v snps calls.bcf > calls.snp.bcf
+#quality filter
+bcftools view -Ob -i 'QUAL>=20' calls.snp.bcf > calls.snp.filt.bcf
+#mendelian check
+bcftools +mendelian -m c -p samples.ped calls.snp.filt.bcf
+
+bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
+
+bcftools mpileup -f chr20.fa father.s.bam mother.s.bam son.s.bam | bcftools call -mv -C trio -S samples.ped -Ob -o trio.bcf
+```
