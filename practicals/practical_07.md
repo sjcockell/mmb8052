@@ -168,13 +168,30 @@ What does the `-b` option in the `samtools view` call do?
 
 Have a look at the size of the BAM file, compared with the SAM file. Also note that you can still print the alignment to STDOUT using `samtools view file.bam` (which behaves like `cat` for BAM files).
 
-# Integrated Genomics Viewer
+# Integrative Genomics Viewer
 
 There are a number of tools which we can use to visualise genomic alignments, but the [Integrated Genomics Viewer](https://software.broadinstitute.org/software/igv/) (IGV) has a number of features which makes it a powerful tool for this purpose. 
 
 IGV is relatively easy-to-use, and has display features which means we can visualise the genetic variants in our alignment files. We can also load our three samples alongside each other, which enables the easy comparison between samples. 
 
-chr20:10,166,948-10,170,577
+IGV falls into a class of visualisation software called _Genome Browsers_. These tools allow the visualisation of any data which can be assigned genomic coordinates. Generally they sit on top of large repositories of genomic infomation which can be viewed alongside the user's own data. Many genome browsers are available on the web - these tools, such as the [UCSC Genome Browser](https://genome.ucsc.edu/) and the [Ensembl Genome Browser](https://www.ensembl.org/index.html) are great for exploring these big genomic datasets, but are not so good for loading your own data. IGV is distinctive in this space because it is a stand-alone tool - this means it is much better at dealing with local data sets, even very large ones, and so it is often favoured when visualising experimental data. 
+
+### Exercise 7.4 {: .exercise}
+
+Estimated time: 15 minutes
+
+* IGV is installed on the cluster PCs, find it in the Start menu and get it running - make sure the reference genome (top left drop-down menu) is set to "Human (GRCh38/hg38)"
+* Load the three BAM files you created in earlier exercises (and transferred to your local machine at the end of exercise 7.3)
+* In the location box (middle of the top toolbar), paste in the following location: chr20:10,166,948-10,170,577
+
+| ![Figure 2: IGV Screenshot](media/igv_1.png) |
+|:--:|
+| <b>Figure 2: Integrative Genomics Viewer used to visualise BAM files.</b>|
+
+Individual mismatched bases (compared to the reference genome) are highlighted in the indiviudally aligned reads. Positions at which a large proportion of reads indicate a variable base are indicated in the 'Coverage' track. 
+
+* Take a look at this region - are there many positions where the variation is consistent among lots of reads?
+* Do the sequences of the parents and proband behave as you'd expect at these positions?
 
 # Variant Calling
 
