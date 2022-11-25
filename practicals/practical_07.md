@@ -220,7 +220,7 @@ Estimated time: rest of the session
 * Use `bcftools` to call variants in the samples aligned earlier. This can be done with a single piped command:
 
 ```bash
-bcftools mpileup -f chr20.fa son.s.bam mother.s.bam father.s.bam | bcftools call -mv -Ob -o calls.bcf
+$ bcftools mpileup -f chr20.fa son.s.bam mother.s.bam father.s.bam | bcftools call -mv -Ob -o calls.bcf
 ```
 
 You could split this into two commands if you wanted to take a look at the `mpileup` output.
@@ -229,14 +229,14 @@ You could split this into two commands if you wanted to take a look at the `mpil
 * Filter the callset via the following procedures. Read the documentation to figure out what these filters do:
 
 ```bash
-bcftools view -Ob -g ^miss -v snps calls.bcf > calls.snp.bcf
-bcftools view -Ob -i 'QUAL>=20' calls.snp.bcf > calls.snp.filt.bcf
+$ bcftools view -Ob -g ^miss -v snps calls.bcf > calls.snp.bcf
+$ bcftools view -Ob -i 'QUAL>=20' calls.snp.bcf > calls.snp.filt.bcf
 ```
 
 * Use `bcftools view` to convert the binary BCF file to a plain text VCF:
 
 ```bash
-bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
+$ bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
 ```
 
 * Use `sftp` to transfer the VCF file to your local machine, and load it in IGV. 
@@ -249,7 +249,7 @@ bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
 * Use the `mendelian` plugin to check the consistency of the variants:
 
 ```bash
-bcftools +mendelian -m c -p samples.ped calls.snp.filt.bcf
+$ bcftools +mendelian -m c -p samples.ped calls.snp.filt.bcf
 ```
 
 * You can list any inconsistent sites by changing the "mode" (`-m`) to `x`. Do this and have a look at any inconsistent sites in IGV - can you explain the inconsistency?
