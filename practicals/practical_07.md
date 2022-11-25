@@ -53,7 +53,7 @@ Estimated time: 10 minutes
     * <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/practical_07.zip>
     * Decompress the chromosome 20 sequence with `gunzip`
     * Extract the `practical_07.zip` archive with `unzip`
-* Use `bwa` to index the "genome":
+* Use `bwa` to _index_  the "genome":
     * Get help information for `bwa` by running the command with no arguments
     * You can also view the `man` page online here: <https://bio-bwa.sourceforge.net/bwa.shtml> (`conda` doesn't integrate with `man` very well)
 
@@ -182,13 +182,13 @@ Estimated time: 15 minutes
 
 * IGV is installed on the cluster PCs, find it in the Start menu and get it running - make sure the reference genome (top left drop-down menu) is set to "Human (GRCh38/hg38)"
 * Load the three BAM files you created in earlier exercises (and transferred to your local machine at the end of exercise 7.3)
-* In the location box (middle of the top toolbar), paste in the following location: chr20:10,166,948-10,170,577
+* In the location box (middle of the top toolbar), paste in the following location: chr20:10,166,001-10,170,999
 
 | ![Figure 2: IGV Screenshot](media/igv_1.png) |
 |:--:|
 | <b>Figure 2: Integrative Genomics Viewer used to visualise BAM files.</b>|
 
-Individual mismatched bases (compared to the reference genome) are highlighted in the indiviudally aligned reads. Positions at which a large proportion of reads indicate a variable base are indicated in the 'Coverage' track. 
+Individual mismatched bases (compared to the reference genome) are highlighted in the indiviudally aligned reads. Positions at which a large proportion of reads indicate a variable base at the same location are indicated in the 'Coverage' track. 
 
 * Take a look at this region - are there many positions where the variation is consistent among lots of reads?
 * Do the sequences of the parents and proband behave as you'd expect at these positions?
@@ -197,29 +197,67 @@ Individual mismatched bases (compared to the reference genome) are highlighted i
 
 IGV helps us to visually identify regions of interest in our samples, but in a whole exome or whole genome experiment, this sort of visual inspection does not scale. Instead we need a statistical approach to robustly identify sites of interesting variation in sets of samples. 
 
-Since we are working here with a very small dataset, the most robust methods for variant calling will not work, since they rely on having at least exome-scale data to train their sophisticated models. For an idea of the computational procedures required for this kind of robust variant calling, take a look at the "Best Practise" guidelines produced by the development team behind the [Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) (GATK), here: <https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels->.
+Since we are working here with a very small dataset, the most robust methods for variant calling will not work, as they rely on having at least exome-scale data to train their sophisticated models. For an idea of the computational procedures required for this kind of robust variant calling, take a look at the "Best Practise" guidelines produced by the development team behind the [Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) (GATK), here: <https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels->.
+
+The Genome Analysis Toolkit is the "industry standard" variant caller. It was originally developed for the [1,000 Genomes Project](https://www.internationalgenome.org/) and has continued to be developed since by a large software engineering team. GATK provides tools for every step of the variant calling process, and the variant callers themselves use complicated machine- and deep-learning models to derive variant calls.
+
+| ![Figure 3: GATK Best Practise Guidelines](media/gatk.png) |
+|:--:|
+| <b>Figure 3: GATK Best Practise Guidelines.</b>|
 
 In particular, we are going to skip a number of pre-processing steps designed to reduce noise in the resulting call-set. In a real experiment, with a more realistic volume of data, we would absolutely follow the recommendations described above. 
 
-To allow us to produce some sort of callset from our minimal example, we are going to use the simpler models provided by BCFtools - a toolkit produced by the same group as SAMtools.
+To allow us to produce some sort of callset from our minimal example, we are going to use the simpler models provided by BCFtools - a toolkit produced by the same group as SAMtools. 
 
+BCFtools calls variants in a two-step process. Firstly `bcftools mpileup` constructs a vertical slice across all reads covering each position of the genome (_pileup_). Genotype likelihoods, which represent how consistent the observed data are with the possible diploid genotypes, are constructed for each site. This calculation takes many different factors into account, including mapping qualities of the reads, and the probability of local misalignment.
+
+The second step, `bcftools call`, evaluates the most likely genotype under the assumption of [Hardy-Weinberg equilibrium](https://www.frontiersin.org/articles/10.3389/fgene.2020.00210/full) using allele frequencies estimated from the data or provided explicitly by the user.
+
+### Exercise 7.5 {: .exercise}
+
+Estimated time: rest of the session
+
+* Use `bcftools` to call variants in the samples aligned earlier. This can be done with a single piped command:
 
 ```bash
-bwa mem ref father_R1.fastq.gz father_R2.fastq.gz > father.sam
-samtools view -b father.sam > father.bam
-samtools sort father.bam > father.s.bam
-
-
 bcftools mpileup -f chr20.fa son.s.bam mother.s.bam father.s.bam | bcftools call -mv -Ob -o calls.bcf
-
-#exclude any with a 'missing' genotype, and all indels
-bcftools view -Ob -g ^miss -v snps calls.bcf > calls.snp.bcf
-#quality filter
-bcftools view -Ob -i 'QUAL>=20' calls.snp.bcf > calls.snp.filt.bcf
-#mendelian check
-bcftools +mendelian -m c -p samples.ped calls.snp.filt.bcf
-
-bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
-
-bcftools mpileup -f chr20.fa father.s.bam mother.s.bam son.s.bam | bcftools call -mv -C trio -S samples.ped -Ob -o trio.bcf
 ```
+
+You could split this into two commands if you wanted to take a look at the `mpileup` output.
+
+* Use `bcftools view` to explore the VCF file that the above command produced. The header of the file describes the format.
+* Filter the callset via the following procedures. Read the documentation to figure out what these filters do:
+
+```bash
+bcftools view -Ob -g ^miss -v snps calls.bcf > calls.snp.bcf
+bcftools view -Ob -i 'QUAL>=20' calls.snp.bcf > calls.snp.filt.bcf
+```
+
+* Use `bcftools view` to convert the binary BCF file to a plain text VCF:
+
+```bash
+bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
+```
+
+* Use `sftp` to transfer the VCF file to your local machine, and load it in IGV. 
+
+| ![Figure 4: IGV Screenshot](media/igv_2.png) |
+|:--:|
+| <b>Figure 4: IGV with VCF loaded alongside BAM files.</b>|
+
+* Finally, `bcftools` has a plugin which lets us check the called variants against Mendelian assumptions (i.e. that the offspring should be a consistent mix of the parents genotype). For this, you need a file which describes the genetic pedigree of the samples - known as as `.ped` file. A `.ped` file to describe our samples was included in the `practical_07.zip` file which you downloaded at the beginning of the practical
+* Use the `mendelian` plugin to check the consistency of the variants:
+
+```bash
+bcftools +mendelian -m c -p samples.ped calls.snp.filt.bcf
+```
+
+* You can list any inconsistent sites by changing the "mode" (`-m`) to `x`. Do this and have a look at any inconsistent sites in IGV - can you explain the inconsistency?
+
+# Summary
+
+This practical is a demonstration of the enduring ability of sequence alignment to power bioinformatics analysis. As our capacity for sequencing data generation has evolved, so too have the techniques for processing this data. This is typified by the development of advanced algorithms for aligning millions or even billions of high-throughput sequencing reads to a reference genome in an acceptable amount of "wall-clock" time. 
+
+The accurate calling of genomic variation is an ongoing challenge in bioinformatics, particularly in human genomes. We have scratched the surface of this topic here, but we can see that even a relatively simple model can be helpful to summarise the complicated variability that we observe in real samples. 
+
+The Linux command line is of vital importance to the way that these kinds of analyses work, as the cohorts used in genetic studies tend to be large, which means a lot of data needs to be processed in as "hands-off" a way as possible. Non-interactive command line workflows, often deployed on high-performance computing resources (which exclusively run on Linux) are absolutely key in the delivery of this type of analysis. 
