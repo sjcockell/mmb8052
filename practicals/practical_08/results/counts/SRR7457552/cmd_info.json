@@ -1,0 +1,9 @@
+{
+    "salmon_version": "1.9.0",
+    "libType": "A",
+    "unmatedReads": "data/SRR7457552.fastq.gz",
+    "index": "extdata/gencode.vM31.transcripts.idx",
+    "threads": "20",
+    "output": "results/counts/SRR7457552",
+    "auxDir": "aux_info"
+}
