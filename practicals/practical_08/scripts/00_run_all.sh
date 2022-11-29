@@ -6,7 +6,7 @@ TRUNK=SRR74575
 RESULTS=results/counts/${TRUNK}
 
 wget -O ${INDEX}.fa.gz "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_${GENCODE_RELEASE}/${INDEX}.fa.gz"
-salmon index -t ${INDEX}.fa.gz -i ${INDEX}
+salmon index --gencode -t ${INDEX}.fa.gz -i ${INDEX}
 
 for i in $(seq 51 62)
 do

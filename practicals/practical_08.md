@@ -23,6 +23,8 @@ After quality assessment (not covered here, but important), RNA-Seq analysis usu
 
 Here, we will be focussing on step 3, which is the bulk of the analysis. The final case study in the module will cover functional analysis – which can be applied downstream of many analysis tasks (not just RNA-Seq).
 
+The data we will be working with, and the process for downloading and processing the data to make it ready for step 3 are available from the module's Github page: <https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08>
+
 ## RNA-Seq Read Alignment
 
 We covered alignment of high-throughput sequencing reads to a reference genome in practical 7, and much of what we discussed there holds true for RNA-Seq alignment (the need for efficiency as experiments contain millions of reads, the nature of the alignment problem etc) with one key difference. The constructs in the sequencing library are derived from RNA, and in the case of eukaryotic mRNA that RNA is spliced post-transcription. Splicing means that a single read sequence may be derived from more than one genomic location, often separated by thousands of bases because of an intervening intron which has been spliced out. A read aligner designed for RNA-Seq data therefore has to be able to cope with split reads which arise because of splicing. 
@@ -53,15 +55,88 @@ The annotation used in an RNA-Seq experiment is one of the [biggest factors](htt
 
 For other organisms, I would recommend working with the Ensembl annotation, where possible. The quality of Ensembl gene sets is consistent, and the data is easily available. The Ensembl FTP server is a convenient resource for this data for many organisms: <http://www.ensembl.org/info/data/ftp/index.html>
 
-For this example experiment, the data was derived from mouse cell lines, so we can download the latest GENCODE mouse gene set, using wget:
+For this example experiment, the data was derived from mouse cells, so we can download the latest GENCODE mouse gene set, using wget:
 
 ```bash 
 $ wget -O extdata/gencode.vM31.transcripts.fa.gz https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M31/gencode.vM31.transcripts.fa.gz
 ```
 
-This FASTA sequence file is then indexed for use with Salmon:
+This FASTA sequence file is then indexed for use with Salmon. This is similar to the genome indexing carried out for alignment - a one-time, reasonably intensive procedure which can be stored and used multiple times. 
 
 ```bash
 $ salmon index -t extdata/gencode.vM31.transcripts.fa.gz -i extdata/gencode.vM31.transcripts.idx
 ```
+
+### Quantification
+
+Since the raw RNA-Seq data we are working with is large (12GB), and the process of quantification still relatively time-consuming (in the context of a 3-hour practical), the quantification has already been completed. The general process for this is to use `salmon quant` for each sample:
+
+```bash
+for sample in sample_list
+do
+    salmon quant -l A -r data/${sample}.fastq.gz -i extdata/gencode.vM31.transcripts.idx -p 20 -o results/counts/${sample}
+done
+```
+
+This produces a file (`quant.sf`) for each sample, which contains the transcript-level quantification data for that sample. Below is an abbreviated version of this data for five transcripts:
+
+```
+Name                    Length  EffectiveLength TPM         NumReads
+ENSMUST00000162795.8    2712    2462.000        1.616710    86.647
+ENSMUST00000161327.8    5707    5457.000        4.565086    542.297
+ENSMUST00000159802.2    4136    3886.000        0.203616    17.225
+ENSMUST00000162257.8    2204    1954.000        4.089634    173.958
+ENSMUST00000159206.2    519     269.000         2.585507    15.140
+```
+
+# The Dataset - GSE116583
+
+For the exercises in this practical, we will be using a publicly available RNA-Seq dataset from the Gene Expression Omnibus (GEO). This dataset is from murine alveolar macrophages early after reperfusion (restoration of blood flow once the organ is in place in the receipient) in a model of lung transplantation. The data is described in the GEO entry: [GSE116583](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE116583). There's lots of information about the experiment which generated the data in the so-called SOFT format file which you can download from the entry: <https://ftp.ncbi.nlm.nih.gov/geo/series/GSE116nnn/GSE116583/soft/GSE116583_family.soft.gz>. This can be quite hard to understand, so I've extracted some key information in the table below.
+
+| Metadata Header | Experiment Information |
+|-----------------|------------------------|
+| Timepoints | Naive (control), 2 hours post-reperfusion, 24 hours post-reperfusion (n = 4) |
+| Sample Extract Protocol | PicoPure (Thermofisher) RNA isolation kit. RNA libraries were prepared for sequencing using standard Illumina protocols. |
+| Mouse Genotype | Cx3cr1<sup>gfp/+</sup>B6 |
+| Mouse Sex | Male |
+| Mouse Age | 14 weeks |
+| Tissue | Lung |
+| Cell Type | alveolar macrophage |
+| RNA-Seq type | polyA RNA |
+| Sequencer | NextSeq 500 |
+| Library layout | Single-end |
+| Read Length | 75 bp | 
+
+As is often the case with publicly available data, the amount of information on how the experiment was carried out is quite sparse. We can learn more about the role of alveolar macrophages (and macrophages more widely) in organ transplantation here: <https://doi.org/10.1111/ajt.15751>. The lab which produced the data in GSE116583 has documented their mouse lung transplant protocol in this work: <https://doi.org/10.1126/scitranslmed.aal4508> (protocol information is in the [Supplementary Materials](https://www.science.org/doi/suppl/10.1126/scitranslmed.aal4508/suppl_file/aal4508_sm.pdf)).
+
+I have downloaded the FASTQ data for the 12 samples in this experiment, and used Salmon as documented above to quantify the transcript-level expression in each sample. 
+
+The `quant.sf` files which result from this process can be downloaded here: <https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/results/counts.zip>. The full process and documentation, and a sample table can be viewed in the module's Github page, see here: <https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08>. Finally, a sample table (which we will use in the exercises below) can be downloaded from here: <https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/practical_08/data/sample_table.csv>.
+
+### Exercise 8.1 {: .exercise}
+
+Estimated time: 10 minutes
+
+* Install and load all the packages we will need for this practical:
+
+```r
+> install.packages('BiocManager')
+> library(BiocManager)
+> install(c('tximport', 'DESeq2', 'biomaRt', 'pheatmap'))
+> library(tximport)
+> library(DESeq2)
+> library(biomaRt)
+> library(pheatmap)
+> library(tidyverse)
+```
+
+* The first line of the above code install Bioconductor (an R package manager for bioinformatics). The subsequent `install()` command uses the Bioconductor installer to locate the rest of the required packages. 
+* Bioconductor packages are not available in CRAN, so cannot be installed with `install.packages()`. The Bioconductor installer, on the other hand, is capable of installing CRAN packages (such as `pheatmap`, here).
+* Some of these packages may take some time to install (particularly `DESeq2` which has a lot of dependencies). If you find yourself waiting, read the next section and come back in a few minutes to check if the installation has worked.
+
+# tximport
+
+Reading data from a large number of files into a single data frame is not very convenient - fortunately, `tximport` is a Bioconductor package that makes this simple for the data produced by Salmon. It also summarises Salmon’s transcript-level counts to a gene-level abundance estimate. This gene-level estimate is much more suitable for conventional RNA-Seq analysis.
+
+For `tximport`, we need a vector of the names of the count files on our file system. We can generate this using the sample table mentioned above, along with some of the helpful Tidyverse packages that were introduced during practical 5.
 
