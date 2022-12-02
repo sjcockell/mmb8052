@@ -205,6 +205,81 @@ Dispersion estimates can also be plotted (see Figure 1). This can be a useful di
 
 `DESeq2` uses Wald’s Negative Binomial test to determine whether genes are differentially expressed. This test is appropriate for the discrete nature of RNA-Seq data, and the distribution it typically fits. At this point, we have got as far as the convenience method `DESeq()` would take us.
 
-Before we begin, we should create a ‘factor’ in our sample table - this is a categorical description
-of the groups we want to analyse using DESeq2. We can use dplyr::mutate to combine the
-timepoint and condition columns in our sample table to achieve this.
+### Exercise 8.3 {: .exercise}
+
+Estimated time: 10 minutes
+
+* Run the following R code to carry out the steps described above:
+
+```r
+> dds = DESeqDataSetFromTximport(txi, colData = sample_table, design = ~ Group)
+> dds = estimateSizeFactors(dds)
+> dds = estimateDispersions(dds)
+> dds = nbinomWaldTest(dds)
+# the above 3 commands can be replaced by dds = DESeq(dds)
+> plotDispEsts(dds)
+```
+
+* You can access the data from the `dds` object (a `DESeqDataSet`) by using so-called accessor methods:
+    * `counts()` returns the count data, the `normalized` argument can be used to provide raw or normalised counts
+    * `colData()` returns the sample table (the data about the samples - i.e. the columns)
+    * `normalizationFactors()` returns a matrix of normalisation factors with the same dimensions as the expression data. 
+* Compare `counts(dds, normalized=FALSE)/normalizationFactors(dds)` with `counts(dds, normalized=TRUE)` 
+
+# Data Quality Control
+
+Before we examine the results of these tests for differentially expressed genes, this is a good point to do some QC on our count data, to reveal any potential problems and take steps to correct them.
+
+Many of the common methods for exploring multidimensional data, especially clustering and ordination methods such as Principal Components Analysis, do not work well with RNA-Seq data (this is due to things like skedasticity, which is a bit out of scope here). `DESeq2` provides some (relatively) simple data transformations that make data amenable to these analyses.
+
+## Regularized Logarithm Transformation
+
+PCA with normalised read counts will be dominated by the most strongly expressed genes which exhibit the greatest absolute differences between samples. A regular log2 transformation will lead to the most weakly expressed genes dominating, due to the large amount of noise inherent in these observations. The 'regularized logarithm transformation' (`rlog()`) offered by DESeq2 corrects the first problem, and controls for the second (using empirical Bayes techniques). This transformed data can be used for PCA etc., but should not be used to test for differential expression.
+
+## Variance Stabilizing Transformation
+
+For very large datasets, `rlog()` is prohibitively slow, and it is also less sensitive to size factors and therefore is inappropriate for cases where library size varies widely. For these cases, `DESeq2` also offers a Variance Stabilizing Transformation (`varianceStabilizingTransformation()`), which broadly achieves the same ends but is much faster.
+
+## Principal Components Analysis (PCA)
+
+Principal Components plots can be extremely useful in determining whether any of our samples is an outlier, and in examining whether the relationships between our samples are as we would expect. In general, we would expect samples from the same experimental group to behave similarly in a PCA - so when plotting the results of the analysis, sample groups should be seen to cluster. Any exceptions to this pattern are considered _outliers_, and should be considered for removal from the analysis (for data quality reasons).
+
+## Sample Distance Analysis
+
+Another method for identifying samples which behave unusually is to examine the statistical distance of samples from one another. There are many measures of distance, but the one used most often for data like RNA-Seq data is _Euclidian distance_. The distance of all of the samples from each other, once calculated, can be plotted in a heatmap - outlier samples should be easy to spot in this format.
+
+### Exercise 8.4 {: .exercise}
+
+Estimated time: 10 minutes
+
+* Run the following R code to carry out the steps described above:
+
+```r
+> rld = rlog(dds)
+> # vst = varianceStabilizingTransformation(dds)
+> plotPCA(rld, intgroup='Group')
+> sample_distance = dist(t(assay(rld)), method='euclidian')
+> sample_distance_matrix = as.matrix(sample_distance)
+> heatmap_annotation = data.frame(group=colData(dds)[,c('Group')], row.names=rownames(colData(dds)))
+> pheatmap(sample_distance_matrix,
+         clustering_distance_rows=sample_distance,
+         clustering_distance_cols=sample_distance,
+         annotation_col = heatmap_annotation)
+```
+
+* Are there any outliers in this experiment?
+* Have a look at `heatmap_annotation` - what's the purpose of this object?
+
+| ![Figure 2: Principal Components Plot](media/rnaseq2.png) | 
+|:--:|
+| <b>Figure 2: Plot of principal components for GSE116583.</b>|
+
+
+| ![Figure 3: Sample Distance Plot](media/rnaseq3.png) |
+|:--:|
+| <b>Figure 3: Heatmap of sample distances for GSE116583.</b>|
+
+
+# Detecting Differentially Expressed Genes
+
+Now that we are satisfied with the quality of our RNA-Seq samples, it is possible to query our `DESeqDataSet` for results. `DESeq2` has a function for this, conveniently called `results()`. It is important to define what comparison we want to find results for - here we utilise the `contrast` argument for the `results()` function. This argument takes a vector of three elements: the column of the `colData` that is to be used for the comparison, the numerator of the comparison to be made, and the denominator of the comparison to be made, in that order. It is typical to use the control samples for the denominator - in this way, when the treated samples have higher expression, we see a positive fold change in our results, which is intuitive.
