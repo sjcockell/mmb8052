@@ -283,3 +283,87 @@ Estimated time: 10 minutes
 # Detecting Differentially Expressed Genes
 
 Now that we are satisfied with the quality of our RNA-Seq samples, it is possible to query our `DESeqDataSet` for results. `DESeq2` has a function for this, conveniently called `results()`. It is important to define what comparison we want to find results for - here we utilise the `contrast` argument for the `results()` function. This argument takes a vector of three elements: the column of the `colData` that is to be used for the comparison, the numerator of the comparison to be made, and the denominator of the comparison to be made, in that order. It is typical to use the control samples for the denominator - in this way, when the treated samples have higher expression, we see a positive fold change in our results, which is intuitive.
+
+`DESeq2` results are reported in a table (a `DataFrame`, which is subtly different from both a `data.frame` and a `tibble` - like many modern programming languages, `R` is cursed with multiple overlapping implementations of the same basic idea). Each row in the results table represents a gene (identified by an Ensembl Gene ID in our experiment), and contains 6 observations.
+
+| Observation | Description |
+|-------------|-------------|
+| baseMean | The arithmetic mean of the normalised counts for this gene in _all_ samples (not just those involved in this contrast) |
+| log2FoldChange | The difference in expression between the mean normalised counts of the two conditions involved in the described contrast. This is calculated as the log<sub>2</sub> of the ratio of normalised counts (numerator/denominator) |
+| lfcSE | The standard error of the log2FoldChange |
+| stat | The Wald test statistic |
+| pvalue | The Wald test p-value, derived from the test statistic |
+| padj | The p-value adjusted for multiple tests - this adjustment is carried out using the Benjamini-Hochberg correction |
+
+This results table is essentially "tidy" and can be used in the kind of plotting functions we explored in practical 05 - for example, the log2FoldChange and padj can be used to build a Volcano Plot. 
+
+### Exercise 8.5 {: .exercise}
+
+Estimated time: 15 minutes
+
+* Run the following R code to carry out the steps described above:
+
+```r
+> results_table = results(dds, contrast= c('Group', 'Allo24h', 'Naive'))
+> summary(results_table)
+# filter any rows with an NA anywhere:
+> results_tibble = as_tibble(results_table, rownames='ensembl_gene_id')
+> filtered_results = filter(results_tibble, complete.cases(results_tibble))
+# Volcano plot (basic)
+> filtered_results = mutate(filtered_results, logPVal = -log10(padj))
+> ggplot(filtered_results, aes(x=log2FoldChange, y=logPVal)) + 
+        geom_point()
+```
+
+* Can you repeat the above for the second comparison inherent in this dataset (Allo2h vs Naive)?
+* Is there any value in comparing Allo24h to Allo2h?
+
+| ![Figure 4: 24h vs Naive Volcano Plot](media/rnaseq4.png) |
+|:--:|
+| <b>Figure 4: Basic 24h vs Naive Volcano Plot.</b>|
+
+# Annotating Results Table
+
+We used the Gencode gene annotation when quantifying expression in this experiment. Therefore the rows of our count (and results) tables are identified by Ensembl Gene IDs. This is all very well, but human-readable gene names are more useful and informative in most situations.
+
+There are many ways of retrieving richer annotation based on these Ensembl Gene IDs. All methods are complicated by the fact we must ensure that the version of Ensembl used for labelling thr genes in the first place (through Salmon), and the version used for producing the annotation in R must match - Ensembl obsoletes identfiers surprisingly frequently, and even a single version mismatch can cause IDs to go missing.
+
+In producing the quantification with Salmon, we used Gencode release M31 which was published on 19th October 2022. We can see from this table: <https://www.gencodegenes.org/mouse/releases.html> that M31 is paired with Ensembl release 108 (20/10/2022). We an access this specific annotation in R using the `biomaRt` package, which we can use to retrieve lots of annotation information for our mouse genes. 
+
+`biomaRt` is a programmatic interface to Ensembl's [BioMart database](https://www.ensembl.org/info/data/biomart/index.html) - a system for extracting tables of data from Ensembl.
+
+In the final exercise of this practical, we will map the mouse Ensembl Gene IDs to a range of information from BioMart, and then filter the top 10 genes by adjusted p-value to discover their identity. 
+
+### Exercise 8.6 {: .exercise}
+
+Estimated time: 15 minutes
+
+* Run the following R code to carry out the steps described above:
+
+```r
+> ensembl108 = useEnsembl(biomart="ensembl", version=108)
+> ensembl108 = useDataset("mmusculus_gene_ensembl", mart=ensembl108)
+> annotation = getBM(attributes=c('ensembl_gene_id', 'chromosome_name', 
+                                'start_position', 'end_position', 
+                                'strand', 'gene_biotype', 'external_gene_name', 
+                                'description'), 
+                   filters = 'ensembl_gene_id', values = filtered_results$ensembl_gene_id, 
+                   mart = ensembl108)
+> annot_results = left_join(filtered_results, annotation)
+> annot_results = arrange(annot_results, padj)
+> View(head(annot_results, 10))
+> degs = filter(annot_results, abs(log2FoldChange) > 1 & padj < 0.05)
+```
+
+* Check that the annotation returned by BioMart matches the genes in your results table 1:1
+* Can you think of a situation where this might not be the case?
+* You can look at the attributes available through BioMart using the `listAttributes()` function - is there any other information you think might be useful?
+* How many differentially expressed genes (DEGs) are there, based on the filter in the final line?
+
+
+# Summary
+
+This practical has covered the essentials of working with RNA-Seq data in R, and particularly of using `DESeq2` to process such data and apply statistics to define differentially expressed genes. As mentioned at the outset, the exercises in this practical contain all of the code required to complete them to a basic standard. For the assessment, there is plenty of scope to improve on these versions.
+
+In the final practical, we will explore ways of deriving biological meaning from the differential analysis presented here - we will look for functional coordination among the genes which change their expression, and look at methods for defining groups of genes which change together. 
+
