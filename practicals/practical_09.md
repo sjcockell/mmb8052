@@ -18,11 +18,26 @@ The goal of cluster analysis with RNA-Seq data is to group genes into clusters w
 
 Hierarchical clustering is an agglomerative (“bottom-up”) approach where each gene starts in its own cluster (n genes, n clusters). The most similar genes according to a similarity metric (such as Euclidian distance) are merged (n genes, n-1 clusters), then the similarity metric is recalculated between the genes and this new cluster. This process is repeated iteratively until all genes are in a single cluster (1 cluster, of size n). Hierarchical clustering is implemented by the `hclust` function of the `stats` package in R and uses the output produced by the `dist` function.
 
-To cluster all genes in the count matrix (over 36000) would take a lot of computational resources and time because `dist` and `hclust` will cluster by the rows of a matrix. However, we can cluster by the columns to obtain a clustering by samples by transposing the expression matrix using the `t()` function, an operation which flips a matrix about its diagonal so that the columns become rows and the rows become columns.
-
 ## Heatmaps
 
-Heatmaps are a particularly useful post-analysis tool for visualising clusters in the genes that we know to be differentially expressed. The CRAN package `pheatmap` has a function `pheatmap()` that takes a numeric matrix as input. `pheatmap` applies hclust to cluster the rows and/or columns of the matrix, then displays a false colour image with dendrograms added to the left side and/or the top.
+Heatmaps are a particularly useful post-analysis tool for visualising clusters in the genes that we know to be differentially expressed. The CRAN package `pheatmap` has a function `pheatmap()` that takes a numeric matrix as input. `pheatmap` applies hclust to cluster the rows and/or columns of the matrix, then displays a false colour image with dendrograms added to the left side and/or the top. These dendrograms are produced by applying hierarchical clustering to both the rows and the columns of the input matrix. In the case of expression data, this clustering will group together genes which share similar expression patterns across the samples, and samples which share similar profiles of gene expression. 
+
+### Exercise 9.1 {: .exercise}
+
+Estimated time: 15 minutes
+
+* Using the results of the Allo24h contrast from practical 08, produce a heatmap for the expression of the 250 most differentially expressed genes (largest absolute log fold change, with a significant p-value)
+
+Some hints to help:
+
+* Use `dplyr::arrange()` to sort your filtered results by fold-change
+* Remember this should be _absolute_ fold change
+* Use the `rlog` transformed data (which you used for PCA) for the values for the heatmap
+    * `assay(rld)[filtered_results$ensembl_gene_id,]`
+
+We also need to pay attention to the _scaling_ of the values in the heatmap - by default `pheatmap` sets `scale="none"` - meaning the values plotted are exactly the same as the input values in the matrix. If, on the other hand, we use `scale="row"` or `scale="column"` then the numbers in the input matrix are Z-transformed in the appropriate axis (every observation in each row or column has the mean of the row/column subtracted from it, and the result is divided by the row/column standard deviation). This well-documented transformation can help if a small number of extreme observations dominate the heatmap, or if different sets of observations have very different distributions (often the case with different genes). A row-wise scaling means that we will be able to clearly see the differences in expression of every gene, but we can no longer compare genes to each other. Z-transformed data can also be thought of as 'diverging' (certainly more than untransformed data) as observations close to the mean will have a Z-score close to zero. 
+
+* Add `scale="row"` to your `pheatmap()` call
 
 # Enrichment Analysis
 
@@ -81,7 +96,7 @@ The enrichment analysis described above is a generic strategy which is relativel
 > install(c('clusterProfiler', 'org.Mm.eg.db'))
 > library(clusterProfiler)
 > library(org.Mm.eg.db)
-> ego = enrichGO(enrichGO(gene=ens_gene_list,
+> ego = enrichGO(gene=ens_gene_list,
                 OrgDb = org.Mm.eg.db,
                 keyType = 'ENSEMBL',
                 ont = "CC",
@@ -90,3 +105,62 @@ The enrichment analysis described above is a generic strategy which is relativel
                 qvalueCutoff = 0.05))
 > head(ego)
 ```
+
+The code in the block above calculates enrichment in the Cellular Component branch of the Gene Ontology for the genes in `ens_gene_list` (compared to all the genes in the mouse genome). We should make this more specific to our analysis by including a `universe` argument which lists just the genes we analysed for differential expression. To use the example of the 24 hour time point vs naive in the analysis from practical 08:
+
+```r
+> results_table = results(dds, contrast= c('Group', 'Allo24h', 'Naive'))
+> results_tibble = as_tibble(results_table, rownames='ensembl_gene_id')
+> filtered_results = filter(results_tibble, complete.cases(results_tibble))
+> significant_results = filter(filtered_results, abs(log2FoldChange) > 1 & padj < 0.05)
+> significant_genes = pull(significant_results, ensembl_gene_id)
+> universe_genes = pull(filtered_results, ensembl_gene_id)
+> ego = enrichGO(gene=significant_genes,
+                 universe=universe_genes,
+                 OrgDb = org.Mm.eg.db,
+                 keyType = 'ENSEMBL',
+                 ont = "CC",
+                 pAdjustMethod = "BH",
+                 pvalueCutoff = 0.01,
+                 qvalueCutoff = 0.05))
+```
+
+### Exercise 9.2 {: .exercise}
+
+Estimated time: 20 mins
+
+* Repeat the `enrichGO()` function for different branches of the Gene Ontology (BP and MF)
+* Repeat for the Allo2h comparison and compare the top GO terms for each
+
+## clusterProfiler Visualisations
+
+The `clusterProfiler` package comes with a range of visualisations built for viewing the results of the kind of enrichment analysis carried out in exercise 9.2. The table below lists some of the functions and what they show.
+
+| Function Name | What does it show? |
+|---------------|--------------------|
+| `goplot()` | Shows the section of the Gene Ontology _Directed Acyclic Graph_ (DAG) which contains the enriched terms (highlighed with a colour representing the p-value) |
+| `barplot()` | Bar height shows the number of genes with that classifiction. Colour represents p-value. |
+| `dotplot()` | Similar to the `barplot()` in that dots are coloured by p-value. This time the gene number is encoded by the size of the dot, and the X position gives the ratio of genes in the whole geneset compared to the given list. |
+| `cnetplot()` | Links enriched categories to the genes found in it. Can show genes shared between multiple categories. |
+| `heatplot()` | Conceptually similar to a heatmap, but used to show group membership. Can show fold change as colour if provided with a `foldChange` argument. |
+
+
+### Exercise 9.3 {: .exercise}
+
+Estimated time: 20 mins
+
+* Test out the functions listed in the table with the results generated in exercise 9.2
+* Can you get the fold changes displayed on the `cnetplot()` and `heatplot()`?
+
+## Gene Set Enrichment Analysis
+
+Using fold change and p-value thresholds to determine genes of interest will find genes where the difference in expression  between conditions is large. However, relevant differences may be present in the form of small but consistent changes in predefined sets of related genes. Gene Set Enrichment Analysis (GSEA) ([Subramanian et al. 2005](https://doi.org/10.1073/pnas.0506580102)) is a computational method that can determine whether genes in predefined sets change in a small but coordinated way.
+
+Briefly, given a predefined set of genes S, and a list of genes L ranked according to some metric, GSEA will determine if the genes in S are randomly distributed throughout the ranked list L, or if they are over-represented at the top or bottom. GSEA does this by walking down the list L and increasing a running-sum statistic when a gene in S is encountered, and decreasing it when it is not. The significance of the resulting enrichment score is calculated via a permutation test.
+
+The `clusterProfiler` package contains an implementation of the GSEA method. We will use it with the MSigDB "Hallmark" gene sets here.
+
+```r
+https://www.gsea-msigdb.org/gsea/msigdb/download_file.jsp?filePath=/msigdb/release/2022.1.Mm/mh.all.v2022.1.Mm.symbols.gmt
+
+filtered_results = filter(results_tibble, complete.cases(results_tibble))
