@@ -161,6 +161,43 @@ Briefly, given a predefined set of genes S, and a list of genes L ranked accordi
 The `clusterProfiler` package contains an implementation of the GSEA method. We will use it with the MSigDB "Hallmark" gene sets here.
 
 ```r
-https://www.gsea-msigdb.org/gsea/msigdb/download_file.jsp?filePath=/msigdb/release/2022.1.Mm/mh.all.v2022.1.Mm.symbols.gmt
+gmt = gson::read.gmt("https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/mh.all.v2022.1.Mm.symbols.gmt")
+for_gsea = pull(annot_results, log2FoldChange)
+names(for_gsea) = pull(annot_results, external_gene_name)
+for_gsea = sort(for_gsea, decreasing = TRUE)
+gsea = GSEA(geneList = for_gsea, 
+            exponent = 1,
+            nPerm = 10000, 
+            minGSSize = 5, 
+            maxGSSize = 500, 
+            pvalueCutoff = 0.05, 
+            pAdjustMethod = "BH", 
+            TERM2GENE = gmt,
+            by = "fgsea")
+```
 
-filtered_results = filter(results_tibble, complete.cases(results_tibble))
+### Exercise 9.4 {: .exercise}
+
+Estimated time: 20 mins
+
+* Carry out GSEA as above, with the 2h and 24h gene lists
+* Explore the results
+* Use `ridgeplot()` and `gseaplot()` to visualise the results
+
+NOTE: `gseaplot()` needs a geneset to visualise, to plot the top-ranked geneset, try the following:
+
+```r
+gseaplot(gsea, geneSetID = 1, title = gsea$Description[1])
+```
+
+Consider the following:
+
+* What's the relationship between the enriched gene sets at the two timepoints?
+* Are the GO terms and the Hallmark genesets related in any obvious way?
+
+# Resources on the web for downstream analysis
+
+Just because we have spent the semester learning about Linux and R does not mean we are bound to use only these tools. There are lots of fairly user-friendly tools out there on the web that enable lots of interesting analysis. The main restrictions of web tools tend to be that we cannot use them programmatically, so they do not fit in to a coded pipeline of analysis, and that they can go out of date fairly quickly if they are not maintained. 
+
+## Metascape
+
