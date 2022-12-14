@@ -39,6 +39,10 @@ We also need to pay attention to the _scaling_ of the values in the heatmap - by
 
 * Add `scale="row"` to your `pheatmap()` call
 
+| ![Figure 1: Heatmap Example](media/practical9_01.png) |
+|:--:|
+| <b>Figure 1: Example Heatmap from GSE116583</b>|
+
 # Enrichment Analysis
 
 There are a number of reasons why we may want to consider the function of the genes in a gene list over and above the simple identification of the genes. Amongst these is the tendency for people to focus on those genes they recognize, and already suspect are interesting, at the expense of other unknown genes on the list that may be equally or more important.
@@ -122,7 +126,7 @@ The code in the block above calculates enrichment in the Cellular Component bran
                  ont = "CC",
                  pAdjustMethod = "BH",
                  pvalueCutoff = 0.01,
-                 qvalueCutoff = 0.05))
+                 qvalueCutoff = 0.05)
 ```
 
 ### Exercise 9.2 {: .exercise}
@@ -152,6 +156,10 @@ Estimated time: 20 mins
 * Test out the functions listed in the table with the results generated in exercise 9.2
 * Can you get the fold changes displayed on the `cnetplot()` and `heatplot()`?
 
+| ![Figure 2: heatplot() Example](media/practical9_02.png) |
+|:--:|
+| <b>Figure 2: Example `heatplot()` from GSE116583</b>|
+
 ## Gene Set Enrichment Analysis
 
 Using fold change and p-value thresholds to determine genes of interest will find genes where the difference in expression  between conditions is large. However, relevant differences may be present in the form of small but consistent changes in predefined sets of related genes. Gene Set Enrichment Analysis (GSEA) ([Subramanian et al. 2005](https://doi.org/10.1073/pnas.0506580102)) is a computational method that can determine whether genes in predefined sets change in a small but coordinated way.
@@ -161,11 +169,11 @@ Briefly, given a predefined set of genes S, and a list of genes L ranked accordi
 The `clusterProfiler` package contains an implementation of the GSEA method. We will use it with the MSigDB "Hallmark" gene sets here.
 
 ```r
-gmt = gson::read.gmt("https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/mh.all.v2022.1.Mm.symbols.gmt")
-for_gsea = pull(annot_results, log2FoldChange)
-names(for_gsea) = pull(annot_results, external_gene_name)
-for_gsea = sort(for_gsea, decreasing = TRUE)
-gsea = GSEA(geneList = for_gsea, 
+> gmt = gson::read.gmt("https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/mh.all.v2022.1.Mm.symbols.gmt")
+> for_gsea = pull(annot_results, log2FoldChange)
+> names(for_gsea) = pull(annot_results, external_gene_name)
+> for_gsea = sort(for_gsea, decreasing = TRUE)
+> gsea = GSEA(geneList = for_gsea, 
             exponent = 1,
             nPerm = 10000, 
             minGSSize = 5, 
@@ -190,6 +198,11 @@ NOTE: `gseaplot()` needs a geneset to visualise, to plot the top-ranked geneset,
 gseaplot(gsea, geneSetID = 1, title = gsea$Description[1])
 ```
 
+| ![Figure 2: ridgeplot() Example](media/practical9_03.png) |
+|:--:|
+| <b>Figure 2: Example `ridgeplot()` from GSE116583</b>|
+
+
 Consider the following:
 
 * What's the relationship between the enriched gene sets at the two timepoints?
@@ -200,4 +213,14 @@ Consider the following:
 Just because we have spent the semester learning about Linux and R does not mean we are bound to use only these tools. There are lots of fairly user-friendly tools out there on the web that enable lots of interesting analysis. The main restrictions of web tools tend to be that we cannot use them programmatically, so they do not fit in to a coded pipeline of analysis, and that they can go out of date fairly quickly if they are not maintained. 
 
 ## Metascape
+
+[Metascape](https://metascape.org/gp/index.html#/main/step1) attempts to provide a number of "gene-list" type analyses under a single interface. In order to design Metascape, the programmers undertook a survey of existing tools and then attempted to make a single portal which offered all of the expected analyses. This makes Metascape a bit of a grab-bag, but it does offer some useful features - particularly multi-list meta-analysis.
+
+By preparing a data file containing the differentially expressed genes from the two timepoint analyses as a .csv, we can run a Metascape analysis with both lists together. We can download this list from here: <>
+
+* Tick the "Multiple Gene Lists" tickbox
+* Upload the file with the provided button
+* Select "M. musculus" in both the drop-down species boxes
+* Click "Express Analysis"
+* The click through to the "Analysis Report Page" once the process is complete
 
