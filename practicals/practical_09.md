@@ -198,9 +198,9 @@ NOTE: `gseaplot()` needs a geneset to visualise, to plot the top-ranked geneset,
 gseaplot(gsea, geneSetID = 1, title = gsea$Description[1])
 ```
 
-| ![Figure 2: ridgeplot() Example](media/practical9_03.png) |
+| ![Figure 3: ridgeplot() Example](media/practical9_03.png) |
 |:--:|
-| <b>Figure 2: Example `ridgeplot()` from GSE116583</b>|
+| <b>Figure 3: Example `ridgeplot()` from GSE116583</b>|
 
 
 Consider the following:
@@ -222,16 +222,16 @@ By preparing a data file containing the differentially expressed genes from the 
 * Tick the "Multiple Gene Lists" tickbox
 * Upload the file with the provided button
 
-![Figure 3: Metascape 1](media/metascape1.png)
+![Figure 4: Metascape 1](media/metascape1.png)
 
 * Select "M. musculus" in both the drop-down species boxes
 * Click "Express Analysis"
 
-![Figure 4: Metascape 2](media/metascape2.png)
+![Figure 5: Metascape 2](media/metascape2.png)
 
 * The click through to the "Analysis Report Page" once the process is complete
 
-![Figure 5: Metascape 3](media/metascape4.png)
+![Figure 6: Metascape 3](media/metascape4.png)
 
 ## CEMiTool
 
@@ -251,7 +251,7 @@ Each of these files can be downloaded from Github:
 
 In the CEMiTool web interface, load these files in the appropriate places:
 
-![Figure 6: CEMiTool Setup](media/cemi1.png)
+![Figure 7: CEMiTool Setup](media/cemi1.png)
 
 Now we can click "Run CEMiTool", and wait for the results to be returned (this will take a few minutes).
 
