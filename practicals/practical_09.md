@@ -259,3 +259,8 @@ Feel free to explore these tools as much as the remaining time in the session al
 
 # Summary
 
+This final practical involves a lot of exploration of complex data, and so is left rather open-ended. Feel free to explore the resulting analysis as much as you like. It has to be said that the landscape for this kind of analysis is very rich for human experiments and for model vertebrates (e.g. mouse and rat), but the data available for similar analysis outside of these well-studied organisms can be problematic. Some classes of analysis should be possible regardless of the organism however, such as GO enrichment. 
+
+Over the nine practicals in this module, we have gone from learning the very basics of the Linux command line and R, to planning, organising and running quite complex analysis using primarily those tools. The principles of what we have learned can be applied to a wide range of different bioinformatics problems, especially as we have looked at how to navigate `man` and help information available in these tools. 
+
+Hopefully you now feel equipped to "have a go" with data you may encounter - especially during your research projects. If you do have any bioinformatics questions during the remainder of your MRes program (and beyond), do [get in touch](mailto:simon.cockell@newcastle.ac.uk).
