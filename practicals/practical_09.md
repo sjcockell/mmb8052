@@ -216,11 +216,46 @@ Just because we have spent the semester learning about Linux and R does not mean
 
 [Metascape](https://metascape.org/gp/index.html#/main/step1) attempts to provide a number of "gene-list" type analyses under a single interface. In order to design Metascape, the programmers undertook a survey of existing tools and then attempted to make a single portal which offered all of the expected analyses. This makes Metascape a bit of a grab-bag, but it does offer some useful features - particularly multi-list meta-analysis.
 
-By preparing a data file containing the differentially expressed genes from the two timepoint analyses as a .csv, we can run a Metascape analysis with both lists together. We can download this list from here: <>
+By preparing a data file containing the differentially expressed genes from the two timepoint analyses as a .csv, we can run a Metascape analysis with both lists together. We can download this list from here: <https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/for_metascape.csv>
 
+* Go to the Metascape website: <https://metascape.org/gp/index.html#/main/step1>
 * Tick the "Multiple Gene Lists" tickbox
 * Upload the file with the provided button
+
+![Figure 3: Metascape 1](media/metascape1.png)
+
 * Select "M. musculus" in both the drop-down species boxes
 * Click "Express Analysis"
+
+![Figure 4: Metascape 2](media/metascape2.png)
+
 * The click through to the "Analysis Report Page" once the process is complete
+
+![Figure 5: Metascape 3](media/metascape4.png)
+
+## CEMiTool
+
+[CEMiTool](https://cemitool.sysbio.tools/) (Co-Expression Modules identification Tool) is a method that identifies co-expression gene modules from RNA-Seq data - that is, sets of genes which vary in the same way across an experiment, indicating some kind of regulatory relationship. As well as identifying modules, CEMiTool also performs analysis with those modules, providing visualisation and enrichment analysis at the module level.
+
+There is an R package for CEMiTool analysis, but we're taking a look at the [web version](https://cemitool.sysbio.tools/) here. To run this tool we need a few different files. 
+
+1. Our expression data, as tab-delimited text
+2. Our sample phenotypes
+3. A .gmt file of genesets we might be interested in
+
+Each of these files can be downloaded from Github:
+
+1. <https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/for_cemi_exp.tsv>
+2. <https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/sample_pheno.tsv>
+3. <https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/data/mh.all.v2022.1.Mm.symbols.gmt>
+
+In the CEMiTool web interface, load these files in the appropriate places:
+
+![Figure 6: CEMiTool Setup](media/cemi1.png)
+
+Now we can click "Run CEMiTool", and wait for the results to be returned (this will take a few minutes).
+
+Feel free to explore these tools as much as the remaining time in the session allows. 
+
+# Summary
 
