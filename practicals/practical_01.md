@@ -545,3 +545,7 @@ We will look at some tools which will allow us to examine these results more car
 In this first practical we have encountered the Linux command line for the first time and introduced commands for navigating the filesystem, creating and editing files and directories and for downloading data from the web. Due to the maturity of these tools, and the consistent way in which they are developed, the fundamentals we have learned here should allow us to pick up and use virtually any command line tool. This is particularly true if these tools have a `man` page or a well-written help file.
 
 In future practicals, we will investigate more of these tools, and different ways of using them.
+
+# Quick Quiz
+
+<iframe src="https://newcastle.h5p.com/content/1292024274609594127/embed" aria-label="Practical 1" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
