@@ -6,609 +6,1004 @@
             <meta name="robots" content="noindex">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="author" content="Simon J Cockell" />
-            <meta name="date" content="2022-07-22" />
+            <meta name="date" content="2023-08-04" />
         
 
-        <title>MMB8052 - Practical 2 | </title>
+        <title>MMB8052 - Practical 1 | </title>
 
         
     
     
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="static/styles.css">
-            <link rel="stylesheet" id="customiseCSS" href="static/light.css">
             
             
         
-    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.light.css">
-    <link rel="stylesheet" href="static/codemirror-5.26.0/lib/codemirror.css">
-    <link rel="stylesheet" href="static/code.css">
-    <link rel="stylesheet" href="static/numbasEmbed.css">
+    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.css">
 
-    <link rel="stylesheet" href="static/bootstrap-toc.css?v=3">
     <link rel="stylesheet" href="static/print.css">
 
 
         
     
-    
 			<script>
 				var chirun_static_url="static/.";
 			</script>
-            <script defer src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-            <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script defer src="static/mathjax_config.js"></script>
-            <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+            
+                <script defer src="static/mathjax_config.js"></script>
+                <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+            
+
+            <script type="module" src="static/localisation.js"></script>
+
             <script defer src="static/customisation.js"></script>
-            <script defer src="static/mp4.js"></script>
+
             
+
             
-			</script>
         
-    <script defer src="static/jquery.flexibleArea.js"></script>
-    <script defer src="static/spin.min.js"></script>
-    <script defer src="static/codemirror-5.26.0/lib/codemirror.js"></script>
-    <script defer src="static/codemirror-5.26.0/mode/octave/octave.js"></script>
-    <script defer src="static/codemirror-5.26.0/mode/python/python.js"></script>
-    <script defer src="static/codemirror-5.26.0/mode/r/r.js"></script>
-    <script defer src="static/code.js"></script>
-    <script defer src="static/numbasEmbed.js"></script>
+    <script defer src="static/code.js" type="module"></script>
+    <script defer src="static/embed_numbas.js" type="module"></script>
 
-    <script defer src="static/bootstrap-toc.js"></script>
 
+        <template id="runnable-code-template">
+            <link rel="stylesheet" href="static/code.css">
+            <div class="runnable-code-wrapper">
+                <div class="code"></div>
+                <button type="button" class="run-code">Run code</button>
+                <div class="output" aria-live="polite">
+                    <pre class="stdout"></pre>
+                    <pre class="result"></pre>
+                </div>
+            </div>
+        </template>
+
+        <template id="embed-numbas-template">
+            <link rel="stylesheet" href="static/embed_numbas.css">
+            <details id="wrapper" data-completion-status="incomplete">
+                <summary>
+                    <h1 id="title">Test Yourself</h1>
+                    <div id="completion-status">
+                        <span class="complete">Complete</span>
+                        <span class="incomplete">Incomplete</span>
+                    </div>
+                    <label id="score-feedback">
+                        Score:
+                        <progress min="0"></progress>
+                    </label>
+                </summary>
+                <iframe class="embed" title="Numbas"></iframe>
+            </details>
+        </template>
     </head>
-    <body data-spy="scroll" data-target="#chapterTOC" data-offset="50">
+    <body class="" >
         
-<div class="collapse" id="navbarToggleCustomise">
-	<div class="bg-secondary text-white p-3">
-		<form onsubmit="return false;" id="navbarCustomise">
-			<div class="form-row">
-				<label>Theme Customisation</label>
-				<div id="themeSelector" class="form-group col-md-12">
-					<button class="btn btn-dark mr-2" value="dark">Dark</button>
-					<button class="btn btn-pastel mr-2" value="pastel">Pastel</button>
-					<button class="btn btn-light mr-4" value="light">Light</button>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-4">
-					<label style="display: block" for="font-scale">Font size (<span id="font-size-display">100%</span>)</label>
-					<input type="range" class="form-control-range col-9 mr-2" id="font-scale" min="50" max="600" value="100">
-					<button id="font-scale-reset" class="btn btn-sm">Reset</button>
-				</div>
-				<div class="form-group col-md-4">
-					<label style="display: block" for="p-space">Spacing (<span id="p-space-display">100%</span>)</label>
-					<input type="range" class="form-control-range col-9 mr-2" id="p-space" min="0" max="600" value="100">
-					<button id="p-space-reset" class="btn btn-sm">Reset</button>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
 
-<nav aria-label="breadcrumb">
-	<ul class="breadcrumb">
-		<li class="breadcrumb-item">
-			<a href="index.html"></a>
-		</li>
-		
-		<li class="breadcrumb-item active">
-			MMB8052 - Practical 2
-		</li>
-		<li class="ml-auto">
-			<button class="navbar-toggler p0" type="button" data-toggle="collapse" data-target="#navbarToggleCustomise" aria-controls="navbarToggleCustomise" aria-expanded="false" aria-label="Toggle customisations panel">
-				<i class="fa fa-cog" aria-hidden="true" title="Toggle customisations panel"></i> <span class="sr-only">Toggle customisations panel</span>
-			</button>
-		</li>
-	</ul>
-</nav>
+        <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+        
+            <form id="display-options">
+    <div class="buttons">
+        <button type="button" id="reset-display-options">Reset to defaults</button>
 
+        <a href="https://chirun.org.uk/accessibility-statement/material">Accessibility statement</a>
+
+        <button type="button" aria-controls="display-options" aria-expanded="false">
+            Close
+        </button>
+    </div>
+
+    <div class="inputs">
+        <div class="input-group">
+            <label for="display-options-font-scale">
+                Text size
+            </label>
+            <input type="range" min="50" max="600" step="5" value="100" id="display-options-font-scale">
+            <output for="display-options-font-scale">100%</output>
+        </div>
+
+        <div class="input-group">
+            <label for="display-options-spacing-factor">
+                Spacing
+            </label>
+            <input type="range" min="0" max="1200" step="5" value="100" id="display-options-spacing-factor">
+            <output for="display-options-spacing-factor">100%</output>
+        </div>
+
+        <div class="input-group">
+            <label for="display-options-font-family">
+                Text font
+            </label>
+            <select id="display-options-font-family">
+                <option value="sans-serif" selected>Sans-serif</option>
+                <option value="serif">Serif</option>
+                <option value="Atkinson Hyperlegible">Atkinson Hyperlegible</option>
+                <option value="Comic Sans MS">Comic Sans</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="display-options-colour-scheme">
+                Colour scheme
+            </label>
+            <select id="display-options-colour-scheme">
+                <option value="auto" selected>Automatic (default)</option>
+                <option value="light">Black text on white</option>
+                <option value="dark">White text on black</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+
+        <section id="custom-colour-scheme-options" class="inputs">
+            <div class="input-group">
+                <label for="display-options-text-colour">
+                    Text colour
+                </label>
+                <input type="color" value="#000000" id="display-options-text-colour">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-link-colour">
+                    Link colour
+                </label>
+                <input type="color" value="#0000ee" id="display-options-link-colour">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour">
+                    Background colour
+                </label>
+                <input type="color" value="#ffffff" id="display-options-bg-colour">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour-off">
+                    Muted background colour
+                </label>
+                <input type="color" value="#eeeeee" id="display-options-bg-colour-off">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour-accent-1">
+                    Accent colour 1
+                </label>
+                <input type="color" value="#4caf50" id="display-options-bg-colour-accent-1">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour-accent-2">
+                    Accent colour 2
+                </label>
+                <input type="color" value="#f6f6ff" id="display-options-bg-colour-accent-2">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour-accent-3">
+                    Accent colour 3
+                </label>
+                <input type="color" value="#eeffd3" id="display-options-bg-colour-accent-3">
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-bg-colour-accent-4">
+                    Accent colour 4
+                </label>
+                <input type="color" value="#ffeeee" id="display-options-bg-colour-accent-4">
+            </div>
+        </section>
+
+        <section id="filter-colour-scheme-options" class="inputs">
+            <div class="input-group">
+                <label for="display-options-filter-sepia">
+                    Sepia filter
+                </label>
+                <input type="range" min="0" max="100" step="1" value="0" id="display-options-filter-sepia">
+                <output for="display-options-filter-sepia">0%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-filter-hue-rotate">
+                    Rotate hues
+                </label>
+                <input type="range" min="0" max="1" step="0.01" value="0" id="display-options-filter-hue-rotate">
+                <output for="display-options-filter-hue-rotate">0 turns</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-invert-images">
+                    Invert images in dark mode
+                </label>
+                <input type="checkbox" id="display-options-invert-images">
+            </div>
+
+        </section>
+    </div>
+</form>
+        
 
         <header>
+            <button type="button" aria-controls="display-options" aria-expanded="false">
+                Display options
+            </button>
+            
+    
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.html"></a>
+            </li>
+            
+            <li class="breadcrumb-item active">
+                MMB8052 - Practical 1
+            </li>
+        </ul>
+    </nav>
+    
+
             
             
         </header>
-        <main>
+
+        <main id="main-content">
             
-    <div class="container mt-3">
-        <div class="row">
+    <nav id="sidebar">
+        
+            <ol class="table-of-contents">
+                
+                    
+    <li>
+        <a href="#mmb8052_practical_01__introduction_to_the_linux_command_line">MMB8052 Practical 01 - Introduction to the Linux Command Line</a>
+        
+    </li>
+
+    <li>
+        <a href="#introduction_to_the_module">Introduction to the Module</a>
+        
+        <ol>
             
-            <div id="sidebar" class="col-md-3">
-                <nav class="mb-3" id="chapterTOC" data-toggle="toc">
-                    <ul class="nav navbar-nav">
-                        
-                        
-                        
-                        <li><a id="pdf-link" class="nav-link" href="mmb8052__practical_2.pdf" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true" title="Download as PDF"></i>&nbsp;Download as PDF</a></li>
-                        
-                    </ul>
-                </nav>
-            </div>
-            <div id="content" class="col-md-9"> 
             
-            <section class="section1"><h1>MMB8052 Practical 02 - Advanced Commmand Line Linux</h1>
-</section><section class="section1"><h1>Introduction</h1>
-<p>In the first practical we introduced the basics of the Linux command line. This second practical builds on these fundamentals to introduce more advanced tools and processes using the command line, with a particular focus on tools which process and manipulate text-based data.</p>
-<p>A large amount of bioinformatics data is based on standard text formats - we've already seen UniProt database entries which are made up of structured text, and the FASTA sequence format, in which individual sequences are delineated by header lines beginning with "&gt;". Other common formats include the FASTQ format for high-throughput sequencing data, the SAM (Sequence Alignment Map) format for storing genomic alignments and the GFF (General Feature Format) which is used for recording the position of genomic features.</p>
-<p>Linux tools for processing text have been around for the best part of 50 years, and as such are robust and perform well, even with the often very large files common in bioinformatics. This practical will explore a number of these tools and how they can be used to work with the type of files listed above.</p>
-</section><section class="section1"><h1>Tools for Text</h1>
-<section class="section2"><h2>Formats</h2>
-<section class="section3"><h3>FASTA</h3>
-<p>The FASTA file format is a 40-year old standard for representing either nucleotide or amino acid sequences. The first line of a FASTA entry begins with the greater-than symbol (<code>&gt;</code>), and is referred to as the description line. It should contain a unique identifier for the sequence. The lines following the description line contain the sequence data, which can be spread across multiple lines and are expected to be represented in the standard IUPAC single-letter codes. A single file can contain many sequence entries, each beginning with its own description line.</p>
-<div class="highlight"><pre><span></span><code>&gt;sequence_1
-CGATAGCAGATGCGATGGATAGAGATTAGATAGAGGCTCGCGCTGACGCCGCTCGATCGGCTGAGCTACGCTCGAGATCG
-CGATGCGCTATCGCGCTAGCTCG
-&gt;sequence_2
-ATGAGCTGAGCGTAGTCGCGCATCAGCAGACTACAGCAGCAGACTCAGAACAGCAGCAGCAGCAGCACTACGCAGACTAC
-GCATACGCAGACTACGCAGACGACTCAGCAGACGACTACGA
-</code></pre></div>
-</section><section class="section3"><h3>FASTQ</h3>
-<p>The FASTQ format was developed by the Wellcome Trust Sanger Institute to store nucleotide sequence data along with associated quality scores, which provide information about the confidence of sequencing accuracy. FASTQ has become the <em>de facto</em> standard for storing the output of high-throughput sequencing instruments. An entry in a FASTQ file consists of 4 lines:</p>
+    <li>
+        <a href="#module_organisation">Module Organisation</a>
+        
+    </li>
+
+    <li>
+        <a href="#module_assessment">Module Assessment</a>
+        
+    </li>
+
+    <li>
+        <a href="#about_this_handbook">About This Handbook</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#example_exercise">Example Exercise</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#linux">Linux</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#the_kernel">The Kernel</a>
+        
+    </li>
+
+    <li>
+        <a href="#unix">Unix</a>
+        
+    </li>
+
+    <li>
+        <a href="#the_shell">The Shell</a>
+        
+    </li>
+
+    <li>
+        <a href="#logging_in_to_a_linux_server">Logging in to a Linux Server</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#logging_in_from_windows">Logging in from Windows</a>
+        
+    </li>
+
+    <li>
+        <a href="#exercise_11a">Exercise 1.1(a)</a>
+        
+    </li>
+
+    <li>
+        <a href="#logging_in_from_macos">Logging in from MacOS</a>
+        
+    </li>
+
+    <li>
+        <a href="#exercise_11b">Exercise 1.1(b)</a>
+        
+    </li>
+
+    <li>
+        <a href="#running_commands">Running Commands</a>
+        
+    </li>
+
+    <li>
+        <a href="#exercise_12">Exercise 1.2</a>
+        
+    </li>
+
+    <li>
+        <a href="#command_anatomy">Command Anatomy</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#the_linux_file_system">The Linux File System</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#file_system_layout">File System Layout</a>
+        
+    </li>
+
+    <li>
+        <a href="#navigating_the_file_system">Navigating the file system</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#exercise_13">Exercise 1.3</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#absolute_and_relative_paths">Absolute and relative paths</a>
+        
+    </li>
+
+    <li>
+        <a href="#file_manipulation">File manipulation</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#output_streams">Output Streams</a>
+        
+    </li>
+
+    <li>
+        <a href="#exercise_14">Exercise 1.4</a>
+        
+    </li>
+
+    <li>
+        <a href="#copying_and_moving_files">Copying and Moving files</a>
+        
+    </li>
+
+    <li>
+        <a href="#working_with_directories">Working with Directories</a>
+        
+    </li>
+
+    <li>
+        <a href="#deleting_files">Deleting Files</a>
+        
+    </li>
+
+    <li>
+        <a href="#exercise_15">Exercise 1.5</a>
+        
+    </li>
+
+    <li>
+        <a href="#viewing_files">Viewing files</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#getting_help">Getting Help</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#exercise_16">Exercise 1.6</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#downloading_data_at_the_command_line">Downloading Data at the Command Line</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#restful_api">RESTful API</a>
+        
+    </li>
+
+    <li>
+        <a href="#uniprot_api">UniProt API</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#exercise_17">Exercise 1.7</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#searching_uniprot_with_the_api">Searching UniProt with the API</a>
+        
+        <ol>
+            
+            
+    <li>
+        <a href="#exercise_18">Exercise 1.8</a>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+            
+        </ol>
+        
+    </li>
+
+    <li>
+        <a href="#summary">Summary</a>
+        
+    </li>
+
+    <li>
+        <a href="#quick_quiz">Quick Quiz</a>
+        
+    </li>
+
+                
+            </ol>
+        
+
+        <ul class="alternative-formats">
+            
+            <li><a href="mmb8052__practical_1.pdf"download>Download as PDF</a></li>
+            
+        </ul>
+    </nav>
+
+    <article class="item-content">
+        <section>
+<h1 id="mmb8052_practical_01__introduction_to_the_linux_command_line">MMB8052 Practical 01 - Introduction to the Linux Command Line</h1>
+<h1 id="introduction_to_the_module">Introduction to the Module</h1>
+<h2 id="module_organisation">Module Organisation</h2>
+<p>Welcome to <em>MMB8052 - Bioinformatics for Biomedical Scientists</em>. This module is mostly practical in nature - 10 computer lab sessions will introduce you to the fundamental computing tools used throughout much of modern bioinformatics, and will also provide case studies of the "read world" use of these tools. The lectures in the module will be delivered by a range of scientists from across the Faculty of Medical Sciences, and will highlight the <em>application</em> of bioinformatics in modern biomedical research.</p>
+<h2 id="module_assessment">Module Assessment</h2>
+<p>Due to the practical emphasis of the module, the assessment will also focus on these practical aspects. The module is assessed through two exercises - one short answer quiz in which the solutions to the posed problems should be derived computationally (more on this later). The second assessment will be a lab report style write-up of the application of some of the tools you will learn how to use in the practicals. Assessment 1 is worth 25% of the module mark. Assessment 2 makes up the remaining 75%.</p>
+<p>In addition to these assessed, summative exercises, there will also be a range of formative tests throughout the module. These will mostly take the form of multiple choice quizzes, integrated into the practical sessions or provided separately on Canvas. While these components are not assessed, or compulsory to complete, they will aid and reinforce your understanding of the material presented.</p>
+<h2 id="about_this_handbook">About This Handbook</h2>
+<p>The practical sessions will each be accompanied by a handbook like this one. These handbooks will provide you with a lot of background information relevant to the practical at hand, and will provide you with walk-through instructions for what you are supposed to do in each session. Computer code (usually intended to be typed in to the appropriate computational interface - we'll get to what this means later) will be presented in chunks styled like this:</p>
+<div class="highlight"><pre><span></span><span class="c1"># these are some command line instructions:</span>
+$ <span class="nb">pwd</span>
+/home/student
+$ ls -l -h ~
+</pre></div>
+<p>The <code>$</code> sign is used to represent the beginning of each command, but <em><strong>should not be typed</strong></em>.</p>
+<p>Exercises, which will direct you to accomplish some computational task, will be presented like this:</p>
+<h3 class="exercise" id="example_exercise">Example Exercise</h3>
+<p>Estimated time: 0 mins                                         </p>
+<p>The instructions to follow will be in this block of text.</p>
+<ul>
+<li>First instruction</li>
+<li>Second instruction</li>
+<li>etc.</li>
+</ul>
+<h1 id="linux">Linux</h1>
+<p>Linux is an umbrella term which describes a family of open-source, "Unix-like" computer operating systems which are based on the Linux kernel. The first Linux operating systems were released in the mid-90s and today they are used throughout computing, particularly in the infrastructure which runs the World-Wide Web, and in scientific computing and virtually all supercomputers. The Android smartphone operating system is a Linux system. Popular Linux distributions include:</p>
+<ul>
+<li><a href="https://ubuntu.com/">Ubuntu</a></li>
+<li><a href="https://getfedora.org/">Fedora</a></li>
+<li><a href="https://www.debian.org/">Debian</a></li>
+<li><a href="https://mxlinux.org/">MX Linux</a></li>
+</ul>
+<h2 id="the_kernel">The Kernel</h2>
+<p>A kernel is the computer program at the heart of an operating system (OS), and is responsible for the control of everything in the system. The kernel facilitates interactions between hardware and software (via <em>drivers</em>) and optimises the use of system resources such as CPU time and RAM usage. The main kernels in use in modern computing are the Linux kernel, the Windows NT kernel and the MacOS kernel. All of the Linux distributions listed above use the same kernel at their core.</p>
+<h2 id="unix">Unix</h2>
+<p>The Unix operating system is ancient, in computing terms. It was conceived and implemented in 1969 at AT&amp;T's Bell Labs. It is modular by design, with a number of robust tools each designed to perform a limited, well-defined function. A program, known as the Unix <em>shell</em> provides a text-based interface to these tools, and allows the user to combine them in order to perform complex workflows. Thanks to its efficient and robust nature, this computing paradigm persists today in the modern, Unix-like operating systems, Linux and MacOS.</p>
+<blockquote>
+<p>This is the Unix philosophy: Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.</p>
+<p>-- Doug McIlory (Bell Labs)</p>
+</blockquote>
+<h2 id="the_shell">The Shell</h2>
+<p>A Unix shell is a command-line user interface for Unix-like operating systems. It provides a programmable environment for controlling the OS, and running executable programs. It is typical for the user of a Unix-like OS to interact with the shell via a <em>terminal emulator</em> - a program which simulates the features of a hardware video terminal interface. Feature-rich terminal emulators are available for all modern operating systems.</p>
+<p>There are many different shell programs, all of which have different features. The shells you will encounter most often are bash (the "Bourne-Again Shell") which is the default in most major Linux distributions, and zsh (Z Shell) which is the default in MacOS. Zsh is backwards compatible with bash (so any code written for bash will work in zsh, but not necessarily vice versa).</p>
+<h2 id="logging_in_to_a_linux_server">Logging in to a Linux Server</h2>
+<p>Rather than install Linux directly onto your desktops, we will use a terminal emulation program to log into a virtual cloud server which has been configured for these practicals. It should be noted that you'll be using your computer as a dumb terminal (client) that will display the information generated by programs running on the cloud VM (this is an example of a <em>client-server</em> model).</p>
+<p>You should have received an email from Microsoft Azure, inviting you to register for the lab - click the 'Register for the lab' button in the email, and log in to Azure Labs with your University credentials.</p>
+<p>Once logged in, you should see a heading 'My virtual machines', with a single entry underneath. Click the slider in the bottom-left of the VM box to power the machine on. Once it's started up (this will take a couple of minutes), click the icon in the bottom-right of the VM box which looks like a small grey monitor. Pick 'Connect via SSH' from the menu which appears, and set your password when prompted. Once the password has been set (again, this takes a couple of minutes) select 'Connect via SSH' again, copy the text in the popup box which appears - this is your SSH invocation to log in to your VM. For example:</p>
+<div class="highlight"><pre><span></span>ssh -p <span class="m">65432</span> student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
+</pre></div>
+<h3 id="logging_in_from_windows">Logging in from Windows</h3>
+<h3 class="exercise" id="exercise_11a">Exercise 1.1(a)</h3>
+<p>Estimated time: 2 mins</p>
+<ul>
+<li>Go to: <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a></li>
+<li>You'll need <strong>putty.exe</strong> and <strong>psftp.exe</strong></li>
+<li>Run <strong>putty.exe</strong> to open the PuTTY configuration screen</li>
+<li>In the "Host name (or IP address)" box, type: <strong>USERNAME@LAB.ADDRESS</strong>, replacing this with the connection string which is shown when you click - from the example above:</li>
+</ul>
+<div class="highlight"><pre><span></span>student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
+</pre></div>
+<ul>
+<li>In the "Port" box, type the number given in the <code>-p</code> argument of your SSH invocation (this is likely to be a large number, greater than 50000 - from the example above <code>65432</code>)</li>
+</ul>
+<p>PuTTY will then open and prompt you for a password. Enter the password you set when starting your VM for the first time.</p>
+<h3 id="logging_in_from_macos">Logging in from MacOS</h3>
+<h3 class="exercise" id="exercise_11b">Exercise 1.1(b)</h3>
+<p>Estimated time: 2 mins</p>
+<ul>
+<li>Open 'Terminal.app' (located in /Applications/Utilities/Terminal.app).</li>
+<li>Paste in the connection string shown when you click 'Connect via SSH' on the Azure Lab (above). As per the example above:</li>
+</ul>
+<div class="highlight"><pre><span></span>ssh -p <span class="m">65432</span> student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
+</pre></div>
+<ul>
+<li>Enter your password when prompted.</li>
+</ul>
+<h3 id="running_commands">Running Commands</h3>
+<p>Once you have logged in, you should see what's known as a "command prompt" - it is here that you can type commands to be interpreted by the active Unix shell (on our VMs, the default shell is bash). You should see something like this in your terminal:</p>
+<div class="highlight"><pre><span></span>Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1069-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Jun  7 15:37:31 UTC 2022
+
+  System load:  1.18               Processes:           144
+  Usage of /:   46.8% of 28.90GB   Users logged in:     0
+  Memory usage: 7%                 IP address for eth0: 10.210.28.5
+  Swap usage:   0%
+
+Last login: Fri Feb 11 11:47:23 2022 from 128.240.225.23
+student@ML-RefVm-558285:~$
+</pre></div>
+<p>The bulk of this is information about the state and health of the system, produced by the OS on login. The final line contains 3 key elements:</p>
 <ol>
-<li>Begins with an <code>@</code> character, and is followed by a sequence identifier (like the FASTA description line)</li>
-<li>The sequence data (A/C/G/T/N)</li>
-<li>Delimits the sequence data and the quality data - in modern files usually contains only a <code>+</code> character</li>
-<li>The quality data for the bases in line 2 - must contain the same number of characters as line 2</li>
+<li><code>student@ML-RefVm-558285</code> is your username (<code>student</code>) at the name of the computer (<code>ML-RefVm-558285</code>)</li>
+<li><code>~</code> denotes your <em>current working directory</em> - more on this below - this tilde character is a widely used shorthand for the <em>home</em> directory.</li>
+<li>The <code>$</code> symbol is the prompt, and will be used throughout these practicals to indicate the beginning of a bash command (you shouldn't type the <code>$</code>).</li>
 </ol>
-<p>The quality scores are encoded as an ASCII value - that is a single character that can be translated into an integer numerical value, generally in the range 0 - 41. This quality score, or Phred score is related to the probability of the corresponding base call being an error (the higher the Phred score, the lower this probability).</p>
-<div class="highlight"><pre><span></span><code>@NB501177:26:HF3Y2BGX2:1:11101:23339:1070 1:N:0:CGGCTATG+GTCAGTAC
-GTGGCACCATGGTTGTCAGACGTCAGTGCANACANNNCTAGATGTGGGCTACAGCGCATATACTCAGGGCCATGGT
-+
-AAAAAEEEEEEEEEEEEAE6AEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEAAEEEEEEEEEE
-@NB501177:26:HF3Y2BGX2:1:11101:14507:1071 1:N:0:CGGCTATG+GTCAGTAC
-GCCACAGTCAGCCAGCCAAACGTATGTTAGNATTNNNCAGGTGATCACAAAACTCAGGGCCATATATAAGAACA
-+
-AAAAAEEEEEEEEEEEEEEEEEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEEAEAAEEEEE
-</code></pre></div>
-<p>The ASCII quality characters used for Illumina sequencing, from left-to-right in increasing order of quality:</p>
-<div class="highlight"><pre><span></span><code>!"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJ
-</code></pre></div>
-<p>Most modern Illumina sequencers use quality "bins", a small set of discrete values which means that FASTQ files can be compressed more easily. For example, bases sequenced on the NovaSeq 6000 can take one of four possible quality values 2 (<code>#</code>), 12 (<code>-</code>), 23 (<code>8</code>) and 37 (<code>F</code>). The sequences in the example above come from a NextSeq 500, which uses six bins (<code>#</code>, <code>/</code>, <code>6</code>, <code>&lt;</code>, <code>A</code>, <code>E</code>).</p>
-</section><section class="section3"><h3>SAM</h3>
-<p>SAM stands for <em>Sequence Alignment/Map</em> format. It is a text-based table used to record the alignment of sequence reads to a reference sequence. Each individual alignment is recorded in a single line with 11 mandatory fields separated by tab characters.</p>
-<section class="section4"><h4>The header</h4>
-<p>The header is an optional section of the SAM file that can describe things about the experiment as a whole. Each header line begins with the “@” character followed by a two-letter record type code. Each line is then tab-delimited.</p>
-<div class="highlight"><pre><span></span><code>@HD   VN:1.0     SO:unsorted
-@SQ   SN:chr1    LN:197195432
-@PG   ID:bowtie2 PN:bowtie2 VN:2.3.5.1
-</code></pre></div>
-<p>The <code>@HD</code> line is information about the SAM file itself (version, whether or not it is sorted). <code>@SQ</code> is information about the reference sequence (there would be one line per chromosome, if we were aligning to a whole multi-chromosome genome). <code>@PG</code> is about the program that generated the SAM file.</p>
-</section><section class="section4"><h4>Mandatory alignment fields</h4>
+<h3 class="exercise" id="exercise_12">Exercise 1.2</h3>
+<p>Estimated time: 2 mins</p>
+<p>Try typing the following commands:</p>
+<div class="highlight"><pre><span></span>$ ls
+$ touch emptyfile
+$ ls
+</pre></div>
+<ul>
+<li>What do you see after each command?</li>
+<li>Can you work out what the <code>ls</code> and <code>touch</code> commands are doing?</li>
+</ul>
+<h3 id="command_anatomy">Command Anatomy</h3>
+<p>The commands you can issue at this prompt are many and varied, but all share a common anatomy. This anatomy is illustrated in figure 1. They begin with the name of the executable command, then are followed by options (or flags), then finally come the arguments (or parameters). Options and arguments change the behaviour of the command in certain prescribed ways.</p>
 <table>
 <thead>
 <tr>
-<th>Column</th>
-<th>Description</th>
-<th>Notes</th>
+<th align="center"><figure class="figure1" data-title="Figure 1: The common anatomy of a Linux command"><img alt="Figure 1: The common anatomy of a Linux command" src="images/anatomy.png"/></figure></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Query Template Name</td>
-<td>Read name in the FASTQ file being mapped</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Bitwise Flag</td>
-<td>There’s a good description of bitwise flags here:</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><a href="https://davetang.org/muse/2014/03/06/understanding-bam-flags/">https://davetang.org/muse/2014/03/06/understanding-bam-flags/</a>, and a decoder</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>for the values in this column here:</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><a href="http://broadinstitute.github.io/picard/explain-flags.html">http://broadinstitute.github.io/picard/explain-flags.html</a></td>
-</tr>
-<tr>
-<td>3</td>
-<td>Reference Sequence Name</td>
-<td>Sequence in the reference genome mapped to</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>(usually a chromosome)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1-based left most mapping</td>
-<td>Beginning position of the mapping</td>
-</tr>
-<tr>
-<td></td>
-<td>position</td>
-<td></td>
-</tr>
-<tr>
-<td>5</td>
-<td>Mapping Quality</td>
-<td>−10log<sub>10</sub> P(mapping is wrong). A value of 255</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>indicates that the mapping quality is not available</td>
-</tr>
-<tr>
-<td>6</td>
-<td>CIGAR string</td>
-<td>CIGAR = Concise Idiosyncratic Gapped Alignment Report</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><a href="https://genome.sph.umich.edu/wiki/SAM#What_is_a_CIGAR.3F">More information</a></td>
-</tr>
-<tr>
-<td>7</td>
-<td>Reference name of the</td>
-<td>Relevant to paired-end data</td>
-</tr>
-<tr>
-<td></td>
-<td>mate/next segment</td>
-<td></td>
-</tr>
-<tr>
-<td>8</td>
-<td>Position of the mate/next</td>
-<td>Relevant to paired-end data</td>
-</tr>
-<tr>
-<td></td>
-<td>segment</td>
-<td></td>
-</tr>
-<tr>
-<td>9</td>
-<td>Observed template length</td>
-<td>Relevant to paired-end data</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Segment Sequence</td>
-<td>The sequence of the read (not the reference)</td>
-</tr>
-<tr>
-<td>11</td>
-<td>ASCII of Phred-scaled base</td>
-<td>Same as the quality in Sanger-encoded FASTQ</td>
-</tr>
-<tr>
-<td></td>
-<td>base Quality+33</td>
-<td></td>
+<td align="center"><b>Figure 1: The common anatomy of a Linux command</b></td>
 </tr>
 </tbody>
 </table>
-</section><section class="section4"><h4>Additional alignment fields</h4>
-<p>All additional fields in an alignment line consist of 3 values, separated by colons, in the form TAG:TYPE:VALUE. There are a number of predefined tag types that can provide additional information about the alignment.</p>
-<p>SAM alignment of the reads shown in the FASTQ example, above (generated by the alignment software <a href="http://daehwankimlab.github.io/hisat2/">HISAT2</a>):</p>
-<div class="highlight"><pre><span></span><code>NB501177:26:HF3Y2BGX2:1:11101:23339:1070        0       11      6437060 60      76M     *       0       0       GTGGCACCATGGTTGTCAGACGTCAGTGCANACANNNCTAGATGTGGGCTACAGCGCATATACTCAGGGCCATGGT    AAAAAEEEEEEEEEEEEAE6AEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEAAEEEEEEEEEE    AS:i:-4 XN:i:0  XM:i:4  XO:i:0  XG:i:0  NM:i:4  MD:Z:30G3A0G0A39        YT:Z:UU NH:i:1
-NB501177:26:HF3Y2BGX2:1:11101:14507:1071        16      1       153641443       60      73M1S   *       0       0      TGTTCTTATATATGGCCCTGAGTTTTGTGATCACCTGNNNAATNCTAACATACGTTTGGCTGGCTGACTGTGGC       EEEEEAAEAEEEEEEEEEEEEEEEEEEEEEEEEEEEE###EEE#EEEEEEEEEEEEEEEEEEEEEEEEEAAAAA      AS:i:-5 XN:i:0  XM:i:4  XO:i:0  XG:i:0  NM:i:4  MD:Z:37A0A0T3T29        YT:Z:UUNH:i:1
-</code></pre></div>
-</section></section><section class="section3"><h3>GFF/GTF</h3>
-<p>The General Feature Format (GFF) is a standard table-based format for encoding genomic features. Each feature is encoded on one line, and each line consists of 9 columns of data. There have been 3 major versions of GFF, and the GTF (Gene Transfer Format) is very similar to GFF version 2. GFF3 is the most recent, and the preferred version of this format.</p>
+<p>The whitespace in the command can be just as important as the rest of the text - it is itself interpreted by the shell in specific ways, and the presence (or absence) of a space at a particular place in the command can completely change how it is interpreted. It's also worth mentioning at this point that bash is <strong>case sensitive</strong>.</p>
+<p>We'll look in more detail at what the commands in exercise 2 (and many others) are for later on in the practical. For now, we have another important feature of Linux to introduce.</p>
+<h1 id="the_linux_file_system">The Linux File System</h1>
+<p>Modern operating systems appeal to a broad user base by layering abstractions on top of hidden complexity. The graphical interface to the file system ("Explorer" in Windows and "Finder" in MacOS) is one such abstraction. By making it convenient to search and browse for files, and providing easy access to commonly-used areas of the file system (Documents, Downloads etc) the user doesn't need to put much thought in to where files are actually stored.</p>
+<p>Command line Linux does not offer these abstractions. Consequently, the onus is on the user to understand the topology of the file system, since otherwise things can get in a real mess - particularly because tracking down files if you don't know where they have gone can be difficult.</p>
+<h2 id="file_system_layout">File System Layout</h2>
+<p>For convenience, the Linux file system is usually thought of as having a tree-like structure (or a <em>hierarchy</em>). Everything in this hierarchy is a file, although some have special properties - for example a <em>directory</em> is a file which acts as a container for other files (some of which may themselves be directories). This tree has a <em>root</em> - indicated by a forward slash (<code>/</code>). This is a directory which contains all of the other directories and files in the file system.</p>
+<p>A <em>path</em> describes a file system location as a string of characters, with each path component separated by a delimiting character. In Linux, the delimiting character is the forward slash (<code>/</code>). In the example in figure 2, the highlighted path is <code>/home/user1/Project1/results/mapping.bam</code>. This path uniquely identifies the location of the <code>mapping.bam</code> file in the file system. We can have other files named <code>mapping.bam</code>, but they will have their own path.</p>
 <table>
 <thead>
 <tr>
-<th>Column</th>
-<th>Description</th>
-<th>Notes</th>
+<th align="center"><figure class="figure2" data-title="Figure 2: A typical Linux file system hierarchy"><img alt="Figure 2: A typical Linux file system hierarchy" src="images/filesystem.png"/></figure></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>seqid</td>
-<td>Identifier of the genomic sequence the current feature is found on.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>source</td>
-<td>Software or database feature comes from.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>type</td>
-<td>The type of feature, taken from the "lite" sequence ontology (<a href="http://www.sequenceontology.org/resources/intro.html">SOFA</a>).</td>
-</tr>
-<tr>
-<td>4</td>
-<td>start</td>
-<td>1-indexed start location of the feature.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>end</td>
-<td>1-indexed end location of the feature.</td>
-</tr>
-<tr>
-<td>6</td>
-<td>score</td>
-<td>The score is usually derived by gene prediction software, and is likely an E-value or P-value. Can be left blank (".").</td>
-</tr>
-<tr>
-<td>7</td>
-<td>strand</td>
-<td>+ for positive strand, - for negative strand (relative to genomic sequence in 1).</td>
-</tr>
-<tr>
-<td>8</td>
-<td>phase</td>
-<td>For features of type "CDS", the phase indicates where the feature begins with reference to the reading frame. The phase is one of the integers 0, 1, or 2, indicating the number of bases that should be removed from the beginning of this feature to reach the first base of the next codon.</td>
-</tr>
-<tr>
-<td>9</td>
-<td>attributes</td>
-<td>A list of feature attributes in the format tag=value. Multiple tag=value pairs are separated by semicolons.</td>
+<td align="center"><b>Figure 2: A typical Linux file system hierarchy</b></td>
 </tr>
 </tbody>
 </table>
-<p>The flexible format of the 9th column makes this format problematic, and a GFF file needs to be examined carefully to understand what fields are found in column 9. A number of tags with pre-defined meaning are available see the <a href="http://gmod.org/wiki/GFF3">format specification</a> for more information. The GFF format is often used for defining gene structures.</p>
-<div class="highlight"><pre><span></span><code>##gff-version 3
-ctg123 . mRNA            1300  9000  .  +  .  ID=mrna0001;Name=sonichedgehog
-ctg123 . exon            1300  1500  .  +  .  ID=exon00001;Parent=mrna0001
-ctg123 . exon            1050  1500  .  +  .  ID=exon00002;Parent=mrna0001
-ctg123 . exon            3000  3902  .  +  .  ID=exon00003;Parent=mrna0001
-ctg123 . exon            5000  5500  .  +  .  ID=exon00004;Parent=mrna0001
-ctg123 . exon            7000  9000  .  +  .  ID=exon00005;Parent=mrna0001
-</code></pre></div>
-</section></section><section class="section2"><h2>wc</h2>
-<p>The <code>wc</code> command (word count) is a utility that given a file will list the number of lines, words and bytes in that file. The <code>-l</code> option restricts the output to just the number of lines in the file - this is particularly useful for file in which every line is a separate record, such as the case with tabular data.</p>
-<p>Similarly, the <code>-w</code> option returns only the number of words in a file, and the <code>-c</code> option returns only the number of bytes (characters).</p>
-<section class="exercise section3"><h3>Exercise 2.1</h3>
-<p>Estimated time: 1 min</p>
-<p>Use <code>wc</code> to find the number of words, lines and bytes in the file of protein sequences you downloaded in Exercise 1.8.</p>
-</section></section><section class="section2"><h2>grep</h2>
-<p>Searching for specific text in large files can be a laborious process - <code>grep</code> is a useful and efficient utility which simplifies this task. <code>grep phrase file</code> is a command which will search for lines which contain <code>phrase</code> in a text file called <code>file</code>.</p>
-<p>If our search phrase contains special characters which are usually interpreted by the bash shell (e.g. <code>&gt;</code>, <code>&lt;</code>, <code>|</code> or <code>*</code>), then it is necessary to enclose the phrase in single quotes - <code>grep 'phrase' file</code> - to prevent bash from interpreting these characters. For example, we would count the number of sequence entries in a FASTA file by counting the lines which contain the <code>&gt;</code> character (which is used to start sequence header lines according to the FASTA specification). Since <code>&gt;</code> is interpreted by bash as the redirection of <code>STDOUT</code>, the following command would actually overwrite the <em>input</em> file, by redirecting the (non-existant) output of the <code>grep</code> command into the file:</p>
-<div class="highlight"><pre><span></span><code>$ grep &gt; human.fa
-</code></pre></div>
-<p>To prevent this, we should ensure the search phrase is enclosed in single quotes:</p>
-<div class="highlight"><pre><span></span><code>$ grep <span class="s1">'&gt;'</span> human.fa
-</code></pre></div>
-<p>This command will return all of the lines which contain a <code>&gt;</code> character. We could then, for example, use <code>wc</code> to count them:</p>
-<div class="highlight"><pre><span></span><code>$ grep <span class="s1">'&gt;'</span> human.fa <span class="p">|</span> wc -l
-</code></pre></div>
-<p>This command makes use of the "pipe" character (<code>|</code>) we first encountered in practical 1 to use the output from <code>grep</code> as the input for <code>wc</code>.</p>
-<p>Some useful options for <code>grep</code> include:</p>
+<h2 id="navigating_the_file_system">Navigating the file system</h2>
+<p>When you log in to a Linux system (as in exercise 1, above), your shell places you in a particular directory, from which the commands you issue will be run. By default this location is your individual <em>home</em> directory - <code>/home/username</code> (where <code>username</code> is replaced by your username on the system you're using). Knowing this location (also known as your <em>current working directory</em>) is important because the commands you issue will run relative to this location. To explain further, consider the following:</p>
+<div class="highlight"><pre><span></span><span class="c1"># list the contents of the current working directory</span>
+$ ls
+<span class="c1"># list the contents of your home directory</span>
+$ ls /home/username
+</pre></div>
+<p>At login, these two commands are effectively equivalent, as your current working directory <em>is</em> your home directory. As soon as you change your current working directory, which you can do by using the command <code>cd</code>, the results of these two commands will diverge.</p>
+<p>On the VM you are using, your current working directory is shown before the prompt (when you login you will see a tilde (<code>~</code>) before the <code>$</code> - this is a shorthand for home). If you want to find it explicitly, the command <code>pwd</code> prints your current working directory.</p>
+<h3 class="exercise" id="exercise_13">Exercise 1.3</h3>
+<p>Estimated time: 5 mins</p>
+<p>Run the commands listed below:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+$ <span class="nb">cd</span> ..
+$ <span class="nb">pwd</span>
+$ <span class="nb">cd</span> /
+$ <span class="nb">pwd</span>
+$ ls
+$ <span class="nb">cd</span>
+$ <span class="nb">pwd</span>
+</pre></div>
+<p>Some things to consider:</p>
 <ul>
-<li><code>-c</code> to count the number of lines containing the search phrase (this would give the same result as the piped command, above)</li>
-<li><code>-i</code> to make the search case-insensitive</li>
-<li><code>-o</code> to select only matching strings (rather than the whole line)</li>
-<li><code>-w</code> to select only lines containing matches that form whole words</li>
-<li><code>-v</code> to select non-matching lines</li>
-<li><code>--color</code> to highlight matches in the selected line (on by default in most Linux distributions)</li>
+<li>Does the output of <code>pwd</code> match the text in front of the prompt?</li>
+<li>Can you work out what <code>cd ..</code> does?</li>
+<li>How does the output of <code>ls</code> compare to the directories shown in figure 2?</li>
+<li>What does the third <code>cd</code> command do?</li>
 </ul>
-<p>Remember that <code>man grep</code> will give a full list of the available options and their descriptions.</p>
-<p>We can also use the special characters <code>^</code> and <code>$</code> to match phrases at the start and end of a line, for example:</p>
-<div class="highlight"><pre><span></span><code>$ grep <span class="s1">'^&gt;'</span> human.fa
-</code></pre></div>
-<p>Will ensure that we only match <code>&gt;</code> characters found at the <em>beginning</em> of a line (this character is a <em>qualifier</em> for the search phrase - it is not included as part of the phrase to be matched).</p>
-<section class="exercise section3"><h3>Exercise 2.2</h3>
-<p>Estimated time: 3-4 min</p>
+<h2 id="absolute_and_relative_paths">Absolute and relative paths</h2>
+<p>File system locations in Linux can be described in two ways:</p>
+<ol>
+<li>As a full path all the way to the root of the file system - this is known as an <strong>absolute file path</strong></li>
+<li>In relation to the current working directory - this is known as a <strong>relative file path</strong></li>
+</ol>
+<p>Absolute (or fully qualified) file paths always begin with a <code>/</code> forward slash. Relative file paths do not.</p>
+<p>Consider the file hierarchy shown in figure 2 again. For <code>user1</code> at login (so therefore with <code>/home/user1</code> as the current working directory), the following are true:</p>
 <ul>
-<li>If you don't still have it saved from practical 1, use <code>wget</code> to download the Retinoblastoma UniProt entry (<a href="https://rest.uniprot.org/uniprotkb/P06400.txt">https://rest.uniprot.org/uniprotkb/P06400.txt</a>)</li>
-<li>The lines of a UniProt file begin with 2 characters which denote the <em>type</em> of line (documented in the user manual: <a href="https://web.expasy.org/docs/userman.html">https://web.expasy.org/docs/userman.html</a>). Use <code>grep</code>, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the <code>RX</code> lines)</li>
-<li>Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (<code>|</code>) here)</li>
+<li>The <em>relative</em> path to the highlighted <code>mapping.bam</code> file is <code>Project1/results/mapping.bam</code>. Note the lack of a forward slash at the beginning of the path.</li>
+<li>The <em>absolute</em> path to this file is <code>/home/user1/Project1/results/mapping.bam</code>. This time there is a forward slash at the beginning - showing that the path takes us back to the root.</li>
+<li>The absolute path of the <code>ls</code> executable is <code>/bin/ls</code>. Try typing this fully qualified path at the command line.</li>
+<li>The relative path to this file is more complicated, since we need to navigate "up" the tree before going back down: <code>../../bin/ls</code>. The double dot notation means to look in the parent directory, so <code>../..</code> is the parent of the parent (in this case, the root directory - the parent directory of <code>/home/user1</code> is <code>/home</code>, and the parent of <code>/home</code> is <code>/</code>).</li>
 </ul>
-<p>Consider the following:</p>
-<ul>
-<li>Does your first search find anything other than publication identifier lines?<ul>
-<li>How could you make the search more specific to prevent this, if it is a problem?</li>
-</ul>
-</li>
-<li>How many publications with a DOI are associated with the Rb protein?</li>
-<li>How about those with a PubMed ID?</li>
-</ul>
-</section></section><section class="section2"><h2>Regular Expressions</h2>
-<p>Searching for exact text matches is rather limited in scope - the true power of tools like <code>grep</code> becomes apparent when we can define search <em>patterns</em> which can match variable text results. Regular expressions allow us to define these types of pattern.</p>
-<p><code>grep</code> actually provides the user with a number of ways of defining search patterns, the most powerful of these are Perl regular expressions (Perl is a programming language which is extremely good at text processing). These regular expressions can be "switched on" in <code>grep</code> by using the <code>-P</code> option.</p>
-<p>A Perl regular expression is defined as a string of characters where each entity is either a regular character, which takes its literal meaning, or a <em>metacharacter</em>, which has a special meaning. Some metacharacter examples:</p>
-<ul>
-<li><code>.</code> - match <em>any</em> character</li>
-<li><code>\w</code> - match any "word" character (alphanumerics and underscores)</li>
-<li><code>\s</code> - match any "whitespace" character</li>
-<li><code>\d</code> - match digit character (i.e. the numbers 0-9)</li>
-<li><code>\D</code> - match non-digit character (i.e. anything <em>other than</em> the numbers 0-9)</li>
-<li><code>\t</code> - match the tab character</li>
-<li><code>\n</code> - match the newline character (i.e. what proceeds this character must be at the end of the line)</li>
-<li><code>*</code> - match the preceding character (or metacharacter) zero or more times</li>
-<li><code>+</code> - match the preceding character (or metacharacter) one or more times</li>
-<li><code>{n}</code> - match the preceeding character (or metacharacter) exactly <code>n</code> times (where <code>n</code> is replaced by a positive whole number)</li>
-<li><code>{n,}</code> - match the preceeding character at least <code>n</code> times</li>
-<li><code>{m,n}</code> - match the preceeding character (or metacharacter) between <code>m</code> and <code>n</code> times (inclusive)</li>
-</ul>
-<p>If we want to match the actual characters (<code>.</code>, <code>+</code>, <code>*</code> etc) rather than imply their programmatic meaning as metacharacters, we will need to "escape" the character with a backslash (<code>\</code>). So if our pattern contains <code>+</code>, we need to express this so: <code>\+</code>.</p>
-<p>By way of example, we will search the UniProt entry of another protein (ATM, Q13315) for the Ensembl Gene ID of the protein's parent gene. Human Ensembl Gene IDs start with ENSG, so we can use that to make a regular search of the UniProt entry:</p>
-<div class="highlight"><pre><span></span><code>$ wget <span class="s1">'https://rest.uniprot.org/uniprotkb/Q13315.txt'</span>
-$ grep <span class="s1">'ENSG'</span> Q13315.txt
-DR   Ensembl<span class="p">;</span> ENST00000278616.9<span class="p">;</span> ENSP00000278616.4<span class="p">;</span> ENSG00000149311.20.
-DR   Ensembl<span class="p">;</span> ENST00000452508.6<span class="p">;</span> ENSP00000388058.2<span class="p">;</span> ENSG00000149311.20.
-DR   Ensembl<span class="p">;</span> ENST00000675843.1<span class="p">;</span> ENSP00000501606.1<span class="p">;</span> ENSG00000149311.20.
-DR   HPA<span class="p">;</span> ENSG00000149311<span class="p">;</span> Low tissue specificity.
-DR   OpenTargets<span class="p">;</span> ENSG00000149311<span class="p">;</span> -.
-DR   VEuPathDB<span class="p">;</span> HostDB:ENSG00000149311<span class="p">;</span> -.
-DR   GeneTree<span class="p">;</span> ENSGT00670000098061<span class="p">;</span> -.
-DR   Bgee<span class="p">;</span> ENSG00000149311<span class="p">;</span> Expressed <span class="k">in</span> corpus callosum and <span class="m">239</span> other tissues.
-     RFLCKAVENY INCLLSGEEH DMWVFRLCSL WLENSGVSEV NGMMKRDGMK IPTYKFLPLM
-</code></pre></div>
-<p>This search retrieves the expected database reference (DR) lines for Ensembl (among a few others), but also returns a line of the protein sequence, which contains the amino acid sequence Glu-Asn-Ser-Gly (ENSG). In this simple example we could figure out the "right" result from this simple list, but in a more complicated example, this may not be the case. To narrow down the results of our search to those line which contain genuine Ensembl Gene IDs, we will define a pattern which generally describes these identifiers. Human Ensembl Gene IDs all start with ENSG, which is then followed by 11 numbers, so a regular expression which will match <em>any</em> human Ensembl Gene ID is: <code>'ENSG\d{11}'</code> - that is the exact letters <code>ENSG</code> followed by a sequence of exactly 11 digits (<code>\d</code>):</p>
-<div class="highlight"><pre><span></span><code>$ grep -P <span class="s1">'ENSG\d{11}'</span> Q13315.txt
-DR   Ensembl<span class="p">;</span> ENST00000278616.9<span class="p">;</span> ENSP00000278616.4<span class="p">;</span> ENSG00000149311.20.
-DR   Ensembl<span class="p">;</span> ENST00000452508.6<span class="p">;</span> ENSP00000388058.2<span class="p">;</span> ENSG00000149311.20.
-DR   Ensembl<span class="p">;</span> ENST00000675843.1<span class="p">;</span> ENSP00000501606.1<span class="p">;</span> ENSG00000149311.20.
-DR   HPA<span class="p">;</span> ENSG00000149311<span class="p">;</span> Low tissue specificity.
-DR   OpenTargets<span class="p">;</span> ENSG00000149311<span class="p">;</span> -.
-DR   VEuPathDB<span class="p">;</span> HostDB:ENSG00000149311<span class="p">;</span> -.
-DR   Bgee<span class="p">;</span> ENSG00000149311<span class="p">;</span> Expressed <span class="k">in</span> corpus callosum and <span class="m">239</span> other tissues.
-</code></pre></div>
-<p>This more refined search removes the line of protein sequence information from the results, as well as the GeneTree database reference (which uses an identifier which looks a bit like the Ensembl Gene ID, but doesn't match it perfectly).</p>
-<p>Now, if we want <em>just</em> the identifier, without any extraneous text, we can use the <code>grep</code> option <code>-o</code> which makes <code>grep</code> return only the text that matches the pattern:</p>
-<div class="highlight"><pre><span></span><code>$ grep -P -o <span class="s1">'ENSG\d{11}'</span> Q13315.txt
-ENSG00000149311
-ENSG00000149311
-ENSG00000149311
-ENSG00000149311
-ENSG00000149311
-ENSG00000149311
-ENSG00000149311
-</code></pre></div>
-<p>The result here repeats the Ensembl Gene ID several times, because it is found on several lines. If we just want to get it once, we can pipe these results into the <code>sort</code> command, which has an option (<code>-u</code>) to give only the unique entries in a list (the tool <code>uniq</code> does something similar, but requires the input to be sorted anyway, so we may as well just use a single tool):</p>
-<div class="highlight"><pre><span></span><code>$ grep -Po <span class="s1">'ENSG\d{11}'</span> Q13315.txt <span class="p">|</span> sort -u
-ENSG00000149311
-</code></pre></div>
-<section class="exercise section3"><h3>Exercise 2.3</h3>
-<p>Estimated time: 10 min</p>
-<ul>
-<li>Repeat the above procedure to retrieve the Ensembl Gene ID for the Rb protein</li>
-<li>Can you modify this procedure to retrieve the PubMed IDs associated with the RX lines we retrieved in exercise 2.2?</li>
-<li>(More difficult) How about the DOIs? What are the common features of DOIs which can be used to build a regular expression?</li>
-</ul>
-</section></section><section class="section2"><h2>Other Text Processing Tools</h2>
-<p>As we've seen, much can be accomplished with <code>grep</code>, and the ability to not only search text but to effectively edit it and remove only the required sections make it a powerful tool, but Linux provides us with a well stocked armoury of such tools, allowing us to do so much more. We don't have space or scope to cover everything here, but included below are some selected highlights.</p>
-<section class="section3"><h3>sort</h3>
-<p>The <code>sort</code> command takes a file and sorts its lines according to some natural order. By default this ordering is alphanumeric - it is possible to change this using options. With delimited text (e.g. tab- or comma-separated values) it is possible to choose the <em>field</em> you which to sort on (i.e. which column of the table). The field separator is defined using the <code>-t</code> option, and the column number to sort on is defined with the <code>-k</code> option.</p>
-</section><section class="section3"><h3>uniq</h3>
-<p>The <code>uniq</code> command prints a file with repeated lines omitted. As mentioned above, in order for <code>uniq</code> to find repeated lines, the file must be sorted such that these lines are next to one another. The <code>-d</code> option will print <em>only</em> the repeated lines (i.e. the duplicates), and the <code>-n</code> option will include a count for each line (i.e. how many times it was found in the file).</p>
-</section><section class="section3"><h3>cut</h3>
-<p><code>cut</code> is used to select sections from each line of a file. This selection can be specified in terms of bytes, characters or fields, where fields can be thought of as the columns of a table. This makes <code>cut</code> particularly useful for selecting columns from a table.</p>
-<p>The <code>-f</code> option is used to select particular fields (a comma-separated list can be used to retrieve multiple columns). By default, <code>cut</code> will expect fields to be separated by the tab character. This can be changed using the <code>-d</code> option (for delimiter).</p>
-</section><section class="exercise section3"><h3>Exercise 2.4</h3>
-<p>Estimated time: 10 min</p>
-<ul>
-<li>Download the example data table: <a href="https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt">https://github.com/sjcockell/mmb8852/raw/main/practicals/data/example.txt</a></li>
-<li><code>sort</code> the file by the corrected p-value (the column name is <code>adj.P.Val</code>), and redirect the output to a file<ul>
-<li>Are the results as you would expect?</li>
-<li>Where do the column headings end up?</li>
-<li>Can you figure out how to <code>sort</code> the column more correctly (read the <code>man</code> page - look for the "general numeric sort", which deals with scientific notation)</li>
-</ul>
-</li>
-<li>Use a combination of <code>tail</code>, <code>sort</code>, <code>cut</code> and <code>head</code> to remove the column headers, find and return the names of the 10 genes with the largest positive log fold-change (<code>logFC</code>)</li>
-</ul>
-</section></section></section><section class="section1"><h1>Scripting</h1>
-<p>In addition to interpreting commands directly at the command line, <code>bash</code> can also be used to execute a list of commands saved in a text file known as a <em>script</em>. A shell script is a file containing a list of commands which are executed one at a time, and is conventionally given the file extension <code>.sh</code>.</p>
-<p>Scripting is useful for a number of reasons. For example it allows us to record and reuse our process because the commands we use are stored in a file. Furthermore, by introducing programming concepts such as variables, conditionals and iteration, we can automate our process, making us more efficient with our computational work.</p>
-<p>We will use the <code>nano</code> text editor we first encountered in Practical 1 to make and edit our shell scripts.  </p>
-<section class="section2"><h2>Scripting Concepts</h2>
-<section class="section3"><h3>Variables</h3>
-<p>A <em>variable</em> is essentially a label referencing a location in memory holding an item of data. Once <em>declared</em>, variables can be used in operations, or passed to commands. The use of variables greatly increases the utility of scripts, and will often make them more readable and easier to edit.</p>
-<p>We can create a variable in our script (or even at the command line) by giving it a name and assigning a value to it with the <code>=</code> operator:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">MYVAR</span><span class="o">=</span><span class="s2">"Hello, world!"</span>
-</code></pre></div>
-<p>The name of this variable is <code>MYVAR</code> and we have given it the value <code>"Hello, world!"</code>. It is important to note here that <code>bash</code> is quite picky about the formatting of this assignment - there can't be any spaces around the <code>=</code> (or <code>bash</code> will think you're trying to execute a command called <code>MYVAR</code>). Note that we've given our variable an ALL CAPS name - this isn't strictly necessary, but is the convention. One further point to make is that our variable name cannot contain characters other than alphanumerics and the underscore (<code>_</code>), or begin with a number. So <code>MYVAR</code>, <code>MY_VAR</code> and <code>MYVAR2</code> are all allowed variable names, but <code>MY VAR</code>, <code>MY-VAR</code> and <code>2MYVAR</code> are not.</p>
-<p>Once we have created a variable, we can use it in subsequent lines of our script by referring to it. We do this with the <code>${}</code> operator:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="si">${</span><span class="nv">MYVAR</span><span class="si">}</span>
-</code></pre></div>
-<p>The curly braces here (<code>{}</code>) are not <em>absolutely</em> required, but can save introducing unexpected bugs in more complicated scripts. If we created a script with these two lines and ran it, we would see our script print "Hello, world!" to <code>STDOUT</code>.</p>
-</section><section class="exercise section3"><h3>Exercise 2.5</h3>
-<p>Estimated time: 3 min</p>
-<ul>
-<li>Create the 2 line script described above using <code>nano</code>. Save it as <code>my_first_script.sh</code>.</li>
-<li>Run the script as follows:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ bash my_first_script.sh
-</code></pre></div>
-<ul>
-<li>Do you get the expected output, as described above?</li>
-<li>If not, can you fix your script?</li>
-</ul>
-</section><section class="section3"><h3>Environment</h3>
-<p><code>bash</code> has a number of variables preset by default, this set of variables collectively is known as our <em>environment</em>. Some examples of standard <code>bash</code> environment variables are given in the table below.</p>
+<p>Absolute file paths are always unambiguous addresses of a single file on the file system. Relative file paths have some inherent ambiguity, as the file they point to can differ depending on your current working directory. For example, <code>mapping.bam</code> may be a common output of running a command, so therefore you may have a <code>mapping.bam</code> file in lots of different projects, where the distinguishing feature is not the name of the file, but the name of a parent directory that defines that project. Running a command which points to <code>results/mapping.bam</code> (a relative path) will have a different effect depending on whether you run it from <code>~/Project1</code> or <code>~/Project2</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Environment Variable</th>
-<th>Description</th>
+<th><strong>Command</strong></th>
+<th><strong>Summary</strong></th>
+<th><strong>Behaviour with no arguments</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>HOME</td>
-<td>Set to your home directory (~) at login</td>
+<td><code>ls</code></td>
+<td>List directory contents</td>
+<td>List the contents of the current working directory</td>
 </tr>
 <tr>
-<td>SHELL</td>
-<td>Set to the path of your currently active shell</td>
+<td><code>cd</code></td>
+<td>Change working directory</td>
+<td>Change to the home directory</td>
 </tr>
 <tr>
-<td>USER</td>
-<td>Set to your Linux user name</td>
-</tr>
-<tr>
-<td>PWD</td>
-<td>Changes dynamically to be your present working directory</td>
+<td><code>pwd</code></td>
+<td>Print working directory</td>
+<td>No common arguments</td>
 </tr>
 </tbody>
 </table>
-<p>To find the current value of any of these variables, you can use <code>echo</code> in the same way we did above, for example:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">SHELL</span><span class="si">}</span>
-/bin/bash
-</code></pre></div>
-<p>When we create a new variable, either at the command line or in our script, that variable enters this environment. In a script, the variable only lasts as long as the script is running, and then it gets "forgotten" by <code>bash</code> (this is known as the variable's <em>scope</em>). A variable created at the command line lasts until we exit our current command line session. While a variable is in your environment, there is no limit to the number of times you can reference it. It is also possible to change the value of an existing variable (note: be careful with variable <em>reuse</em>).</p>
-</section><section class="section3"><h3>Special Variables</h3>
-<p>In a running script, we have access to dynamic run-time variables. These variables allow us to pass information into our script, for example consider the following script:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nv">MY_FIRST_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span>
-<span class="nv">MY_SECOND_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">2</span><span class="si">}</span>
-<span class="nb">echo</span> <span class="s2">"The values you provided at the command line were </span><span class="si">${</span><span class="nv">MY_FIRST_ARG</span><span class="si">}</span><span class="s2"> and </span><span class="si">${</span><span class="nv">MY_SECOND_ARG</span><span class="si">}</span><span class="s2">."</span>
-</code></pre></div>
-This script can be run as follows:</p>
-<div class="highlight"><pre><span></span><code>$ bash my_second_script.sh hello world
-The values you provided at the <span class="nb">command</span> line were hello and world.
+<p>Table 1: Commands for navigating the Linux file system.</p>
+<h2 id="file_manipulation">File manipulation</h2>
+<p>Now we understand something of the layout of the file system, and how to navigate it we can begin to learn how to manipulate files. For this we will introduce 6 new commands:</p>
+<ul>
+<li><code>echo</code> - "repeats" what follows the command in the terminal.</li>
+<li><code>nano</code> - a simple command-line text editor.</li>
+<li><code>cp</code> - copies a file.</li>
+<li><code>mv</code> - moves a file.</li>
+<li><code>mkdir</code> - makes (mk) a new directory (dir).</li>
+<li><code>rm</code> - removes a file.</li>
+</ul>
+<p>Before we start to look at these commands, we have to learn something about output streams and redirection.</p>
+<h3 id="output_streams">Output Streams</h3>
+<p>Many command line programs produce output in the terminal. We've already seen a couple of examples of this - <code>ls</code> prints its list of files in the terminal, for instance. There are actually two streams of output which a program can use to produce this effect - these are known as <code>STDOUT</code> (standard output) and <code>STDERR</code> (standard error). Conventionally, <code>STDOUT</code> is used for the results of the program, and <code>STDERR</code> is reserved for error messages.</p>
+<p>We can take advantage of a feature of bash known as <em>output redirection</em> to manipulate the destination of this output - making it possible to store it in a file instead of printing it to the screen. It is even possible to use the output of one command as the <em>input</em> for a subsequent command.</p>
+<p>Useful redirection commands:</p>
+<div class="highlight"><pre><span></span><span class="c1"># redirect the output of **command** to **file** - if file already exists, it will be over-written.</span>
+$ <span class="nb">command</span> &gt; file
+<span class="c1"># append the output of **command** to **file** - if file already exists, the output will be added to the end.</span>
+$ <span class="nb">command</span> &gt;&gt; file
+<span class="c1"># the input of **command** will be read from **file**</span>
+$ <span class="nb">command</span> &lt; file
+<span class="c1"># the output of **command1** will be used as the input for **command2**</span>
+$ command1 <span class="p">|</span> command2
+</pre></div>
+<p>All of the redirection commands above work with <code>STDOUT</code>. <code>STDERR</code> will still end up being printed in the terminal. It is also possible to redirect <code>STDERR</code>, though not necessary for anything we're attempting to accomplish on this course.</p>
+<p>We can make use of output redirection to create a file, since the <code>&gt;</code> and <code>&gt;&gt;</code> operators will create a file if it does not already exist.</p>
+<h3 class="exercise" id="exercise_14">Exercise 1.4</h3>
+<p>Estimated time: 5 - 10 mins</p>
+<p>Run the commands listed below:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">"Hello, World"</span>
+$ <span class="nb">echo</span> <span class="s2">"Hello, World"</span> &gt; ~/myfile.txt
+$ ls ~
+$ nano ~/myfile.txt
+</pre></div>
+<p>Take some time to investigate how <code>nano</code> works - there are some instructions on screen when it opens.</p>
+<p>Can you figure out how to change the file contents, how to save, and how to exit?</p>
+<p>Some other things to consider:</p>
+<ul>
+<li>What does the <code>echo</code> command do?</li>
+<li>How does the addition of <code>&gt; ~/myfile.txt</code> change the behaviour of the <code>echo</code> command?</li>
+<li>Is <code>~/myfile.txt</code> a relative or absolute path?</li>
+<li>What does <code>^</code> mean in the on-screen help for <code>nano</code>?</li>
+<li>Can you figure out how to use <code>echo</code> and <code>&gt;&gt;</code> to add extra content to the file?</li>
+</ul>
+<h3 id="copying_and_moving_files">Copying and Moving files</h3>
+<p><code>cp</code> and <code>mv</code> are the Unix commands for copying and moving files, respectively. In both cases they take two compulsory arguments - (1) the name of the file to act on, and (2) the destination location that you want it to end up. As the names suggest, after using <code>cp</code> you will have 2 copies of the file (the original and a copy at the destination), after using <code>mv</code> you will still only have one copy (the one at the destination location - the original will be removed). The destination file location can be in the same directory as the original file, but must have a different name, or it could be in a different directory - in this case the filename can remain the same.</p>
+<div class="highlight"><pre><span></span>$ ls
+emptyfile myfile.txt
+<span class="c1"># copy myfile.txt (.bak is a Unix convention for a backup copy)</span>
+$ cp myfile.txt myfile.bak
+$ ls
+emptyfile myfile.bak  myfile.txt
+<span class="c1"># rename the new file</span>
+$ mv myfile.bak mf.b
+$ ls
+emptyfile mf.b  myfile.txt
+</pre></div>
+<h3 id="working_with_directories">Working with Directories</h3>
+<p>Directories are directly analogous to <em>folders</em> in Windows and MacOS. As described previously, they are special files which are capable of containing other files (and indeed other directories). Sensible and well-planned use of directories can impose a logical organisational structure on your filesystem. The command for creating new directories is <code>mkdir</code> (for <strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory) - like many other tools we've looked at so far, the simplest mode of operation for <code>mkdir</code> is to provide it with a single argument - the name of the directory you want to create.</p>
+<p><div class="highlight"><pre><span></span><span class="c1"># make a new directory called **mydir** in the current working directory</span>
+$ mkdir mydir
+$ ls
+emptyfile  mf.b  mydir/  myfile.txt
+</pre></div>
+<strong>Note</strong></p>
+<p>The syntax highlighting I use here cannot replicate the colours you will see in your terminal (where directories will be coloured in blue). I've addressed this by listing directories with a trailing slash. You can replicate this by adding the <code>-p</code> option to <code>ls</code> - the exact results seen in the block above can be obtained with: <code>ls --color=never -p</code></p>
+<p>Other commands already introduced work with directories too - <code>mv</code> will move a directory (and its contents) just like any other file. It is possible to copy whole directories with <code>cp</code> as well, although you do have to add the <code>-r</code> option for this to work correctly:</p>
+<div class="highlight"><pre><span></span><span class="c1"># move file in to new directory</span>
+$ mv mf.b mydir
+<span class="c1"># move the directory and its contents</span>
+$ mv mydir mynewdir
+$ ls
+emptyfile myfile.txt  mynewdir/
+$ ls mynewdir
+mf.b
+<span class="c1"># copy the directory and its contents</span>
+$ cp -r mynewdir mycpdir
+$ ls
+emptyfile mycpdir/  myfile.txt  mynewdir/
+$ ls mycpdir
+mf.b
+</pre></div>
+<h3 id="deleting_files">Deleting Files</h3>
+<p>All the commands we've looked at so far create files (and directories), however, sometimes it is necessary to delete things too. The command for removing files is <code>rm</code> and again, the simplest way of using it is with a single argument - the file to be deleted.</p>
+<p>Unlike the operating systems you may be used to, there is no request for confirmation when you issue the <code>rm</code> command - the file will be immediately removed from the file system (it also doesn't go into any sort of recoverable "Trash" folder). For this reason, <code>rm</code> should be treated with caution - especially when used with the <code>-r</code> option (which like <code>cp</code> is used to "recursively" act on all the files in a directory, including the directory itself). If you do want to be prompted for confirmation before deleting a file, you can add the <code>-i</code> option to your <code>rm</code> command.</p>
+<div class="highlight"><pre><span></span><span class="c1"># remove a file</span>
+$ rm emptyfile
+<span class="c1"># remove a directory (and contents)</span>
+$ rm -r mycpdir
+$ ls
+myfile.txt  mynewdir/
+<span class="c1"># remove a file and prompt for confirmation</span>
+$ rm -i myfile.txt
+rm: remove regular file <span class="s1">'myfile.txt'</span>? n
+$ ls
+myfile.txt  mynewdir/
+</pre></div>
+<h3 class="exercise" id="exercise_15">Exercise 1.5</h3>
+<p>Estimated time: 5 - 10 mins</p>
+<p>Run the commands listed below, use <code>ls</code> to keep track of your files throughout:</p>
+<div class="highlight"><pre><span></span>$ mkdir ~/mydir
+$ cp ~/myfile.txt ~/mydir
+$ cat ~/mydir/myfile.txt
+$ mkdir -p ~/level1/level2
+$ touch ~/level1/level2/myfile.txt
+$ mv ~/level1/level2/myfile.txt ~/mydir
+$ cat ~/mydir/myfile.txt
+$ rm -r ~/level1
+</pre></div>
+<p>Quick quiz:</p>
+<ul>
+<li>There's a new command in here (<code>cat</code>) - can you work out what it does?</li>
+<li>What happens to the file <code>~/mydir/myfile.txt</code> between the two times you run <code>cat</code> on it?</li>
+<li>What does the <code>-p</code> option do to the behaviour of <code>mkdir</code>?</li>
+<li>What happens if you run command 4 without this option?</li>
+<li>What is the effect of the final command on <code>~/level1/level2</code>?</li>
+</ul>
+<h3 id="viewing_files">Viewing files</h3>
+<p>Linux offers several commands for viewing the contents of a text file on the screen.</p>
+<p>You've already met <code>cat</code> - this command will print the contents of a file to <code>STDOUT</code>. If the file is long, the text will scroll up the screen until the end of the file is reached.</p>
+<p>The <code>less</code> command lets you view text one page (or screen) at a time. The space bar moves forward one page, pressing "B" moves back one page and pressing "Q" quits.</p>
+<p><code>head</code> will show you the first lines of a text file and <code>tail</code> will show you the last lines. Both show 10 lines by default, but this can be changed with the <code>-n</code> option.</p>
+<p>Note that running <code>head</code>, <code>tail</code> or <code>cat</code> without specifying a filename will cause the command prompt to "hang" (become unresponsive to input). Pressing Ctrl+C will cancel the command by sending a <em>kill</em> signal to your terminal.</p>
+<p>Pressing Ctrl+C will abort most processes in Linux on the command line.</p>
+<h1 id="getting_help">Getting Help</h1>
+<p>You will have realised by now that the catalogue of Unix commands is very large, and each individual command comes with an array of options and arguments to modify the default behaviour. This means that, especially for the beginner, command line computing can quickly become overwhelming. Fortunately, it is not necessary (nor is it possible) to remember all of the commands and their available options. Linux has an extensive built-in help system to assist you with navigating this bewildering complexity, <code>man</code> (short for Manual).</p>
+<div class="highlight"><pre><span></span><span class="c1"># get help on the ls command</span>
+$ man ls
+</pre></div>
+<p>This command will display the <code>man</code> page for the <code>ls</code> command. Linux manual pages follow a common structure, which should make it easy to track down the information you require, once you know how to navigate them.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Section</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>Name of the command</td>
+</tr>
+<tr>
+<td>SYNOPSIS</td>
+<td>General usage parameters of the command</td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>Describes what the command does, and lists all of the options of the command</td>
+</tr>
+<tr>
+<td>SEE ALSO</td>
+<td>Lists other commands that are directly related to the command in the man page or closely resemble its functionality</td>
+</tr>
+<tr>
+<td>REPORTING BUGS</td>
+<td>Explains how/where to report bugs with the tools</td>
+</tr>
+<tr>
+<td>EXAMPLES</td>
+<td>Common usage examples that give the reader an idea of how the command can be used</td>
+</tr>
+<tr>
+<td>AUTHOR</td>
+<td>The author(s) of the man page/command</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2: The common sections of a <code>man</code> page. Other sections may be present, but these are not well standardized across <code>man</code> pages.</p>
+<p>The SYNOPSIS, in particular, is useful for giving the general form of the command including any required arguments. The SYNOPSIS has its own standard format, for example let's look at the SYNOPSIS for <code>ls</code>:</p>
+<div class="highlight"><pre><span></span>SYNOPSIS
+       ls [OPTION]... [FILE]...
+</pre></div>
+<p>Anything in square brackets (<code>[]</code>) is <em>optional</em> and the <code>...</code> means it is possible to provide one or more of that thing (so <code>ls</code> can be given multiple options, and multiple file paths). The full list of available options, and their functionality is given in the <code>DESCRIPTION</code>.</p>
+<h3 class="exercise" id="exercise_16">Exercise 1.6</h3>
+<p>Estimated time: 5 - 10 mins</p>
+<p>Read the <code>man</code> page for the command <code>cat</code>. Use the page to figure out the following:</p>
+<ul>
+<li>What does the command <code>cat</code> do?</li>
+<li>Can you work out how to get <code>cat</code> to print the file <code>myfile.txt</code> with and without line numbers?</li>
+<li>What do you think the command listed in <code>SEE ALSO</code> does?</li>
+</ul>
+<p><strong>NOTE</strong> - <code>man</code> pages open in the system "pager" program, which on most modern Linux systems is <code>less</code>. This means that to close an open <code>man</code> page, you will need to press "Q".</p>
+<h1 id="downloading_data_at_the_command_line">Downloading Data at the Command Line</h1>
+<p><code>wget</code> (web get) is described as a "non-interactive network downloader" and is a command-line utility which will download the content at a given URL to your Linux file system. This makes <code>wget</code> a very useful command for downloading software and data to your command-line driven machine. It is particularly powerful in combination with particular kinds of <em>web service</em>.</p>
+<h2 id="restful_api">RESTful API</h2>
+<p>An API is an <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface, and provides a way for computer programs to communicate with one another.</p>
+<p>REST stands for <strong>Re</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer, which is a set of guidelines for developing web services in a particular style. REST is popular due to its relative simplicity.</p>
+<p>A RESTful API is a web API which provides stable addresses for resources on the web. These endpoints can be used to provide access to these resources, and to allow interaction with them. Many popular biological databases provide a RESTful API for working with their data.</p>
+<h2 id="uniprot_api">UniProt API</h2>
+<p>The <a href="https://uniprot.org">Universal Protein Resource</a> (UniProt) is a comprehensive resource for protein sequence and annotation data. The database is a collaboration between the European Bioinformatics Institute, the Swiss Institute of Bioinformatics and the Protein Information Resource. The UniProt Knowledgebase contains high-quality, annotated protein sequence records in two sections, UniProtKB/Swiss-Prot, a manually annotated, non-redundant database; and UniProtKB/TrEMBL, a larger, computationally annotated database. UniProt provides programmatic access to the database via a RESTful API.</p>
+<p>Every protein in the UniProt database has a unique <em>accession</em> which identifies the entry. These accessions provide stable API endpoints for each protein in the UniProt database. For example, the <a href="https://www.uniprot.org/uniprotkb/P26367/entry">human PAX6 protein</a> has the accession P26367, for this protein:</p>
+<ul>
+<li>The plain text database entry: <a href="https://rest.uniprot.org/uniprotkb/P26367.txt">https://rest.uniprot.org/uniprotkb/P26367.txt</a></li>
+<li>The protein sequence (FASTA format): <a href="https://rest.uniprot.org/uniprotkb/P26367.fasta">https://rest.uniprot.org/uniprotkb/P26367.fasta</a></li>
+<li>Sequence features (GFF format): <a href="https://rest.uniprot.org/uniprotkb/P26367.gff">https://rest.uniprot.org/uniprotkb/P26367.gff</a></li>
+</ul>
+<p>The UniProt API allows us to construct these endpoints for any protein in the database, by replacing <em>P26367</em> in the addresses above with the accession for our protein of interest.</p>
+<h3 class="exercise" id="exercise_17">Exercise 1.7</h3>
+<p>Estimated time: 5 - 10 mins</p>
+<p>The human Retinoblastoma protein (RB1) has the accession <strong>P06400</strong>, use <code>wget</code> to download the plain text database entry for this protein.</p>
+<p>You can view the file you've downloaded using the <em>pager</em> program <code>less</code> (open the file using <code>less filename</code>, then use the space bar to page through the file. Press 'Q' to quit).</p>
+<p>Use the entry you've downloaded to answer the following questions:</p>
+<ul>
+<li>How many amino acids are in the RB1 protein sequence?</li>
+<li>List 3 proteins that RB1 interacts with.</li>
+<li>What are the last (C-terminal) 10 amino acids of the primary sequence?</li>
+<li>Can you find the publication and PDB ID associated with an X-Ray crystallography structure of the protein which has a resolution of 2.3 Angstroms?</li>
+</ul>
+<p><strong>HINT</strong> - with a file open in <code>less</code>, you can use forward slash (<code>/</code>) followed by a search term to find specific text in the file (try <code>/pdb</code>, for example). You can read more about this functionality in the <code>man</code> page for <code>less</code>.</p>
+<h2 id="searching_uniprot_with_the_api">Searching UniProt with the API</h2>
+<p>The UniProt API, as well as giving straight-forward access to individual proteins, as explored above, also allows more complicated interactions with the UniProt database. The <code>stream</code> API endpoint allows the user to conduct programmatic searches of the database according to the parameters provided. For example, the following address:</p>
+<p><a href="https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&amp;format=fasta">https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&amp;format=fasta</a></p>
+<p>Will return all of the sequences of UniProtKB/Swiss-Prot entries (<code>reviewed:true</code>) for human (<code>organism_id:9606</code>) proteins, formatted according to the FASTA specification (<code>format=fasta</code>).</p>
+<p>It is possible to construct these queries using the 'Advanced Search' on the UniProt website.</p>
+<p>Using <code>wget</code> with this address will download the full set of 20,386 manually curated human proteins:</p>
+<div class="highlight"><pre><span></span>$ wget -O human.fa <span class="s1">'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&amp;format=fasta'</span>
+</pre></div>
+<p>The address has to be enclosed in quotes, as it contains characters with special meaning in <code>bash</code>, which would alter the behaviour of the command otherwise. Additionally, this address does not end in a neat file name like the simple API requests in the previous section, so we tell <code>wget</code> the name of the output file using the <code>-O</code> option - in this case, our results will be stored in a file called <code>human.fa</code> in the current working directory.</p>
+<h3 class="exercise" id="exercise_18">Exercise 1.8</h3>
+<p>Estimated time: 5 - 10 mins</p>
+<p>Using the UniProt <code>stream</code> API, as described above, download the sequences of proteins which match the following criteria:</p>
+<ul>
+<li>protein_name contains 'Interferon'</li>
+<li>organism_id = 9606 (human)</li>
+<li>reviewed = true</li>
+</ul>
+<p>We will look at some tools which will allow us to examine these results more carefully in the next practical.</p>
+<h1 id="summary">Summary</h1>
+<p>In this first practical we have encountered the Linux command line for the first time and introduced commands for navigating the filesystem, creating and editing files and directories and for downloading data from the web. Due to the maturity of these tools, and the consistent way in which they are developed, the fundamentals we have learned here should allow us to pick up and use virtually any command line tool. This is particularly true if these tools have a <code>man</code> page or a well-written help file.</p>
+<p>In future practicals, we will investigate more of these tools, and different ways of using them.</p>
+<h1 id="quick_quiz">Quick Quiz</h1>
+<iframe allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" allowfullscreen="allowfullscreen" aria-label="Practical 1" frameborder="0" height="637" src="https://newcastle.h5p.com/content/1292024274609594127/embed" width="1088"></iframe>
+<script charset="UTF-8" src="https://newcastle.h5p.com/js/h5p-resizer.js"></script>
+</section>
 
-The two variables referenced <span class="k">in</span> the first two lines are special variables which store the <span class="nb">command</span> line arguments passed to the script. You can pass as many arguments as you like, but you<span class="err">'</span>d have to write the code to handle them correctly. The <span class="sb">`</span><span class="si">${#}</span><span class="sb">`</span> variable tells us how many arguments there are, and <span class="sb">`</span><span class="si">${</span><span class="p">@</span><span class="si">}</span><span class="sb">`</span> provides a list of all of them.
-
-Incorporating arguments into scripts can allow more general purpose scripts to be created, which can <span class="k">do</span> the same job <span class="k">in</span> many different ways <span class="k">in</span> response to changing arguments. For example, we can create a script to download any UniProt entry:
-
-<span class="sb">```</span>bash
-<span class="nv">UNIPROT</span><span class="o">=</span><span class="nv">$1</span>
-<span class="nb">echo</span> <span class="s2">"Downloading UniProt entry: </span><span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span><span class="s2">"</span>
-wget https://rest.uniprot.org/uniprotkb/<span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span>.txt
-<span class="nb">echo</span> <span class="s2">"Done downloading"</span>
-</code></pre></div>
-<p>You can then invoke this script with:</p>
-<div class="highlight"><pre><span></span><code>$ bash my_third_script.sh P06400
-Downloading UniProt entry: P06400
-<span class="o">[</span>...<span class="o">]</span>
-Done downloading
-</code></pre></div>
-</section><section class="exercise section3"><h3>Exercise 2.6</h3>
-</section><section class="section3"><h3>The FOR Loop</h3>
-</section></section></section>
-            </div>
-        </div>
-    </div>
+    </article>
 
         </main>
+
 		
-		<footer class="text-muted">
+		<footer>
 	<hr>
-	<div class="container">
-		<div class="float-right">
-			<ul style="list-style: none">
-			<li><a href="#">Back to top</a></li>
-			
-			
-			<li><a href="mmb8052__practical_2.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;Download as PDF</a></li>
-			
-			</ul>
-		</div>
-		<p>Generated using <a target="_blank" href="https://github.com/chirun-ncl/chirun">Chirun</a>, written by the E-Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
-		<p>This page last generated: 2022-07-22</p>
-	</div>
+
+    <nav id="footer-nav">
+        <a href="#">Back to top</a>
+    </nav>
+
+    <div id="footer-text">
+        <p>Generated using <a target="_blank" href="https://chirun.org.uk">Chirun</a>, written by the Digital Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
+        <p>This page last generated: 2023-08-04</p>
+    </div>
 </footer>
 		
+
+        
     </body>
 </html>

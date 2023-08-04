@@ -1,70 +1,138 @@
-.slides-smaller{font-size:50% !important;}
-.slides-small{font-size:70% !important;}
-.slides-bold{font-weight:800 !important;}
-.slides-large{font-size: 100% !important;}
-.slides-larger{font-size: 125% !important;}
-
-.reveal section figure img {
-	border: none !important;
-	box-shadow: none !important;
+:root {
+    --base-font-size: max(4vmin, 24px);
 }
 
-.reveal .header-l {
-    position: absolute;
-    color: #333;
-    max-width: 50%;
-    top: 1em;
-    left: 1em;
-    font-size: 0.7em;
+aside { 
+    display: none;
 }
 
-.reveal .header-r {
-    position: absolute;
-    color: #333;
-    max-width: 50%;
-    top: 1em;
-    right: 1em;
-    font-size: 0.7em;
-    text-align: right;
+html {
+    font-size: 4vmin;
+    font-family: sans-serif;
 }
 
-h2{
-  text-transform: none !important;
+body {
+    margin: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+    margin: 0 0 var(--spacing) 0;
+    justify-self: center;
+}
+h2 {
+    font-size: 1.1em;
 }
 
-.reveal p.author {
-	text-align: center;
-}
-.reveal p {
-	text-align: left;
-}
-.reveal ul {
-  display: block;
-}
-.reveal ol {
-  display: block;
+p {
+    max-width: var(--readable-width);
 }
 
-.tabular{
-  width:100%;
+body > main {
+    display: block;
+    overflow: hidden;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
 }
 
-.reveal {
-  font-size: 30px !important;
+
+body > main > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-gap: 1em;
+    margin: var(--spacing) 0;
+    scroll-snap-align: start;
 }
 
-.reveal table p {
-  margin:0;
+main > section {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 0px var(--spacing);
+    scroll-snap-align: center;
+    grid-auto-rows: max-content;
+    align-content: center;
+    overflow-y: hidden;
 }
 
-.reveal blockquote {
-  margin: 1.5em 0.75em;
-  padding: 0.5em 1.0em;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
+@media (orientation: portrait) {
+    body > main {
+        height: auto;
+    }
+    main > section {
+        height: auto;
+        scroll-snap-align: none;
+    }
+    main > section + section {
+        margin-top: calc(2 * var(--spacing));
+        padding-top: calc(2 * var(--spacing));
+        border-top: 0.5vh dashed var(--text-colour);
+    }
 }
 
-.reveal blockquote > p {
-  margin: 0 !important;
+main > section:focus {
+    outline: none;
+}
+main > section > p {
+    line-height: var(--line-height);
+}
+main > section > :is(h1, h2) {
+    align-self: start;
+}
+main > section > ul {
+    text-align: left;
+}
+main > section > ul > li ~ li {
+    margin-top: calc(0.5 * var(--spacing));
+}
+
+main > section :is(img, svg, video) {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    margin: var(--spacing) 0;
+    border-radius: 0.3em;
+}
+
+main > section figure {
+    margin: 0;
+}
+
+
+main > section .full-height {
+    max-height: 90vh;
+}
+
+main > section blockquote {
+    max-width: calc(0.5 * var(--readable-width));
+    line-height: 1.8em;
+}
+main > section > iframe {
+  width: 80%;
+  height: 75vh;
+  border: none;
+  border-radius: 1em;
+}
+
+@media print {
+    button[aria-controls="display-options"] {
+        display: none;
+    }
+    main > section {
+        page-break-after: always;
+        page-break-inside: always;
+    }
+    
+    body > main {
+        height: auto;
+        overflow: none;
+    }
+    
+    body > main > header {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+    }
 }

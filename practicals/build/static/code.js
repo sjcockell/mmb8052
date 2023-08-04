@@ -4,30 +4,8 @@
  * https://github.com/numbas/numbas-extension-programming
  * License: Apache License 2.0
  */
+import codemirror_editor from "./runnable_code.js";
 
-var spinner_opts = {
-	lines: 13 // The number of lines to draw
-	, length: 28 // The length of each line
-	, width: 14 // The line thickness
-	, radius: 42 // The radius of the inner circle
-	, scale: 0.15 // Scales overall size of the spinner
-	, corners: 1 // Corner roundness (0..1)
-	, color: '#000' // #rgb or #rrggbb or array of colors
-	, opacity: 0.25 // Opacity of the lines
-	, rotate: 0 // The rotation offset
-	, direction: 1 // 1: clockwise, -1: counterclockwise
-	, speed: 1 // Rounds per second
-	, trail: 60 // Afterglow percentage
-	, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-	, zIndex: 2e9 // The z-index (defaults to 2000000000)
-	, className: 'spinner' // The CSS class to assign to the spinner
-	, top: '-24px' // Top position relative to parent
-	, left: '97%' // Left position relative to parent
-	, shadow: false // Whether to render a shadow
-	, hwaccel: false // Whether to use hardware acceleration
-	, position: 'relative' // Element positioning
-}
-var spinner;
 var codeMirrorInstances = {};
 var webR_url = 'https://cdn.jsdelivr.net/gh/georgestagg/webR@452ae1637dfdd65c9a5f462fff439022d833f8f9/dist/';
 
@@ -107,7 +85,7 @@ class CodeRunner {
      */
     get_job(job_id) {
         if(!this.jobs[job_id]) {
-            throw(new Error("Unrecognised job id "+job_id));
+            throw(new Error(_`Unrecognised job id ${job_id}`));
         }
         return this.jobs[job_id];
     }
@@ -118,14 +96,14 @@ class CodeRunner {
      * @returns {job}
      */
     run_code(code, namespace_id) {
-        throw(new Error("run_code should be implemented."));
+        throw(new Error(_("run_code should be implemented.")));
     }
 
     /** Interrupt the execution of a job.
      * @param {job_id} job_id
      */
     interrupt() {
-        throw(new Error("This code runner can't be interrupted."));
+        throw(new Error(_("This code runner can't be interrupted.")));
     }
 
     /** Run several blocks of code in the same session.
@@ -305,7 +283,7 @@ class WebRRunner extends CodeRunner {
             try {
                 const result = await webR.runRAsync(code);
                 if(result===-1) {
-                    throw(new Error("Error running R code"));
+                    throw(new Error(_("Error running R code")));
                 } else {
                     job.resolve({
                         result: this.last_stdout_line() === "[1] TRUE",
@@ -351,66 +329,89 @@ var language_synonym = function(name) {
     return languageSynonyms[name] || name;
 }
 
-$(window).on('load', function() {
-	$("pre.cm-block[data-runnable='true']").before('<button class="run-code">Run Code &#187;</button>');
+class RunnableCodeElement extends HTMLElement {
+    constructor() {
+        super();
 
-	$('pre.cm-block').each(function(){
-		if (typeof(Reveal) == "undefined"){
-			var codeTag = $(this).find("code")[0];
-			var codeMirrorOpts = {value: $(this).find("code").text()};
-			codeMirrorOpts["lineNumbers"] = true;
-			codeMirrorOpts["mode"] = $(this).data('language');
-			codeMirrorOpts["theme"] = "light default";
-			var theCodeMirror = CodeMirror(function(elt) {
-				codeTag.parentNode.replaceChild(elt, codeTag);
-			} ,codeMirrorOpts);
-			codeMirrorInstances[$(this).data('uuid')] = theCodeMirror;
-		} else {
-			$(this).find("code").attr("contenteditable","true");
-			$(this).find("code").attr("spellcheck","false");
-		}
-	});
+        this.language = this.getAttribute('language');
 
-	$('pre.cm-block').on('keydown',function(e){
-			var codeUUID = $(this).data('uuid');
-			$('#ran-'+codeUUID).remove();
-	});
+        const template = document.getElementById('runnable-code-template');
+        const templateContent = template.content;
 
-	if (typeof(Reveal) != "undefined"){
-		$('pre.cm-block code').on('input',function(e){
-			var codeUUID = $(this).parent().data('uuid');
-			$('#ran-'+codeUUID).remove();
-			Reveal.layout();
-		});
-	}
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(templateContent.cloneNode(true));
 
-	$('button.run-code').click(function(e){
-		$(this).attr("disabled","disabled");
-		var codeBlock = $(this).next();
-		var codeUUID = codeBlock.data('uuid');
-		var codeLang = codeBlock.data('language');
-		$('#ran-'+codeUUID).remove();
-		spinner_opts.color = $('body').css("color");
-		spinner_opts.className = "spinner"+codeUUID;
-		spinner = new Spinner(spinner_opts);
-		codeBlock.append(spinner.spin().el)
-		if (typeof(Reveal) == "undefined"){
-			codeText = codeMirrorInstances[codeUUID].getValue();
-		} else {
-			codeText = codeBlock.find("code")[0].innerText;
-		}
-		run_code(codeLang,[codeText]).then(result => {
-			console.log(JSON.stringify(result));
-			codeBlock.prev().removeAttr("disabled").removeAttr('style');
-			$('div.spinner'+codeUUID).remove();
-			if (typeof(Reveal) == "undefined"){
-				codeBlock.append("<pre id='ran-"+codeUUID+"' class='ran'><code class='sourceCode'>"+result[0]['stdout']+result[0]['stderr']+"</code></pre>");
-			} else {
-				codeBlock.after("<pre id='ran-"+codeUUID+"' class='ran'><code class='sourceCode'>"+result[0]['stdout']+result[0]['stderr']+"</code></pre>");
-				Reveal.layout();
-			}
-		}, error => {
-			console.log("An error occured running code: " + error);
-		});
-	});
-});
+        this.wrapper = shadowRoot.querySelector('.runnable-code-wrapper');
+        this.output_display = shadowRoot.querySelector('.output');
+        this.set_state('fresh');
+
+        this.init_editor();
+
+        const run_button = this.run_button = shadowRoot.querySelector('.run-code');
+        run_button.addEventListener('click', () => this.run());
+    }
+
+    init_editor() {
+        const code = this.textContent;
+        const codeTag = this.shadowRoot.querySelector('.code');
+
+        this.codeMirror = codemirror_editor(
+            this.language,
+            {
+                doc: code,
+                parent: codeTag,
+                root: this.shadowRoot,
+                onChange: update => this.onChange(update)
+            }
+        );
+    }
+
+    set_state(state) {
+        this.state = state;
+        this.wrapper.dataset.state = this.state;
+    }
+
+    async run() {
+        switch(this.state) {
+            case 'running':
+            case 'running-changed':
+                return;
+        }
+
+        this.run_button.disabled = true;
+
+        const code = this.codeMirror.state.doc.toString();
+
+        try {
+            const result = (await run_code(this.language,[code]))[0];
+            let output = result.stdout+result.stderr;
+            this.output_display.querySelector('.stdout').textContent = output;
+            this.output_display.classList.toggle('has-result', result.result);
+            const result_string = result.result ?? '';
+            this.output_display.querySelector('.result').textContent = result_string;
+        } catch(error) {
+            console.error(_`An error occured running code: ${error}`);
+        } finally {
+            switch(this.state) {
+                case 'running-changed':
+                    this.set_state('changed');
+                default:
+                    this.set_state('ran');
+            }
+            this.run_button.disabled = false;
+        };
+    }
+
+    onChange() {
+        switch(this.state) {
+            case 'fresh':
+                break;
+            case 'running':
+                this.set_state('running-changed');
+                break;
+            default:
+                this.set_state('changed');
+        }
+    }
+}
+customElements.define("runnable-code", RunnableCodeElement);
