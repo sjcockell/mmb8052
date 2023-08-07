@@ -1,0 +1,8 @@
+author: 'Simon J Cockell'
+structure:
+  - type: standalone
+    topbar: True
+    source: practical_08.md
+    title: 'MMB8052 - Practical 8'
+    outfile: index.html
+build_pdf: true
