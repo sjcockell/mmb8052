@@ -61,7 +61,7 @@ SAM stands for _Sequence Alignment/Map_ format. It is a text-based table used to
 
 #### The header
 
-The header is an optional section of the SAM file that can describe things about the experiment as a whole. Each header line begins with the “@” character followed by a two-letter record type code. Each line is then tab-delimited.
+The header is an optional section of the SAM file that can describe things about the experiment as a whole. Each header line begins with the "@" character followed by a two-letter record type code. Each line is then tab-delimited.
 
 ```
 @HD   VN:1.0     SO:unsorted
@@ -561,3 +561,7 @@ $ cat *.fasta > all_seq.fasta
 This practical has introduced some advanced concepts which are useful when working at the Linux command line. The ability to write scripts, in particular, allows us to record our practice and therefore to reproduce it (and allow others to). We've also seen how to install software on our Linux system - providing new tools to experiment with, including some bioinformatics software. The final exercise here combined a lot of the lessons we've learned so far to achieve something quite complicated - this is a realistic 'bioinformatics' task.
 
 Next week we will look at organising our work, and computational tools for managing projects and software.
+
+# Quick Quiz
+
+<iframe src="https://newcastle.h5p.com/content/1292029494843300917/embed" aria-label="Practical 2" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
