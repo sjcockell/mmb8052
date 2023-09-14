@@ -444,3 +444,7 @@ Can you work out how to add this information in to the data frame without filter
 # Summary
 
 This practical has introduced the basics of the R programming language. We've seen the types of data we can use in R, and how to manipulate that data using elemental operators and base functions. Practical 5 will be an introduction to some more advanced R programming, with a particular focus on the visualisation of data.
+
+# Quick Quiz
+
+<iframe src="https://newcastle.h5p.com/content/1292060620179825377/embed" aria-label="Practical 4" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
