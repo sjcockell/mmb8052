@@ -83,10 +83,116 @@ Estimated time: 5 minutes
  - Add level 2 headings for the README sections detailed above
  - Add information in the Author section, using other Markdown elements as required.
 
+# Software Management
+
+Towards the end of Practical 2, we looked at software installation, particularly using the Linux package manager, APT. This is a robust way of managing software installation on a Linux computer, but suffers from a number of limitations:
+
+- Software must be pre-packaged for APT, and accepted into centrally managed repositories for ease of distribution
+- User must have administrator rights to install new software
+- APT manages software system-wide, so only one version can be installed
+
+In research computing, there are reasons why we are not able to assume all (or even any) of these things.
+
+- Many scientific software projects do not have the resources to package software in multiple ways
+- It is not a given that we will have admin rights on the machine where we want to carry out most of our compute - this is highly unlikely on a shared high-performance computing environment for example
+- We often want to manage a number of parallel versions of the same software (for example, one project may be under review, and so need to be maintained on an older software release to ensure consistency, while newer projects make use of the latest version to ensure they are at the cutting edge)
+
+There are a number of modern software management solutions which provide answers to these problems. Probably the best known and most widely used is [Conda](https://docs.conda.io/en/latest/).
+
+## Conda
+
+Anaconda, or Conda is an open source, cross-platform package and environment management system. Initially developed for the Python programming language (hence the "snakey" name), it has since been expanded to manage a wide range of software. Conda is able to help you find and install software packages, and can create, save and load _environments_, allowing us to maintain parallel installations of different software versions and their dependencies (more on this below). Conda is lightweight and doesn't require admin privileges to install or run, and software is relatively simple to package for distribution by a Conda repository (many of which are community-maintained, rather than having a centralised gatekeeper).
+
+In addition to these helpful features which overcome the above limitations of APT, Conda has been widely adopted within the bioinformatics research community, meaning that many software packages produced for bioinformatics are available to install using Conda (a great many more than are available via APT). See the [Bioconda Project](https://bioconda.github.io/) for more information.
+
+## Installing Conda
+
+Conda is installed via a downloadable `bash` script. It is important to download the right script for our system, and to test that the code we've downloaded is what we expect it to be (running arbitrary code downloaded from the internet is a _bad idea_ <sup>TM</sup>). We're installing so-called "Miniconda", which is a minimal installation to save on disk space. The following commands have been tested on Ubuntu 20.04.
+
+```bash
+# Download the installer
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+# Check it is what it says it is
+$ sha256sum Miniconda3-latest-Linux-x86_64.sh
+# Output should read:
+78f39f9bae971ec1ae7969f0516017f2413f17796670f7040725dd83fcff5689  Miniconda3-latest-Linux-x86_64.sh
+# Run the installer
+# if the above "hash" does not match exactly
+# DO NOT take this next step
+# ask a demonstrator if you're not sure
+$ bash Miniconda3-py38_4.12.0-Linux-x86_64.sh
+```
+
+The `conda` installer will prompt you for some information. Firstly accept the license agreement (use the space bar to page through the agreement, and then type 'yes' when prompted). Accept the default installation location. Type 'yes' when asked if you want the installer to initialize Miniconda3.
+
+In order to be able to use Conda, you will have to log out of your Linux machine and log back in again. You will know it has worked because `(base)` will appear at the beginning of your command prompt - this is the name of your current environment.
+
+The `conda` program is actually a single interface to a number of programs, each of which is accessed by providing a _verb_ as the first argument to `conda`. Examples of these verbs include `conda config`, `conda search` and `conda install`.
+
+### Exercise 3.3 {: .exercise}
+
+Estimated time: 10 minutes
+
+- Install Conda as per the above instructions.
+
+## Channels
+
+A channel is a location where Conda packages are stored and made available for installation. Discovering reliable channels can be a challenge, so we will stick to three publicly available, widely used channels: bioconda, conda-forge and defaults.
+
+Different channels can have the same package, so Conda must handle these channel collisions - it does this by maintaining a list of channel _priorities_. We will set Conda up to always use the three above channels (defaults is used by, well, _default_), and to always use them in the same order, to avoid any conflicts:
+
+```bash
+$ conda config --prepend channels conda-forge
+$ conda config --prepend channels bioconda
+$ conda config --set channel_priority strict
+```
+
+## Environments
+
+A Conda environment is essentially a directory which contains a specific collection of Conda packages and all of their dependencies. This allows different environments to be maintained and run separately without interference from one another. The most important consequences of this, with respect to our management of software are the following:
+
+- We can maintain separate installations of _different_ versions of the _same_ software
+- By maintaining a list of the software in an environment, we can reinstall that environment using Conda on any computer, thus enabling process reproducibility.
+
+It is good practise to set up and maintain a separate Conda environment for each project you work on, and to ensure you use Conda to manage all of the software in that project. It is then possible to create and maintain a _requirements_ file within that project, which can be used to re-install the environment if necessary.
+
+### Exercise 3.4 {: .exercise}
+
+Estimated time: 10 minutes
+
+We're going to create an environment for the first module assessment, which will contain the software we need to complete the assessment, follow these steps:
+
+- Add the conda-forge and bioconda channels to your Conda config by following the steps in the _Channels_ section, above
+- Create a new, empty Conda environment called "assessment1":
+
+```bash
+$ conda create --name assessment1
+```
+
+- Activate your new environment:
+
+```bash
+$ conda activate assessment1
+```
+
+- Install the required software:
+
+```bash
+# This command requests a particular version of muscle (an older version)
+$ conda install emboss muscle=3.8
+```
+
+Finally, save the list of installed software so that we can reinstall the environment later if required:
+
+```bash
+$ conda list -e > requirements.txt
+```
+
+Move this file (`requirements.txt`) into the base directory of the project directories you created in Exercise 3.1.
 
 # Version Control
 
-Version control is the practice of tracking and managing changes to a set of files over time. It is most commonly used for keeping track of changes made to software code, but can be used for any set of files in which changes can easily be enumerated. Good version control, like the practice of documentation detailed above, is essential in enabling reproducible computational research. Furthermore, good version control is helpful in maintaining a working backup of our important files.
+Version control is the practice of tracking and managing changes to a set of files over time. It is most commonly used for keeping track of changes made to software code, but can be used for any set of files in which changes can easily be enumerated. Good version control, like the practices of documentation and software management detailed above, is essential in enabling reproducible computational research. Furthermore, good version control is helpful in maintaining a working backup of our important files.
 
 ## Git
 
@@ -94,7 +200,7 @@ Version control is the practice of tracking and managing changes to a set of fil
 
 Version control, and Git, can get very complicated. We are going to introduce the basics of a very linear version management process to try and avoid getting lost in the weeds, but do be aware that we are only scratching the surface.
 
-`git` functions via the provision of _verbs_ which inform the program of the action to take. We are going to look at a few of these verbs to get an idea of how `git` works.
+Like `conda`, `git` functions via the provision of _verbs_ which inform the program of the action to take. We are going to look at a few of these verbs to get an idea of how `git` works.
 
 ### Config
 
@@ -185,7 +291,7 @@ Date:   Thu Sep 8 12:33:55 2022 +0100
     My first commit
 ```
 
-The `log` verb shows you the history of your repository, in reverse chronological order. The identifier for each commit is the long string which comes after `commit`, so the identifier of our first commit here is `7f9046a171e76d08b7c54e72d25ce44a109d131b`. For the purposes of `reset`, the first 7 characters of this string is sufficient as an identifier: `7f9046a`. In order to step back one commit in time, we want to tell `reset` to go back to the second commit, in this case identified by `9968c0c`:
+The `log` verb shows you the history of your repository, in reverse chronological order. The identifier for each commit is the long string which comes after `commit`, so the identifier of our first commit here is `7f9046a171e76d08b7c54e72d25ce44a109d131b`. For the purposes of `reset`, the first 7 characters of this strong is sufficient as an identifier: `7f9046a`. In order to step back one commit in time, we want to tell `reset` to go back to the second commit, in this case identified by `9968c0c`:
 
 ```bash
 $ cat README
@@ -198,7 +304,7 @@ $ cat README
 
 If we re-run `git log` we will also find the 3rd commit has disappeared from the history of the repository.
 
-### Exercise 3.3 {: .exercise}
+### Exercise 3.5 {: .exercise}
 
 Estimated time: 15 minutes
 
@@ -214,7 +320,7 @@ So far, all of our operations with Git have been with a local repository. Git al
 
 Github operates a _freemium_ service - it is possible to sign up for an account for free and work extensively with Github - including being able to create an unlimited number of public and private repositories. Newcastle University has an Enterprise account with Github, which allows users at the University to benefit from a range of additional features. In order to join the University Github _organisation_ you must first have a personal account.
 
-### Exercise 3.4 {: .exercise}
+### Exercise 3.6 {: .exercise}
 
 Estimated time: 5 minutes
 
@@ -232,13 +338,13 @@ Turning a local repository into one hosted on Github can be quite fiddly, becaus
     - Make the repository Private
     - Don't add a README, .gitignore or a license at this stage
   
-    | ![Figure 1: Create Repository](github1.png) |
+    | ![Figure 1: Create Repository](media/github1.png) |
     |:--:|
     | <b>Figure 1: Create Repository Form</b>|
 
 2. Click "Create repository"
 3. Now we've created an empty repository, to populate it with a pre-existing local repository, follow the instructions on the screen that appears next:
-    | ![Figure 2: Populate Repository](github2.png) |
+    | ![Figure 2: Populate Repository](media/github2.png) |
     |:--:|
     | <b>Figure 2: Populate Repository Instructions</b>|
 4. Make sure "SSH" is selected at the top of the page
@@ -256,7 +362,7 @@ Turning a local repository into one hosted on Github can be quite fiddly, becaus
 
 If we now visit our Github repository in a web browser, we can see the contents of our _local_ repository have been added to this _remote_ version. To keep the remote repository up-to-date, we have to ensure we `git push` after every `git commit`.
 
-### Exercise 3.5 {: .exercise}
+### Exercise 3.7 {: .exercise}
 
 Estimated time: 10 minutes
 

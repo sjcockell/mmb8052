@@ -313,6 +313,7 @@ Estimated time: 10 min
 
 - Download the example data table: <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt>
 - `sort` the file by the corrected p-value (the column name is `adj.P.Val`), and redirect the output to a file
+    - To use the tab character as a field separator, you will need to add the `-t` option formatted like so: `-t $'\t'`
     - Are the results as you would expect?
     - Where do the column headings end up?
     - Can you figure out how to `sort` the column more correctly (read the `man` page - look for the "general numeric sort", which deals with scientific notation)
@@ -431,7 +432,6 @@ Consider the following:
 
 - What happens if you run the script without supplying arguments?
 - How might you improve this behaviour?
--
 
 ### The FOR Loop
 
@@ -452,11 +452,8 @@ Once the `for` loop runs out of inputs (i.e. every entry in the list has been pr
 
 Estimated time: 10 minutes
 
-- Modify your script from exercise 2.6 to include a FOR loop so it can download multiple entries passed as arguments
-- Can you still include an argument for the type of data to download?
+- Modify your script from exercise 2.6 to include a FOR loop so it can download multiple entries passed as arguments 
 - Test your script still works (use the list of UniProt entries above)
-
-**HINT** - part 2 above is tricky, but possible. Investigate the functioning of the `shift` command in a script, here: <https://www.computerhope.com/unix/bash/shift.htm>.  
 
 - Can you think of any further improvements you'd like to make to this script?
 - Do you think it would also be possible to write a script to make using the UniProt search API (see practical 1) simpler?
@@ -488,7 +485,7 @@ Notice the multiple 'permission denied' errors. Repeat using `sudo` this time, t
 ```bash
 $ sudo apt update
 [sudo] password for student:
-Hit:1 http://gb.archive.ubuntu.com/ubuntu focal InRelease
+Hit:1 http://gb.archive.ubuntu.com/ubuntu jammy InRelease
 [...]
 Reading package lists... Done
 ```
@@ -506,7 +503,7 @@ There are some popular bioinformatics software tools which are available to inst
 ```bash
 $ apt search blast
 [...]
-ncbi-blast+/focal 2.9.0-2 amd64
+ncbi-blast+/jammy 2.12.0+ds-3build1 amd64
   next generation suite of BLAST sequence search tools
 [...]
 ```
