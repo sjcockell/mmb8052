@@ -9,8 +9,6 @@ Date: 2022-05-31
 
 ## Process
 
-Here's a change
-
 ## Data
 
 ## Software
