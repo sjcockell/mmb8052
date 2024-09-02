@@ -258,7 +258,7 @@ Every plot produced with `ggplot2` begins with two key components - the data we 
 > ggplot(data=de_data, aes(x=logFC, y=adj.P.Val))
 ```
 
-| ![Figure 1: ggplot2 example 1](media/ggplot1.png) |
+| ![Figure 1: ggplot2 example 1](ggplot1.png) |
 |:--:|
 | <b>Figure 1: Just the axes</b>|
 
@@ -268,7 +268,7 @@ This first command just produces the axes of our plot, the limits of which are g
 > ggplot(data=de_data, aes(x=logFC, y=adj.P.Val)) + geom_point()
 ```
 
-| ![Figure 2: ggplot2 example 2](media/ggplot2.png) |
+| ![Figure 2: ggplot2 example 2](ggplot2.png) |
 |:--:|
 | <b>Figure 2: Adding some points</b>|
 
@@ -280,7 +280,7 @@ We can use a `scale` to transform the y-axis - p-values are compressed in such a
 > ggplot(de_data, aes(x=logFC, y=adj.P.Val)) + geom_point() + scale_y_continuous(trans="log10")
 ```
 
-| ![Figure 3: ggplot2 example 3](media/ggplot3.png) |
+| ![Figure 3: ggplot2 example 3](ggplot3.png) |
 |:--:|
 | <b>Figure 3: Adding a log transformation</b>|
 
@@ -291,7 +291,7 @@ This is an improvement, but the final step in getting these points arranged in t
 > ggplot(de_data, aes(x=logFC, y=log.P.Val)) + geom_point()
 ```
 
-| ![Figure 4: ggplot2 example 4](media/ggplot4.png) |
+| ![Figure 4: ggplot2 example 4](ggplot4.png) |
 |:--:|
 | <b>Figure 4: Inverting the y-axis</b>|
 
@@ -306,7 +306,7 @@ Next, we will add an additional variable which will help us modify the colour of
 > ggplot(de_data, aes(x=logFC, y=log.P.Val)) + geom_point(aes(colour=significant))
 ```
 
-| ![Figure 5: ggplot2 example 5](media/ggplot5.png) |
+| ![Figure 5: ggplot2 example 5](ggplot5.png) |
 |:--:|
 | <b>Figure 5: Adding a variable colour</b>|
 
@@ -319,7 +319,7 @@ Finally, we can add additional layers to the plot, either based on the data in t
     geom_hline(yintercept=-log10(0.05))
 ```
 
-| ![Figure 6: ggplot2 example 6](media/ggplot6.png) |
+| ![Figure 6: ggplot2 example 6](ggplot6.png) |
 |:--:|
 | <b>Figure 6: Adding a new layer, using a constant</b>|
 
@@ -333,7 +333,7 @@ As we've already seen, it's possible to use _aesthetics_ to map a data variable 
     geom_hline(yintercept=-log10(0.05), linetype=2, colour="dodgerblue")
 ```
 
-| ![Figure 7: ggplot2 example 7](media/ggplot7.png) |
+| ![Figure 7: ggplot2 example 7](ggplot7.png) |
 |:--:|
 | <b>Figure 7: Changing the style of _all_ the points</b>|
 
@@ -348,7 +348,7 @@ ggplot(de_data, aes(x=logFC, y=log.P.Val)) +
   geom_hline(yintercept=-log10(0.05), linetype="dashed", colour="dodgerblue")
 ```
 
-| ![Figure 8: ggplot2 example 8](media/ggplot8.png) |
+| ![Figure 8: ggplot2 example 8](ggplot8.png) |
 |:--:|
 | <b>Figure 8: Manual colour scheme</b>|
 
@@ -364,7 +364,7 @@ ggplot(de_data, aes(x=logFC, y=log.P.Val)) +
   theme_bw()
 ```
 
-| ![Figure 9: ggplot2 example 9](media/ggplot9.png) |
+| ![Figure 9: ggplot2 example 9](ggplot9.png) |
 |:--:|
 | <b>Figure 9: Plot with a theme (`theme_bw()`) applied</b>|
 
@@ -380,7 +380,7 @@ Recreate the plot above, and add the following elements:
 - Alter the point colour to give 3 categories - passed p-value and fold-change thresholds, passed only p-value threshold, failed both thresholds
 - Experiment with colours and linetypes to try to improve the look of the plot
 
-| ![Figure 10: ggplot2 example 10](media/ggplot10.png) |
+| ![Figure 10: ggplot2 example 10](ggplot10.png) |
 |:--:|
 | <b>Figure 10: One possible example "Volcano Plot"</b>|
 
@@ -402,7 +402,7 @@ In the examples above we've really only explored a single geometry (`geom_point(
          geom_boxplot()
 ```
 
-| ![Figure 11: ggplot2 example 11](media/ggplot11.png) |
+| ![Figure 11: ggplot2 example 11](ggplot11.png) |
 |:--:|
 | <b>Figure 11: Boxplot example</b>|
 
@@ -416,7 +416,7 @@ We can add extra layers to the plot in the same way as before - let's start with
          geom_point()
 ```
 
-| ![Figure 12: ggplot2 example 12](media/ggplot12.png) |
+| ![Figure 12: ggplot2 example 12](ggplot12.png) |
 |:--:|
 | <b>Figure 12: Boxplot with points overlaid</b>|
 
@@ -430,7 +430,7 @@ We might want to colour these points by the gene they represent:
          geom_point(aes(colour=gene_id))
 ```
 
-| ![Figure 13: ggplot2 example 13](media/ggplot13.png) |
+| ![Figure 13: ggplot2 example 13](ggplot13.png) |
 |:--:|
 | <b>Figure 13: Boxplot with coloured points overlaid</b>|
 
@@ -443,7 +443,7 @@ Even with so few genes, it can be difficult to track the expression across all t
          geom_line()
 ```
 
-| ![Figure 14: ggplot2 example 14](media/ggplot14.png) |
+| ![Figure 14: ggplot2 example 14](ggplot14.png) |
 |:--:|
 | <b>Figure 14: Boxplot with points and lines overlaid</b>|
 
@@ -456,7 +456,7 @@ It seems that didn't work as intended. This is because of an aesthetic known as 
          geom_line(aes(group=gene_id))
 ```
 
-| ![Figure 15: ggplot2 example 15](media/ggplot15.png) |
+| ![Figure 15: ggplot2 example 15](ggplot15.png) |
 |:--:|
 | <b>Figure 15: Boxplot with points and grouped lines overlaid</b>|
 
@@ -487,7 +487,7 @@ A basic heatmap, with no clustering, can be produced in `ggplot2` using `geom_ti
         geom_tile(aes(fill=value))
 ```
 
-| ![Figure 16: Heatmap Example 1](media/heatmap1.png) |
+| ![Figure 16: Heatmap Example 1](heatmap1.png) |
 |:--:|
 | <b>Figure 16: Heatmap made using `geom_tile()`</b>|
 
@@ -503,7 +503,7 @@ A more complicated heatmap of this data requires that we format the data as a "w
 > pheatmap(wide_matrix)
 ```
 
-| ![Figure 17: Heatmap Example 2](media/heatmap2.png) |
+| ![Figure 17: Heatmap Example 2](heatmap2.png) |
 |:--:|
 | <b>Figure 17: Heatmap made using `pheatmap`</b>|
 
@@ -517,7 +517,7 @@ We can calculate this clustering using the functions mentioned above, if we wish
 > plot(gene_clust)
 ```
 
-| ![Figure 18: Clustering Example 1](media/cluster1.png) |
+| ![Figure 18: Clustering Example 1](cluster1.png) |
 |:--:|
 | <b>Figure 18: Gene-based hierarchical
  clustering</b>|
@@ -531,7 +531,7 @@ The `dist()` function calculates the Euclidaian distance between the _rows_ of t
 > plot(sample_clust)
 ```
 
-| ![Figure 19: Clustering Example 2](media/cluster2.png) |
+| ![Figure 19: Clustering Example 2](cluster2.png) |
 |:--:|
 | <b>Figure 19: Sample-based hierarchical clustering</b>|
 

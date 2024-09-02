@@ -12,7 +12,7 @@ These key features of R (open source, extensible, designed for statistics) mean 
 
 In these practicals we will be using [RStudio](https://www.rstudio.com/) as an interface to R. RStudio is an _Integrated Development Environment_ (IDE) designed specifically for working with R. It is a relatively user friendly interface to R, and has many advantages over using the stand-alone R command prompt. R and RStudio are installed on the computers in the clusters we are using for these practicals - look for RStudio in the Start menu.
 
-| ![Figure 1: RStudio Layout](media/rstudio.png) |
+| ![Figure 1: RStudio Layout](rstudio.png) |
 |:--:|
 | <b>Figure 1: The typical 4 pane layout of RStudio</b>|
 

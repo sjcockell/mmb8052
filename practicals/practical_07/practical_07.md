@@ -16,7 +16,7 @@ The second generation of short read aligners are based on the idea that searchin
 
 Later methods based on the BWT added extra steps after finding seed alignments using the indexed genome to allow full-length, gapped alignment of reads to the reference genome.
 
-| ![Figure 1: Burrows-Wheeler Transform](media/bwt.png) |
+| ![Figure 1: Burrows-Wheeler Transform](bwt.png) |
 |:--:|
 | <b>Figure 1: Burrows-Wheeler Transform</b>|
 
@@ -41,13 +41,8 @@ A Burrows-Wheeler transformed genome also occupies approximately the same amount
 
 Estimated time: 10 minutes
 
-* Set `conda` channel priorities to "flexible":
-    * `conda config --set channel_priority flexible`
-* Make a new `conda` env for the practical
-    * `conda create -n practial07`
-    * `conda activate practical07`
-* Install `samtools`, `bcftools` and `bwa` using `conda`
-    * `conda install samtools bcftools bwa`
+* Install `samtools`, `bcftools` and `bwa` using APT
+    * `sudo apt install samtools bcftools bwa`
 * Download and extract the data for the practical:
     * <https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chr20.fa.gz>
     * <https://github.com/sjcockell/mmb8052/raw/main/practicals/data/practical_07.zip>
@@ -55,7 +50,7 @@ Estimated time: 10 minutes
     * Extract the `practical_07.zip` archive with `unzip`
 * Use `bwa` to _index_  the "genome":
     * Get help information for `bwa` by running the command with no arguments
-    * You can also view the `man` page online here: <https://bio-bwa.sourceforge.net/bwa.shtml> (`conda` doesn't integrate with `man` very well)
+    * You can also view the `man` page online here: <https://bio-bwa.sourceforge.net/bwa.shtml> 
 
 BWA reads a FASTA sequence and transforms it with the BWT to produce a genome index. The indexing process will take a minute or two - once it has finished, have a look at what files have been produced.
 
@@ -184,7 +179,7 @@ Estimated time: 15 minutes
 * Load the three BAM files you created in earlier exercises (and transferred to your local machine at the end of exercise 7.3)
 * In the location box (middle of the top toolbar), paste in the following location: chr20:10,166,001-10,170,999
 
-| ![Figure 2: IGV Screenshot](media/igv_1.png) |
+| ![Figure 2: IGV Screenshot](igv_1.png) |
 |:--:|
 | <b>Figure 2: Integrative Genomics Viewer used to visualise BAM files.</b>|
 
@@ -201,7 +196,7 @@ Since we are working here with a very small dataset, the most robust methods for
 
 The Genome Analysis Toolkit is the "industry standard" variant caller. It was originally developed for the [1,000 Genomes Project](https://www.internationalgenome.org/) and has continued to be developed since by a large software engineering team. GATK provides tools for every step of the variant calling process, and the variant callers themselves use complicated machine- and deep-learning models to derive variant calls.
 
-| ![Figure 3: GATK Best Practise Guidelines](media/gatk.png) |
+| ![Figure 3: GATK Best Practise Guidelines](gatk.png) |
 |:--:|
 | <b>Figure 3: GATK Best Practise Guidelines.</b>|
 
@@ -241,7 +236,7 @@ $ bcftools view -Ov calls.snp.filt.bcf > calls.snp.filt.vcf
 
 * Use `sftp` to transfer the VCF file to your local machine, and load it in IGV. 
 
-| ![Figure 4: IGV Screenshot](media/igv_2.png) |
+| ![Figure 4: IGV Screenshot](igv_2.png) |
 |:--:|
 | <b>Figure 4: IGV with VCF loaded alongside BAM files.</b>|
 
@@ -261,3 +256,7 @@ This practical is a demonstration of the enduring ability of sequence alignment 
 The accurate calling of genomic variation is an ongoing challenge in bioinformatics, particularly in human genomes. We have scratched the surface of this topic here, but we can see that even a relatively simple model can be helpful to summarise the complicated variability that we observe in real samples. 
 
 The Linux command line is of vital importance to the way that these kinds of analyses work, as the cohorts used in genetic studies tend to be large, which means a lot of data needs to be processed in as "hands-off" a way as possible. Non-interactive command line workflows, often deployed on high-performance computing resources (which exclusively run on Linux) are absolutely key in the delivery of this type of analysis. 
+
+# Quick Quiz
+
+<iframe src="https://newcastle.h5p.com/content/1292126295878616437/embed" aria-label="Practical 7" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>

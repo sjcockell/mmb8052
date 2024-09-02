@@ -134,7 +134,7 @@ Estimated time: 10 minutes
 > library(tidyverse)
 ```
 
-* The first line of the above code install Bioconductor (an R package manager for bioinformatics). The subsequent `install()` command uses the Bioconductor installer to locate the rest of the required packages. 
+* The first line of the above code installs Bioconductor (an R package manager for bioinformatics). The subsequent `install()` command uses the Bioconductor installer to locate the rest of the required packages. 
 * Bioconductor packages are not available in CRAN, so cannot be installed with `install.packages()`. The Bioconductor installer, on the other hand, is capable of installing CRAN packages (such as `pheatmap`, here).
 * Some of these packages may take some time to install (particularly `DESeq2` which has a lot of dependencies). If you find yourself waiting, read the next section and come back in a few minutes to check if the installation has worked.
 
@@ -197,7 +197,7 @@ In `DESeq2` (in contrast to the older `DESeq`), the dispersion estimates are sub
 
 Dispersion estimates can also be plotted (see Figure 1). This can be a useful diagnostic plot for an RNA-Seq experiment - the kind of relationship seen in this experiment between mean count and dispersion is typical, where variance decreases with increasing read count. A deviation from this usual relationship could be cause for concern for your analysis.
 
-| ![Figure 1: Dispersion Estimates Plot](media/rnaseq1.png) |
+| ![Figure 1: Dispersion Estimates Plot](rnaseq1.png) |
 |:--:|
 | <b>Figure 1: Plot of dispersion estimates for GSE116583.</b>|
 
@@ -270,12 +270,12 @@ Estimated time: 10 minutes
 * Are there any outliers in this experiment?
 * Have a look at `heatmap_annotation` - what's the purpose of this object?
 
-| ![Figure 2: Principal Components Plot](media/rnaseq2.png) | 
+| ![Figure 2: Principal Components Plot](rnaseq2.png) | 
 |:--:|
 | <b>Figure 2: Plot of principal components for GSE116583.</b>|
 
 
-| ![Figure 3: Sample Distance Plot](media/rnaseq3.png) |
+| ![Figure 3: Sample Distance Plot](rnaseq3.png) |
 |:--:|
 | <b>Figure 3: Heatmap of sample distances for GSE116583.</b>|
 
@@ -318,7 +318,7 @@ Estimated time: 15 minutes
 * Can you repeat the above for the second comparison inherent in this dataset (Allo2h vs Naive)?
 * Is there any value in comparing Allo24h to Allo2h?
 
-| ![Figure 4: 24h vs Naive Volcano Plot](media/rnaseq4.png) |
+| ![Figure 4: 24h vs Naive Volcano Plot](rnaseq4.png) |
 |:--:|
 | <b>Figure 4: Basic 24h vs Naive Volcano Plot.</b>|
 

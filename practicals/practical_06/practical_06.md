@@ -24,7 +24,7 @@ Identity is defined as the percentage of shared positions in a sequence alignmen
 
 Similarity is used to describe the relationship between protein sequences in an alignment, and relies on the fact that certain amino acids share similar physiochemical properties and that substitutions between them can be said to be _conservative_. Taking these similarities into account when examining the relationship between sequences means we can calculate a score for the _similarity_.
 
-| ![Figure 1: Similarity and Identity](media/align1.png) |
+| ![Figure 1: Similarity and Identity](align1.png) |
 |:--:|
 | <b>Figure 1: Sequence Identity and Similarity</b>|
 
@@ -44,7 +44,7 @@ Nucleic acid alignments are normally scored by a simple system where a match car
 
 Amino acid alignment scoring is more complicated, and usually involves a _substitution matrix_, which encodes different mismatch penalties for different substitutions. This recognises the fact that some amino acid mutations are more likely to occur (due to the nature of the genetic code), and some have a more deleterious effect on protein function than others. Common substitution matrices are based on empirical observation of amino acid changes in closely related biological sequences. For example the popular BLOSUM matrices are generated based on ungapped alignments from the [BLOCKS database](https://academic.oup.com/nar/article/24/1/197/2359962).
 
-| ![Figure 2: BLOSUM62 Substitution Matrix](media/align2.png) |
+| ![Figure 2: BLOSUM62 Substitution Matrix](align2.png) |
 |:--:|
 | <b>Figure 2: The BLOSUM62 Substitution Matrix</b>|
 
@@ -53,7 +53,7 @@ Amino acid alignment scoring is more complicated, and usually involves a _substi
 Estimated time: 10 minutes
 
 - Download the FASTA sequence for the following UniProt entries: P69905, P01942
-- Using Conda, install the software package `emboss`
+- Using APT, install the software package `emboss`
 - Read the help information for the Emboss tool `needle`
 - Use `needle` to globally align the two sequences you've downloaded
 
@@ -107,6 +107,7 @@ Although the NCBI web server is capable of meeting most users requirements for B
 Estimated time: 15 minutes
 
 - Use the commands below to (a) download the human proteome from UniProt (we looked at how to do this using the Search API in practical 01), and (b) build a BLAST database from the resulting file
+  - If you didn't do so earlier in the module, you made need to install the `ncbi-blast+` package using APT. 
 
 ```bash
 $ wget -O human.fa 'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&format=fasta'
@@ -133,7 +134,7 @@ Although the standard approach of HMMER starts with an alignment, from which an 
 It is also possible to use HMMER iteratively - the first search returns a set of proteins which are used to build an HMM for a second search, the results from which are used to improve the model, and so on. Both of these modes are enabled by the `hmmer` package which can be installed with `conda`
 
 ```bash
-$ conda install hmmer
+$ sudo apt install hmmer
 # search a (FASTA) database with a single query:
 $ phmmer --tblout hmmer.out A0A024R379.fasta human.fa
 # perform an iterative search (max of 5 iterations by default)
@@ -144,15 +145,15 @@ The A0A024R379 protein contains an [SH2 domain](https://www.ebi.ac.uk/interpro/e
 
 # Multiple Sequence Alignment
 
-If we want to explore the evolutionary relationships between more than two sequences, we need different methods to those outlined above, which do not naturally extend to align a greater number of inputs. Computational multiple sequence alignment strategies began to be explored in the late 1980s and many methods have been published since then. Multiple sequence alignment is a multi-dimensional problem, which unlike pairwise alignment does not have an optimal solution (or at least not one which is computationally tractable). Most methods therefore use heuristic methods to take shortcuts on the route to an acceptable solution (a heuristic is an approach to problem solving that does not guaratee an optimal result, but is nevertheless sufficient for reaching an adequate approximation).
+If we want to explore the evolutionary relationships between more than two sequences, we need different methods to those outlined above, which do not naturally extend to align a greater number of inputs. Computational multiple sequence alignment strategies began to be explored in the late 1980s and many methods have been published since then. Multiple sequence alignment is a multi-dimensional problem, which unlike pairwise alignment does not have an optimal solution (or at least not one which is computationally tractable). Most methods therefore use heuristic methods to take shortcuts on the route to an acceptable solution (a heuristic is an approach to problem solving that does not guarantee an optimal result, but is nevertheless sufficient for reaching an adequate approximation).
 
-There are a number of different approaches taken to constructing multiple sequence alignments, though in practise the actual algorithmic approach matters less than the perceived accuracy of the output (and other metrics such as computational efficiency). Below is a brief summary of the major modern methods.
+There are a number of different approaches taken to constructing multiple sequence alignments, though in practice the actual algorithmic approach matters less than the perceived accuracy of the output (and other metrics such as computational efficiency). Below is a brief summary of the major modern methods.
 
 ### T-Coffee
 
 [T-Coffee](https://tcoffee.org/Projects/tcoffee/index.html) is a modern *progressive* alignment based method. A progressive alignment strategy builds a sequence alignment by adding sequences to an initial pairwise alignment, which is made with the closest two sequences. A progressive alignment process begins with the construction of a _guide tree_ - which models the relationships between the sequences to be aligned. The alignment is then constructed on the basis of the branching of this tree, with the closest two sequences aligned first, then the next closest aligned to that alignment and so on. 
 
-Progressive alignment methods are effcient, and can produce large alignments quickly, but they are generally not very accurate when all of the sequences to be aligned are distantly related. The principal problem with progressive alignment is that errors  made at any stage in growing the MSA are then propagated through to the final result. 
+Progressive alignment methods are efficient, and can produce large alignments quickly, but they are generally not very accurate when all of the sequences to be aligned are distantly related. The principal problem with progressive alignment is that errors made at any stage in growing the MSA are then propagated through to the final result. 
 
 T-Coffee attempts to overcome this limitation by using local alignments (made with LALIGN) to more accurately construct and weight the guide tree.
 
@@ -176,8 +177,7 @@ Estimated time: 15 minutes
 P76082 P94549 Q52995 P9WNN8 P9wNN9 P64017 O07137 P9WNP1 Q50130 P64019 P9WNN4 P9WNN5 P24162 G4V4T7 P53526 P9WNN7 P9WNN6 Q7U004 Q7TXE1 P9WNN3 A1KN36 P9WNN2 A5U753 A0QJH8 Q73VC7
 ```
 
-- Create a new `conda` environment (e.g. `conda create -n msa_env`)
-- Activate your new environment, and install `muscle`, `t-coffee` and `clustalo`
+- Install `muscle`, `t-coffee` and `clustalo` using APT (you can use `apt search` to find the appropriate packages to install)
 - Use each of these tools to make a multiple sequence alignment from the sequences you downloaded in the first step
 
 Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. Download files from your VM using Powershell:
@@ -224,7 +224,7 @@ In particular, consider the following:
 
 - All the sequences you have aligned are annotated with the same Enzyme Commission identifier ([4.2.1.17](https://www.brenda-enzymes.org/enzyme.php?ecno=4.2.1.17) - enoyl-CoA hydratase) - this means they _should_ all have the same biochemical function. To exhibit this function, these enzymes require 2 of 3 key residues to be negatively charged - these residues are at position 109, 129 and 137 in P76082 (see figure 3 below). How many of the sequences in your alignment(s) have 2 negatively charged amino acids (D or E) at the appropriate positions? 
 
-| ![Figure 3: P76082 sequence](media/P76082.png) |
+| ![Figure 3: P76082 sequence](P76082.png) |
 |:--:|
 | <b>Figure 3: P76082 sequence, with functional region highlighted in yellow. Key residues highlighted in red - 2 of 3 must be negatively charged (D or E) for protein to be function as a hydratase</b>|
 
@@ -236,3 +236,7 @@ In particular, consider the following:
 This practical has been the first of our more applied examples of the tools you learnt how to use in the early practicals. The uses for sequence alignment are many and varied throughout bioinformatics, and we have just scratched the surface of what is possible here. Despite algorithms dating back to the late 1970s, much about sequence alignment strategies is still very relevant to modern biomedical science and there are many recent applications which absolutely depend on robust sequence alignment techniques.
 
 In the next practical, we will take a look at one of these approaches - the high-throughput sequencing of genomic DNA, particularly from humans. 
+
+## Quick Quiz
+
+<iframe src="https://newcastle.h5p.com/content/1292062340643814587/embed" aria-label="Practical 6" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
