@@ -157,6 +157,8 @@ Progressive alignment methods are efficient, and can produce large alignments qu
 
 T-Coffee attempts to overcome this limitation by using local alignments (made with LALIGN) to more accurately construct and weight the guide tree.
 
+T-Coffee and the version of Muscle we want to use are not compatible with one another, so we are not going to use T-Coffee in the following exercise. 
+
 ### Muscle
 
 [Muscle](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-113) (multiple sequence alignment by log-expectation) is an *iterative* alignment method. Iterative multiple sequence alignment is a similar strategy to progressive alignment, with the key difference that initially aligned sequences can be repeatedly realigned (and so refined) as the alignment is built.
@@ -177,7 +179,7 @@ Estimated time: 15 minutes
 P76082 P94549 Q52995 P9WNN8 P9wNN9 P64017 O07137 P9WNP1 Q50130 P64019 P9WNN4 P9WNN5 P24162 G4V4T7 P53526 P9WNN7 P9WNN6 Q7U004 Q7TXE1 P9WNN3 A1KN36 P9WNN2 A5U753 A0QJH8 Q73VC7
 ```
 
-- Install `muscle`, `t-coffee` and `clustalo` using APT (you can use `apt search` to find the appropriate packages to install)
+- Install `muscle3` and `clustalo` using APT (you can use `apt search` to find the appropriate packages to install)
 - Use each of these tools to make a multiple sequence alignment from the sequences you downloaded in the first step
 
 Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. Download files from your VM using Powershell:
@@ -194,7 +196,7 @@ This command creates an `sftp` connection to your VM - similar to an SSH connect
 $ get practical_06/muscle.fa
 ```
 
-- Download the 3 alignments you made above
+- Download the 2 alignments you made above
 
 # Uses of Multiple Sequence Alignments
 

@@ -549,8 +549,8 @@ $ cat *.fasta > all_seq.fasta
 
 **Note**: This command will only work correctly if the FASTA files requested in the first step are the only `.fasta` files in your current working directory (otherwise sequences you don't want to include in your alignment will be incorporated in this file).
 
- - Now install the multiple sequence alignment program called `muscle` - you can use `apt` for this.
- - Read the `muscle` help file (`muscle --help`), and see if you can figure out how to get it to align the sequences in `all_seq.fasta` by following the "Basic usage".
+ - Now install the multiple sequence alignment program called `muscle` - you can use `apt` for this (we are going to install the version called `muscle3`).
+ - Read the `muscle3` help file (`muscle3 --help`), and see if you can figure out how to get it to align the sequences in `all_seq.fasta` by following the "Basic usage".
  - Use `less` to look at the difference between the input and the output.
 
 # Summary
@@ -558,7 +558,3 @@ $ cat *.fasta > all_seq.fasta
 This practical has introduced some advanced concepts which are useful when working at the Linux command line. The ability to write scripts, in particular, allows us to record our practice and therefore to reproduce it (and allow others to). We've also seen how to install software on our Linux system - providing new tools to experiment with, including some bioinformatics software. The final exercise here combined a lot of the lessons we've learned so far to achieve something quite complicated - this is a realistic 'bioinformatics' task.
 
 Next week we will look at organising our work, and computational tools for managing projects and software.
-
-# Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292029494843300917/embed" aria-label="Practical 2" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>

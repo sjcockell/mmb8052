@@ -546,6 +546,3 @@ In this first practical we have encountered the Linux command line for the first
 
 In future practicals, we will investigate more of these tools, and different ways of using them.
 
-# Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292024274609594127/embed" aria-label="Practical 1" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>

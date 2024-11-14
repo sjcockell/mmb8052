@@ -272,7 +272,3 @@ Estimated time: 10 minutes
 This practical may seem a little out of place, with respect to the practical skills being demonstrated in the other sessions, but the tools and techniques shown here are valuable professional skills which are extremely valuable when it comes to managing your computational research. Many bioinformatics projects manage their code using Git and Github, and being able to understand and work with these systems is often vital to working with such systems.
 
 In a research environment, you are expected to document your experiments and your progress - keeping a good quality lab notebook is a valuable skill. The same is true, though often under-appreciated, for computational research. Being organised, and documenting your work effectively will be beneficial in many ways.
-
-# Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292042486860567957/embed" aria-label="Practical 3" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>

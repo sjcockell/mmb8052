@@ -543,7 +543,3 @@ There's no exercise here, but if you have time at the end of the practical, prod
 This practical has covered a lot of ground, with a particular focus on the Tidyverse, and on `ggplot2` and visualising data in particular. We've looked at what consititutes a "tidy" dataset, and how we can use the grammar of graphics to produce intuitive visualisations of these types of data.
 
 This was the last of our "introductory" practicals, and we have now covered all of the fundamental techniques we will need in our case studies, which make up the remaining practicals in the module. Remember in future weeks that you have the documentation of the first 5 practicals to fall back on if you want to refresh your memory of a particular skill.
-
-# Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292061368584266197/embed" aria-label="Practical 5" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
