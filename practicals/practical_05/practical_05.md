@@ -234,9 +234,9 @@ Estimated time: 8 minutes
 
 HINT - the `logFC` column contains base 2 logarithms - the linear scale ratios can be found by calculating the _antilog_ of this value.
 
-$$ y = log_2 (x)
-\newline
-x = 2^{y} $$
+$$ y = log_2 (x) $$
+
+$$ x = 2^{y} $$
 
 - Take a look at the relationship between the log fold changes and the ratios you've just calculated. Why do you think we typically express fold changes in logarithmic space?
 
