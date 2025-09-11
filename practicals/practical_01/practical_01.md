@@ -83,7 +83,7 @@ ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudap
 Estimated time: 2 mins
 
 - Open the **Windows PowerShell** app (press Windows+S to search, then type 'powershell') 
-- At the prompt (`PS C:\Users\Simon>`), paste in the connection string shown when you click 'Connect via SSH' on the Azure Lab (above). As per the example above:
+- At the prompt (`>`), paste in the connection string shown when you click 'Connect via SSH' on the Azure Lab (above). As per the example above:
 
 ```bash
 ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
