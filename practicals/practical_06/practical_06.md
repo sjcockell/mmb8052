@@ -107,7 +107,7 @@ Although the NCBI web server is capable of meeting most users requirements for B
 Estimated time: 15 minutes
 
 - Use the commands below to (a) download the human proteome from UniProt (we looked at how to do this using the Search API in practical 01), and (b) build a BLAST database from the resulting file
-  - If you didn't do so earlier in the module, you made need to install the `ncbi-blast+` package using APT. 
+  - If you didn't do so earlier in the module, you may need to install the `ncbi-blast+` package using APT. 
 
 ```bash
 $ wget -O human.fa 'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&format=fasta'
@@ -131,7 +131,7 @@ The approach of BLAST is based on using a single query sequence to find database
 
 Although the standard approach of HMMER starts with an alignment, from which an HMM is built, it is possible to begin with a single query sequence. A naive model is then built based on a substitution matrix which infers additional information on top of the input sequence. This model is then used to search the sequence database. 
 
-It is also possible to use HMMER iteratively - the first search returns a set of proteins which are used to build an HMM for a second search, the results from which are used to improve the model, and so on. Both of these modes are enabled by the `hmmer` package which can be installed with `conda`
+It is also possible to use HMMER iteratively - the first search returns a set of proteins which are used to build an HMM for a second search, the results from which are used to improve the model, and so on. Both of these modes are enabled by the `hmmer` package which can be installed with `apt`:
 
 ```bash
 $ sudo apt install hmmer
@@ -239,6 +239,3 @@ This practical has been the first of our more applied examples of the tools you 
 
 In the next practical, we will take a look at one of these approaches - the high-throughput sequencing of genomic DNA, particularly from humans. 
 
-## Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292062340643814587/embed" aria-label="Practical 6" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>

@@ -39,7 +39,7 @@ We also need to pay attention to the _scaling_ of the values in the heatmap - by
 
 * Add `scale="row"` to your `pheatmap()` call
 
-| ![Figure 1: Heatmap Example](media/practical9_01.png) |
+| ![Figure 1: Heatmap Example](practical9_01.png) |
 |:--:|
 | <b>Figure 1: Example Heatmap from GSE116583</b>|
 
@@ -156,7 +156,7 @@ Estimated time: 20 mins
 * Test out the functions listed in the table with the results generated in exercise 9.2
 * Can you get the fold changes displayed on the `cnetplot()` and `heatplot()`?
 
-| ![Figure 2: heatplot() Example](media/practical9_02.png) |
+| ![Figure 2: heatplot() Example](practical9_02.png) |
 |:--:|
 | <b>Figure 2: Example `heatplot()` from GSE116583</b>|
 
@@ -198,7 +198,7 @@ NOTE: `gseaplot()` needs a geneset to visualise, to plot the top-ranked geneset,
 gseaplot(gsea, geneSetID = 1, title = gsea$Description[1])
 ```
 
-| ![Figure 3: ridgeplot() Example](media/practical9_03.png) |
+| ![Figure 3: ridgeplot() Example](practical9_03.png) |
 |:--:|
 | <b>Figure 3: Example `ridgeplot()` from GSE116583</b>|
 
@@ -222,16 +222,16 @@ By preparing a data file containing the differentially expressed genes from the 
 * Tick the "Multiple Gene Lists" tickbox
 * Upload the file with the provided button
 
-![Figure 4: Metascape 1](media/metascape1.png)
+![Figure 4: Metascape 1](metascape1.png)
 
 * Select "M. musculus" in both the drop-down species boxes
 * Click "Express Analysis"
 
-![Figure 5: Metascape 2](media/metascape2.png)
+![Figure 5: Metascape 2](metascape2.png)
 
 * The click through to the "Analysis Report Page" once the process is complete
 
-![Figure 6: Metascape 3](media/metascape4.png)
+![Figure 6: Metascape 3](metascape4.png)
 
 ## CEMiTool
 
@@ -251,7 +251,7 @@ Each of these files can be downloaded from Github:
 
 In the CEMiTool web interface, load these files in the appropriate places:
 
-![Figure 7: CEMiTool Setup](media/cemi1.png)
+![Figure 7: CEMiTool Setup](cemi1.png)
 
 Now we can click "Run CEMiTool", and wait for the results to be returned (this will take a few minutes).
 
