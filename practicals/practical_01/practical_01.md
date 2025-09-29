@@ -82,18 +82,16 @@ ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudap
 
 Estimated time: 2 mins
 
-- Go to: <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>
-- You'll need **putty.exe** and **psftp.exe**
-- Run **putty.exe** to open the PuTTY configuration screen
-- In the "Host name (or IP address)" box, type: **USERNAME@LAB.ADDRESS**, replacing this with the connection string which is shown when you click - from the example above:
+- Open the **Windows PowerShell** app (press Windows+S to search, then type 'powershell') 
+- At the prompt (`>`), paste in the connection string shown when you click 'Connect via SSH' on the Azure Lab (above). As per the example above:
 
-```
-student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
+```bash
+ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudapp.azure.com
 ```
 
-- In the "Port" box, type the number given in the `-p` argument of your SSH invocation (this is likely to be a large number, greater than 50000 - from the example above `65432`)
+- To paste into PowerShell, press the right mouse button at the prompt (Ctrl-C/Ctrl-V do not always work in the Terminal environment as they mean something different to copy/paste)
 
-PuTTY will then open and prompt you for a password. Enter the password you set when starting your VM for the first time.
+You will then be prompted for a password. Enter the password you set when starting your VM for the first time.
 
 ### Logging in from MacOS
 
@@ -115,26 +113,38 @@ ssh -p 65432 student@ml-lab-77568ef7-c936-416a-a101-5e2874043ea1.uksouth.cloudap
 Once you have logged in, you should see what's known as a "command prompt" - it is here that you can type commands to be interpreted by the active Unix shell (on our VMs, the default shell is bash). You should see something like this in your terminal:
 
 ```
-Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 5.4.0-1069-azure x86_64)
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.8.0-1031-azure x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+ * Support:        https://ubuntu.com/pro
 
-  System information as of Tue Jun  7 15:37:31 UTC 2022
+ System information as of Thu Sep 11 09:18:04 UTC 2025
 
-  System load:  1.18               Processes:           144
-  Usage of /:   46.8% of 28.90GB   Users logged in:     0
-  Memory usage: 7%                 IP address for eth0: 10.210.28.5
+  System load:  0.13               Processes:             129
+  Usage of /:   2.1% of 123.87GB   Users logged in:       0
+  Memory usage: 8%                 IPv4 address for eth0: 10.0.0.26
   Swap usage:   0%
 
-Last login: Fri Feb 11 11:47:23 2022 from 128.240.225.23
-student@ML-RefVm-558285:~$
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Wed Aug 13 10:42:21 2025 from 128.240.225.24
+student@labTWBI48:~$
 ```
 
 The bulk of this is information about the state and health of the system, produced by the OS on login. The final line contains 3 key elements:
 
-1. `student@ML-RefVm-558285` is your username (`student`) at the name of the computer (`ML-RefVm-558285`)
+1. `student@labTWBI4` is your username (`student`) at the name of the computer (`labTWBI4`)
 1. `~` denotes your _current working directory_ - more on this below - this tilde character is a widely used shorthand for the _home_ directory.
 1. The `$` symbol is the prompt, and will be used throughout these practicals to indicate the beginning of a bash command (you shouldn't type the `$`).
 
