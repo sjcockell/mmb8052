@@ -257,6 +257,3 @@ The accurate calling of genomic variation is an ongoing challenge in bioinformat
 
 The Linux command line is of vital importance to the way that these kinds of analyses work, as the cohorts used in genetic studies tend to be large, which means a lot of data needs to be processed in as "hands-off" a way as possible. Non-interactive command line workflows, often deployed on high-performance computing resources (which exclusively run on Linux) are absolutely key in the delivery of this type of analysis. 
 
-# Quick Quiz
-
-<iframe src="https://newcastle.h5p.com/content/1292126295878616437/embed" aria-label="Practical 7" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://newcastle.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
