@@ -72,7 +72,7 @@ The most basic level of documentation is the so-called README file. Every projec
 
 Markdown is a simple to write _markup language_ which is easy to convert into different document formats (particularly, but not exclusively, HTML). Since Markdown is a plain text format, it is easy to author using a command line text editor such as `nano` (which we have met in earlier practicals). There are a number of simple guides to the basic syntax of Markdown, [this is a representative example](https://www.markdownguide.org/basic-syntax/).
 
-The simplicity of Markdown makes it an excellent choice for documentation. By way of example, all of the practical guides you have been following during this course have been authored in Markdown and then converted into the webpages you find embedded in Canvas. The raw Markdown for _this_ document can be found here: <https://raw.githubusercontent.com/sjcockell/mmb8852/main/practicals/practical_03.md>.
+The simplicity of Markdown makes it an excellent choice for documentation. By way of example, all of the practical guides you have been following during this course have been authored in Markdown and then converted into the webpages you find embedded in Canvas. The raw Markdown for _this_ document can be found here: [<https://raw.githubusercontent.com/sjcockell/mmb8852/main/practicals/practical_03.md>](https://raw.githubusercontent.com/sjcockell/mmb8052/refs/heads/main/practicals/practical_03/practical_03.md).
 
 ### Exercise 3.2 {: .exercise}
 
