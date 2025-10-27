@@ -267,7 +267,7 @@ Relational operators used with vectors will give back a boolean vector of the sa
 ```r
 > x = 1:10
 > x >= 5
-[1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+[1] FALSE FALSE FALSE FALSE TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ```
 
 ### Filtering vectors
