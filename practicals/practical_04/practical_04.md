@@ -385,7 +385,7 @@ Work out what the following functions do to the matrix `my_matrix` (as per the c
 
 A data frame has a 2-dimensional rows-and-columns structure like a matrix. However, unlike a matrix each column can be of a different data type (for example some columns might contain numbers and other columns might contain character strings). This makes data frames particularly useful for storing tabular data in which the rows correspond to cases and columns correspond to variables. Data frames are the fundamental data structure used by R’s statistical modelling software.
 
-The `data.frame()` function creates a data frame from a set of vectors:
+The `data.frame()` function creates a data frame from a set of equal length vectors:
 
 ```r
 > df = data.frame(gene_id = c("ENSG00000030110", "ENSG00000166394", "ENSG00000109738", "ENSG00000153208"),
