@@ -110,7 +110,7 @@ This class of operator is used to compare between values. The way this works is 
 [1] TRUE
 > "a" < "b"
 [1] TRUE
-> TRUE > FALSE
+> TRUE < FALSE
 [1] FALSE
 ```
 
