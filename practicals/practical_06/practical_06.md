@@ -79,7 +79,7 @@ Estimated time: 10 minutes
 
 - Read the help information for the Emboss tool `water`
 - Use `water` to locally align the two sequences from exercise 6.1
-- Download the FASTA sequence for the following UniProt entries: A0A024R379 and A0A087X1Q5
+- Download the FASTA sequence for the following UniProt entries: O14544 and O14512
 - Align these two sequences with both `needle` and `water`
 
 Consider the following:
@@ -114,7 +114,7 @@ $ wget -O human.fa 'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:tru
 $ makeblastdb -in human.fa -input_type fasta -dbtype prot -title hsapiens -parse_seqids -taxid 9606 -out hsapiens
 ```
 
-- Look at the help information for the `blastp` executable, and work out how to search the database you've created with the A0A024R379 sequence you downloaded in exercise 6.2 
+- Look at the help information for the `blastp` executable, and work out how to search the database you've created with the O14544 sequence you downloaded in exercise 6.2 
 - Use the table output format to make the results a bit easier to digest (`-outfmt 6`)
 - How many hits do you get in the database, using the default thresholds?
 
@@ -136,12 +136,12 @@ It is also possible to use HMMER iteratively - the first search returns a set of
 ```bash
 $ sudo apt install hmmer
 # search a (FASTA) database with a single query:
-$ phmmer --tblout hmmer.out A0A024R379.fasta human.fa
+$ phmmer --tblout hmmer.out O14544.fasta human.fa
 # perform an iterative search (max of 5 iterations by default)
-$ jackhmmer --tblout jackhmmer.out A0A024R379.fasta human.fa
+$ jackhmmer --tblout jackhmmer.out O14544.fasta human.fa
 ```
 
-The A0A024R379 protein contains an [SH2 domain](https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/) (a protein domain involved in binding to phosphorylated tyrosine residues on other proteins). The literature suggests that there are 111 human proteins which contain an SH2 domain (<https://doi.org/10.1126/scisignal.2002105>). Although none of the search strategies above identify exactly 111 hits, they all identify a reasonable subset - especially considering only about 100 amino acids of the total query sequence length of 535 amino acids is contained in the SH2 domain. 
+The O14544 protein contains an [SH2 domain](https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/) (a protein domain involved in binding to phosphorylated tyrosine residues on other proteins). The literature suggests that there are 111 human proteins which contain an SH2 domain (<https://doi.org/10.1126/scisignal.2002105>). Although none of the search strategies above identify exactly 111 hits, they all identify a reasonable subset - especially considering only about 100 amino acids of the total query sequence length of 535 amino acids is contained in the SH2 domain. 
 
 # Multiple Sequence Alignment
 
