@@ -182,7 +182,7 @@ P76082 P94549 Q52995 P9WNN8 P9wNN9 P64017 O07137 P9WNP1 Q50130 P64019 P9WNN4 P9W
 - Install `muscle3` and `clustalo` using APT (you can use `apt search` to find the appropriate packages to install)
 - Use each of these tools to make a multiple sequence alignment from the sequences you downloaded in the first step
 
-Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. Download files from your VM using Powershell:
+Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. **IN A NEW POWERSHELL WINDOW**: Download files from your VM using Powershell:
 
 ```
 $ sftp -P [port] student@[your.vm.address]
