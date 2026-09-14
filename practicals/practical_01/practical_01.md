@@ -94,7 +94,7 @@ aws.admin@aln-ncl15-app002:~$
 
 This line (the Terminal 'prompt') contains 3 key elements:
 
-1. `aws.admin@aln-ncl15-app002` is your username (`aws.student`) at the name of the computer (`labTWaln-ncl15-app002BI4`)
+1. `aws.admin@aln-ncl15-app002` is your username (`aws.student`) at the name of the computer (`aln-ncl15-app002BI4`)
 1. `~` denotes your _current working directory_ - more on this below - this tilde character is a widely used shorthand for the _home_ directory.
 1. The `$` symbol is the prompt, and will be used throughout these practicals to indicate the beginning of a bash command (you shouldn't type the `$`).
 
