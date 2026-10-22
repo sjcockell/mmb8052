@@ -1,0 +1,1056 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        
+            <meta charset="utf-8">
+            <meta name="robots" content="noindex">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="author" content="Simon J Cockell" />
+            <meta name="date" content="2026-10-21" />
+        
+
+        <title>MMB8052 - Practical 7 | </title>
+
+        
+            <link rel="icon" type="image/png" href="static/favicon.png?build_time=1792598282.899382"/>
+        
+
+        
+    
+    
+            <link rel="stylesheet" href="static/styles.css?build_time=1792598282.899382">
+            
+            
+        
+    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.css?build_time=1792598282.899382">
+
+    <link rel="stylesheet" href="static/print.css?build_time=1792598282.899382">
+
+
+        
+    
+			<script>
+				var chirun_static_url = new URL('static?build_time=1792598282.899382', location.href);
+			</script>
+
+            
+                <script defer src="static/mathjax_config.js?build_time=1792598282.899382"></script>
+                <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+            
+
+            <script type="module" src="static/localisation.js?build_time=1792598282.899382"></script>
+
+            <script defer src="static/customisation.js?build_time=1792598282.899382"></script>
+
+            
+
+            
+        
+    <script defer src="static/code.js?build_time=1792598282.899382" type="module"></script>
+    <script defer src="static/embed_numbas.js?build_time=1792598282.899382" type="module"></script>
+    <script defer src="static/embed_qrcode.js?build_time=1792598282.899382" type="module"></script>
+
+
+        <template id="runnable-code-template">
+            <link rel="stylesheet" href="static/code.css?build_time=1792598282.899382">
+            <div class="runnable-code-wrapper">
+                <section class="fullscreenable code">
+                    <div id="code"></div>
+                    <button class="fullscreen icon-button" title="Fullscreen code"><svg class="icon" aria-label="Fullscreen code" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <section class="fullscreenable output">
+                    <div id="output" aria-live="polite">
+                        <pre class="stdout"></pre>
+                        <pre class="result"></pre>
+                        <div class="images"></div>
+                    </div>
+                    <button class="fullscreen icon-button" title="Fullscreen output"><svg class="icon" aria-label="Fullscreen output" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <div class="buttons">
+                    <button type="button" class="run-code">Run code</button>
+                </div>
+                <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+            </div>
+        </template>
+
+        <template id="embed-numbas-template">
+            <link rel="stylesheet" href="static/embed_numbas.css?build_time=1792598282.899382">
+            <details id="wrapper" data-completion-status="incomplete">
+                <summary>
+                    <h1 id="title">Test Yourself</h1>
+                    <div id="completion-status" data-completion-status="unknown">
+                        <span class="complete">Complete</span>
+                        <span class="incomplete">Incomplete</span>
+                    </div>
+                    <label id="score-feedback">
+                        Score:
+                        <progress min="0"></progress>
+                    </label>
+                </summary>
+                <iframe class="embed" title="Numbas"></iframe>
+            </details>
+        </template>
+
+    </head>
+    <body class="" >
+        
+
+        <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+        
+            <dialog id="display-options">
+    <form>
+        <div class="buttons">
+            <button type="button" id="reset-display-options">Reset to defaults</button>
+
+            <a href="https://chirun.org.uk/accessibility-statement/material">Accessibility statement</a>
+
+            <button autofocus type="button" aria-controls="display-options">
+                Close
+            </button>
+        </div>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="display-options-font-scale">
+                    Text size
+                </label>
+                <input name="font-scale" type="range" min="50" max="600" step="5" value="100" id="display-options-font-scale">
+                <output for="display-options-font-scale">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-weight">
+                    Text weight
+                </label>
+                <input name="font-weight" type="range" min="200" max="800" step="100" value="400" id="display-options-font-weight">
+                <output for="display-options-font-weight">400</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-spacing-factor">
+                    Spacing
+                </label>
+                <input name="spacing-factor" type="range" min="0" max="1200" step="5" value="100" id="display-options-spacing-factor">
+                <output for="display-options-spacing-factor">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-family">
+                    Text font
+                </label>
+                <select name="font-family" id="display-options-font-family">
+                    <option value="var(--sans-serif-font)" selected>Sans-serif</option>
+                    <option value="var(--serif-font)">Serif</option>
+                    <option value="Atkinson Hyperlegible Next">Atkinson Hyperlegible</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-colour-scheme">
+                    Colour scheme
+                </label>
+                <select name="colour-scheme" id="display-options-colour-scheme">
+                    <option value="auto" selected>Automatic (default)</option>
+                    <option value="light">Black text on white</option>
+                    <option value="dark">White text on black</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+            <section id="custom-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-text-colour">
+                        Text colour
+                    </label>
+                    <input name="text-colour" type="color" value="#000000" id="display-options-text-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-link-colour">
+                        Link colour
+                    </label>
+                    <input name="link-colour" type="color" value="#0000ee" id="display-options-link-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour">
+                        Background colour
+                    </label>
+                    <input name="bg-colour" type="color" value="#ffffff" id="display-options-bg-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-off">
+                        Muted background colour
+                    </label>
+                    <input name="bg-colour-off" type="color" value="#eeeeee" id="display-options-bg-colour-off">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-1">
+                        Accent colour 1
+                    </label>
+                    <input name="bg-colour-accent-1" type="color" value="#4caf50" id="display-options-bg-colour-accent-1">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-2">
+                        Accent colour 2
+                    </label>
+                    <input name="bg-colour-accent-2" type="color" value="#f6f6ff" id="display-options-bg-colour-accent-2">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-3">
+                        Accent colour 3
+                    </label>
+                    <input name="bg-colour-accent-3" type="color" value="#eeffd3" id="display-options-bg-colour-accent-3">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-4">
+                        Accent colour 4
+                    </label>
+                    <input name="bg-colour-accent-4" type="color" value="#ffeeee" id="display-options-bg-colour-accent-4">
+                </div>
+            </section>
+
+            <section id="filter-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-filter-sepia">
+                        Sepia filter
+                    </label>
+                    <input name="filter-sepia" type="range" min="0" max="100" step="1" value="0" id="display-options-filter-sepia">
+                    <output for="display-options-filter-sepia">0%</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-filter-hue-rotate">
+                        Rotate hues
+                    </label>
+                    <input name="filter-hue-rotate" type="range" min="0" max="1" step="0.01" value="0" id="display-options-filter-hue-rotate">
+                    <output for="display-options-filter-hue-rotate">0 turns</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-invert-images">
+                        Invert images in dark mode
+                    </label>
+                    <input name="invert-images" type="checkbox" id="display-options-invert-images">
+                </div>
+
+            </section>
+
+
+        </div>
+
+        <details id="advanced">
+            <summary>Advanced options</summary>
+            <section id="custom-css-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-custom-css">
+                        Custom CSS code
+                    </label>
+                    <textarea name="custom-css" id="display-options-custom-css"></textarea>
+                </div>
+            </section>
+        </details>
+    </form>
+</dialog>
+        
+
+        <header>
+            
+<button class="icon-button" type="button" aria-controls="display-options" aria-expanded="false" title="Display options">
+    <svg class="icon" aria-label="Display options" viewBox="0 0 180 180">
+    <use href="#cog"/>
+</svg>
+</button>
+            
+    
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#"></a>
+            </li>
+            
+            <li class="breadcrumb-item active">
+                MMB8052 - Practical 7
+            </li>
+        </ul>
+
+        
+    </nav>
+    
+
+            
+            
+        </header>
+
+        <main id="main-content">
+            
+    <nav id="sidebar">
+        
+        <ul class="alternative-formats">
+            
+            <li><a rel="alternate" type="application/pdf" href="mmb8052_practical_7.pdf"download><svg class="icon" aria-label="PDF" viewBox="0 0 180 180">
+    <use href="#pdf"/>
+</svg> Download as PDF</a></li>
+            
+        </ul>
+        
+
+        
+            <h1>Table of Contents</h1>
+            <a class="jump-to-item-content" href="#item-content">Jump to content</a>
+            <ol class="table-of-contents" role="tree">
+                
+                    
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-mmb8052_practical_07" href="#mmb8052_practical_07">
+        
+        MMB8052 Practical 07 - Case Study II: High Throughput Alignment and DNA Variants
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-introduction" href="#introduction">
+        <span class="toc-marker"></span>
+        Introduction
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-introduction">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-hash_table" href="#hash_table">
+        
+        Hash Table
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-burrows_wheeler_tran" href="#burrows_wheeler_tran">
+        <span class="toc-marker"></span>
+        Burrows-Wheeler Transform
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-burrows_wheeler_tran">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_7_1" href="#exercise_7_1">
+        
+        Exercise 7.1
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-bwa" href="#bwa">
+        <span class="toc-marker"></span>
+        BWA
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-bwa">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_7_2" href="#exercise_7_2">
+        
+        Exercise 7.2
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-samtools" href="#samtools">
+        <span class="toc-marker"></span>
+        SAMtools
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-samtools">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_7_3" href="#exercise_7_3">
+        
+        Exercise 7.3
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-integrative_genomics" href="#integrative_genomics">
+        <span class="toc-marker"></span>
+        Integrative Genomics Viewer
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-integrative_genomics">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_7_4" href="#exercise_7_4">
+        
+        Exercise 7.4
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-variant_calling" href="#variant_calling">
+        <span class="toc-marker"></span>
+        Variant Calling
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-variant_calling">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_7_5" href="#exercise_7_5">
+        
+        Exercise 7.5
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-summary" href="#summary">
+        
+        Summary
+    </a>
+
+    
+</li>
+
+                
+            </ol>
+        
+
+    </nav>
+
+    <article class="item-content" id="item-content">
+        <section id="slide-0">
+<h1 id="mmb8052_practical_07">MMB8052 Practical 07 - Case Study II: High Throughput Alignment and DNA Variants</h1>
+<h1 id="introduction">Introduction</h1>
+<p>A large number of high-throughput sequencing applications require a step to align the raw reads to an appropriate reference genome. This step is often also the slowest step of any analysis pipeline. This is because the aligner is attempting to solve a computationally intensive problem - to find the location of each read in an experiment in a (often large) reference genome.  </p>
+<p>High-throughput alignment was an area of very active research in bioinformatics for a number of years around the development of so-called "next generation" sequencing, and consequently there are a large number of actively-developed aligners.  There have been two major approaches taken to short read alignment: hash-table based implementations and Burrows-Wheeler Transform (BWT) based methods.</p>
+<h2 id="hash_table">Hash Table</h2>
+<p>The earliest methods developed specifically for short read data took this approach.  “Hash table” refers to a common way of representing data in computer programs that is able to index complex data in a way that facilitates rapid searching.  Hash tables are good for sequencing reads because they are very unlikely to contain every possible combination of nucleotides, and very likely to contain duplicates.  The hash table is built either from the short reads or the genome, and then the un-hashed set of sequences is used to scan the hash table.  This rapidly identifies a seed alignment for every read in the dataset, and a specialized alignment algorithm is then used to determine the read’s exact placement on the reference genome (this is often an implementation of the Smith-Waterman local sequence alignment).</p>
+<h2 id="burrows_wheeler_tran">Burrows-Wheeler Transform</h2>
+<p>The second generation of short read aligners are based on the idea that searching a data structure indexed using the Burrows-Wheeler Transform (BWT), which is often used in data compression, is much more efficient than searching the original data structure itself. BWT reorders the genome data such that sequences that exist multiple times appear together in the data structure, then the final index is created that can be used for rapid read placement on the genome. BWT-based algorithms are routinely at least an order of magnitude faster (and under certain conditions easily 30x faster) than the equivalent hash table algorithms, but (initially at least) gapped alignments were not possible using this method.</p>
+<p>Later methods based on the BWT added extra steps after finding seed alignments using the indexed genome to allow full-length, gapped alignment of reads to the reference genome.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 1: Burrows-Wheeler Transform" src="images/bwt.png?build_time=1792598282.892902"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 1: Burrows-Wheeler Transform</b></td>
+</tr>
+</tbody>
+</table>
+<p>Using the index shown in figure 1, we can find candidate matches for a "read" sequence by suffix matching and then walking left through the read sequence. </p>
+<ol>
+<li>First, look for occurances of the penultimate base in the read sequence. </li>
+<li>Find instances of this base which are succeeded by the final base in the sequence. <ul>
+<li>We can do this by looking at the first character in the rows of the index where the penultimate base is the final character. </li>
+<li>Since this column is in strictly alphabetical order, it is a simple matter of counting the numbers of different bases to figure this out.  </li>
+</ul>
+</li>
+<li>This will identify a range of starting positions - the next step is to find occurances of the base to the left of the penultimate base with a starting position of n-1 (where n = starting position of penultimate base).</li>
+<li>Continue to walk left to refine the match.</li>
+</ol>
+<p>Alignment strategies will ordinarily define a 'seed length', which is the number of bases from the read to use in this walking left procedure (to use the full length of the read would be inefficient - and would not allow for any gaps or mismatches).</p>
+<p>For a read with the sequence ATC we would first look at where the Ts are in our BWT index (positions 4 &amp; 5). Both of these Ts have a C following them (there is 1 $, 2 As and 2 Cs in the sequence, so the 4th and 5th row both start with C). Walking to the left, we are looking for A with a succeeding T - there is only one of these. There are 2 As in the sequence, but the first (position 1), comes at the end of the original sequence - so does not have a T after it. The <em>starting position</em> of this match is 5 - so we have a single match to the sequence ATC, which starts at the 6th base of our "chromosome".</p>
+<p>The key to BWT-based alignment strategies is that the <em>genome</em> is transformed (a one-time procedure), but the reads can be used without applying any transformation. This means we can store the transformed genome and use it many times, offsetting the effort required to prepare our data for alignment. </p>
+<p>A Burrows-Wheeler transformed genome also occupies approximately the same amount of disk (and consequently memory) as the genome itself.</p>
+<h3 class="exercise" id="exercise_7_1">Exercise 7.1</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Install <code>samtools</code>, <code>bcftools</code> and <code>bwa</code> using APT<ul>
+<li><code>sudo apt install samtools bcftools bwa</code></li>
+</ul>
+</li>
+<li>Download and extract the data for the practical:<ul>
+<li><a href="https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chr20.fa.gz">https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chr20.fa.gz</a></li>
+<li><a href="https://github.com/sjcockell/mmb8052/raw/main/practicals/data/practical_07.zip">https://github.com/sjcockell/mmb8052/raw/main/practicals/data/practical_07.zip</a></li>
+<li>Decompress the chromosome 20 sequence with <code>gunzip</code></li>
+<li>Extract the <code>practical_07.zip</code> archive with <code>unzip</code></li>
+</ul>
+</li>
+<li>Use <code>bwa</code> to <em>index</em>  the "genome":<ul>
+<li>Get help information for <code>bwa</code> by running the command with no arguments</li>
+<li>You can also view the <code>man</code> page online here: <a href="https://bio-bwa.sourceforge.net/bwa.shtml">https://bio-bwa.sourceforge.net/bwa.shtml</a> </li>
+</ul>
+</li>
+</ul>
+<p>BWA reads a FASTA sequence and transforms it with the BWT to produce a genome index. The indexing process will take a minute or two - once it has finished, have a look at what files have been produced.</p>
+<ul>
+<li>How many new files were produced by <code>bwa</code>?</li>
+<li>How big are they, compared to the input FASTA sequence? (HINT: adding the <code>-l</code> and <code>-h</code> options for <code>ls</code> will show you the sizes of your files in KB, MB or GB)</li>
+</ul>
+<h1 id="bwa">BWA</h1>
+<p>BWA, or Burrows-Wheeler Aligner, is software designed by <a href="https://en.wikipedia.org/wiki/Heng_Li">Heng Li</a> for aligning short high-throughput sequencing reads to a large reference genome, such as the human genome. It is testament to the quality of BWA that it has been around since 2009 (and in it's current form - BWA-MEM - since 2013) and it remains the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035535912-Data-pre-processing-for-variant-discovery">recommended algorithm</a> for DNA alignments when you want to identify polymorphisms in exome or genome sequencing data.</p>
+<p>As described above, BWA requires an indexed genome (which we produced in exercise 7.1), it then offers 3 algorithms for actual sequence alignment - backtrack, sw and mem. Backtrack is effectively the "walking left" strategy outlined above, which prohibits the addition of gaps in the resulting alignment and is only recommended for short (&lt; 70bp) reads. The sw algorithm uses a full Smith-Waterman implementation to generate optimal local alignments from seed alignments, which is accurate and flexible but can be slow. Finally, the mem algorithm was designed specifically for aligning longer reads (as Illumina sequencing in particular evolved, reads of 150bp or longer became the norm) and uses a mixture of different approaches to ensure efficiency and accuracy of alignments. </p>
+<p>There are a number of other aligners which are also capable of aligning Illumina-style sequencing reads with varying degrees of success (depending on the metric used to assess them), including (a non-exhastive list): <a href="https://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie 2</a>, <a href="https://academic.oup.com/bioinformatics/article/29/16/2041/199472">Isaac</a>, <a href="https://maq.sourceforge.net/">MAQ</a>, <a href="http://www.novocraft.com/products/novoalign/">Novoalign</a> and <a href="http://daehwankimlab.github.io/hisat2/">HISAT2</a>. Some of these tools, particularly Bowtie and HISAT, are still actively developed.</p>
+<h3 class="exercise" id="exercise_7_2">Exercise 7.2</h3>
+<p>Estimated time: 15 minutes</p>
+<p>In exercise 7.1 we made the reference index, now we are going to use it to generate the actual alignments of reads to genome using <code>bwa mem</code>. </p>
+<p>The general format of the alignment command is:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bwa<span class="w"> </span>mem<span class="w"> </span>ref_prefix<span class="w"> </span>read1.fastq.gz<span class="w"> </span>read2.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>aln.sam
+</code></pre></div>
+<p>Where <code>ref_prefix</code> is the name you gave to your index in exercise 7.1 (by default this is the name of the reference FASTA file), <code>read{n}.fastq.gz</code> are the names of the sequence file or files to align to this reference (the example given is a paired-end experiment with two files) and <code>aln.sam</code> is the output alignment, in the Sequence Align/Map format (which was described in practical 02).</p>
+<p>The data you downloaded in exercise 7.1 consists of three paired-end samples which consitute a family <em>trio</em>. Trios are often used in genetic research when looking for the determinants of disease. By comparing the genomic sequence of an affected individual (the <em>proband</em>) to their unaffected parents. This analysis can be used to identify <em>accumulative</em> variants in the proband which contribute to disease - these could be recessive variants which both parents carry, or more complicated compound hetrozygous mutations. It is also possible to use this analysis to look for new, or <em>de novo</em> mutations which have arisen in the proband and are carried by neither parent. </p>
+<ul>
+<li>Use <code>bwa mem</code> to align the reads from the 3 samples to the reference index you built in exercise 7.1</li>
+</ul>
+<p>Consider the following:</p>
+<ul>
+<li>Look at the information printed to STDERR as <code>bwa</code> runs - what does this tell you about each of the three samples, in terms of read numbers, insert size and mapping rate?</li>
+<li>Have a look at the resulting SAM files - where in the "genome" are the reads aligning?</li>
+<li>Can you find any unaligned reads in the output?</li>
+</ul>
+<h1 id="samtools">SAMtools</h1>
+<p>SAMtools is the Swiss Army knife of alignment manipulation. It provides a huge toolkit of functionality to do almost anything useful with a SAM/BAM file. Like a number of previous tools we've used (including <code>bwa</code>), <code>samtools</code> uses a system of <em>verbs</em> for determining which tool to use.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>samtools<span class="w"> </span>--help
+</code></pre></div>
+<p>This command lists all of the available samtools verbs. To get help on any particular function, run that function with no options:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>samtools<span class="w"> </span>sort
+Usage:<span class="w"> </span>samtools<span class="w"> </span>sort<span class="w"> </span><span class="o">[</span>options...<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="k">in</span>.bam<span class="o">]</span>
+Options:
+<span class="w">  </span>-l<span class="w"> </span>INT<span class="w">     </span>Set<span class="w"> </span>compression<span class="w"> </span>level,<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>uncompressed<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">(</span>best<span class="o">)</span>
+<span class="w">  </span>-u<span class="w">         </span>Output<span class="w"> </span>uncompressed<span class="w"> </span>data<span class="w"> </span><span class="o">(</span>equivalent<span class="w"> </span>to<span class="w"> </span>-l<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+<span class="w">  </span>-m<span class="w"> </span>INT<span class="w">     </span>Set<span class="w"> </span>maximum<span class="w"> </span>memory<span class="w"> </span>per<span class="w"> </span>thread<span class="p">;</span><span class="w"> </span>suffix<span class="w"> </span>K/M/G<span class="w"> </span>recognized<span class="w"> </span><span class="o">[</span>768M<span class="o">]</span>
+<span class="w">  </span>-M<span class="w">         </span>Use<span class="w"> </span>minimiser<span class="w"> </span><span class="k">for</span><span class="w"> </span>clustering<span class="w"> </span>unaligned/unplaced<span class="w"> </span>reads
+<span class="w">  </span>-K<span class="w"> </span>INT<span class="w">     </span>Kmer<span class="w"> </span>size<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="k">for</span><span class="w"> </span>minimiser<span class="w"> </span><span class="o">[</span><span class="m">20</span><span class="o">]</span>
+<span class="w">  </span>-n<span class="w">         </span>Sort<span class="w"> </span>by<span class="w"> </span><span class="nb">read</span><span class="w"> </span>name<span class="w"> </span><span class="o">(</span>not<span class="w"> </span>compatible<span class="w"> </span>with<span class="w"> </span>samtools<span class="w"> </span>index<span class="w"> </span><span class="nb">command</span><span class="o">)</span>
+<span class="w">  </span>-t<span class="w"> </span>TAG<span class="w">     </span>Sort<span class="w"> </span>by<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>TAG.<span class="w"> </span>Uses<span class="w"> </span>position<span class="w"> </span>as<span class="w"> </span>secondary<span class="w"> </span>index<span class="w"> </span><span class="o">(</span>or<span class="w"> </span><span class="nb">read</span><span class="w"> </span>name<span class="w"> </span><span class="k">if</span><span class="w"> </span>-n<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="o">)</span>
+<span class="w">  </span>-o<span class="w"> </span>FILE<span class="w">    </span>Write<span class="w"> </span>final<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span>FILE<span class="w"> </span>rather<span class="w"> </span>than<span class="w"> </span>standard<span class="w"> </span>output
+<span class="w">  </span>-T<span class="w"> </span>PREFIX<span class="w">  </span>Write<span class="w"> </span>temporary<span class="w"> </span>files<span class="w"> </span>to<span class="w"> </span>PREFIX.nnnn.bam
+<span class="w">      </span>--no-PG
+<span class="w">               </span>Do<span class="w"> </span>not<span class="w"> </span>add<span class="w"> </span>a<span class="w"> </span>PG<span class="w"> </span>line
+<span class="w">      </span>--template-coordinate
+<span class="w">               </span>Sort<span class="w"> </span>by<span class="w"> </span>template-coordinate
+<span class="w">      </span>--input-fmt-option<span class="w"> </span>OPT<span class="o">[=</span>VAL<span class="o">]</span>
+<span class="w">               </span>Specify<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span>input<span class="w"> </span>file<span class="w"> </span>format<span class="w"> </span>option<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>form
+<span class="w">               </span>of<span class="w"> </span>OPTION<span class="w"> </span>or<span class="w"> </span><span class="nv">OPTION</span><span class="o">=</span>VALUE
+<span class="w">  </span>-O,<span class="w"> </span>--output-fmt<span class="w"> </span>FORMAT<span class="o">[</span>,OPT<span class="o">[=</span>VAL<span class="o">]]</span>...
+<span class="w">               </span>Specify<span class="w"> </span>output<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>SAM,<span class="w"> </span>BAM,<span class="w"> </span>CRAM<span class="o">)</span>
+<span class="w">      </span>--output-fmt-option<span class="w"> </span>OPT<span class="o">[=</span>VAL<span class="o">]</span>
+<span class="w">               </span>Specify<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span>output<span class="w"> </span>file<span class="w"> </span>format<span class="w"> </span>option<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>form
+<span class="w">               </span>of<span class="w"> </span>OPTION<span class="w"> </span>or<span class="w"> </span><span class="nv">OPTION</span><span class="o">=</span>VALUE
+<span class="w">      </span>--reference<span class="w"> </span>FILE
+<span class="w">               </span>Reference<span class="w"> </span>sequence<span class="w"> </span>FASTA<span class="w"> </span>FILE<span class="w"> </span><span class="o">[</span>null<span class="o">]</span>
+<span class="w">  </span>-@,<span class="w"> </span>--threads<span class="w"> </span>INT
+<span class="w">               </span>Number<span class="w"> </span>of<span class="w"> </span>additional<span class="w"> </span>threads<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="o">]</span>
+<span class="w">      </span>--write-index
+<span class="w">               </span>Automatically<span class="w"> </span>index<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>files<span class="w"> </span><span class="o">[</span>off<span class="o">]</span>
+<span class="w">      </span>--verbosity<span class="w"> </span>INT
+<span class="w">               </span>Set<span class="w"> </span>level<span class="w"> </span>of<span class="w"> </span>verbosity
+</code></pre></div>
+<p>SAMtools is also designed to make use of output streams and redirection, meaning successive commands can be chained together using pipes (<code>|</code>). We will be using SAMtools here to convert our SAM files to the compressed, binary BAM format, and to sort the reads in genomic coordinate order - the two tools for achieving this are <code>samtools view</code> and <code>samtools sort</code>.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>samtools<span class="w"> </span>view<span class="w"> </span>-b<span class="w"> </span>son.sam<span class="w"> </span><span class="p">|</span><span class="w"> </span>samtools<span class="w"> </span>sort<span class="w"> </span>-<span class="w"> </span>&gt;<span class="w"> </span>son.bam
+</code></pre></div>
+<p>The first command reads the SAM file produced by <code>bwa</code>, and sends it to STDOUT in compressed BAM format. The second command reads this BAM file and sorts the reads in coordinate order - <code>samtools sort</code> itself produces a BAM file to STDOUT, so we redirect this output to a file. The <code>-</code> in the <code>samtools sort</code> command is a placeholder which tells the command <em>where</em> to use the STDOUT that's been redirected (i.e. it is explicitly telling <code>bash</code> that the positional input file should be replaced with STDIN).</p>
+<p>Since <code>bwa</code> itself produces its SAM alignment as STDOUT, we could add this to our pipeline if we wanted:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bwa<span class="w"> </span>mem<span class="w"> </span>chr20.fa<span class="w"> </span>son_R1.fastq.gz<span class="w"> </span>son_R2.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>samtools<span class="w"> </span>view<span class="w"> </span>-b<span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>samtools<span class="w"> </span>sort<span class="w"> </span>-<span class="w"> </span>&gt;<span class="w"> </span>son.bam
+</code></pre></div>
+<p>This produces a sorted, compressed alignment in a single command - very useful if you have large numbers of reads and writing intermediate data to disk would be wasteful.</p>
+<h3 class="exercise" id="exercise_7_3">Exercise 7.3</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>Produce sorted, compressed <code>bam</code> files for each of the alignments you produced in exercise 7.2, according to the procedure detailed above</li>
+<li>Index these alignments with <code>samtools index</code></li>
+<li>Using <code>sftp</code>, transfer your alignments and the <code>.bai</code> indexes to your local computer (see practical 6 for <code>sftp</code> instructions)</li>
+</ul>
+<p>What does the <code>-b</code> option in the <code>samtools view</code> call do?</p>
+<p>Have a look at the size of the BAM file, compared with the SAM file. Also note that you can still print the alignment to STDOUT using <code>samtools view file.bam</code> (which behaves like <code>cat</code> for BAM files).</p>
+<h1 id="integrative_genomics">Integrative Genomics Viewer</h1>
+<p>There are a number of tools which we can use to visualise genomic alignments, but the <a href="https://software.broadinstitute.org/software/igv/">Integrated Genomics Viewer</a> (IGV) has a number of features which makes it a powerful tool for this purpose. </p>
+<p>IGV is relatively easy-to-use, and has display features which means we can visualise the genetic variants in our alignment files. We can also load our three samples alongside each other, which enables the easy comparison between samples. </p>
+<p>IGV falls into a class of visualisation software called <em>Genome Browsers</em>. These tools allow the visualisation of any data which can be assigned genomic coordinates. Generally they sit on top of large repositories of genomic infomation which can be viewed alongside the user's own data. Many genome browsers are available on the web - these tools, such as the <a href="https://genome.ucsc.edu/">UCSC Genome Browser</a> and the <a href="https://www.ensembl.org/index.html">Ensembl Genome Browser</a> are great for exploring these big genomic datasets, but are not so good for loading your own data. IGV is distinctive in this space because it is a stand-alone tool - this means it is much better at dealing with local data sets, even very large ones, and so it is often favoured when visualising experimental data. </p>
+<h3 class="exercise" id="exercise_7_4">Exercise 7.4</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>IGV is installed on the cluster PCs, find it in the Start menu and get it running - make sure the reference genome (top left drop-down menu) is set to "Human (GRCh38/hg38)"</li>
+<li>Load the three BAM files you created in earlier exercises (and transferred to your local machine at the end of exercise 7.3)</li>
+<li>In the location box (middle of the top toolbar), paste in the following location: chr20:10,166,001-10,170,999</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 2: IGV Screenshot" src="images/igv_1.png?build_time=1792598282.892902"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 2: Integrative Genomics Viewer used to visualise BAM files.</b></td>
+</tr>
+</tbody>
+</table>
+<p>Individual mismatched bases (compared to the reference genome) are highlighted in the indiviudally aligned reads. Positions at which a large proportion of reads indicate a variable base at the same location are indicated in the 'Coverage' track. </p>
+<ul>
+<li>Take a look at this region - are there many positions where the variation is consistent among lots of reads?</li>
+<li>Do the sequences of the parents and proband behave as you'd expect at these positions?</li>
+</ul>
+<h1 id="variant_calling">Variant Calling</h1>
+<p>IGV helps us to visually identify regions of interest in our samples, but in a whole exome or whole genome experiment, this sort of visual inspection does not scale. Instead we need a statistical approach to robustly identify sites of interesting variation in sets of samples. </p>
+<p>Since we are working here with a very small dataset, the most robust methods for variant calling will not work, as they rely on having at least exome-scale data to train their sophisticated models. For an idea of the computational procedures required for this kind of robust variant calling, take a look at the "Best Practise" guidelines produced by the development team behind the <a href="https://gatk.broadinstitute.org/hc/en-us">Genome Analysis Toolkit</a> (GATK), here: <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-">https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-</a>.</p>
+<p>The Genome Analysis Toolkit is the "industry standard" variant caller. It was originally developed for the <a href="https://www.internationalgenome.org/">1,000 Genomes Project</a> and has continued to be developed since by a large software engineering team. GATK provides tools for every step of the variant calling process, and the variant callers themselves use complicated machine- and deep-learning models to derive variant calls.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 3: GATK Best Practise Guidelines" src="images/gatk.png?build_time=1792598282.892902"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 3: GATK Best Practise Guidelines.</b></td>
+</tr>
+</tbody>
+</table>
+<p>In particular, we are going to skip a number of pre-processing steps designed to reduce noise in the resulting call-set. In a real experiment, with a more realistic volume of data, we would absolutely follow the recommendations described above. </p>
+<p>To allow us to produce some sort of callset from our minimal example, we are going to use the simpler models provided by BCFtools - a toolkit produced by the same group as SAMtools. </p>
+<p>BCFtools calls variants in a two-step process. Firstly <code>bcftools mpileup</code> constructs a vertical slice across all reads covering each position of the genome (<em>pileup</em>). Genotype likelihoods, which represent how consistent the observed data are with the possible diploid genotypes, are constructed for each site. This calculation takes many different factors into account, including mapping qualities of the reads, and the probability of local misalignment.</p>
+<p>The second step, <code>bcftools call</code>, evaluates the most likely genotype under the assumption of <a href="https://www.frontiersin.org/articles/10.3389/fgene.2020.00210/full">Hardy-Weinberg equilibrium</a> using allele frequencies estimated from the data or provided explicitly by the user.</p>
+<h3 class="exercise" id="exercise_7_5">Exercise 7.5</h3>
+<p>Estimated time: rest of the session</p>
+<ul>
+<li>Use <code>bcftools</code> to call variants in the samples aligned earlier. This can be done with a single piped command:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bcftools<span class="w"> </span>mpileup<span class="w"> </span>-f<span class="w"> </span>chr20.fa<span class="w"> </span>son.s.bam<span class="w"> </span>mother.s.bam<span class="w"> </span>father.s.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span>bcftools<span class="w"> </span>call<span class="w"> </span>-mv<span class="w"> </span>-Ob<span class="w"> </span>-o<span class="w"> </span>calls.bcf
+</code></pre></div>
+<p>You could split this into two commands if you wanted to take a look at the <code>mpileup</code> output.</p>
+<ul>
+<li>Use <code>bcftools view</code> to explore the VCF file that the above command produced. The header of the file describes the format.</li>
+<li>Filter the callset via the following procedures. Read the documentation to figure out what these filters do:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bcftools<span class="w"> </span>view<span class="w"> </span>-Ob<span class="w"> </span>-g<span class="w"> </span>^miss<span class="w"> </span>-v<span class="w"> </span>snps<span class="w"> </span>calls.bcf<span class="w"> </span>&gt;<span class="w"> </span>calls.snp.bcf
+$<span class="w"> </span>bcftools<span class="w"> </span>view<span class="w"> </span>-Ob<span class="w"> </span>-i<span class="w"> </span><span class="s1">'QUAL&gt;=20'</span><span class="w"> </span>calls.snp.bcf<span class="w"> </span>&gt;<span class="w"> </span>calls.snp.filt.bcf
+</code></pre></div>
+<ul>
+<li>Use <code>bcftools view</code> to convert the binary BCF file to a plain text VCF:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bcftools<span class="w"> </span>view<span class="w"> </span>-Ov<span class="w"> </span>calls.snp.filt.bcf<span class="w"> </span>&gt;<span class="w"> </span>calls.snp.filt.vcf
+</code></pre></div>
+<ul>
+<li>Use <code>sftp</code> to transfer the VCF file to your local machine, and load it in IGV. </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 4: IGV Screenshot" src="images/igv_2.png?build_time=1792598282.892902"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 4: IGV with VCF loaded alongside BAM files.</b></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Finally, <code>bcftools</code> has a plugin which lets us check the called variants against Mendelian assumptions (i.e. that the offspring should be a consistent mix of the parents genotype). For this, you need a file which describes the genetic pedigree of the samples - known as as <code>.ped</code> file. A <code>.ped</code> file to describe our samples was included in the <code>practical_07.zip</code> file which you downloaded at the beginning of the practical</li>
+<li>Use the <code>mendelian</code> plugin to check the consistency of the variants:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bcftools<span class="w"> </span>+mendelian<span class="w"> </span>-m<span class="w"> </span>c<span class="w"> </span>-p<span class="w"> </span>samples.ped<span class="w"> </span>calls.snp.filt.bcf
+</code></pre></div>
+<ul>
+<li>You can list any inconsistent sites by changing the "mode" (<code>-m</code>) to <code>x</code>. Do this and have a look at any inconsistent sites in IGV - can you explain the inconsistency?</li>
+</ul>
+<h1 id="summary">Summary</h1>
+<p>This practical is a demonstration of the enduring ability of sequence alignment to power bioinformatics analysis. As our capacity for sequencing data generation has evolved, so too have the techniques for processing this data. This is typified by the development of advanced algorithms for aligning millions or even billions of high-throughput sequencing reads to a reference genome in an acceptable amount of "wall-clock" time. </p>
+<p>The accurate calling of genomic variation is an ongoing challenge in bioinformatics, particularly in human genomes. We have scratched the surface of this topic here, but we can see that even a relatively simple model can be helpful to summarise the complicated variability that we observe in real samples. </p>
+<p>The Linux command line is of vital importance to the way that these kinds of analyses work, as the cohorts used in genetic studies tend to be large, which means a lot of data needs to be processed in as "hands-off" a way as possible. Non-interactive command line workflows, often deployed on high-performance computing resources (which exclusively run on Linux) are absolutely key in the delivery of this type of analysis. </p>
+</section>
+
+    </article>
+
+        </main>
+
+		
+		<footer>
+	<hr>
+
+    <nav id="footer-nav">
+        <a href="#">Back to top</a>
+    </nav>
+
+    <div id="footer-text">
+        <p>Generated using <a target="_blank" href="https://chirun.org.uk">Chirun</a> v1.5.0, written by the Digital Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
+        <p>This page last generated: 2026-10-21</p>
+        
+        
+        
+    </div>
+</footer>
+		
+
+        
+
+        <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+    </body>
+</html>

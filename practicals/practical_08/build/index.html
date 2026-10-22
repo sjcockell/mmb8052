@@ -1,0 +1,1363 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        
+            <meta charset="utf-8">
+            <meta name="robots" content="noindex">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="author" content="Simon J Cockell" />
+            <meta name="date" content="2026-10-21" />
+        
+
+        <title>MMB8052 - Practical 8 | </title>
+
+        
+            <link rel="icon" type="image/png" href="static/favicon.png?build_time=1792598290.639421"/>
+        
+
+        
+    
+    
+            <link rel="stylesheet" href="static/styles.css?build_time=1792598290.639421">
+            
+            
+        
+    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.css?build_time=1792598290.639421">
+
+    <link rel="stylesheet" href="static/print.css?build_time=1792598290.639421">
+
+
+        
+    
+			<script>
+				var chirun_static_url = new URL('static?build_time=1792598290.639421', location.href);
+			</script>
+
+            
+                <script defer src="static/mathjax_config.js?build_time=1792598290.639421"></script>
+                <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+            
+
+            <script type="module" src="static/localisation.js?build_time=1792598290.639421"></script>
+
+            <script defer src="static/customisation.js?build_time=1792598290.639421"></script>
+
+            
+
+            
+        
+    <script defer src="static/code.js?build_time=1792598290.639421" type="module"></script>
+    <script defer src="static/embed_numbas.js?build_time=1792598290.639421" type="module"></script>
+    <script defer src="static/embed_qrcode.js?build_time=1792598290.639421" type="module"></script>
+
+
+        <template id="runnable-code-template">
+            <link rel="stylesheet" href="static/code.css?build_time=1792598290.639421">
+            <div class="runnable-code-wrapper">
+                <section class="fullscreenable code">
+                    <div id="code"></div>
+                    <button class="fullscreen icon-button" title="Fullscreen code"><svg class="icon" aria-label="Fullscreen code" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <section class="fullscreenable output">
+                    <div id="output" aria-live="polite">
+                        <pre class="stdout"></pre>
+                        <pre class="result"></pre>
+                        <div class="images"></div>
+                    </div>
+                    <button class="fullscreen icon-button" title="Fullscreen output"><svg class="icon" aria-label="Fullscreen output" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <div class="buttons">
+                    <button type="button" class="run-code">Run code</button>
+                </div>
+                <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+            </div>
+        </template>
+
+        <template id="embed-numbas-template">
+            <link rel="stylesheet" href="static/embed_numbas.css?build_time=1792598290.639421">
+            <details id="wrapper" data-completion-status="incomplete">
+                <summary>
+                    <h1 id="title">Test Yourself</h1>
+                    <div id="completion-status" data-completion-status="unknown">
+                        <span class="complete">Complete</span>
+                        <span class="incomplete">Incomplete</span>
+                    </div>
+                    <label id="score-feedback">
+                        Score:
+                        <progress min="0"></progress>
+                    </label>
+                </summary>
+                <iframe class="embed" title="Numbas"></iframe>
+            </details>
+        </template>
+
+    </head>
+    <body class="" >
+        
+
+        <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+        
+            <dialog id="display-options">
+    <form>
+        <div class="buttons">
+            <button type="button" id="reset-display-options">Reset to defaults</button>
+
+            <a href="https://chirun.org.uk/accessibility-statement/material">Accessibility statement</a>
+
+            <button autofocus type="button" aria-controls="display-options">
+                Close
+            </button>
+        </div>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="display-options-font-scale">
+                    Text size
+                </label>
+                <input name="font-scale" type="range" min="50" max="600" step="5" value="100" id="display-options-font-scale">
+                <output for="display-options-font-scale">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-weight">
+                    Text weight
+                </label>
+                <input name="font-weight" type="range" min="200" max="800" step="100" value="400" id="display-options-font-weight">
+                <output for="display-options-font-weight">400</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-spacing-factor">
+                    Spacing
+                </label>
+                <input name="spacing-factor" type="range" min="0" max="1200" step="5" value="100" id="display-options-spacing-factor">
+                <output for="display-options-spacing-factor">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-family">
+                    Text font
+                </label>
+                <select name="font-family" id="display-options-font-family">
+                    <option value="var(--sans-serif-font)" selected>Sans-serif</option>
+                    <option value="var(--serif-font)">Serif</option>
+                    <option value="Atkinson Hyperlegible Next">Atkinson Hyperlegible</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-colour-scheme">
+                    Colour scheme
+                </label>
+                <select name="colour-scheme" id="display-options-colour-scheme">
+                    <option value="auto" selected>Automatic (default)</option>
+                    <option value="light">Black text on white</option>
+                    <option value="dark">White text on black</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+            <section id="custom-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-text-colour">
+                        Text colour
+                    </label>
+                    <input name="text-colour" type="color" value="#000000" id="display-options-text-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-link-colour">
+                        Link colour
+                    </label>
+                    <input name="link-colour" type="color" value="#0000ee" id="display-options-link-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour">
+                        Background colour
+                    </label>
+                    <input name="bg-colour" type="color" value="#ffffff" id="display-options-bg-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-off">
+                        Muted background colour
+                    </label>
+                    <input name="bg-colour-off" type="color" value="#eeeeee" id="display-options-bg-colour-off">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-1">
+                        Accent colour 1
+                    </label>
+                    <input name="bg-colour-accent-1" type="color" value="#4caf50" id="display-options-bg-colour-accent-1">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-2">
+                        Accent colour 2
+                    </label>
+                    <input name="bg-colour-accent-2" type="color" value="#f6f6ff" id="display-options-bg-colour-accent-2">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-3">
+                        Accent colour 3
+                    </label>
+                    <input name="bg-colour-accent-3" type="color" value="#eeffd3" id="display-options-bg-colour-accent-3">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-4">
+                        Accent colour 4
+                    </label>
+                    <input name="bg-colour-accent-4" type="color" value="#ffeeee" id="display-options-bg-colour-accent-4">
+                </div>
+            </section>
+
+            <section id="filter-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-filter-sepia">
+                        Sepia filter
+                    </label>
+                    <input name="filter-sepia" type="range" min="0" max="100" step="1" value="0" id="display-options-filter-sepia">
+                    <output for="display-options-filter-sepia">0%</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-filter-hue-rotate">
+                        Rotate hues
+                    </label>
+                    <input name="filter-hue-rotate" type="range" min="0" max="1" step="0.01" value="0" id="display-options-filter-hue-rotate">
+                    <output for="display-options-filter-hue-rotate">0 turns</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-invert-images">
+                        Invert images in dark mode
+                    </label>
+                    <input name="invert-images" type="checkbox" id="display-options-invert-images">
+                </div>
+
+            </section>
+
+
+        </div>
+
+        <details id="advanced">
+            <summary>Advanced options</summary>
+            <section id="custom-css-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-custom-css">
+                        Custom CSS code
+                    </label>
+                    <textarea name="custom-css" id="display-options-custom-css"></textarea>
+                </div>
+            </section>
+        </details>
+    </form>
+</dialog>
+        
+
+        <header>
+            
+<button class="icon-button" type="button" aria-controls="display-options" aria-expanded="false" title="Display options">
+    <svg class="icon" aria-label="Display options" viewBox="0 0 180 180">
+    <use href="#cog"/>
+</svg>
+</button>
+            
+    
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#"></a>
+            </li>
+            
+            <li class="breadcrumb-item active">
+                MMB8052 - Practical 8
+            </li>
+        </ul>
+
+        
+    </nav>
+    
+
+            
+            
+        </header>
+
+        <main id="main-content">
+            
+    <nav id="sidebar">
+        
+        <ul class="alternative-formats">
+            
+            <li><a rel="alternate" type="application/pdf" href="mmb8052_practical_8.pdf"download><svg class="icon" aria-label="PDF" viewBox="0 0 180 180">
+    <use href="#pdf"/>
+</svg> Download as PDF</a></li>
+            
+        </ul>
+        
+
+        
+            <h1>Table of Contents</h1>
+            <a class="jump-to-item-content" href="#item-content">Jump to content</a>
+            <ol class="table-of-contents" role="tree">
+                
+                    
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-mmb8052_practical_08" href="#mmb8052_practical_08">
+        
+        MMB8052 Practical 08 - Case Study III: RNA Sequencing Analysis
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-introduction" href="#introduction">
+        
+        Introduction
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-a_note_on_this_pract" href="#a_note_on_this_pract">
+        <span class="toc-marker"></span>
+        A note on this practical, and the assessment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-a_note_on_this_pract">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-rna_sequencing" href="#rna_sequencing">
+        
+        RNA Sequencing
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-rna_seq_analysis" href="#rna_seq_analysis">
+        
+        RNA-Seq Analysis
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-rna_seq_read_alignme" href="#rna_seq_read_alignme">
+        
+        RNA-Seq Read Alignment
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-quantification_of_rn" href="#quantification_of_rn">
+        <span class="toc-marker"></span>
+        Quantification of RNA-Seq Data
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-quantification_of_rn">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-quasi_alignment" href="#quasi_alignment">
+        
+        Quasi-alignment
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-annotation" href="#annotation">
+        
+        Annotation
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-quantification" href="#quantification">
+        
+        Quantification
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-the_dataset_gse11658" href="#the_dataset_gse11658">
+        <span class="toc-marker"></span>
+        The Dataset - GSE116583
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-the_dataset_gse11658">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_1" href="#exercise_8_1">
+        
+        Exercise 8.1
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-tximport" href="#tximport">
+        <span class="toc-marker"></span>
+        tximport
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-tximport">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_2" href="#exercise_8_2">
+        
+        Exercise 8.2
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-deseq2" href="#deseq2">
+        <span class="toc-marker"></span>
+        DESeq2
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-deseq2">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-normalisation" href="#normalisation">
+        
+        Normalisation
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-dispersion_estimates" href="#dispersion_estimates">
+        
+        Dispersion Estimates
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-applying_statistics" href="#applying_statistics">
+        <span class="toc-marker"></span>
+        Applying Statistics
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-applying_statistics">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_3" href="#exercise_8_3">
+        
+        Exercise 8.3
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-data_quality_control" href="#data_quality_control">
+        <span class="toc-marker"></span>
+        Data Quality Control
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-data_quality_control">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-regularized_logarith" href="#regularized_logarith">
+        
+        Regularized Logarithm Transformation
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-variance_stabilizing" href="#variance_stabilizing">
+        
+        Variance Stabilizing Transformation
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-principal_components" href="#principal_components">
+        
+        Principal Components Analysis (PCA)
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-sample_distance_anal" href="#sample_distance_anal">
+        <span class="toc-marker"></span>
+        Sample Distance Analysis
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-sample_distance_anal">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_4" href="#exercise_8_4">
+        
+        Exercise 8.4
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-detecting_differenti" href="#detecting_differenti">
+        <span class="toc-marker"></span>
+        Detecting Differentially Expressed Genes
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-detecting_differenti">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_5" href="#exercise_8_5">
+        
+        Exercise 8.5
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-annotating_results_t" href="#annotating_results_t">
+        <span class="toc-marker"></span>
+        Annotating Results Table
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-annotating_results_t">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_8_6" href="#exercise_8_6">
+        
+        Exercise 8.6
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-summary" href="#summary">
+        
+        Summary
+    </a>
+
+    
+</li>
+
+                
+            </ol>
+        
+
+    </nav>
+
+    <article class="item-content" id="item-content">
+        <section id="slide-0">
+<h1 id="mmb8052_practical_08">MMB8052 Practical 08 - Case Study III: RNA Sequencing Analysis</h1>
+<h1 id="introduction">Introduction</h1>
+<p>The analysis of gene expression data, generated by an RNA Sequencing (RNA-Seq) experiment, is one of the most common bioinformatics applications. Transcriptomics technologies have seen a lot of development over the last 25 years, and RNA-Seq is just the latest in a long line of techniques for assaying gene expression on a whole genome scale. The techniques for robust data analysis have developed alongside the experimental technologies. </p>
+<h1 id="a_note_on_this_pract">A note on this practical, and the assessment</h1>
+<p>For this practical, I have provided all of the code required to complete the exercises. This is the practical that forms the basis of the second assessment, and so it is important that you can complete the exercises as they are documented here. It is also possible to download the code for completing these exercises from the module Github repository. </p>
+<h2 id="rna_sequencing">RNA Sequencing</h2>
+<p>RNA Sequencing experiments take advantage of a simple assumption – that the number of reads that map to a particular molecule in a next generation experiment is in direct proportion to both its length, and the amount of that molecule that is present in the sample. So if two RNAs of equal length are present at a ratio of 2:1 in two samples, then we will retrieve twice as many reads for one as we will for the other when we sequence the samples. So, given two samples we can normalise for transcript lengths and total number of reads, and work out which species are differentially expressed between the two samples.</p>
+<p>RNA-Seq is often seen as a replacement for the very popular microarray approach to studying gene expression, and while the two approaches have different strengths and weaknesses, it is generally true that the data from RNA-Seq correlates better with qPCR data (the “gold standard” for measuring gene expression data) and the sheer depth of the data generated makes RNA-Seq the better choice in many circumstances (assuming the budget allows).</p>
+<p>This also means that many of the mistakes, with regards to experimental design, that were made in the early days of microarrays have been repeated in earnest with RNA-Seq experiments. One of the most common false assumptions is that with RNA-Seq you don’t need replicates. This is simply untrue, we still need to model the variance of the population in order to return meaningful statistics and consequently it’s advisable to do at least 4 biological replicates per condition minimum for cell lines, more for mice/rats and many more for humans. Unlike with microarray analysis however technical replicates are seldom required, as despite the stochastic nature of sequencing runs they tend to be highly reproducible.</p>
+<h2 id="rna_seq_analysis">RNA-Seq Analysis</h2>
+<p>After quality assessment (not covered here, but important), RNA-Seq analysis usually comprises 3 (or 4) steps:</p>
+<ol>
+<li>Align sequencing reads to a reference genome (this step is increasingly optional)</li>
+<li>Quantify RNA expression against reference gene annotation</li>
+<li>Analyse RNA counts to define differential expression</li>
+<li>Functional analysis of differentially expressed genes</li>
+</ol>
+<p>Here, we will be focussing on step 3, which is the bulk of the analysis. The final case study in the module will cover functional analysis – which can be applied downstream of many analysis tasks (not just RNA-Seq).</p>
+<p>The data we will be working with, and the process for downloading and processing the data to make it ready for step 3 are available from the module's Github page: <a href="https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08">https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08</a></p>
+<h2 id="rna_seq_read_alignme">RNA-Seq Read Alignment</h2>
+<p>We covered alignment of high-throughput sequencing reads to a reference genome in practical 7, and much of what we discussed there holds true for RNA-Seq alignment (the need for efficiency as experiments contain millions of reads, the nature of the alignment problem etc) with one key difference. The constructs in the sequencing library are derived from RNA, and in the case of eukaryotic mRNA that RNA is spliced post-transcription. Splicing means that a single read sequence may be derived from more than one genomic location, often separated by thousands of bases because of an intervening intron which has been spliced out. A read aligner designed for RNA-Seq data therefore has to be able to cope with split reads which arise because of splicing. </p>
+<p>Examples of splice-aware read aligners include:</p>
+<ul>
+<li>STAR - <a href="https://doi.org/10.1093/bioinformatics/bts635">https://doi.org/10.1093/bioinformatics/bts635</a></li>
+<li>HISAT2 - <a href="https://doi.org/10.1038/s41587-019-0201-4">https://doi.org/10.1038/s41587-019-0201-4</a></li>
+<li>Tophat2 - <a href="https://doi.org/10.1186/gb-2013-14-4-r36">https://doi.org/10.1186/gb-2013-14-4-r36</a></li>
+</ul>
+<h2 id="quantification_of_rn">Quantification of RNA-Seq Data</h2>
+<p>Modern RNA-Seq analysis procedures tend to avoid the alignment step, which is computationally costly, slow, and results in very large output files. These output files are largely redundant, given that they replicate the contents of the raw FASTQ files.</p>
+<p>Rather than alignment, tools which quantify transcript expression via read abundances tend to be favoured in modern analysis. We will be working with data produced by <a href="https://combine-lab.github.io/salmon/">Salmon</a>, a tool which performs <em>quasi-alignment</em> to assign sequencing reads to their transcript of origin. The process by which the quantification estimates we will be working with have been produced will be described below. </p>
+<h3 id="quasi_alignment">Quasi-alignment</h3>
+<p>Instead of the more ‘traditional’ approach of a full read alignment to the reference genome, Salmon uses an efficient, lightweight alignment methodology to assign the reads in an RNA-Seq experiment to their parent transcripts. It then uses these assignments directly to estimate the abundance of each transcript from the reference annotation in the sample.</p>
+<p>It is possible for reads to be assigned to more than one transcript – since many transcripts from one gene can share exons. These ambiguous reads are assigned fractionally based on abundance estimates for the possible transcripts made using uniquely assigned reads. For this reason, despite read assignment looking like a discrete, counting problem, we end up with fractional transcript abundances.</p>
+<h3 id="annotation">Annotation</h3>
+<p>There are many sources of gene annotation available. Even for well-annotated organisms, these resources vary in the approaches they take to annotation, and therefore how complete (or otherwise) they appear.</p>
+<p>The annotation used in an RNA-Seq experiment is one of the <a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-S11-S8">biggest factors</a> effecting the outcome of the data analysis. The choices available largely depend on the organism that you're working with. For human and mouse experiments, <a href="https://www.gencodegenes.org/">GENCODE</a> is recommended. The GENCODE gene sets are a combination of the HAVANA manual annotation, and the Ensembl automatic annotation pipeline. The goal is to achieve an accurate and complete annotation of the human (and mouse) genome.</p>
+<p>For other organisms, I would recommend working with the Ensembl annotation, where possible. The quality of Ensembl gene sets is consistent, and the data is easily available. The Ensembl FTP server is a convenient resource for this data for many organisms: <a href="http://www.ensembl.org/info/data/ftp/index.html">http://www.ensembl.org/info/data/ftp/index.html</a></p>
+<p>For this example experiment, the data was derived from mouse cells, so we can download the latest GENCODE mouse gene set, using wget:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>extdata/gencode.vM31.transcripts.fa.gz<span class="w"> </span>https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M31/gencode.vM31.transcripts.fa.gz
+</code></pre></div>
+<p>This FASTA sequence file is then indexed for use with Salmon. This is similar to the genome indexing carried out for alignment - a one-time, reasonably intensive procedure which can be stored and used multiple times. </p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>salmon<span class="w"> </span>index<span class="w"> </span>-t<span class="w"> </span>extdata/gencode.vM31.transcripts.fa.gz<span class="w"> </span>-i<span class="w"> </span>extdata/gencode.vM31.transcripts.idx
+</code></pre></div>
+<h3 id="quantification">Quantification</h3>
+<p>Since the raw RNA-Seq data we are working with is large (12GB), and the process of quantification still relatively time-consuming (in the context of a 3-hour practical), the quantification has already been completed. The general process for this is to use <code>salmon quant</code> for each sample:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>sample<span class="w"> </span><span class="k">in</span><span class="w"> </span>sample_list
+<span class="k">do</span>
+<span class="w">    </span>salmon<span class="w"> </span>quant<span class="w"> </span>-l<span class="w"> </span>A<span class="w"> </span>-r<span class="w"> </span>data/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>.fastq.gz<span class="w"> </span>-i<span class="w"> </span>extdata/gencode.vM31.transcripts.idx<span class="w"> </span>-p<span class="w"> </span><span class="m">20</span><span class="w"> </span>-o<span class="w"> </span>results/counts/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>This produces a file (<code>quant.sf</code>) for each sample, which contains the transcript-level quantification data for that sample. Below is an abbreviated version of this data for five transcripts:</p>
+<div class="highlight"><pre><span></span><code>Name                    Length  EffectiveLength TPM         NumReads
+ENSMUST00000162795.8    2712    2462.000        1.616710    86.647
+ENSMUST00000161327.8    5707    5457.000        4.565086    542.297
+ENSMUST00000159802.2    4136    3886.000        0.203616    17.225
+ENSMUST00000162257.8    2204    1954.000        4.089634    173.958
+ENSMUST00000159206.2    519     269.000         2.585507    15.140
+</code></pre></div>
+<h1 id="the_dataset_gse11658">The Dataset - GSE116583</h1>
+<p>For the exercises in this practical, we will be using a publicly available RNA-Seq dataset from the Gene Expression Omnibus (GEO). This dataset is from murine alveolar macrophages early after reperfusion (restoration of blood flow once the organ is in place in the receipient) in a model of lung transplantation. The data is described in the GEO entry: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE116583">GSE116583</a>. There's lots of information about the experiment which generated the data in the so-called SOFT format file which you can download from the entry: <a href="https://ftp.ncbi.nlm.nih.gov/geo/series/GSE116nnn/GSE116583/soft/GSE116583_family.soft.gz">https://ftp.ncbi.nlm.nih.gov/geo/series/GSE116nnn/GSE116583/soft/GSE116583_family.soft.gz</a>. This can be quite hard to understand, so I've extracted some key information in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Metadata Header</th>
+<th>Experiment Information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timepoints</td>
+<td>Naive (control), 2 hours post-reperfusion, 24 hours post-reperfusion (n = 4)</td>
+</tr>
+<tr>
+<td>Sample Extract Protocol</td>
+<td>PicoPure (Thermofisher) RNA isolation kit. RNA libraries were prepared for sequencing using standard Illumina protocols.</td>
+</tr>
+<tr>
+<td>Mouse Genotype</td>
+<td>Cx3cr1<sup>gfp/+</sup>B6</td>
+</tr>
+<tr>
+<td>Mouse Sex</td>
+<td>Male</td>
+</tr>
+<tr>
+<td>Mouse Age</td>
+<td>14 weeks</td>
+</tr>
+<tr>
+<td>Tissue</td>
+<td>Lung</td>
+</tr>
+<tr>
+<td>Cell Type</td>
+<td>alveolar macrophage</td>
+</tr>
+<tr>
+<td>RNA-Seq type</td>
+<td>polyA RNA</td>
+</tr>
+<tr>
+<td>Sequencer</td>
+<td>NextSeq 500</td>
+</tr>
+<tr>
+<td>Library layout</td>
+<td>Single-end</td>
+</tr>
+<tr>
+<td>Read Length</td>
+<td>75 bp</td>
+</tr>
+</tbody>
+</table>
+<p>As is often the case with publicly available data, the amount of information on how the experiment was carried out is quite sparse. We can learn more about the role of alveolar macrophages (and macrophages more widely) in organ transplantation here: <a href="https://doi.org/10.1111/ajt.15751">https://doi.org/10.1111/ajt.15751</a>. The lab which produced the data in GSE116583 has documented their mouse lung transplant protocol in this work: <a href="https://doi.org/10.1126/scitranslmed.aal4508">https://doi.org/10.1126/scitranslmed.aal4508</a> (protocol information is in the <a href="https://www.science.org/doi/suppl/10.1126/scitranslmed.aal4508/suppl_file/aal4508_sm.pdf">Supplementary Materials</a>).</p>
+<p>I have downloaded the FASTQ data for the 12 samples in this experiment, and used Salmon as documented above to quantify the transcript-level expression in each sample. </p>
+<p>The <code>quant.sf</code> files which result from this process can be downloaded here: <a href="https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/results/counts.zip">https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/results/counts.zip</a>. The full process and documentation, and a sample table can be viewed in the module's Github page, see here: <a href="https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08">https://github.com/sjcockell/mmb8052/tree/main/practicals/practical_08</a>. Finally, a sample table (which we will use in the exercises below) can be downloaded from here: <a href="https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/practical_08/data/sample_table.csv">https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/practical_08/data/sample_table.csv</a>.</p>
+<h3 class="exercise" id="exercise_8_1">Exercise 8.1</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Install and load all the packages we will need for this practical:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">'BiocManager'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">BiocManager</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">'tximport'</span><span class="p">,</span><span class="w"> </span><span class="s">'DESeq2'</span><span class="p">,</span><span class="w"> </span><span class="s">'biomaRt'</span><span class="p">,</span><span class="w"> </span><span class="s">'pheatmap'</span><span class="p">))</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">tximport</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">DESeq2</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">biomaRt</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>The first line of the above code installs Bioconductor (an R package manager for bioinformatics). The subsequent <code>install()</code> command uses the Bioconductor installer to locate the rest of the required packages. </li>
+<li>Bioconductor packages are not available in CRAN, so cannot be installed with <code>install.packages()</code>. The Bioconductor installer, on the other hand, is capable of installing CRAN packages (such as <code>pheatmap</code>, here).</li>
+<li>Some of these packages may take some time to install (particularly <code>DESeq2</code> which has a lot of dependencies). If you find yourself waiting, read the next section and come back in a few minutes to check if the installation has worked.</li>
+</ul>
+<h1 id="tximport">tximport</h1>
+<p>Reading data from a large number of files into a single data frame is not very convenient - fortunately, <code>tximport</code> is a Bioconductor package that makes this simple for the data produced by Salmon. It also summarises Salmon’s transcript-level counts to a gene-level abundance estimate. This gene-level estimate is much more suitable for conventional RNA-Seq analysis.</p>
+<p>For <code>tximport</code>, we need three pieces of information:</p>
+<ol>
+<li>a vector of the names of the count files on our file system</li>
+<li>that vector needs <code>names()</code> which match the sample names</li>
+<li>a <code>data.frame</code> (or <code>tibble</code>) that maps the transcript IDs in the count file to their parent gene IDs</li>
+</ol>
+<p>We can generate the first two using the sample table mentioned above, along with some of the helpful Tidyverse packages that were introduced during practical 5. The third piece of information is provided in an addtional file.</p>
+<h3 class="exercise" id="exercise_8_2">Exercise 8.2</h3>
+<p>Estimated time: 5 minutes</p>
+<ul>
+<li>Download the count data <a href="https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/results/counts.zip">https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/results/counts.zip</a></li>
+<li>Put this .zip in your R working directory and unzip it</li>
+<li>Run the following R code to read the count data:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">sample_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/sjcockell/mmb8052/main/practicals/practical_08/data/sample_table.csv'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pull</span><span class="p">(</span><span class="n">sample_table</span><span class="p">,</span><span class="w"> </span><span class="n">Run</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">'counts/'</span><span class="p">,</span><span class="w"> </span><span class="n">files</span><span class="p">,</span><span class="w"> </span><span class="s">'/quant.sf'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pull</span><span class="p">(</span><span class="n">sample_table</span><span class="p">,</span><span class="w"> </span><span class="n">Run</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">gene_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">'https://github.com/sjcockell/mmb8052/raw/main/practicals/practical_08/extdata/gene_map.csv'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">txi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tximport</span><span class="p">(</span><span class="n">files</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="n">type</span><span class="o">=</span><span class="s">'salmon'</span><span class="p">,</span>
+<span class="w">                </span><span class="n">tx2gene</span><span class="o">=</span><span class="n">gene_map</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ignoreTxVersion</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+<p>Consider the following:</p>
+<ul>
+<li>What does the <code>files</code> vector contain at the end of this process? What if your count files where elsewhere on the file system?</li>
+<li>What type of variable is <code>gene_map</code> and what data is contained within it?</li>
+<li>What does the <code>ignoreTxVersion</code> argument for <code>tximport</code> do? Can you figure out why this is required?</li>
+</ul>
+<h1 id="deseq2">DESeq2</h1>
+<p><code>DESeq2</code> is a specialised package for the analysis of RNA-Seq data - it uses a model based on the negative binomial distribution for testing differential expression.</p>
+<p><code>DESeq2</code> provides normalisation and stabilisation procedures for processing the count output from Salmon. The simplest implementation of <code>DESeq2</code> is to simply create a dataset and then run the <code>DESeq()</code> method over it, but we are going to break this down into the separate steps for greater clarity of what’s actually happening.</p>
+<h2 id="normalisation">Normalisation</h2>
+<p><code>DESeq2</code> normalises experiments imported from Salmon by a combination of <em>size factors</em> (which correct read counts based on the size of the sequencing library) and <em>gene length</em>. Size factors are calculated using the median-of-ratios method. Briefly, for each row in the counts matrix, <code>DESeq2</code> calculates the geometric mean of the row, and then divides
+the observed counts by that geometric mean. The size factor for a column (i.e. sample) is the median of these <span class="arithmatex"><script type="math/tex">(observed counts/geometric means)</script></span> across the whole sample. For data imported via <code>tximport</code>, DESeq2 also uses the per-gene average transcript length to calculate a normalisation factor for every observation in the experiment, which combines size factor normalisation with average transcript length normalisation. These normalisation factors can be retrieved using the
+<code>normalizationFactors()</code> method.</p>
+<h2 id="dispersion_estimates">Dispersion Estimates</h2>
+<p>The <em>dispersion</em> is a genewise measure of the variance of the count data. It is used in <code>DESeq2</code> to model the <em>biological noise</em> in the system. The variance (which is used by the statistical test performed in the next step) is the sum of this measure of biological variance and the shot noise, which is a measure of the uncertainty of read counting as a quantitative metric. For highly expressed genes, the biological noise dominates, for lowly expressed genes it's the shot noise that
+dominates.</p>
+<p>In <code>DESeq2</code> (in contrast to the older <code>DESeq</code>), the dispersion estimates are submitted to empirical Bayes shrinkage. The full details of this, in all their impenetrable, statistical glory, are available in the <a href="https://doi.org/10.1186/s13059-014-0550-8"><code>DESeq2</code> paper</a> (as you may notice from the title of that paper, fold change estimates are also shrunk by a related methodology).</p>
+<p>Dispersion estimates can also be plotted (see Figure 1). This can be a useful diagnostic plot for an RNA-Seq experiment - the kind of relationship seen in this experiment between mean count and dispersion is typical, where variance decreases with increasing read count. A deviation from this usual relationship could be cause for concern for your analysis.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 1: Dispersion Estimates Plot" src="images/rnaseq1.png?build_time=1792598290.633339"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 1: Plot of dispersion estimates for GSE116583.</b></td>
+</tr>
+</tbody>
+</table>
+<h2 id="applying_statistics">Applying Statistics</h2>
+<p><code>DESeq2</code> uses Wald’s Negative Binomial test to determine whether genes are differentially expressed. This test is appropriate for the discrete nature of RNA-Seq data, and the distribution it typically fits. At this point, we have got as far as the convenience method <code>DESeq()</code> would take us.</p>
+<h3 class="exercise" id="exercise_8_3">Exercise 8.3</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Run the following R code to carry out the steps described above:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">dds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">DESeqDataSetFromTximport</span><span class="p">(</span><span class="n">txi</span><span class="p">,</span><span class="w"> </span><span class="n">colData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_table</span><span class="p">,</span><span class="w"> </span><span class="n">design</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Group</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">dds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">estimateSizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">dds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">estimateDispersions</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">dds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nbinomWaldTest</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="c1"># the above 3 commands can be replaced by dds = DESeq(dds)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">plotDispEsts</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>You can access the data from the <code>dds</code> object (a <code>DESeqDataSet</code>) by using so-called accessor methods:<ul>
+<li><code>counts()</code> returns the count data, the <code>normalized</code> argument can be used to provide raw or normalised counts</li>
+<li><code>colData()</code> returns the sample table (the data about the samples - i.e. the columns)</li>
+<li><code>normalizationFactors()</code> returns a matrix of normalisation factors with the same dimensions as the expression data. </li>
+</ul>
+</li>
+<li>Compare <code>counts(dds, normalized=FALSE)/normalizationFactors(dds)</code> with <code>counts(dds, normalized=TRUE)</code> </li>
+</ul>
+<h1 id="data_quality_control">Data Quality Control</h1>
+<p>Before we examine the results of these tests for differentially expressed genes, this is a good point to do some QC on our count data, to reveal any potential problems and take steps to correct them.</p>
+<p>Many of the common methods for exploring multidimensional data, especially clustering and ordination methods such as Principal Components Analysis, do not work well with RNA-Seq data (this is due to things like skedasticity, which is a bit out of scope here). <code>DESeq2</code> provides some (relatively) simple data transformations that make data amenable to these analyses.</p>
+<h2 id="regularized_logarith">Regularized Logarithm Transformation</h2>
+<p>PCA with normalised read counts will be dominated by the most strongly expressed genes which exhibit the greatest absolute differences between samples. A regular log2 transformation will lead to the most weakly expressed genes dominating, due to the large amount of noise inherent in these observations. The 'regularized logarithm transformation' (<code>rlog()</code>) offered by DESeq2 corrects the first problem, and controls for the second (using empirical Bayes techniques). This transformed data can be used for PCA etc., but should not be used to test for differential expression.</p>
+<h2 id="variance_stabilizing">Variance Stabilizing Transformation</h2>
+<p>For very large datasets, <code>rlog()</code> is prohibitively slow, and it is also less sensitive to size factors and therefore is inappropriate for cases where library size varies widely. For these cases, <code>DESeq2</code> also offers a Variance Stabilizing Transformation (<code>varianceStabilizingTransformation()</code>), which broadly achieves the same ends but is much faster.</p>
+<h2 id="principal_components">Principal Components Analysis (PCA)</h2>
+<p>Principal Components plots can be extremely useful in determining whether any of our samples is an outlier, and in examining whether the relationships between our samples are as we would expect. In general, we would expect samples from the same experimental group to behave similarly in a PCA - so when plotting the results of the analysis, sample groups should be seen to cluster. Any exceptions to this pattern are considered <em>outliers</em>, and should be considered for removal from the analysis (for data quality reasons).</p>
+<h2 id="sample_distance_anal">Sample Distance Analysis</h2>
+<p>Another method for identifying samples which behave unusually is to examine the statistical distance of samples from one another. There are many measures of distance, but the one used most often for data like RNA-Seq data is <em>Euclidian distance</em>. The distance of all of the samples from each other, once calculated, can be plotted in a heatmap - outlier samples should be easy to spot in this format.</p>
+<h3 class="exercise" id="exercise_8_4">Exercise 8.4</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Run the following R code to carry out the steps described above:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">rld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rlog</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="c1"># vst = varianceStabilizingTransformation(dds)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">plotPCA</span><span class="p">(</span><span class="n">rld</span><span class="p">,</span><span class="w"> </span><span class="n">intgroup</span><span class="o">=</span><span class="s">'Group'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">sample_distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dist</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">assay</span><span class="p">(</span><span class="n">rld</span><span class="p">)),</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s">'euclidian'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">sample_distance_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">sample_distance</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">heatmap_annotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="nf">colData</span><span class="p">(</span><span class="n">dds</span><span class="p">)[,</span><span class="nf">c</span><span class="p">(</span><span class="s">'Group'</span><span class="p">)],</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="nf">rownames</span><span class="p">(</span><span class="nf">colData</span><span class="p">(</span><span class="n">dds</span><span class="p">)))</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">pheatmap</span><span class="p">(</span><span class="n">sample_distance_matrix</span><span class="p">,</span>
+<span class="w">         </span><span class="n">clustering_distance_rows</span><span class="o">=</span><span class="n">sample_distance</span><span class="p">,</span>
+<span class="w">         </span><span class="n">clustering_distance_cols</span><span class="o">=</span><span class="n">sample_distance</span><span class="p">,</span>
+<span class="w">         </span><span class="n">annotation_col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">heatmap_annotation</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Are there any outliers in this experiment?</li>
+<li>Have a look at <code>heatmap_annotation</code> - what's the purpose of this object?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 2: Principal Components Plot" src="images/rnaseq2.png?build_time=1792598290.633339"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 2: Plot of principal components for GSE116583.</b></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 3: Sample Distance Plot" src="images/rnaseq3.png?build_time=1792598290.633339"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 3: Heatmap of sample distances for GSE116583.</b></td>
+</tr>
+</tbody>
+</table>
+<h1 id="detecting_differenti">Detecting Differentially Expressed Genes</h1>
+<p>Now that we are satisfied with the quality of our RNA-Seq samples, it is possible to query our <code>DESeqDataSet</code> for results. <code>DESeq2</code> has a function for this, conveniently called <code>results()</code>. It is important to define what comparison we want to find results for - here we utilise the <code>contrast</code> argument for the <code>results()</code> function. This argument takes a vector of three elements: the column of the <code>colData</code> that is to be used for the comparison, the numerator of the comparison to be made, and the denominator of the comparison to be made, in that order. It is typical to use the control samples for the denominator - in this way, when the treated samples have higher expression, we see a positive fold change in our results, which is intuitive.</p>
+<p><code>DESeq2</code> results are reported in a table (a <code>DataFrame</code>, which is subtly different from both a <code>data.frame</code> and a <code>tibble</code> - like many modern programming languages, <code>R</code> is cursed with multiple overlapping implementations of the same basic idea). Each row in the results table represents a gene (identified by an Ensembl Gene ID in our experiment), and contains 6 observations.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseMean</td>
+<td>The arithmetic mean of the normalised counts for this gene in <em>all</em> samples (not just those involved in this contrast)</td>
+</tr>
+<tr>
+<td>log2FoldChange</td>
+<td>The difference in expression between the mean normalised counts of the two conditions involved in the described contrast. This is calculated as the log<sub>2</sub> of the ratio of normalised counts (numerator/denominator)</td>
+</tr>
+<tr>
+<td>lfcSE</td>
+<td>The standard error of the log2FoldChange</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>The Wald test statistic</td>
+</tr>
+<tr>
+<td>pvalue</td>
+<td>The Wald test p-value, derived from the test statistic</td>
+</tr>
+<tr>
+<td>padj</td>
+<td>The p-value adjusted for multiple tests - this adjustment is carried out using the Benjamini-Hochberg correction</td>
+</tr>
+</tbody>
+</table>
+<p>This results table is essentially "tidy" and can be used in the kind of plotting functions we explored in practical 05 - for example, the log2FoldChange and padj can be used to build a Volcano Plot. </p>
+<h3 class="exercise" id="exercise_8_5">Exercise 8.5</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>Run the following R code to carry out the steps described above:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">results_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span><span class="w"> </span><span class="n">contrast</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'Group'</span><span class="p">,</span><span class="w"> </span><span class="s">'Allo24h'</span><span class="p">,</span><span class="w"> </span><span class="s">'Naive'</span><span class="p">))</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">results_table</span><span class="p">)</span>
+<span class="c1"># filter any rows with an NA anywhere:</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">results_tibble</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">results_table</span><span class="p">,</span><span class="w"> </span><span class="n">rownames</span><span class="o">=</span><span class="s">'ensembl_gene_id'</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">filtered_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">results_tibble</span><span class="p">,</span><span class="w"> </span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">results_tibble</span><span class="p">))</span>
+<span class="c1"># Volcano plot (basic)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">filtered_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">filtered_results</span><span class="p">,</span><span class="w"> </span><span class="n">logPVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nf">log10</span><span class="p">(</span><span class="n">padj</span><span class="p">))</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">filtered_results</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">log2FoldChange</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">logPVal</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">        </span><span class="nf">geom_point</span><span class="p">()</span>
+</code></pre></div>
+<ul>
+<li>Can you repeat the above for the second comparison inherent in this dataset (Allo2h vs Naive)?</li>
+<li>Is there any value in comparing Allo24h to Allo2h?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 4: 24h vs Naive Volcano Plot" src="images/rnaseq4.png?build_time=1792598290.633339"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 4: Basic 24h vs Naive Volcano Plot.</b></td>
+</tr>
+</tbody>
+</table>
+<h1 id="annotating_results_t">Annotating Results Table</h1>
+<p>We used the Gencode gene annotation when quantifying expression in this experiment. Therefore the rows of our count (and results) tables are identified by Ensembl Gene IDs. This is all very well, but human-readable gene names are more useful and informative in most situations.</p>
+<p>There are many ways of retrieving richer annotation based on these Ensembl Gene IDs. All methods are complicated by the fact we must ensure that the version of Ensembl used for labelling thr genes in the first place (through Salmon), and the version used for producing the annotation in R must match - Ensembl obsoletes identfiers surprisingly frequently, and even a single version mismatch can cause IDs to go missing.</p>
+<p>In producing the quantification with Salmon, we used Gencode release M31 which was published on 19th October 2022. We can see from this table: <a href="https://www.gencodegenes.org/mouse/releases.html">https://www.gencodegenes.org/mouse/releases.html</a> that M31 is paired with Ensembl release 108 (20/10/2022). We an access this specific annotation in R using the <code>biomaRt</code> package, which we can use to retrieve lots of annotation information for our mouse genes. </p>
+<p><code>biomaRt</code> is a programmatic interface to Ensembl's <a href="https://www.ensembl.org/info/data/biomart/index.html">BioMart database</a> - a system for extracting tables of data from Ensembl.</p>
+<p>In the final exercise of this practical, we will map the mouse Ensembl Gene IDs to a range of information from BioMart, and then filter the top 10 genes by adjusted p-value to discover their identity. </p>
+<h3 class="exercise" id="exercise_8_6">Exercise 8.6</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>Run the following R code to carry out the steps described above:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">ensembl108</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">useEnsembl</span><span class="p">(</span><span class="n">biomart</span><span class="o">=</span><span class="s">"ensembl"</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="m">108</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">ensembl108</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">useDataset</span><span class="p">(</span><span class="s">"mmusculus_gene_ensembl"</span><span class="p">,</span><span class="w"> </span><span class="n">mart</span><span class="o">=</span><span class="n">ensembl108</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">annotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">getBM</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">'ensembl_gene_id'</span><span class="p">,</span><span class="w"> </span><span class="s">'chromosome_name'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">'start_position'</span><span class="p">,</span><span class="w"> </span><span class="s">'end_position'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">'strand'</span><span class="p">,</span><span class="w"> </span><span class="s">'gene_biotype'</span><span class="p">,</span><span class="w"> </span><span class="s">'external_gene_name'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">'description'</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">filters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">'ensembl_gene_id'</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filtered_results</span><span class="o">$</span><span class="n">ensembl_gene_id</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">mart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensembl108</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">annot_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">left_join</span><span class="p">(</span><span class="n">filtered_results</span><span class="p">,</span><span class="w"> </span><span class="n">annotation</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">annot_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrange</span><span class="p">(</span><span class="n">annot_results</span><span class="p">,</span><span class="w"> </span><span class="n">padj</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">View</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">annot_results</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">degs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">annot_results</span><span class="p">,</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="n">log2FoldChange</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">padj</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Check that the annotation returned by BioMart matches the genes in your results table 1:1</li>
+<li>Can you think of a situation where this might not be the case?</li>
+<li>You can look at the attributes available through BioMart using the <code>listAttributes()</code> function - is there any other information you think might be useful?</li>
+<li>How many differentially expressed genes (DEGs) are there, based on the filter in the final line?</li>
+</ul>
+<h1 id="summary">Summary</h1>
+<p>This practical has covered the essentials of working with RNA-Seq data in R, and particularly of using <code>DESeq2</code> to process such data and apply statistics to define differentially expressed genes. As mentioned at the outset, the exercises in this practical contain all of the code required to complete them to a basic standard. For the assessment, there is plenty of scope to improve on these versions.</p>
+<p>In the final practical, we will explore ways of deriving biological meaning from the differential analysis presented here - we will look for functional coordination among the genes which change their expression, and look at methods for defining groups of genes which change together. </p>
+</section>
+
+    </article>
+
+        </main>
+
+		
+		<footer>
+	<hr>
+
+    <nav id="footer-nav">
+        <a href="#">Back to top</a>
+    </nav>
+
+    <div id="footer-text">
+        <p>Generated using <a target="_blank" href="https://chirun.org.uk">Chirun</a> v1.5.0, written by the Digital Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
+        <p>This page last generated: 2026-10-21</p>
+        
+        
+        
+    </div>
+</footer>
+		
+
+        
+
+        <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+    </body>
+</html>

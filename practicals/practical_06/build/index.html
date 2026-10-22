@@ -1,0 +1,1115 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        
+            <meta charset="utf-8">
+            <meta name="robots" content="noindex">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="author" content="Simon J Cockell" />
+            <meta name="date" content="2026-10-21" />
+        
+
+        <title>MMB8052 - Practical 6 | </title>
+
+        
+            <link rel="icon" type="image/png" href="static/favicon.png?build_time=1792598271.761839"/>
+        
+
+        
+    
+    
+            <link rel="stylesheet" href="static/styles.css?build_time=1792598271.761839">
+            
+            
+        
+    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.css?build_time=1792598271.761839">
+
+    <link rel="stylesheet" href="static/print.css?build_time=1792598271.761839">
+
+
+        
+    
+			<script>
+				var chirun_static_url = new URL('static?build_time=1792598271.761839', location.href);
+			</script>
+
+            
+                <script defer src="static/mathjax_config.js?build_time=1792598271.761839"></script>
+                <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+            
+
+            <script type="module" src="static/localisation.js?build_time=1792598271.761839"></script>
+
+            <script defer src="static/customisation.js?build_time=1792598271.761839"></script>
+
+            
+
+            
+        
+    <script defer src="static/code.js?build_time=1792598271.761839" type="module"></script>
+    <script defer src="static/embed_numbas.js?build_time=1792598271.761839" type="module"></script>
+    <script defer src="static/embed_qrcode.js?build_time=1792598271.761839" type="module"></script>
+
+
+        <template id="runnable-code-template">
+            <link rel="stylesheet" href="static/code.css?build_time=1792598271.761839">
+            <div class="runnable-code-wrapper">
+                <section class="fullscreenable code">
+                    <div id="code"></div>
+                    <button class="fullscreen icon-button" title="Fullscreen code"><svg class="icon" aria-label="Fullscreen code" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <section class="fullscreenable output">
+                    <div id="output" aria-live="polite">
+                        <pre class="stdout"></pre>
+                        <pre class="result"></pre>
+                        <div class="images"></div>
+                    </div>
+                    <button class="fullscreen icon-button" title="Fullscreen output"><svg class="icon" aria-label="Fullscreen output" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <div class="buttons">
+                    <button type="button" class="run-code">Run code</button>
+                </div>
+                <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+            </div>
+        </template>
+
+        <template id="embed-numbas-template">
+            <link rel="stylesheet" href="static/embed_numbas.css?build_time=1792598271.761839">
+            <details id="wrapper" data-completion-status="incomplete">
+                <summary>
+                    <h1 id="title">Test Yourself</h1>
+                    <div id="completion-status" data-completion-status="unknown">
+                        <span class="complete">Complete</span>
+                        <span class="incomplete">Incomplete</span>
+                    </div>
+                    <label id="score-feedback">
+                        Score:
+                        <progress min="0"></progress>
+                    </label>
+                </summary>
+                <iframe class="embed" title="Numbas"></iframe>
+            </details>
+        </template>
+
+    </head>
+    <body class="" >
+        
+
+        <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+        
+            <dialog id="display-options">
+    <form>
+        <div class="buttons">
+            <button type="button" id="reset-display-options">Reset to defaults</button>
+
+            <a href="https://chirun.org.uk/accessibility-statement/material">Accessibility statement</a>
+
+            <button autofocus type="button" aria-controls="display-options">
+                Close
+            </button>
+        </div>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="display-options-font-scale">
+                    Text size
+                </label>
+                <input name="font-scale" type="range" min="50" max="600" step="5" value="100" id="display-options-font-scale">
+                <output for="display-options-font-scale">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-weight">
+                    Text weight
+                </label>
+                <input name="font-weight" type="range" min="200" max="800" step="100" value="400" id="display-options-font-weight">
+                <output for="display-options-font-weight">400</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-spacing-factor">
+                    Spacing
+                </label>
+                <input name="spacing-factor" type="range" min="0" max="1200" step="5" value="100" id="display-options-spacing-factor">
+                <output for="display-options-spacing-factor">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-family">
+                    Text font
+                </label>
+                <select name="font-family" id="display-options-font-family">
+                    <option value="var(--sans-serif-font)" selected>Sans-serif</option>
+                    <option value="var(--serif-font)">Serif</option>
+                    <option value="Atkinson Hyperlegible Next">Atkinson Hyperlegible</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-colour-scheme">
+                    Colour scheme
+                </label>
+                <select name="colour-scheme" id="display-options-colour-scheme">
+                    <option value="auto" selected>Automatic (default)</option>
+                    <option value="light">Black text on white</option>
+                    <option value="dark">White text on black</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+            <section id="custom-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-text-colour">
+                        Text colour
+                    </label>
+                    <input name="text-colour" type="color" value="#000000" id="display-options-text-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-link-colour">
+                        Link colour
+                    </label>
+                    <input name="link-colour" type="color" value="#0000ee" id="display-options-link-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour">
+                        Background colour
+                    </label>
+                    <input name="bg-colour" type="color" value="#ffffff" id="display-options-bg-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-off">
+                        Muted background colour
+                    </label>
+                    <input name="bg-colour-off" type="color" value="#eeeeee" id="display-options-bg-colour-off">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-1">
+                        Accent colour 1
+                    </label>
+                    <input name="bg-colour-accent-1" type="color" value="#4caf50" id="display-options-bg-colour-accent-1">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-2">
+                        Accent colour 2
+                    </label>
+                    <input name="bg-colour-accent-2" type="color" value="#f6f6ff" id="display-options-bg-colour-accent-2">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-3">
+                        Accent colour 3
+                    </label>
+                    <input name="bg-colour-accent-3" type="color" value="#eeffd3" id="display-options-bg-colour-accent-3">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-4">
+                        Accent colour 4
+                    </label>
+                    <input name="bg-colour-accent-4" type="color" value="#ffeeee" id="display-options-bg-colour-accent-4">
+                </div>
+            </section>
+
+            <section id="filter-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-filter-sepia">
+                        Sepia filter
+                    </label>
+                    <input name="filter-sepia" type="range" min="0" max="100" step="1" value="0" id="display-options-filter-sepia">
+                    <output for="display-options-filter-sepia">0%</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-filter-hue-rotate">
+                        Rotate hues
+                    </label>
+                    <input name="filter-hue-rotate" type="range" min="0" max="1" step="0.01" value="0" id="display-options-filter-hue-rotate">
+                    <output for="display-options-filter-hue-rotate">0 turns</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-invert-images">
+                        Invert images in dark mode
+                    </label>
+                    <input name="invert-images" type="checkbox" id="display-options-invert-images">
+                </div>
+
+            </section>
+
+
+        </div>
+
+        <details id="advanced">
+            <summary>Advanced options</summary>
+            <section id="custom-css-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-custom-css">
+                        Custom CSS code
+                    </label>
+                    <textarea name="custom-css" id="display-options-custom-css"></textarea>
+                </div>
+            </section>
+        </details>
+    </form>
+</dialog>
+        
+
+        <header>
+            
+<button class="icon-button" type="button" aria-controls="display-options" aria-expanded="false" title="Display options">
+    <svg class="icon" aria-label="Display options" viewBox="0 0 180 180">
+    <use href="#cog"/>
+</svg>
+</button>
+            
+    
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#"></a>
+            </li>
+            
+            <li class="breadcrumb-item active">
+                MMB8052 - Practical 6
+            </li>
+        </ul>
+
+        
+    </nav>
+    
+
+            
+            
+        </header>
+
+        <main id="main-content">
+            
+    <nav id="sidebar">
+        
+        <ul class="alternative-formats">
+            
+            <li><a rel="alternate" type="application/pdf" href="mmb8052_practical_6.pdf"download><svg class="icon" aria-label="PDF" viewBox="0 0 180 180">
+    <use href="#pdf"/>
+</svg> Download as PDF</a></li>
+            
+        </ul>
+        
+
+        
+            <h1>Table of Contents</h1>
+            <a class="jump-to-item-content" href="#item-content">Jump to content</a>
+            <ol class="table-of-contents" role="tree">
+                
+                    
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-mmb8052_practical_06" href="#mmb8052_practical_06">
+        
+        MMB8052 Practical 06 - Case Study I: Sequence Alignment
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-introduction" href="#introduction">
+        
+        Introduction
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-principles_of_sequen" href="#principles_of_sequen">
+        <span class="toc-marker"></span>
+        Principles of Sequence Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-principles_of_sequen">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-global_and_local_ali" href="#global_and_local_ali">
+        
+        Global and Local Alignment
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-similarity_identity_" href="#similarity_identity_">
+        
+        Similarity, Identity and Homology
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-pairwise_sequence_al" href="#pairwise_sequence_al">
+        <span class="toc-marker"></span>
+        Pairwise Sequence Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-pairwise_sequence_al">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-needleman_wunsch_glo" href="#needleman_wunsch_glo">
+        <span class="toc-marker"></span>
+        Needleman-Wunsch Global Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-needleman_wunsch_glo">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_6_1" href="#exercise_6_1">
+        
+        Exercise 6.1
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-smith_waterman_local" href="#smith_waterman_local">
+        <span class="toc-marker"></span>
+        Smith-Waterman Local Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-smith_waterman_local">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_6_2" href="#exercise_6_2">
+        
+        Exercise 6.2
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-searching_databases_" href="#searching_databases_">
+        <span class="toc-marker"></span>
+        Searching Databases Using Sequence Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-searching_databases_">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-blast" href="#blast">
+        <span class="toc-marker"></span>
+        BLAST
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-blast">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_6_3" href="#exercise_6_3">
+        
+        Exercise 6.3
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-blast_e_value" href="#blast_e_value">
+        
+        BLAST E-Value
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-hmmer" href="#hmmer">
+        
+        HMMER
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-multiple_sequence_al" href="#multiple_sequence_al">
+        <span class="toc-marker"></span>
+        Multiple Sequence Alignment
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-multiple_sequence_al">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-t_coffee" href="#t_coffee">
+        
+        T-Coffee
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-muscle" href="#muscle">
+        
+        Muscle
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-clustal_omega" href="#clustal_omega">
+        
+        Clustal Omega
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_6_4" href="#exercise_6_4">
+        
+        Exercise 6.4
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-uses_of_multiple_seq" href="#uses_of_multiple_seq">
+        <span class="toc-marker"></span>
+        Uses of Multiple Sequence Alignments
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-uses_of_multiple_seq">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-jalview" href="#jalview">
+        <span class="toc-marker"></span>
+        Jalview
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-jalview">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_6_5" href="#exercise_6_5">
+        
+        Exercise 6.5
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-summary" href="#summary">
+        
+        Summary
+    </a>
+
+    
+</li>
+
+                
+            </ol>
+        
+
+    </nav>
+
+    <article class="item-content" id="item-content">
+        <section id="slide-0">
+<h1 id="mmb8052_practical_06">MMB8052 Practical 06 - Case Study I: Sequence Alignment</h1>
+<h1 id="introduction">Introduction</h1>
+<p>The alignment of biological sequences is a core technique in bioinformatics. Without effective algorithms for sequence alignment we wouldn't have methods for predicting protein structure, for working with genome-scale sequencing data or for studying evolution at the molecular level. The foundational algorithms for aligning sequences were developed in the 70s and 80s, and are still used today.</p>
+<p>This practical will look at some applications of sequence alignment - including the optimal alignment of two sequences, the use of alignment techniques to search large databases and the simultaneous alignment of multiple sequences. We will use command line tools to explore these applications.</p>
+<h1 id="principles_of_sequen">Principles of Sequence Alignment</h1>
+<p>Biological sequence alignment relies on an understanding of the molecular mechanisms of evolution, and makes the base assumption that the sequences in an alignment share a common ancestor. The alignment process therefore, is seeking to mirror the point mutations, insertions and deletions which over evolutionary time have given rise to the divergence between the sequences. Of course, this ancestral sequence is unobservable and can only be guessed at - a good quality sequence alignment algorithm will seek to provide an <em>optimal</em> alignment given the available knowledge (i.e. the observable sequences, and the likelihood of certain events occurring).</p>
+<h2 id="global_and_local_ali">Global and Local Alignment</h2>
+<p>A global alignment algorithm attempts to align every position in every sequence in an alignment. This strategy is most useful when the sequences being aligned are similar and of roughly equivalent size. Local alignments are more useful for dissimilar sequences, or sequences which are expected to contain modules of similarity (<em>domains</em> or <em>motifs</em>) within their larger sequence context. A local alignment algorithm does not require a match to be found for every position in the sequences, but can be truncated to preserve only the best matching portion.</p>
+<p>The best alignment strategy to choose in any given situation depends on the sequences being analysed, and on the end-goals of the analysis being planned.</p>
+<h2 id="similarity_identity_">Similarity, Identity and Homology</h2>
+<p>It has generally been found to be true that a preserved relationship at the sequence level implies a similar conservation of function. We describe the conservation of sequence in terms of sequence identity and (in the case of protein sequences) similarity.</p>
+<p>Identity is defined as the percentage of shared positions in a sequence alignment. For example, if in a sequence alignment a pair of sequences have 48 out of 147 positions in common the are said to share 32.65% <em>identity</em>.</p>
+<p>Similarity is used to describe the relationship between protein sequences in an alignment, and relies on the fact that certain amino acids share similar physiochemical properties and that substitutions between them can be said to be <em>conservative</em>. Taking these similarities into account when examining the relationship between sequences means we can calculate a score for the <em>similarity</em>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 1: Similarity and Identity" src="images/align1.png?build_time=1792598271.755376"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 1: Sequence Identity and Similarity</b></td>
+</tr>
+</tbody>
+</table>
+<p>Homology is a boolean property shared by sequences of sufficient similarity. Sequences of shared ancestry are said to be <em>homologous</em> - and sequences are either homologous or not, there are no degrees of homology. Homology can exist between species (<em>orthology</em>), arising due to a speciation event, or within species (<em>paralogy</em>), arising due to a duplication event.</p>
+<h1 id="pairwise_sequence_al">Pairwise Sequence Alignment</h1>
+<p>Pairwise sequence alignment methods are used to find the best matching global or local alignments of two query sequences. Methods which use a technique called <em>dynamic programming</em> which are able to find the optimal pairwise alignments were devised in the 70s and 80s. In theory, this renders pairwise alignment a "solved" problem, but the relative efficiency of these methods has meant there has been considerable room for innovation with heuristic methods, which do not guarantee the best alignment but are significantly more efficient than dynamic programming methods.</p>
+<h2 id="needleman_wunsch_glo">Needleman-Wunsch Global Alignment</h2>
+<p>The Needleman-Wunsch algorithm uses dynamic programming, which breaks down a large problem (finding the optimal sequence alignment) into discrete small steps (scoring the different possibilities at each position of the alignment). In this way, the algorithm is able to efficiently score all possible alignment paths, enabling the choice of the optimal alignment.</p>
+<p>This algorithmic approach has to be combined with a robust scoring system. In this way, the effect of allowing a substitution or introducing a gap at each mismatching position in the alignment can be assessed in light of the overall alignment score.</p>
+<p>Nucleic acid alignments are normally scored by a simple system where a match carries a positive score and a mismatch carries a negative score. Gaps then usually incur a large penalty to open, but then a smaller penalty to extend, so that a small number of larger gaps is favoured.</p>
+<p>Amino acid alignment scoring is more complicated, and usually involves a <em>substitution matrix</em>, which encodes different mismatch penalties for different substitutions. This recognises the fact that some amino acid mutations are more likely to occur (due to the nature of the genetic code), and some have a more deleterious effect on protein function than others. Common substitution matrices are based on empirical observation of amino acid changes in closely related biological sequences. For example the popular BLOSUM matrices are generated based on ungapped alignments from the <a href="https://academic.oup.com/nar/article/24/1/197/2359962">BLOCKS database</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 2: BLOSUM62 Substitution Matrix" src="images/align2.png?build_time=1792598271.755376"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 2: The BLOSUM62 Substitution Matrix</b></td>
+</tr>
+</tbody>
+</table>
+<h3 class="exercise" id="exercise_6_1">Exercise 6.1</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Download the FASTA sequence for the following UniProt entries: P69905, P01942</li>
+<li>Using APT, install the software package <code>emboss</code></li>
+<li>Read the help information for the Emboss tool <code>needle</code></li>
+<li>Use <code>needle</code> to globally align the two sequences you've downloaded</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>needle<span class="w"> </span>-asequence<span class="w"> </span>P69905.fasta<span class="w"> </span>-bsequence<span class="w"> </span>P01942.fasta<span class="w"> </span>-gapopen<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span>-gapextend<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>-outfile<span class="w"> </span>exercise6_1.needle
+</code></pre></div>
+<p>Consider the following:</p>
+<ul>
+<li>Can you find out more about Emboss and the tools it contains?</li>
+<li>What does the default output of <code>needle</code> look like? </li>
+<li>What's the identity and similarity of the two sequences you downloaded?</li>
+</ul>
+<h2 id="smith_waterman_local">Smith-Waterman Local Alignment</h2>
+<p>The Smith-Waterman algorithm was published in 1981 and is an adaptation of Needleman-Wunsch which allows for truncation of alignments to produce high quality <em>local</em> alignments. Since there's no requirement to align the full length of protein sequences, highly conserved <em>regions</em> of otherwise divergent proteins can be optimally aligned. This feature is also useful when aligning a fragment against a much larger whole, for example in the case of aligning some sequencing data to a reference genome (more on this in a later practical). </p>
+<p>Local alignments, although not necessarily the Smith-Waterman algorithm are also used in database searching methods, due to the need to identify partial matches of the query sequence, as well as full-length matches. </p>
+<h3 class="exercise" id="exercise_6_2">Exercise 6.2</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Read the help information for the Emboss tool <code>water</code></li>
+<li>Use <code>water</code> to locally align the two sequences from exercise 6.1</li>
+<li>Download the FASTA sequence for the following UniProt entries: O14544 and O14512</li>
+<li>Align these two sequences with both <code>needle</code> and <code>water</code></li>
+</ul>
+<p>Consider the following:</p>
+<ul>
+<li>Compare the local alignment of P69905 &amp; P01942 to the global alignment</li>
+<li>How does the <code>water</code> output compare to that of <code>needle</code>?</li>
+<li>Make the same comparison for the second pair of sequences</li>
+</ul>
+<p>This second pair of sequences share a common <em>protein domain</em> (the <a href="https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/">SH2 domain</a>), but otherwise have little in common. In an ideal world, the local alignment would retrieve just this highly similar portion of about 110 amino acids, but in practise, the scoring system means a longer match gives a higher score.</p>
+<h1 id="searching_databases_">Searching Databases Using Sequence Alignment</h1>
+<p>One of the most popular uses for pairwise alignment is the application of this technique to searching large repositories of sequence information.</p>
+<p>As genome sequencing has become widespread the size of biological databases like GenBank has grown exponentially. Efficient ways of searching these huge repositories of information are imperative to deriving value from them. The development of algorithms for precisely this use case has almost as long a history as pairwise alignment itself. </p>
+<h2 id="blast">BLAST</h2>
+<p>BLAST, or <strong>B</strong>asic <strong>L</strong>ocal <strong>A</strong>lignment <strong>S</strong>earch <strong>T</strong>ool is a local alignment algorithm that uses <em>heuristics</em> to speed up the alignment procedure, meaning it can be used to efficiently search large databases for sequence matches. BLAST was first released in 1990, and the National Center for Biotechnology Information (NCBI) BLAST web server has been in operation since the NCBI launched their web site, in 1994 and the service still handles thousands of requests every day. The <a href="https://www.sciencedirect.com/science/article/pii/S0022283605803602?via%3Dihub">BLAST paper</a>, by Altschul <em>et al.</em> was the most cited paper of the 1990s.</p>
+<p>Although the NCBI web server is capable of meeting most users requirements for BLAST searches, there are still good reasons why being able to run searches on our own hardware can be useful. The lack of competition with other users from around the world can make things more efficient, we might want to use a bespoke database which would be hard or impossible to use on the web server version and configuring the search and the output to exactly meet our requirements is easier to do "offline". It is also possible to programmatically run huge numbers of BLAST searches locally which would be impossible to submit via a web interface.  </p>
+<h3 class="exercise" id="exercise_6_3">Exercise 6.3</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>Use the commands below to (a) download the human proteome from UniProt (we looked at how to do this using the Search API in practical 01), and (b) build a BLAST database from the resulting file</li>
+<li>If you didn't do so earlier in the module, you may need to install the <code>ncbi-blast+</code> package using APT. </li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>human.fa<span class="w"> </span><span class="s1">'https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+organism_id:9606&amp;format=fasta'</span>
+$<span class="w"> </span>makeblastdb<span class="w"> </span>-in<span class="w"> </span>human.fa<span class="w"> </span>-input_type<span class="w"> </span>fasta<span class="w"> </span>-dbtype<span class="w"> </span>prot<span class="w"> </span>-title<span class="w"> </span>hsapiens<span class="w"> </span>-parse_seqids<span class="w"> </span>-taxid<span class="w"> </span><span class="m">9606</span><span class="w"> </span>-out<span class="w"> </span>hsapiens
+</code></pre></div>
+<ul>
+<li>Look at the help information for the <code>blastp</code> executable, and work out how to search the database you've created with the O14544 sequence you downloaded in exercise 6.2 </li>
+<li>Use the table output format to make the results a bit easier to digest (<code>-outfmt 6</code>)</li>
+<li>How many hits do you get in the database, using the default thresholds?</li>
+</ul>
+<h3 id="blast_e_value">BLAST E-Value</h3>
+<p>The Expect value, or E-Value, is the primary means for filtering results from BLAST. It attempts to describe how many matches could be expected in a random database the same size as the subject database, that are at least as good as the reported match (based on the Bit Score). </p>
+<p>The E-Value is often treated like a P-Value (i.e. thresholded at 0.05), but it is slightly different, in that it can take values greater than 1, and the cutoff applied to the E-Value should vary depending on the use-case. For example, hits with short query sequences will very often have E-Values &gt;&gt; 1, but can still be informative. </p>
+<h2 id="hmmer">HMMER</h2>
+<p>The approach of BLAST is based on using a single query sequence to find database hits. When searching for more distant matches especially, the information contained in a single sequence can be inadequate. The approach of HMMER therefore is to use a mathematical model (a Hidden Markov Model, or HMM) built from an alignment of multiple sequences, which imparts more information than one sequence can contain. Using an HMM to search a sequence database can give more results than a simple BLAST, and can be better for detecting remote similarity to the input sequence of interest. </p>
+<p>Although the standard approach of HMMER starts with an alignment, from which an HMM is built, it is possible to begin with a single query sequence. A naive model is then built based on a substitution matrix which infers additional information on top of the input sequence. This model is then used to search the sequence database. </p>
+<p>It is also possible to use HMMER iteratively - the first search returns a set of proteins which are used to build an HMM for a second search, the results from which are used to improve the model, and so on. Both of these modes are enabled by the <code>hmmer</code> package which can be installed with <code>apt</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>hmmer
+<span class="c1"># search a (FASTA) database with a single query:</span>
+$<span class="w"> </span>phmmer<span class="w"> </span>--tblout<span class="w"> </span>hmmer.out<span class="w"> </span>O14544.fasta<span class="w"> </span>human.fa
+<span class="c1"># perform an iterative search (max of 5 iterations by default)</span>
+$<span class="w"> </span>jackhmmer<span class="w"> </span>--tblout<span class="w"> </span>jackhmmer.out<span class="w"> </span>O14544.fasta<span class="w"> </span>human.fa
+</code></pre></div>
+<p>The O14544 protein contains an <a href="https://www.ebi.ac.uk/interpro/entry/InterPro/IPR000980/">SH2 domain</a> (a protein domain involved in binding to phosphorylated tyrosine residues on other proteins). The literature suggests that there are 111 human proteins which contain an SH2 domain (<a href="https://doi.org/10.1126/scisignal.2002105">https://doi.org/10.1126/scisignal.2002105</a>). Although none of the search strategies above identify exactly 111 hits, they all identify a reasonable subset - especially considering only about 100 amino acids of the total query sequence length of 535 amino acids is contained in the SH2 domain. </p>
+<h1 id="multiple_sequence_al">Multiple Sequence Alignment</h1>
+<p>If we want to explore the evolutionary relationships between more than two sequences, we need different methods to those outlined above, which do not naturally extend to align a greater number of inputs. Computational multiple sequence alignment strategies began to be explored in the late 1980s and many methods have been published since then. Multiple sequence alignment is a multi-dimensional problem, which unlike pairwise alignment does not have an optimal solution (or at least not one which is computationally tractable). Most methods therefore use heuristic methods to take shortcuts on the route to an acceptable solution (a heuristic is an approach to problem solving that does not guarantee an optimal result, but is nevertheless sufficient for reaching an adequate approximation).</p>
+<p>There are a number of different approaches taken to constructing multiple sequence alignments, though in practice the actual algorithmic approach matters less than the perceived accuracy of the output (and other metrics such as computational efficiency). Below is a brief summary of the major modern methods.</p>
+<h3 id="t_coffee">T-Coffee</h3>
+<p><a href="https://tcoffee.org/Projects/tcoffee/index.html">T-Coffee</a> is a modern <em>progressive</em> alignment based method. A progressive alignment strategy builds a sequence alignment by adding sequences to an initial pairwise alignment, which is made with the closest two sequences. A progressive alignment process begins with the construction of a <em>guide tree</em> - which models the relationships between the sequences to be aligned. The alignment is then constructed on the basis of the branching of this tree, with the closest two sequences aligned first, then the next closest aligned to that alignment and so on. </p>
+<p>Progressive alignment methods are efficient, and can produce large alignments quickly, but they are generally not very accurate when all of the sequences to be aligned are distantly related. The principal problem with progressive alignment is that errors made at any stage in growing the MSA are then propagated through to the final result. </p>
+<p>T-Coffee attempts to overcome this limitation by using local alignments (made with LALIGN) to more accurately construct and weight the guide tree.</p>
+<p>T-Coffee and the version of Muscle we want to use are not compatible with one another, so we are not going to use T-Coffee in the following exercise. </p>
+<h3 id="muscle">Muscle</h3>
+<p><a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-113">Muscle</a> (multiple sequence alignment by log-expectation) is an <em>iterative</em> alignment method. Iterative multiple sequence alignment is a similar strategy to progressive alignment, with the key difference that initially aligned sequences can be repeatedly realigned (and so refined) as the alignment is built.</p>
+<p>As well as refining the alignment at every iteration, muscle also updates the distance scores between sequences using information from the alignment in order to improve accuracy. </p>
+<h3 id="clustal_omega">Clustal Omega</h3>
+<p>The Clustal family of MSA tools has been around since the 1980s, and they have historically been progressive alignment methods (including the widely used Clustal W and Clustal X packages). However the newest version, <a href="https://www.embopress.org/doi/full/10.1038/msb.2011.75">Clustal Omega</a> was released in 2011 and instead uses a seeded guide tree and profile HMM for producing potentially very large multiple alignments (10s of 1000s of sequences).</p>
+<h3 class="exercise" id="exercise_6_4">Exercise 6.4</h3>
+<p>Estimated time: 15 minutes</p>
+<ul>
+<li>Download the following list of protein sequences from UniProt:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>P76082 P94549 Q52995 P9WNN8 P9wNN9 P64017 O07137 P9WNP1 Q50130 P64019 P9WNN4 P9WNN5 P24162 G4V4T7 P53526 P9WNN7 P9WNN6 Q7U004 Q7TXE1 P9WNN3 A1KN36 P9WNN2 A5U753 A0QJH8 Q73VC7
+</code></pre></div>
+<ul>
+<li>Install <code>muscle3</code> and <code>clustalo</code> using APT (you can use <code>apt search</code> to find the appropriate packages to install)</li>
+<li>Use each of these tools to make a multiple sequence alignment from the sequences you downloaded in the first step</li>
+</ul>
+<p>Alignment comparisons are difficult to make at the command line. In order to examine the resulting alignments, we will download them from our cloud servers and look at them locally. <strong>IN A NEW POWERSHELL WINDOW</strong>: Download files from your VM using Powershell:</p>
+<div class="highlight"><pre><span></span><code>$ sftp -P [port] student@[your.vm.address]
+</code></pre></div>
+<p>(Where <code>[port]</code> and <code>[your.vm.address]</code> are the same as the arguments you use to connect via SSH)</p>
+<p>This command creates an <code>sftp</code> connection to your VM - similar to an SSH connection, but allowing two-way communication. Files can be downloaded from your VM to your computer using the <code>get</code> command:</p>
+<div class="highlight"><pre><span></span><code>$ get practical_06/muscle.fa
+</code></pre></div>
+<ul>
+<li>Download the 2 alignments you made above</li>
+</ul>
+<h1 id="uses_of_multiple_seq">Uses of Multiple Sequence Alignments</h1>
+<p>Multiple sequence alignments are primarily used for exploring the evolutionary relationships between sequences. A high quality alignment can be used to calculate a robust phylogenetic tree, showing the lineage of the sequences which have been aligned. Multiple alignments of specified, highly conserved targets (usually the nucleotide sequence of specific housekeeping genes) can be used to estimate the relationships between bacterial species, in a process known as <a href="https://www.pnas.org/doi/10.1073/pnas.95.6.3140">multi-locus sequence typing</a> (MLST).</p>
+<p>Alignments of concatenated pairs of proteins which interact can be used to estimate the <a href="https://academic.oup.com/bioinformatics/article/20/10/1565/237258">co-evolution</a> of these proteins via an approach called <em>statistical coupling analysis</em> - the theory being that amino acids involved in a physical interaction are constrained in their evolution, and that a change in one member of an interacting pair requires a compatible change in the other partner. </p>
+<p>Protein multiple sequence alignments using proteins of known structure are an important input to lots of methods for predicting new 3D structures. Such approaches include <a href="https://www.nature.com/articles/s41586-021-03819-2">AlphaFold</a> - the algorithm which won the recent <a href="https://predictioncenter.org/casp14/">CASP14</a> protein structure prediction challenge (by quite some distance), and has since been used to predict a <a href="https://alphafold.ebi.ac.uk/">tertiary structure for every protein in UniProt</a>. </p>
+<p>Important functional residues will be preserved across even distantly-related proteins that share the same function. These residues can be found in a high-quality multiple sequence alignment and a program which enables the viewing of MSAs can help with the finding of such amino acids.</p>
+<h2 id="jalview">Jalview</h2>
+<p>One such alignment viewer is Jalview - developed by the <a href="https://www.compbio.dundee.ac.uk/">Barton Group</a> at Dundee University, Jalview has been around for a number of years and has been steadily developed into a robust and versatile tool for working with multiple sequence alignments. </p>
+<h3 class="exercise" id="exercise_6_5">Exercise 6.5</h3>
+<p>Estimated time: 15 minutes</p>
+<p>Jalview is not installed on the cluster PCs, but since it doesn't require admin rights, we can install it:</p>
+<ul>
+<li>Download Jalview from <a href="https://jalview.org/download">https://jalview.org/download</a> (click on the green 'Download' button in the middle of the screen)</li>
+<li>Run the installer and follow the instructions</li>
+<li>Once Jalview is installed, load your sequence alignments from exercise 6.4 and explore them, and the features of Jalview</li>
+</ul>
+<p>In particular, consider the following:</p>
+<ul>
+<li>All the sequences you have aligned are annotated with the same Enzyme Commission identifier (<a href="https://www.brenda-enzymes.org/enzyme.php?ecno=4.2.1.17">4.2.1.17</a> - enoyl-CoA hydratase) - this means they <em>should</em> all have the same biochemical function. To exhibit this function, these enzymes require 2 of 3 key residues to be negatively charged - these residues are at position 109, 129 and 137 in P76082 (see figure 3 below). How many of the sequences in your alignment(s) have 2 negatively charged amino acids (D or E) at the appropriate positions? </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="Figure 3: P76082 sequence" src="images/P76082.png?build_time=1792598271.755376"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><b>Figure 3: P76082 sequence, with functional region highlighted in yellow. Key residues highlighted in red - 2 of 3 must be negatively charged (D or E) for protein to be function as a hydratase</b></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Does this result vary depending on the software that produced the alignment?</li>
+</ul>
+<h1 id="summary">Summary</h1>
+<p>This practical has been the first of our more applied examples of the tools you learnt how to use in the early practicals. The uses for sequence alignment are many and varied throughout bioinformatics, and we have just scratched the surface of what is possible here. Despite algorithms dating back to the late 1970s, much about sequence alignment strategies is still very relevant to modern biomedical science and there are many recent applications which absolutely depend on robust sequence alignment techniques.</p>
+<p>In the next practical, we will take a look at one of these approaches - the high-throughput sequencing of genomic DNA, particularly from humans. </p>
+</section>
+
+    </article>
+
+        </main>
+
+		
+		<footer>
+	<hr>
+
+    <nav id="footer-nav">
+        <a href="#">Back to top</a>
+    </nav>
+
+    <div id="footer-text">
+        <p>Generated using <a target="_blank" href="https://chirun.org.uk">Chirun</a> v1.5.0, written by the Digital Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
+        <p>This page last generated: 2026-10-21</p>
+        
+        
+        
+    </div>
+</footer>
+		
+
+        
+
+        <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+    </body>
+</html>

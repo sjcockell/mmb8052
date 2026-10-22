@@ -1,0 +1,1621 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        
+            <meta charset="utf-8">
+            <meta name="robots" content="noindex">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="author" content="Simon J Cockell" />
+            <meta name="date" content="2026-10-21" />
+        
+
+        <title>MMB8052 - Practical 2 | </title>
+
+        
+            <link rel="icon" type="image/png" href="static/favicon.png?build_time=1792598227.425497"/>
+        
+
+        
+    
+    
+            <link rel="stylesheet" href="static/styles.css?build_time=1792598227.425497">
+            
+            
+        
+    <link rel="stylesheet" id="customiseCodeCSS" href="static/pygmentize.css?build_time=1792598227.425497">
+
+    <link rel="stylesheet" href="static/print.css?build_time=1792598227.425497">
+
+
+        
+    
+			<script>
+				var chirun_static_url = new URL('static?build_time=1792598227.425497', location.href);
+			</script>
+
+            
+                <script defer src="static/mathjax_config.js?build_time=1792598227.425497"></script>
+                <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+            
+
+            <script type="module" src="static/localisation.js?build_time=1792598227.425497"></script>
+
+            <script defer src="static/customisation.js?build_time=1792598227.425497"></script>
+
+            
+
+            
+        
+    <script defer src="static/code.js?build_time=1792598227.425497" type="module"></script>
+    <script defer src="static/embed_numbas.js?build_time=1792598227.425497" type="module"></script>
+    <script defer src="static/embed_qrcode.js?build_time=1792598227.425497" type="module"></script>
+
+
+        <template id="runnable-code-template">
+            <link rel="stylesheet" href="static/code.css?build_time=1792598227.425497">
+            <div class="runnable-code-wrapper">
+                <section class="fullscreenable code">
+                    <div id="code"></div>
+                    <button class="fullscreen icon-button" title="Fullscreen code"><svg class="icon" aria-label="Fullscreen code" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <section class="fullscreenable output">
+                    <div id="output" aria-live="polite">
+                        <pre class="stdout"></pre>
+                        <pre class="result"></pre>
+                        <div class="images"></div>
+                    </div>
+                    <button class="fullscreen icon-button" title="Fullscreen output"><svg class="icon" aria-label="Fullscreen output" viewBox="0 0 180 180">
+    <use href="#fullscreen"/>
+</svg></button>
+                </section>
+                <div class="buttons">
+                    <button type="button" class="run-code">Run code</button>
+                </div>
+                <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+            </div>
+        </template>
+
+        <template id="embed-numbas-template">
+            <link rel="stylesheet" href="static/embed_numbas.css?build_time=1792598227.425497">
+            <details id="wrapper" data-completion-status="incomplete">
+                <summary>
+                    <h1 id="title">Test Yourself</h1>
+                    <div id="completion-status" data-completion-status="unknown">
+                        <span class="complete">Complete</span>
+                        <span class="incomplete">Incomplete</span>
+                    </div>
+                    <label id="score-feedback">
+                        Score:
+                        <progress min="0"></progress>
+                    </label>
+                </summary>
+                <iframe class="embed" title="Numbas"></iframe>
+            </details>
+        </template>
+
+    </head>
+    <body class="" >
+        
+
+        <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+        
+            <dialog id="display-options">
+    <form>
+        <div class="buttons">
+            <button type="button" id="reset-display-options">Reset to defaults</button>
+
+            <a href="https://chirun.org.uk/accessibility-statement/material">Accessibility statement</a>
+
+            <button autofocus type="button" aria-controls="display-options">
+                Close
+            </button>
+        </div>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="display-options-font-scale">
+                    Text size
+                </label>
+                <input name="font-scale" type="range" min="50" max="600" step="5" value="100" id="display-options-font-scale">
+                <output for="display-options-font-scale">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-weight">
+                    Text weight
+                </label>
+                <input name="font-weight" type="range" min="200" max="800" step="100" value="400" id="display-options-font-weight">
+                <output for="display-options-font-weight">400</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-spacing-factor">
+                    Spacing
+                </label>
+                <input name="spacing-factor" type="range" min="0" max="1200" step="5" value="100" id="display-options-spacing-factor">
+                <output for="display-options-spacing-factor">100%</output>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-font-family">
+                    Text font
+                </label>
+                <select name="font-family" id="display-options-font-family">
+                    <option value="var(--sans-serif-font)" selected>Sans-serif</option>
+                    <option value="var(--serif-font)">Serif</option>
+                    <option value="Atkinson Hyperlegible Next">Atkinson Hyperlegible</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="display-options-colour-scheme">
+                    Colour scheme
+                </label>
+                <select name="colour-scheme" id="display-options-colour-scheme">
+                    <option value="auto" selected>Automatic (default)</option>
+                    <option value="light">Black text on white</option>
+                    <option value="dark">White text on black</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+            <section id="custom-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-text-colour">
+                        Text colour
+                    </label>
+                    <input name="text-colour" type="color" value="#000000" id="display-options-text-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-link-colour">
+                        Link colour
+                    </label>
+                    <input name="link-colour" type="color" value="#0000ee" id="display-options-link-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour">
+                        Background colour
+                    </label>
+                    <input name="bg-colour" type="color" value="#ffffff" id="display-options-bg-colour">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-off">
+                        Muted background colour
+                    </label>
+                    <input name="bg-colour-off" type="color" value="#eeeeee" id="display-options-bg-colour-off">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-1">
+                        Accent colour 1
+                    </label>
+                    <input name="bg-colour-accent-1" type="color" value="#4caf50" id="display-options-bg-colour-accent-1">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-2">
+                        Accent colour 2
+                    </label>
+                    <input name="bg-colour-accent-2" type="color" value="#f6f6ff" id="display-options-bg-colour-accent-2">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-3">
+                        Accent colour 3
+                    </label>
+                    <input name="bg-colour-accent-3" type="color" value="#eeffd3" id="display-options-bg-colour-accent-3">
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-bg-colour-accent-4">
+                        Accent colour 4
+                    </label>
+                    <input name="bg-colour-accent-4" type="color" value="#ffeeee" id="display-options-bg-colour-accent-4">
+                </div>
+            </section>
+
+            <section id="filter-colour-scheme-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-filter-sepia">
+                        Sepia filter
+                    </label>
+                    <input name="filter-sepia" type="range" min="0" max="100" step="1" value="0" id="display-options-filter-sepia">
+                    <output for="display-options-filter-sepia">0%</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-filter-hue-rotate">
+                        Rotate hues
+                    </label>
+                    <input name="filter-hue-rotate" type="range" min="0" max="1" step="0.01" value="0" id="display-options-filter-hue-rotate">
+                    <output for="display-options-filter-hue-rotate">0 turns</output>
+                </div>
+
+                <div class="input-group">
+                    <label for="display-options-invert-images">
+                        Invert images in dark mode
+                    </label>
+                    <input name="invert-images" type="checkbox" id="display-options-invert-images">
+                </div>
+
+            </section>
+
+
+        </div>
+
+        <details id="advanced">
+            <summary>Advanced options</summary>
+            <section id="custom-css-options" class="inputs">
+                <div class="input-group">
+                    <label for="display-options-custom-css">
+                        Custom CSS code
+                    </label>
+                    <textarea name="custom-css" id="display-options-custom-css"></textarea>
+                </div>
+            </section>
+        </details>
+    </form>
+</dialog>
+        
+
+        <header>
+            
+<button class="icon-button" type="button" aria-controls="display-options" aria-expanded="false" title="Display options">
+    <svg class="icon" aria-label="Display options" viewBox="0 0 180 180">
+    <use href="#cog"/>
+</svg>
+</button>
+            
+    
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#"></a>
+            </li>
+            
+            <li class="breadcrumb-item active">
+                MMB8052 - Practical 2
+            </li>
+        </ul>
+
+        
+    </nav>
+    
+
+            
+            
+        </header>
+
+        <main id="main-content">
+            
+    <nav id="sidebar">
+        
+        <ul class="alternative-formats">
+            
+            <li><a rel="alternate" type="application/pdf" href="mmb8052_practical_2.pdf"download><svg class="icon" aria-label="PDF" viewBox="0 0 180 180">
+    <use href="#pdf"/>
+</svg> Download as PDF</a></li>
+            
+        </ul>
+        
+
+        
+            <h1>Table of Contents</h1>
+            <a class="jump-to-item-content" href="#item-content">Jump to content</a>
+            <ol class="table-of-contents" role="tree">
+                
+                    
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-mmb8052_practical_02" href="#mmb8052_practical_02">
+        
+        MMB8052 Practical 02 - Advanced Commmand Line Linux
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-introduction" href="#introduction">
+        
+        Introduction
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-tools_for_text" href="#tools_for_text">
+        <span class="toc-marker"></span>
+        Tools for Text
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-tools_for_text">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-formats" href="#formats">
+        <span class="toc-marker"></span>
+        Formats
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-formats">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-fasta" href="#fasta">
+        
+        FASTA
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-fastq" href="#fastq">
+        
+        FASTQ
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="false" aria-owns="#toc-subtree-sam" href="#sam">
+        <span class="toc-marker"></span>
+        SAM
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-sam">
+            
+            
+<li role="none" data-toc-level="4" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-the_header" href="#the_header">
+        
+        The header
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="4" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-mandatory_alignment_" href="#mandatory_alignment_">
+        
+        Mandatory alignment fields
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="4" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-additional_alignment" href="#additional_alignment">
+        
+        Additional alignment fields
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-gff_gtf" href="#gff_gtf">
+        
+        GFF/GTF
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-wc" href="#wc">
+        <span class="toc-marker"></span>
+        wc
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-wc">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_1" href="#exercise_2_1">
+        
+        Exercise 2.1
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-grep" href="#grep">
+        <span class="toc-marker"></span>
+        grep
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-grep">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_2" href="#exercise_2_2">
+        
+        Exercise 2.2
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-regular_expressions" href="#regular_expressions">
+        <span class="toc-marker"></span>
+        Regular Expressions
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-regular_expressions">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_3" href="#exercise_2_3">
+        
+        Exercise 2.3
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-other_text_processin" href="#other_text_processin">
+        <span class="toc-marker"></span>
+        Other Text Processing Tools
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-other_text_processin">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-sort" href="#sort">
+        
+        sort
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-uniq" href="#uniq">
+        
+        uniq
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-cut" href="#cut">
+        
+        cut
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_4" href="#exercise_2_4">
+        
+        Exercise 2.4
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-scripting" href="#scripting">
+        <span class="toc-marker"></span>
+        Scripting
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-scripting">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-scripting_concepts" href="#scripting_concepts">
+        <span class="toc-marker"></span>
+        Scripting Concepts
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-scripting_concepts">
+            
+            
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-variables" href="#variables">
+        
+        Variables
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_5" href="#exercise_2_5">
+        
+        Exercise 2.5
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-environment" href="#environment">
+        
+        Environment
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-special_variables" href="#special_variables">
+        
+        Special Variables
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_6" href="#exercise_2_6">
+        
+        Exercise 2.6
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-the_for_loop" href="#the_for_loop">
+        
+        The FOR Loop
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="3" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_7" href="#exercise_2_7">
+        
+        Exercise 2.7
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-software_installatio" href="#software_installatio">
+        <span class="toc-marker"></span>
+        Software Installation
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-software_installatio">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-apt" href="#apt">
+        
+        APT
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-sudo" href="#sudo">
+        
+        sudo
+    </a>
+
+    
+</li>
+
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-bioinformatics_softw" href="#bioinformatics_softw">
+        
+        Bioinformatics Software and APT
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header  has-children">
+    <a role="treeitem" aria-expanded="true" aria-owns="#toc-subtree-putting_it_all_toget" href="#putting_it_all_toget">
+        <span class="toc-marker"></span>
+        Putting it all together
+    </a>
+
+    
+        <ol role="group" id="toc-subtree-putting_it_all_toget">
+            
+            
+<li role="none" data-toc-level="2" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-exercise_2_8" href="#exercise_2_8">
+        
+        Exercise 2.8
+    </a>
+
+    
+</li>
+
+            
+        </ol>
+    
+</li>
+
+<li role="none" data-toc-level="1" class="toc-header ">
+    <a role="treeitem"  aria-owns="#toc-subtree-summary" href="#summary">
+        
+        Summary
+    </a>
+
+    
+</li>
+
+                
+            </ol>
+        
+
+    </nav>
+
+    <article class="item-content" id="item-content">
+        <section id="slide-0">
+<h1 id="mmb8052_practical_02">MMB8052 Practical 02 - Advanced Commmand Line Linux</h1>
+<h1 id="introduction">Introduction</h1>
+<p>In the first practical we introduced the basics of the Linux command line. This second practical builds on these fundamentals to introduce more advanced tools and processes using the command line, with a particular focus on tools which process and manipulate text-based data.</p>
+<p>A large amount of bioinformatics data is based on standard text formats - we've already seen UniProt database entries which are made up of structured text, and the FASTA sequence format, in which individual sequences are delineated by header lines beginning with "&gt;". Other common formats include the FASTQ format for high-throughput sequencing data, the SAM (Sequence Alignment Map) format for storing genomic alignments and the GFF (General Feature Format) which is used for recording the position of genomic features.</p>
+<p>Linux tools for processing text have been around for the best part of 50 years, and as such are robust and perform well, even with the often very large files common in bioinformatics. This practical will explore a number of these tools and how they can be used to work with the type of files listed above.</p>
+<h1 id="tools_for_text">Tools for Text</h1>
+<h2 id="formats">Formats</h2>
+<h3 id="fasta">FASTA</h3>
+<p>The FASTA file format is a 40-year old standard for representing either nucleotide or amino acid sequences. The first line of a FASTA entry begins with the greater-than symbol (<code>&gt;</code>), and is referred to as the description line. It should contain a unique identifier for the sequence. The lines following the description line contain the sequence data, which can be spread across multiple lines and are expected to be represented in the standard IUPAC single-letter codes. A single file can contain many sequence entries, each beginning with its own description line.</p>
+<div class="highlight"><pre><span></span><code>&gt;sequence_1
+CGATAGCAGATGCGATGGATAGAGATTAGATAGAGGCTCGCGCTGACGCCGCTCGATCGGCTGAGCTACGCTCGAGATCG
+CGATGCGCTATCGCGCTAGCTCG
+&gt;sequence_2
+ATGAGCTGAGCGTAGTCGCGCATCAGCAGACTACAGCAGCAGACTCAGAACAGCAGCAGCAGCAGCACTACGCAGACTAC
+GCATACGCAGACTACGCAGACGACTCAGCAGACGACTACGA
+</code></pre></div>
+<h3 id="fastq">FASTQ</h3>
+<p>The FASTQ format was developed by the Wellcome Trust Sanger Institute to store nucleotide sequence data along with associated quality scores, which provide information about the confidence of sequencing accuracy. FASTQ has become the <em>de facto</em> standard for storing the output of high-throughput sequencing instruments. An entry in a FASTQ file consists of 4 lines:</p>
+<ol>
+<li>Begins with an <code>@</code> character, and is followed by a sequence identifier (like the FASTA description line)</li>
+<li>The sequence data (A/C/G/T/N)</li>
+<li>Delimits the sequence data and the quality data - in modern files usually contains only a <code>+</code> character</li>
+<li>The quality data for the bases in line 2 - must contain the same number of characters as line 2</li>
+</ol>
+<p>The quality scores are encoded as an ASCII value - that is a single character that can be translated into an integer numerical value, generally in the range 0 - 41. This quality score, or Phred score is related to the probability of the corresponding base call being an error (the higher the Phred score, the lower this probability).</p>
+<div class="highlight"><pre><span></span><code>@NB501177:26:HF3Y2BGX2:1:11101:23339:1070 1:N:0:CGGCTATG+GTCAGTAC
+GTGGCACCATGGTTGTCAGACGTCAGTGCANACANNNCTAGATGTGGGCTACAGCGCATATACTCAGGGCCATGGT
++
+AAAAAEEEEEEEEEEEEAE6AEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEAAEEEEEEEEEE
+@NB501177:26:HF3Y2BGX2:1:11101:14507:1071 1:N:0:CGGCTATG+GTCAGTAC
+GCCACAGTCAGCCAGCCAAACGTATGTTAGNATTNNNCAGGTGATCACAAAACTCAGGGCCATATATAAGAACA
++
+AAAAAEEEEEEEEEEEEEEEEEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEEAEAAEEEEE
+</code></pre></div>
+<p>The ASCII quality characters used for Illumina sequencing, from left-to-right in increasing order of quality:</p>
+<div class="highlight"><pre><span></span><code>!"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJ
+</code></pre></div>
+<p>Most modern Illumina sequencers use quality "bins", a small set of discrete values which means that FASTQ files can be compressed more easily. For example, bases sequenced on the NovaSeq 6000 can take one of four possible quality values 2 (<code>#</code>), 12 (<code>-</code>), 23 (<code>8</code>) and 37 (<code>F</code>). The sequences in the example above come from a NextSeq 500, which uses six bins (<code>#</code>, <code>/</code>, <code>6</code>, <code>&lt;</code>, <code>A</code>, <code>E</code>).</p>
+<h3 id="sam">SAM</h3>
+<p>SAM stands for <em>Sequence Alignment/Map</em> format. It is a text-based table used to record the alignment of sequence reads to a reference sequence. Each individual alignment is recorded in a single line with 11 mandatory fields separated by tab characters.</p>
+<h4 id="the_header">The header</h4>
+<p>The header is an optional section of the SAM file that can describe things about the experiment as a whole. Each header line begins with the "@" character followed by a two-letter record type code. Each line is then tab-delimited.</p>
+<div class="highlight"><pre><span></span><code>@HD   VN:1.0     SO:unsorted
+@SQ   SN:chr1    LN:197195432
+@PG   ID:bowtie2 PN:bowtie2 VN:2.3.5.1
+</code></pre></div>
+<p>The <code>@HD</code> line is information about the SAM file itself (version, whether or not it is sorted). <code>@SQ</code> is information about the reference sequence (there would be one line per chromosome, if we were aligning to a whole multi-chromosome genome). <code>@PG</code> is about the program that generated the SAM file.</p>
+<h4 id="mandatory_alignment_">Mandatory alignment fields</h4>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Query Template Name</td>
+<td>Read name in the FASTQ file being mapped</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bitwise Flag</td>
+<td>There’s a good description of bitwise flags here:</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://davetang.org/muse/2014/03/06/understanding-bam-flags/">https://davetang.org/muse/2014/03/06/understanding-bam-flags/</a>, and a decoder</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>for the values in this column here:</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="http://broadinstitute.github.io/picard/explain-flags.html">http://broadinstitute.github.io/picard/explain-flags.html</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Reference Sequence Name</td>
+<td>Sequence in the reference genome mapped to</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>(usually a chromosome)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1-based left most mapping</td>
+<td>Beginning position of the mapping</td>
+</tr>
+<tr>
+<td></td>
+<td>position</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mapping Quality</td>
+<td>−10log<sub>10</sub> P(mapping is wrong). A value of 255</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>indicates that the mapping quality is not available</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CIGAR string</td>
+<td>CIGAR = Concise Idiosyncratic Gapped Alignment Report</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://genome.sph.umich.edu/wiki/SAM#What_is_a_CIGAR.3F">More information</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Reference name of the</td>
+<td>Relevant to paired-end data</td>
+</tr>
+<tr>
+<td></td>
+<td>mate/next segment</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Position of the mate/next</td>
+<td>Relevant to paired-end data</td>
+</tr>
+<tr>
+<td></td>
+<td>segment</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Observed template length</td>
+<td>Relevant to paired-end data</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Segment Sequence</td>
+<td>The sequence of the read (not the reference)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ASCII of Phred-scaled base</td>
+<td>Same as the quality in Sanger-encoded FASTQ</td>
+</tr>
+<tr>
+<td></td>
+<td>base Quality+33</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="additional_alignment">Additional alignment fields</h4>
+<p>All additional fields in an alignment line consist of 3 values, separated by colons, in the form TAG:TYPE:VALUE. There are a number of predefined tag types that can provide additional information about the alignment.</p>
+<p>SAM alignment of the reads shown in the FASTQ example, above (generated by the alignment software <a href="http://daehwankimlab.github.io/hisat2/">HISAT2</a>):</p>
+<div class="highlight"><pre><span></span><code>NB501177:26:HF3Y2BGX2:1:11101:23339:1070        0       11      6437060 60      76M     *       0       0       GTGGCACCATGGTTGTCAGACGTCAGTGCANACANNNCTAGATGTGGGCTACAGCGCATATACTCAGGGCCATGGT    AAAAAEEEEEEEEEEEEAE6AEEEEEEEEE#EEE###EEEEEEEEEEEEEEEEEEEEEEEEEEEAAEEEEEEEEEE    AS:i:-4 XN:i:0  XM:i:4  XO:i:0  XG:i:0  NM:i:4  MD:Z:30G3A0G0A39        YT:Z:UU NH:i:1
+NB501177:26:HF3Y2BGX2:1:11101:14507:1071        16      1       153641443       60      73M1S   *       0       0      TGTTCTTATATATGGCCCTGAGTTTTGTGATCACCTGNNNAATNCTAACATACGTTTGGCTGGCTGACTGTGGC       EEEEEAAEAEEEEEEEEEEEEEEEEEEEEEEEEEEEE###EEE#EEEEEEEEEEEEEEEEEEEEEEEEEAAAAA      AS:i:-5 XN:i:0  XM:i:4  XO:i:0  XG:i:0  NM:i:4  MD:Z:37A0A0T3T29        YT:Z:UUNH:i:1
+</code></pre></div>
+<h3 id="gff_gtf">GFF/GTF</h3>
+<p>The General Feature Format (GFF) is a standard table-based format for encoding genomic features. Each feature is encoded on one line, and each line consists of 9 columns of data. There have been 3 major versions of GFF, and the GTF (Gene Transfer Format) is very similar to GFF version 2. GFF3 is the most recent, and the preferred version of this format.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>seqid</td>
+<td>Identifier of the genomic sequence the current feature is found on.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>source</td>
+<td>Software or database feature comes from.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>type</td>
+<td>The type of feature, taken from the "lite" sequence ontology (<a href="http://www.sequenceontology.org/resources/intro.html">SOFA</a>).</td>
+</tr>
+<tr>
+<td>4</td>
+<td>start</td>
+<td>1-indexed start location of the feature.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>end</td>
+<td>1-indexed end location of the feature.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>score</td>
+<td>The score is usually derived by gene prediction software, and is likely an E-value or P-value. Can be left blank (".").</td>
+</tr>
+<tr>
+<td>7</td>
+<td>strand</td>
+<td>+ for positive strand, - for negative strand (relative to genomic sequence in 1).</td>
+</tr>
+<tr>
+<td>8</td>
+<td>phase</td>
+<td>For features of type "CDS", the phase indicates where the feature begins with reference to the reading frame. The phase is one of the integers 0, 1, or 2, indicating the number of bases that should be removed from the beginning of this feature to reach the first base of the next codon.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>attributes</td>
+<td>A list of feature attributes in the format tag=value. Multiple tag=value pairs are separated by semicolons.</td>
+</tr>
+</tbody>
+</table>
+<p>The flexible format of the 9th column makes this format problematic, and a GFF file needs to be examined carefully to understand what fields are found in column 9. A number of tags with pre-defined meaning are available see the <a href="http://gmod.org/wiki/GFF3">format specification</a> for more information. The GFF format is often used for defining gene structures.</p>
+<div class="highlight"><pre><span></span><code>##gff-version 3
+ctg123 . mRNA            1300  9000  .  +  .  ID=mrna0001;Name=sonichedgehog
+ctg123 . exon            1300  1500  .  +  .  ID=exon00001;Parent=mrna0001
+ctg123 . exon            1050  1500  .  +  .  ID=exon00002;Parent=mrna0001
+ctg123 . exon            3000  3902  .  +  .  ID=exon00003;Parent=mrna0001
+ctg123 . exon            5000  5500  .  +  .  ID=exon00004;Parent=mrna0001
+ctg123 . exon            7000  9000  .  +  .  ID=exon00005;Parent=mrna0001
+</code></pre></div>
+<h2 id="wc">wc</h2>
+<p>The <code>wc</code> command (word count) is a utility that given a file will list the number of lines, words and bytes in that file. The <code>-l</code> option restricts the output to just the number of lines in the file - this is particularly useful for file in which every line is a separate record, such as the case with tabular data.</p>
+<p>Similarly, the <code>-w</code> option returns only the number of words in a file, and the <code>-c</code> option returns only the number of bytes (characters).</p>
+<h3 class="exercise" id="exercise_2_1">Exercise 2.1</h3>
+<p>Estimated time: 1 min</p>
+<p>Use <code>wc</code> to find the number of words, lines and bytes in the file of protein sequences you downloaded in Exercise 1.8.</p>
+<h2 id="grep">grep</h2>
+<p>Searching for specific text in large files can be a laborious process - <code>grep</code> is a useful and efficient utility which simplifies this task. <code>grep phrase file</code> is a command which will search for lines which contain <code>phrase</code> in a text file called <code>file</code>.</p>
+<p>If our search phrase contains special characters which are usually interpreted by the bash shell (e.g. <code>&gt;</code>, <code>&lt;</code>, <code>|</code> or <code>*</code>), then it is necessary to enclose the phrase in single quotes - <code>grep 'phrase' file</code> - to prevent bash from interpreting these characters. For example, we would count the number of sequence entries in a FASTA file by counting the lines which contain the <code>&gt;</code> character (which is used to start sequence header lines according to the FASTA specification). Since <code>&gt;</code> is interpreted by bash as the redirection of <code>STDOUT</code>, the following command would actually overwrite the <em>input</em> file, by redirecting the (non-existant) output of the <code>grep</code> command into the file:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span>&gt;<span class="w"> </span>human.fa
+</code></pre></div>
+<p>To prevent this, we should ensure the search phrase is enclosed in single quotes:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span><span class="s1">'&gt;'</span><span class="w"> </span>human.fa
+</code></pre></div>
+<p>This command will return all of the lines which contain a <code>&gt;</code> character. We could then, for example, use <code>wc</code> to count them:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span><span class="s1">'&gt;'</span><span class="w"> </span>human.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</code></pre></div>
+<p>This command makes use of the "pipe" character (<code>|</code>) we first encountered in practical 1 to use the output from <code>grep</code> as the input for <code>wc</code>.</p>
+<p>Some useful options for <code>grep</code> include:</p>
+<ul>
+<li><code>-c</code> to count the number of lines containing the search phrase (this would give the same result as the piped command, above)</li>
+<li><code>-i</code> to make the search case-insensitive</li>
+<li><code>-o</code> to select only matching strings (rather than the whole line)</li>
+<li><code>-w</code> to select only lines containing matches that form whole words</li>
+<li><code>-v</code> to select non-matching lines</li>
+<li><code>--color</code> to highlight matches in the selected line (on by default in most Linux distributions)</li>
+</ul>
+<p>Remember that <code>man grep</code> will give a full list of the available options and their descriptions.</p>
+<p>We can also use the special characters <code>^</code> and <code>$</code> to match phrases at the start and end of a line, for example:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span><span class="s1">'^&gt;'</span><span class="w"> </span>human.fa
+</code></pre></div>
+<p>Will ensure that we only match <code>&gt;</code> characters found at the <em>beginning</em> of a line (this character is a <em>qualifier</em> for the search phrase - it is not included as part of the phrase to be matched).</p>
+<h3 class="exercise" id="exercise_2_2">Exercise 2.2</h3>
+<p>Estimated time: 3-4 min</p>
+<ul>
+<li>If you don't still have it saved from practical 1, use <code>wget</code> to download the Retinoblastoma UniProt entry (<a href="https://rest.uniprot.org/uniprotkb/P06400.txt">https://rest.uniprot.org/uniprotkb/P06400.txt</a>)</li>
+<li>The lines of a UniProt file begin with 2 characters which denote the <em>type</em> of line (documented in the user manual: <a href="https://web.expasy.org/docs/userman.html">https://web.expasy.org/docs/userman.html</a>). Use <code>grep</code>, and this information to retrieve a list of publication identifiers relevant to the Rb protein (encoded in the <code>RX</code> lines)</li>
+<li>Narrow this list down to only those references which have a Digital Object Identifier (DOI). (Hint: you'll need to use a pipe (<code>|</code>) here)</li>
+</ul>
+<p>Consider the following:</p>
+<ul>
+<li>Does your first search find anything other than publication identifier lines?<ul>
+<li>How could you make the search more specific to prevent this, if it is a problem?</li>
+</ul>
+</li>
+<li>How many publications with a DOI are associated with the Rb protein?</li>
+<li>How about those with a PubMed ID?</li>
+</ul>
+<h2 id="regular_expressions">Regular Expressions</h2>
+<p>Searching for exact text matches is rather limited in scope - the true power of tools like <code>grep</code> becomes apparent when we can define search <em>patterns</em> which can match variable text results. Regular expressions allow us to define these types of pattern.</p>
+<p><code>grep</code> actually provides the user with a number of ways of defining search patterns, the most powerful of these are Perl regular expressions (Perl is a programming language which is extremely good at text processing). These regular expressions can be "switched on" in <code>grep</code> by using the <code>-P</code> option.</p>
+<p>A Perl regular expression is defined as a string of characters where each entity is either a regular character, which takes its literal meaning, or a <em>metacharacter</em>, which has a special meaning. Some metacharacter examples:</p>
+<ul>
+<li><code>.</code> - match <em>any</em> character</li>
+<li><code>\w</code> - match any "word" character (alphanumerics and underscores)</li>
+<li><code>\s</code> - match any "whitespace" character</li>
+<li><code>\d</code> - match digit character (i.e. the numbers 0-9)</li>
+<li><code>\D</code> - match non-digit character (i.e. anything <em>other than</em> the numbers 0-9)</li>
+<li><code>\t</code> - match the tab character</li>
+<li><code>\n</code> - match the newline character (i.e. what proceeds this character must be at the end of the line)</li>
+<li><code>*</code> - match the preceding character (or metacharacter) zero or more times</li>
+<li><code>+</code> - match the preceding character (or metacharacter) one or more times</li>
+<li><code>{n}</code> - match the preceding character (or metacharacter) exactly <code>n</code> times (where <code>n</code> is replaced by a positive whole number)</li>
+<li><code>{n,}</code> - match the preceding character at least <code>n</code> times</li>
+<li><code>{m,n}</code> - match the preceding character (or metacharacter) between <code>m</code> and <code>n</code> times (inclusive)</li>
+</ul>
+<p>If we want to match the actual characters (<code>.</code>, <code>+</code>, <code>*</code> etc) rather than imply their programmatic meaning as metacharacters, we will need to "escape" the character with a backslash (<code>\</code>). So if our pattern contains <code>+</code>, we need to express this so: <code>\+</code>.</p>
+<p>By way of example, we will search the UniProt entry of another protein (ATM, Q13315) for the Ensembl Gene ID of the protein's parent gene. Human Ensembl Gene IDs start with ENSG, so we can use that to make a regular search of the UniProt entry:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span><span class="s1">'https://rest.uniprot.org/uniprotkb/Q13315.txt'</span>
+$<span class="w"> </span>grep<span class="w"> </span><span class="s1">'ENSG'</span><span class="w"> </span>Q13315.txt
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000278616.9<span class="p">;</span><span class="w"> </span>ENSP00000278616.4<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000452508.6<span class="p">;</span><span class="w"> </span>ENSP00000388058.2<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000675843.1<span class="p">;</span><span class="w"> </span>ENSP00000501606.1<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>HPA<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>Low<span class="w"> </span>tissue<span class="w"> </span>specificity.
+DR<span class="w">   </span>OpenTargets<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>-.
+DR<span class="w">   </span>VEuPathDB<span class="p">;</span><span class="w"> </span>HostDB:ENSG00000149311<span class="p">;</span><span class="w"> </span>-.
+DR<span class="w">   </span>GeneTree<span class="p">;</span><span class="w"> </span>ENSGT00670000098061<span class="p">;</span><span class="w"> </span>-.
+DR<span class="w">   </span>Bgee<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>Expressed<span class="w"> </span><span class="k">in</span><span class="w"> </span>corpus<span class="w"> </span>callosum<span class="w"> </span>and<span class="w"> </span><span class="m">239</span><span class="w"> </span>other<span class="w"> </span>tissues.
+<span class="w">     </span>RFLCKAVENY<span class="w"> </span>INCLLSGEEH<span class="w"> </span>DMWVFRLCSL<span class="w"> </span>WLENSGVSEV<span class="w"> </span>NGMMKRDGMK<span class="w"> </span>IPTYKFLPLM
+</code></pre></div>
+<p>This search retrieves the expected database reference (DR) lines for Ensembl (among a few others), but also returns a line of the protein sequence, which contains the amino acid sequence Glu-Asn-Ser-Gly (ENSG). In this simple example we could figure out the "right" result from this simple list, but in a more complicated example, this may not be the case. To narrow down the results of our search to those line which contain genuine Ensembl Gene IDs, we will define a pattern which generally describes these identifiers. Human Ensembl Gene IDs all start with ENSG, which is then followed by 11 numbers, so a regular expression which will match <em>any</em> human Ensembl Gene ID is: <code>'ENSG\d{11}'</code> - that is the exact letters <code>ENSG</code> followed by a sequence of exactly 11 digits (<code>\d</code>):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span>-P<span class="w"> </span><span class="s1">'ENSG\d{11}'</span><span class="w"> </span>Q13315.txt
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000278616.9<span class="p">;</span><span class="w"> </span>ENSP00000278616.4<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000452508.6<span class="p">;</span><span class="w"> </span>ENSP00000388058.2<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>Ensembl<span class="p">;</span><span class="w"> </span>ENST00000675843.1<span class="p">;</span><span class="w"> </span>ENSP00000501606.1<span class="p">;</span><span class="w"> </span>ENSG00000149311.20.
+DR<span class="w">   </span>HPA<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>Low<span class="w"> </span>tissue<span class="w"> </span>specificity.
+DR<span class="w">   </span>OpenTargets<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>-.
+DR<span class="w">   </span>VEuPathDB<span class="p">;</span><span class="w"> </span>HostDB:ENSG00000149311<span class="p">;</span><span class="w"> </span>-.
+DR<span class="w">   </span>Bgee<span class="p">;</span><span class="w"> </span>ENSG00000149311<span class="p">;</span><span class="w"> </span>Expressed<span class="w"> </span><span class="k">in</span><span class="w"> </span>corpus<span class="w"> </span>callosum<span class="w"> </span>and<span class="w"> </span><span class="m">239</span><span class="w"> </span>other<span class="w"> </span>tissues.
+</code></pre></div>
+<p>This more refined search removes the line of protein sequence information from the results, as well as the GeneTree database reference (which uses an identifier which looks a bit like the Ensembl Gene ID, but doesn't match it perfectly).</p>
+<p>Now, if we want <em>just</em> the identifier, without any extraneous text, we can use the <code>grep</code> option <code>-o</code> which makes <code>grep</code> return only the text that matches the pattern:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span>-P<span class="w"> </span>-o<span class="w"> </span><span class="s1">'ENSG\d{11}'</span><span class="w"> </span>Q13315.txt
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+ENSG00000149311
+</code></pre></div>
+<p>The result here repeats the Ensembl Gene ID several times, because it is found on several lines. If we just want to get it once, we can pipe these results into the <code>sort</code> command, which has an option (<code>-u</code>) to give only the unique entries in a list (the tool <code>uniq</code> does something similar, but requires the input to be sorted anyway, so we may as well just use a single tool):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span>-Po<span class="w"> </span><span class="s1">'ENSG\d{11}'</span><span class="w"> </span>Q13315.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+ENSG00000149311
+</code></pre></div>
+<h3 class="exercise" id="exercise_2_3">Exercise 2.3</h3>
+<p>Estimated time: 10 min</p>
+<ul>
+<li>Repeat the above procedure to retrieve the Ensembl Gene ID for the Rb protein</li>
+<li>Can you modify this procedure to retrieve the PubMed IDs associated with the RX lines we retrieved in exercise 2.2?</li>
+<li>(More difficult) How about the DOIs? What are the common features of DOIs which can be used to build a regular expression?</li>
+</ul>
+<h2 id="other_text_processin">Other Text Processing Tools</h2>
+<p>As we've seen, much can be accomplished with <code>grep</code>, and the ability to not only search text but to effectively edit it and remove only the required sections make it a powerful tool, but Linux provides us with a well stocked armoury of such tools, allowing us to do so much more. We don't have space or scope to cover everything here, but included below are some selected highlights.</p>
+<h3 id="sort">sort</h3>
+<p>The <code>sort</code> command takes a file and sorts its lines according to some natural order. By default this ordering is alphanumeric - it is possible to change this using options. With delimited text (e.g. tab- or comma-separated values) it is possible to choose the <em>field</em> you which to sort on (i.e. which column of the table). The field separator is defined using the <code>-t</code> option, and the column number to sort on is defined with the <code>-k</code> option.</p>
+<h3 id="uniq">uniq</h3>
+<p>The <code>uniq</code> command prints a file with repeated lines omitted. As mentioned above, in order for <code>uniq</code> to find repeated lines, the file must be sorted such that these lines are next to one another. The <code>-d</code> option will print <em>only</em> the repeated lines (i.e. the duplicates), and the <code>-n</code> option will include a count for each line (i.e. how many times it was found in the file).</p>
+<h3 id="cut">cut</h3>
+<p><code>cut</code> is used to select sections from each line of a file. This selection can be specified in terms of bytes, characters or fields, where fields can be thought of as the columns of a table. This makes <code>cut</code> particularly useful for selecting columns from a table.</p>
+<p>The <code>-f</code> option is used to select particular fields (a comma-separated list can be used to retrieve multiple columns). By default, <code>cut</code> will expect fields to be separated by the tab character. This can be changed using the <code>-d</code> option (for delimiter).</p>
+<h3 class="exercise" id="exercise_2_4">Exercise 2.4</h3>
+<p>Estimated time: 10 min</p>
+<ul>
+<li>Download the example data table: <a href="https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt">https://github.com/sjcockell/mmb8052/raw/main/practicals/data/example.txt</a></li>
+<li><code>sort</code> the file by the corrected p-value (the column name is <code>adj.P.Val</code>), and redirect the output to a file<ul>
+<li>To use the tab character as a field separator, you will need to add the <code>-t</code> option formatted like so: <code>-t $'\t'</code></li>
+<li>Are the results as you would expect?</li>
+<li>Where do the column headings end up?</li>
+<li>Can you figure out how to <code>sort</code> the column more correctly (read the <code>man</code> page - look for the "general numeric sort", which deals with scientific notation)</li>
+</ul>
+</li>
+<li>Use a combination of <code>tail</code>, <code>sort</code>, <code>cut</code> and <code>head</code> to remove the column headers, find and return the names of the 10 genes with the largest positive log fold-change (<code>logFC</code>)</li>
+</ul>
+<h1 id="scripting">Scripting</h1>
+<p>In addition to interpreting commands directly at the command line, <code>bash</code> can also be used to execute a list of commands saved in a text file known as a <em>script</em>. A shell script is a file containing a list of commands which are executed one at a time, and is conventionally given the file extension <code>.sh</code>.</p>
+<p>Scripting is useful for a number of reasons. For example it allows us to record and reuse our process because the commands we use are stored in a file. Furthermore, by introducing programming concepts such as variables, conditionals and iteration, we can automate our process, making us more efficient with our computational work.</p>
+<p>We will use the <code>nano</code> text editor we first encountered in Practical 1 to make and edit our shell scripts.  </p>
+<h2 id="scripting_concepts">Scripting Concepts</h2>
+<h3 id="variables">Variables</h3>
+<p>A <em>variable</em> is essentially a label referencing a location in memory holding an item of data. Once <em>declared</em>, variables can be used in operations, or passed to commands. The use of variables greatly increases the utility of scripts, and will often make them more readable and easier to edit.</p>
+<p>We can create a variable in our script (or even at the command line) by giving it a name and assigning a value to it with the <code>=</code> operator:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">MYVAR</span><span class="o">=</span><span class="s2">"Hello, world!"</span>
+</code></pre></div>
+<p>The name of this variable is <code>MYVAR</code> and we have given it the value <code>"Hello, world!"</code>. It is important to note here that <code>bash</code> is quite picky about the formatting of this assignment - there can't be any spaces around the <code>=</code> (or <code>bash</code> will think you're trying to execute a command called <code>MYVAR</code>). Note that we've given our variable an ALL CAPS name - this isn't strictly necessary, but is the convention. One further point to make is that our variable name cannot contain characters other than alphanumerics and the underscore (<code>_</code>), or begin with a number. So <code>MYVAR</code>, <code>MY_VAR</code> and <code>MYVAR2</code> are all allowed variable names, but <code>MY VAR</code>, <code>MY-VAR</code> and <code>2MYVAR</code> are not.</p>
+<p>Once we have created a variable, we can use it in subsequent lines of our script by referring to it. We do this with the <code>${}</code> operator:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">MYVAR</span><span class="si">}</span>
+</code></pre></div>
+<p>The curly braces here (<code>{}</code>) are not <em>absolutely</em> required, but can save introducing unexpected bugs in more complicated scripts. If we created a script with these two lines and ran it, we would see our script print "Hello, world!" to <code>STDOUT</code>.</p>
+<h3 class="exercise" id="exercise_2_5">Exercise 2.5</h3>
+<p>Estimated time: 3 min</p>
+<ul>
+<li>Create the 2 line script described above using <code>nano</code>. Save it as <code>my_first_script.sh</code>.</li>
+<li>Run the script as follows:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bash<span class="w"> </span>my_first_script.sh
+</code></pre></div>
+<ul>
+<li>Do you get the expected output, as described above?</li>
+<li>If not, can you fix your script?</li>
+</ul>
+<h3 id="environment">Environment</h3>
+<p><code>bash</code> has a number of variables preset by default, this set of variables collectively is known as our <em>environment</em>. Some examples of standard <code>bash</code> environment variables are given in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Environment Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOME</td>
+<td>Set to your home directory (~) at login</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>Set to the path of your currently active shell</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>Set to your Linux user name</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>Changes dynamically to be your present working directory</td>
+</tr>
+</tbody>
+</table>
+<p>To find the current value of any of these variables, you can use <code>echo</code> in the same way we did above, for example:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">SHELL</span><span class="si">}</span>
+/bin/bash
+</code></pre></div>
+<p>When we create a new variable, either at the command line or in our script, that variable enters this environment. In a script, the variable only lasts as long as the script is running, and then it gets "forgotten" by <code>bash</code> (this is known as the variable's <em>scope</em>). A variable created at the command line lasts until we exit our current command line session. While a variable is in your environment, there is no limit to the number of times you can reference it. It is also possible to change the value of an existing variable (note: be careful with variable <em>reuse</em>).</p>
+<h3 id="special_variables">Special Variables</h3>
+<p>In a running script, we have access to dynamic run-time variables. These variables allow us to pass information into our script, for example consider the following script:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">MY_FIRST_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span>
+<span class="nv">MY_SECOND_ARG</span><span class="o">=</span><span class="si">${</span><span class="nv">2</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"The values you provided at the command line were </span><span class="si">${</span><span class="nv">MY_FIRST_ARG</span><span class="si">}</span><span class="s2"> and </span><span class="si">${</span><span class="nv">MY_SECOND_ARG</span><span class="si">}</span><span class="s2">."</span>
+</code></pre></div>
+<p>This script can be run as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bash<span class="w"> </span>my_second_script.sh<span class="w"> </span>hello<span class="w"> </span>world
+The<span class="w"> </span>values<span class="w"> </span>you<span class="w"> </span>provided<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>were<span class="w"> </span>hello<span class="w"> </span>and<span class="w"> </span>world.
+</code></pre></div>
+<p>The two variables referenced in the first two lines are special variables which store the command line arguments passed to the script. You can pass as many arguments as you like, but you'd have to write the code to handle them correctly. The <code>${#}</code> variable tells us how many arguments there are, and <code>${@}</code> provides a list of all of them.</p>
+<p>Incorporating arguments into scripts can allow more general purpose scripts to be created, which can do the same job in many different ways in response to changing arguments. For example, we can create a script to download any UniProt entry:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">UNIPROT</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Downloading UniProt entry: </span><span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span><span class="s2">"</span>
+wget<span class="w"> </span>https://rest.uniprot.org/uniprotkb/<span class="si">${</span><span class="nv">UNIPROT</span><span class="si">}</span>.txt
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Done downloading"</span>
+</code></pre></div>
+<p>You can then invoke this script with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bash<span class="w"> </span>my_third_script.sh<span class="w"> </span>P06400
+Downloading<span class="w"> </span>UniProt<span class="w"> </span>entry:<span class="w"> </span>P06400
+<span class="o">[</span>...<span class="o">]</span>
+Done<span class="w"> </span>downloading
+</code></pre></div>
+<h3 class="exercise" id="exercise_2_6">Exercise 2.6</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Make the script above that takes a UniProt accession as an argument</li>
+<li>Modify it so you can also configure what type of data to download (e.g. <code>txt</code>, <code>fasta</code> or <code>gff</code>)</li>
+<li>Test that your script works as expected</li>
+</ul>
+<p>Consider the following:</p>
+<ul>
+<li>What happens if you run the script without supplying arguments?</li>
+<li>How might you improve this behaviour?</li>
+</ul>
+<h3 id="the_for_loop">The FOR Loop</h3>
+<p>The ability to <em>iterate</em>, or to perform a set of instructions repeatedly, is a key feature of programming languages. In <code>bash</code> we have the <code>for</code> flow control statement which enables iteration over a list of input variables. The list of commands to be executed at each iteration is enclosed between the keywords <code>do</code> and <code>done</code>. For example, a given set of UniProt entries could be downloaded with the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>ACC<span class="w"> </span><span class="k">in</span><span class="w"> </span>P34122<span class="w"> </span>P19198<span class="w"> </span>Q55618<span class="w"> </span>P18778<span class="w"> </span>Q9ZBZ1
+<span class="k">do</span>
+<span class="w">  </span>wget<span class="w"> </span>https://rest.uniprot.org/uniprotkb/<span class="si">${</span><span class="nv">ACC</span><span class="si">}</span>.txt
+<span class="k">done</span>
+</code></pre></div>
+<p>Here, the loop variable <code>ACC</code> is first assigned the value <code>P34122</code> and the code inside the <code>for</code> loop (between <code>do</code> and <code>done</code>) is executed - in this case our script simply runs <code>wget</code> with this <code>${ACC}</code> variable in the appropriate place in the UniProt URL. After this first iteration, the loop repeats but the <code>ACC</code> loop variable now takes the second value in the list (<code>P19198</code>). This process then repeats until the last item in the list of inputs is reached.</p>
+<p>Once the <code>for</code> loop runs out of inputs (i.e. every entry in the list has been processed), the loop is terminated, and our script can move on to any lines after the <code>done</code>.</p>
+<h3 class="exercise" id="exercise_2_7">Exercise 2.7</h3>
+<p>Estimated time: 10 minutes</p>
+<ul>
+<li>Modify your script from exercise 2.6 to include a FOR loop so it can download multiple entries passed as arguments </li>
+<li>
+<p>Test your script still works (use the list of UniProt entries above)</p>
+</li>
+<li>
+<p>Can you think of any further improvements you'd like to make to this script?</p>
+</li>
+<li>Do you think it would also be possible to write a script to make using the UniProt search API (see practical 1) simpler?</li>
+</ul>
+<h1 id="software_installatio">Software Installation</h1>
+<p>So far the software we've used in Linux comes pre-installed with the system. Most Linux distributions will come with these utilities, and we can accomplish a number of complicated tasks with them, as we have already seen. It is often the case, however, that this pre-installed software is not sufficient for the task in hand. Fortunately there are a number of ways to install command-line software in Linux. We will be looking at a modern, cross-platform way of doing this in the next practical, but for today we will use the Ubuntu package manager, <code>apt</code>.</p>
+<h2 id="apt">APT</h2>
+<p>APT stands for Advanced Package Tool, and the <code>apt</code> command-line tool is a utility for installing, updating, removing and otherwise managing software installation on an Ubuntu system - functioning like a command-line "App Store" (although everything is free!).</p>
+<h2 id="sudo">sudo</h2>
+<p>Installing software so that it can function correctly usually requires system-level changes. Therefore administrator privileges (the ability to modify any file on the file system) are required for <code>apt</code> to work properly. It is generally insecure to operate any computer as an admin user "full time", and Linux is no exception. This is why when you try to install software on Windows or MacOS you will be prompted for a password, even if you are logged in to an admin account. At the command line the <code>sudo</code> utility offers temporary admin uplift to the command that comes after it. The command to refresh our currently installed package list is <code>apt update</code> - this command does not work without admin privileges:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>apt<span class="w"> </span>update
+Reading<span class="w"> </span>package<span class="w"> </span>lists...<span class="w"> </span>Done
+E:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>open<span class="w"> </span>lock<span class="w"> </span>file<span class="w"> </span>/var/lib/apt/lists/lock<span class="w"> </span>-<span class="w"> </span>open<span class="w"> </span><span class="o">(</span><span class="m">13</span>:<span class="w"> </span>Permission<span class="w"> </span>denied<span class="o">)</span>
+E:<span class="w"> </span>Unable<span class="w"> </span>to<span class="w"> </span>lock<span class="w"> </span>directory<span class="w"> </span>/var/lib/apt/lists/
+W:<span class="w"> </span>Problem<span class="w"> </span>unlinking<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>/var/cache/apt/pkgcache.bin<span class="w"> </span>-<span class="w"> </span>RemoveCaches<span class="w"> </span><span class="o">(</span><span class="m">13</span>:<span class="w"> </span>Permission<span class="w"> </span>denied<span class="o">)</span>
+W:<span class="w"> </span>Problem<span class="w"> </span>unlinking<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>/var/cache/apt/srcpkgcache.bin<span class="w"> </span>-<span class="w"> </span>RemoveCaches<span class="w"> </span><span class="o">(</span><span class="m">13</span>:<span class="w"> </span>Permission<span class="w"> </span>denied<span class="o">)</span>
+</code></pre></div>
+<p>Notice the multiple 'permission denied' errors. Repeat using <code>sudo</code> this time, to provide the admin uplift. You will be prompted for your system password:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<span class="o">[</span>sudo<span class="o">]</span><span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>student:
+Hit:1<span class="w"> </span>http://gb.archive.ubuntu.com/ubuntu<span class="w"> </span>jammy<span class="w"> </span>InRelease
+<span class="o">[</span>...<span class="o">]</span>
+Reading<span class="w"> </span>package<span class="w"> </span>lists...<span class="w"> </span>Done
+</code></pre></div>
+<p>Similarly, we can upgrade all the installed packages which require it. If you do this quickly enough after the command above, you will not need to enter your password again (by default you will not be prompted again until after 5 minutes of <code>sudo</code> inactivity).</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</code></pre></div>
+<h2 id="bioinformatics_softw">Bioinformatics Software and APT</h2>
+<p>There are some popular bioinformatics software tools which are available to install via APT - if you want to know whether a tool can be installed via this route, you can try <code>apt search</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>apt<span class="w"> </span>search<span class="w"> </span>blast
+<span class="o">[</span>...<span class="o">]</span>
+ncbi-blast+/jammy<span class="w"> </span><span class="m">2</span>.12.0+ds-3build1<span class="w"> </span>amd64
+<span class="w">  </span>next<span class="w"> </span>generation<span class="w"> </span>suite<span class="w"> </span>of<span class="w"> </span>BLAST<span class="w"> </span>sequence<span class="w"> </span>search<span class="w"> </span>tools
+<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div>
+<p>The above command returns lots of results, but among them is a command-line implementation of NCBI's BLAST+ package. The actual name of the package should be highlighted in the results (in green). We can install this package using <code>apt install</code> (this requires <code>sudo</code>):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ncbi-blast+
+<span class="o">[</span>...<span class="o">]</span>
+Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span>?<span class="w"> </span><span class="o">[</span>Y/n<span class="o">]</span>
+</code></pre></div>
+<p>APT will summarise the changes required to install the requested software (packages often have <em>dependencies</em> - other software or libraries they require to work properly - this is one reason why a package manager is so important, as this dependency resolution is automatically handled), and ask for confirmation that you wish to continue. Just hitting [ENTER] here is sufficient (the uppercase "Y" means that's the default option).</p>
+<p>Once this installation is complete, we will have installed the BLAST suite of tools for command-line use:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># print out some help information for BLASTP</span>
+$<span class="w"> </span>blastp<span class="w"> </span>-h
+</code></pre></div>
+<p>We will make use of BLAST in a future practical.</p>
+<h1 id="putting_it_all_toget">Putting it all together</h1>
+<p>For the final exercise in this practical, we will make use of the tools we've introduced above to download a set of sequences from UniProt and use some software we will install to build a multiple sequence alignment from the downloaded data. Although this sounds daunting at first, we can work through the process step-by-step.</p>
+<h3 class="exercise" id="exercise_2_8">Exercise 2.8</h3>
+<p>Estimated time: 15-20 mins</p>
+<ul>
+<li>Write a short script with a FOR loop (as <a href="#the-for-loop">above</a>) to download this set of 12 protein sequences from UniProt:</li>
+</ul>
+<p>P33568 D3ZS28 O55081 Q08999 P28749 P06400 Q64700 Q64701 P13405 Q24472 Q90600 G5EDT1</p>
+<p><strong>Note</strong>: download the <code>.fasta</code> sequence, not the <code>.txt</code> database entry. If you managed to modify the script in exercise 2.7 to take command line arguments, then it should be simple to modify this to download the correct data.</p>
+<ul>
+<li>Concatenate all of these sequence files together into a single multi-fasta file using <code>cat</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>*.fasta<span class="w"> </span>&gt;<span class="w"> </span>all_seq.fasta
+</code></pre></div>
+<p><strong>Note</strong>: This command will only work correctly if the FASTA files requested in the first step are the only <code>.fasta</code> files in your current working directory (otherwise sequences you don't want to include in your alignment will be incorporated in this file).</p>
+<ul>
+<li>Now install the multiple sequence alignment program called <code>muscle</code> - you can use <code>apt</code> for this (we are going to install the version called <code>muscle3</code>).</li>
+<li>Read the <code>muscle3</code> help file (<code>muscle3 --help</code>), and see if you can figure out how to get it to align the sequences in <code>all_seq.fasta</code> by following the "Basic usage".</li>
+<li>Use <code>less</code> to look at the difference between the input and the output.</li>
+</ul>
+<h1 id="summary">Summary</h1>
+<p>This practical has introduced some advanced concepts which are useful when working at the Linux command line. The ability to write scripts, in particular, allows us to record our practice and therefore to reproduce it (and allow others to). We've also seen how to install software on our Linux system - providing new tools to experiment with, including some bioinformatics software. The final exercise here combined a lot of the lessons we've learned so far to achieve something quite complicated - this is a realistic 'bioinformatics' task.</p>
+<p>Next week we will look at organising our work, and computational tools for managing projects and software.</p>
+</section>
+
+    </article>
+
+        </main>
+
+		
+		<footer>
+	<hr>
+
+    <nav id="footer-nav">
+        <a href="#">Back to top</a>
+    </nav>
+
+    <div id="footer-text">
+        <p>Generated using <a target="_blank" href="https://chirun.org.uk">Chirun</a> v1.5.0, written by the Digital Learning Unit, School of Mathematics &amp; Statistics, Newcastle University</p>
+        <p>This page last generated: 2026-10-21</p>
+        
+        
+        
+    </div>
+</footer>
+		
+
+        
+
+        <svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="icon-defs"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <g id="cog">
+            <path 
+                style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2.91107"
+                d="m 97.752501,14.130132 -9.381402,13.321575 -0.875593,3.780985 0.153413,10.126218 -15.231962,2.683646 -3.320429,-9.569021 -2.115099,-3.246528 -13.372747,-9.313164 -6.817124,3.940185 1.375919,16.23265 1.756892,3.456901 6.623829,7.658625 -9.938582,11.848983 -8.693428,-5.196724 -3.712755,-1.125768 -16.226967,1.461225 -2.695014,7.397083 11.490766,11.553325 3.570636,1.518082 10.001112,1.609049 v 15.465082 l -10.001112,1.609049 -3.570636,1.51808 -11.490766,11.55333 2.695014,7.39707 16.226967,1.46124 3.712755,-1.12577 8.693428,-5.19673 9.938582,11.849 -6.623829,7.6586 -1.756892,3.4569 -1.375919,16.23267 6.817124,3.94017 13.372747,-9.31317 2.115099,-3.24651 3.320429,-9.56902 15.231962,2.68363 -0.153413,10.12623 0.875593,3.78099 9.381402,13.32157 7.749599,-1.37024 4.25858,-15.72665 -0.46624,-3.84919 -3.60472,-9.46099 13.3898,-7.73254 6.39641,7.85192 3.09872,2.33113 15.74934,4.17332 5.06027,-6.02683 -6.84557,-14.78849 -2.83716,-2.64385 -8.84125,-4.93518 5.28767,-14.532632 9.94426,1.910392 3.8777,-0.21038 14.74863,-6.925177 v -7.868995 l -14.74863,-6.925174 -3.8777,-0.210383 -9.94426,1.910392 -5.28767,-14.532629 8.84125,-4.935179 2.83716,-2.643849 6.84557,-14.788484 -5.06027,-6.026831 -15.74934,4.173298 -3.09872,2.331133 -6.39641,7.851938 -13.3898,-7.73254 3.60472,-9.460991 0.46624,-3.849211 -4.25858,-15.726624 z M 88.371099,75.44463 A 14.55537,14.55537 0 0 1 102.92647,90 14.55537,14.55537 0 0 1 88.371099,104.55537 14.55537,14.55537 0 0 1 73.815728,90 14.55537,14.55537 0 0 1 88.371099,75.44463 Z"
+            />
+        </g>
+        <g id="pdf">
+            <path
+                style="fill:var(--bg-colour);fill-opacity:1;fill-rule:nonzero;stroke:currentColor;stroke-width:5.73751;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+                d="m 115.96038,9.1011226 31.41471,31.7977544 m 0,11.232914 V 159.42386 c 0,6.35716 -5.11786,11.47502 -11.47502,11.47502 H 44.099928 c -6.35716,0 -11.475018,-5.11786 -11.475018,-11.47502 V 20.576141 c 0,-6.35716 5.117858,-11.4750184 11.475018,-11.4750184 h 71.860452 l -0.14159,20.0812814 c -0.0449,6.357008 5.11832,11.398586 11.47503,11.475018 l 20.08127,0.241455"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:4.74634;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 56.949794,109.50753 C 70.723931,123.86069 104.41318,45.431956 83.05466,47.805125 61.696136,50.178294 111.53269,116.62705 123.39853,100.01485 135.26439,83.402664 43.175657,95.15437 56.949794,109.50753 Z"
+            />
+        </g>
+        <g id="slides">
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,21.25 30,137.5"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="M 90,21.25 60,158.75"
+            />
+            <rect
+                style="fill:var(--bg-colour);fill-opacity:1;stroke:currentColor;stroke-width:10.4525;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="119.79137"
+                height="82.273766"
+                x="30.104315"
+                y="36.476234"
+                ry="4.7737675"
+                rx="4.7737675"
+            />
+            <rect
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5.90268;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                width="140"
+                height="5.2262344"
+                x="20"
+                y="31.25"
+                ry="1.6724058"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,66.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,76.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,86.25 h 50"
+            />
+            <path
+                style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+                d="m 90,56.25 h 50"
+            />
+            <path
+                style="fill:currentColor;fill-opacity:1;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                d="M 80.000002,78.84906 A 20.099062,20.099062 0 0 1 67.592518,97.418172 20.099062,20.099062 0 0 1 45.688757,93.061243 20.099062,20.099062 0 0 1 41.331828,71.157482 20.099062,20.099062 0 0 1 59.90094,58.749998 V 78.84906 Z"
+            />
+        </g>
+
+        <g id="notebook">
+            <path
+                style="fill:var(--bg-colour);stroke:currentColor;stroke-width:4.964;stroke-linecap:butt;stroke-linejoin:round;paint-order:stroke fill markers;stroke-dasharray:none"
+                d="M 34.482063,31.89923 V 16.261703 c 0,-5.41792 4.36172,-9.7796397 9.77964,-9.7796397 H 135.7383 c 5.41792,0 9.77964,4.3617197 9.77964,9.7796397 V 163.7383 c 0,5.41792 -4.36172,9.77964 -9.77964,9.77964 H 44.261703 c -5.41792,0 -9.77964,-4.36172 -9.77964,-9.77964 v -23.96224"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="58.699139"
+               cy="59.503937"
+               r="3.8077738"
+            />
+            <circle
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="113.59385"
+               cy="52.885151"
+               r="4.9348516"
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,54.782256 C 74.053011,55.067917 59.927013,65.025096 57.261258,76.89961 69.209289,67.830932 79.817786,64.804678 88.900432,64.855157 97.983077,64.804678 108.59157,67.830932 120.53961,76.89961 117.87385,65.025096 103.74785,55.067917 88.900432,54.782256 Z"
+           
+            />
+            <path
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               d="M 88.900432,121.58085 C 74.053011,121.29519 59.927013,111.33801 57.261258,99.46349 c 11.948031,9.06868 22.556528,12.09494 31.639174,12.04445 9.082643,0.0505 19.691138,-2.97577 31.639178,-12.04445 -2.66576,11.87452 -16.79176,21.8317 -31.639178,22.11736 z"
+              
+            />
+            <ellipse
+               style="fill:currentColor;stroke-width:9.43913;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+               cx="63.813011"
+               cy="125.96338"
+               rx="6.4332962"
+               ry="6.4347191"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="m 28,40 c 2.806997,-4.320074 9.452509,-3.66881 12,0"
+            />
+            <path
+                style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+                d="M 34,46.266514 V 62.316215"
+            
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,71.583335 c 2.806997,-4.320073 9.452509,-3.668809 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="M 34,77.849849 V 93.89955"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,103.16667 c 2.806997,-4.320071 9.452509,-3.668807 12,0"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 34,109.43318 v 16.0497"
+            />
+            <path
+             style="fill:none;fill-opacity:1;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+             d="m 28,134.75 c 2.806997,-4.32007 9.452509,-3.66881 12,0"
+            />
+        </g>
+
+        <g id="fullscreen">
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:10;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 19.402776,9.9953678 H 160.51388 c 5.2117,0 9.40741,4.1957032 9.40741,9.4074042 V 160.51388 c 0,5.2117 -4.19571,9.40741 -9.40741,9.40741 H 19.402776 c -5.211704,0 -9.4074082,-4.19571 -9.4074082,-9.40741 V 19.402772 c 0,-5.211701 4.1957042,-9.4074042 9.4074082,-9.4074042 z" />
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="M 150.95833,68.801471 V 28.958332 h -39.84314"
+            />
+            <path
+               style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+               d="m 28.958332,111.11519 v 39.84314 h 39.843139"
+            />
+        </g>
+    </defs>
+</svg>
+    </body>
+</html>

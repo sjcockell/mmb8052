@@ -1,0 +1,33 @@
+author: Simon J Cockell
+build_pdf: true
+build_zip: true
+format_version: 2
+license: null
+locale: en
+mathjax_url: https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js
+num_pdf_runs: 1
+root_url: /{base}/
+structure:
+- build_pdf: true
+  content: []
+  formats:
+  - filetype: html
+    format: default
+    url: index.html
+  - filetype: pdf
+    format: default
+    url: mmb8052_practical_5.pdf
+  is_hidden: false
+  pdf_url: mmb8052_practical_5.pdf
+  slug: mmb8052_practical_5
+  source: practical_05.md
+  splitlevel: -2
+  title: MMB8052 - Practical 5
+  type: standalone
+  url: index.html
+themes:
+- path: .
+  source: default
+  title: Default
+year: 2026
+zipfile: chirun.zip
